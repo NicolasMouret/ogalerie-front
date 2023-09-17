@@ -23,6 +23,8 @@ Les visiteurs peuvent parcourir la galerie, filtrer les œuvres par artiste, tag
 * Offrir un espace aux artistes pour exposer et partager leurs œuvres.
 * Permettre aux visiteurs d'explorer la galerie, filtrer les œuvres et interagir avec les artistes.
 
+&nbsp;
+
 ### Objectifs :
 
 * Créer une plateforme intuitive pour les artistes et les visiteurs.
@@ -40,7 +42,7 @@ Les visiteurs peuvent parcourir la galerie, filtrer les œuvres par artiste, tag
 Permettre aux artistes de créer un compte et personnaliser leur profil.
 
 2. **Publication d'une Œuvre :**
-Autoriser les artistes à ajouter des œuvres à leur page.
+Permettre aux artistes d'ajouter des œuvres à leur page.
 
 3. **Catégorisation et Exposition :**
 Catégoriser les œuvres selon différents critères comme le style, le thème, le médium, etc.
@@ -52,24 +54,27 @@ Permettre aux visiteurs de laisser des commentaires et des appréciations sur le
 Offrir une fonction de recherche avancée pour filtrer les œuvres.
 
 6. **Profil Visiteur :**
-Autoriser les visiteurs à ajouter des œuvres/artistes en favoris et consulter les profils des artistes.
+Permettre aux visiteurs d'ajouter des œuvres/artistes en favoris et consulter les profils des artistes.
 
 7. **Formulaire de contact**
 Permettre aux visiteurs de rentrer en contact avec les artistes via un formulaire.
 
+&nbsp;
+
 ### MVP (Minimum Viable Product)
 * Création des pages artistes;
 * Publication et visualisation d'œuvres;
-* Catégorisation basique des œuvres (tags);
-* Interaction de base entre visiteurs et artistes (commentaires et favoris);
+* Catégorisation des œuvres (tags);
+* Interaction basique entre les visiteurs et les artistes (commentaires et favoris);
 * Formulaire de contact (visiteurs -> artistes);
-* Recherche basique d'œuvres (filtres).
+* Recherche simple d'œuvres (filtres).
+
+&nbsp;
 
 ### Évolutions Potentielles 
-* Système de recommandations basé sur les préférences des utilisateurs.
-* Messagerie assynchrone (messages privés)
-* Statistiques sur les œuvres et les profils.
-* Améliorations de l'interface utilisateur.
+* Système de recommandations basé sur les préférences des utilisateurs;
+* Messagerie assynchrone (messages privés);
+* Améliorer l'interface utilisateur.
 
 &nbsp;
 
@@ -82,17 +87,25 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 * Back-end : Node.js (Express), PostgreSQL.
 * Stockage des images : AWS S3 
 
+&nbsp;
+
 ### Cible du Projet
 * Public visé : Artistes visuels (hors artistes musicuax et vidéo) et amateurs d'art.
 
+&nbsp;
+
 ### Navigateurs Compatibles
-* Dernières versions de Chrome, Firefox, Safari et Edge.
+* Chrome, Firefox, Safari et Edge.
+
+&nbsp;
 
 ### Arborescence de l'Application
-* A Définir ici (organisation des pages et des fonctionnalités).
+* A définir ici (organisation des pages et des fonctionnalités).
+
+&nbsp;
 
 ### Routes Prévues
-* On énumère ici les routes de l'application et leurs fonctionnalités associées.
+* Enumérer ici les routes de l'application et les fonctionnalités associées.
 
 &nbsp;
 
@@ -101,38 +114,36 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 ## User Stories
 En tant que | Je veux | Afin de |
 |--|--|--|
+| Artiste | créer une collection | grouper et présenter ses oeuvres à sa convenance, sur sa page artiste |
+| Artiste | renommer une collection | mettre à jour le nom d'une collection si besoin |
+| Artiste | supprimer une collection | retirer une collection de sa page artiste |
 /*
-| Artiste | créer une galerie | |
-| Artiste | renommer une galerie|  |
-| Artiste | renommer une galerie|  |
-| Artiste | supprimer une galerie |  |
-| Artiste | consulter sa messagerie |  |
-| Artiste | Choisir si les images sont téléchargeables |  |
+| Artiste | consulter sa messagerie | lire et répondre aux messages des visiteurs ou autres artistes |
+| Artiste | Choisir si les images sont téléchargeables | contrôler le téléchragement de ses oeuvres |
 */
-| Artiste | ajouter une oeuvre | |
-| Artiste | supprimer une oeuvre |  |
-| Artiste | modifier une oeuvre |  |
-| Artiste | taguer une oeuvre |  |
-| Artiste | accepter les conditions d'utilisations | | 
-| Visiteur identifié | se deconnecter |  |
-| Visiteur identifié | consulter ses données personnelles |  |
-| Visiteur identifié | modifier son profil et ses données personnelles |  |
-| Visiteur identifié | supprimer son profil |  |
-| Visiteur identifié | s'authentifier |  |
-| Visiteur identifié | consulter les pages artistes |  |
-| Visiteur identifié | consulter la page d'une oeuvre |
-| Visiteur identifié | liker une oeuvre |  |
-| Visiteur identifié | mettre une oeuvre en favoris |  |
-| Visiteur identifié | commenter une oeuvre  |  |
-| Visiteur identifié | contacter un artiste via un formulaire |  |
+| Artiste | ajouter une oeuvre | exposer ses créations |
+| Artiste | supprimer une oeuvre | retirer une oeuvre de sa page |
+| Artiste | modifier une oeuvre | mettre à jour les informations et/ou les images d'oeuvres exposées |
+| Artiste | taguer une oeuvre | permettre aux visiteurs de trier les oeuvres selon des critères spécifiques |
+| Artiste | accepter les conditions d'utilisations | respecter les règles et conditions du site | 
+| Visiteur identifié | se deconnecter | ne pas laisser sa session active  |
+| Visiteur identifié | s'authentifier | accéder aux fonctionnalités réservées aux utilisteurs authentifiés |
+| Visiteur identifié | consulter ses données personnelles | vérifier ses informations personnelles |
+| Visiteur identifié | modifier son profil et ses données personnelles | modifier ses informations personnelles et personnaliser son profil |
+| Visiteur identifié | supprimer son profil | retirer mon profil de la plateforme |
+| Visiteur identifié | consulter les pages artistes | découvrir des artistes et leurs oeuvres |
+| Visiteur identifié | consulter la page d'une oeuvre | avoir plus de détails sur une oeuvre |
+| Visiteur identifié | liker une oeuvre | montrer son appréciation |
+| Visiteur identifié | mettre une oeuvre en favoris | conserver une trace des oeuvres appréciées |
+| Visiteur identifié | commenter une oeuvre  | partager mon opinion sur une oeuvre et interagir |
+| Visiteur identifié | contacter un artiste via un formulaire | entrer en contact par mail avec des artistes |
 /*
-| Visiteur identifié | contacter un artiste via un la messagerie |  |
+| Visiteur identifié | contacter un artiste via un la messagerie | échanger directement avec des artistes sur la plateforme  |
 */
-| Visiteur anonyme | s'inscrire en tant que visiteur |  |
-| Visiteur anonyme | s'inscrire en tant qu'artiste |  |
-| Visiteur anonyme | s'authentifier |  |
-| Visiteur anonyme | consulter les pages artistes |
-| Visiteur anonyme | consulter la page d'une oeuvre |
+| Visiteur anonyme | s'inscrire en tant que visiteur | avoir accès à plus de fonctionnalités et devenir un visiteur identifié |
+| Visiteur anonyme | s'inscrire en tant qu'artiste | avoir une page artiste et y partager ses oeuvres |
+| Visiteur anonyme | consulter les pages artistes | découvrir des artistes et leurs oeuvres |
+| Visiteur anonyme | consulter la page d'une oeuvre |  avoir plus de détails sur une oeuvre |
 
 &nbsp;
 
