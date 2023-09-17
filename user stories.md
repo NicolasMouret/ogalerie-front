@@ -1,4 +1,4 @@
-User stories 
+# User stories 
 
 | En tant que | Je veux | Afin de |
 |--|--|--|
@@ -15,8 +15,6 @@ User stories
 | Artiste | modifier une oeuvre |  |
 | Artiste | taguer une oeuvre |  |
 | Artiste | accepter les conditions d'utilisations | | 
-
-
 | Visiteur identifié | se deconnecter |  |
 | Visiteur identifié | consulter ses données personnelles |  |
 | Visiteur identifié | modifier son profil et ses données personnelles |  |
@@ -31,7 +29,6 @@ User stories
 /*
 | Visiteur identifié | contacter un artiste via un la messagerie |  |
 */
-
 | Visiteur anonyme | s'inscrire en tant que visiteur |  |
 | Visiteur anonyme | s'inscrire en tant qu'artiste |  |
 | Visiteur anonyme | s'authentifier |  |
