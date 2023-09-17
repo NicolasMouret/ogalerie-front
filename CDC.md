@@ -138,7 +138,7 @@ En tant que | Je veux | Afin de |
 | Visiteur identifié | commenter une oeuvre  | partager mon opinion sur une oeuvre et interagir |
 | Visiteur identifié | contacter un artiste via un formulaire | entrer en contact par mail avec des artistes |
 /*
-| Visiteur identifié | contacter un artiste via un la messagerie | échanger directement avec des artistes sur la plateforme  |
+| Visiteur identifié | contacter un artiste via la messagerie | échanger directement avec des artistes sur la plateforme  |
 */
 | Visiteur anonyme | s'inscrire en tant que visiteur | avoir accès à plus de fonctionnalités et devenir un visiteur identifié |
 | Visiteur anonyme | s'inscrire en tant qu'artiste | avoir une page artiste et y partager ses oeuvres |
