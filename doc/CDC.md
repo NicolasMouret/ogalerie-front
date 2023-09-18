@@ -67,7 +67,8 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 * Catégorisation des œuvres (tags);
 * Interaction basique entre les visiteurs et les artistes (commentaires et favoris);
 * Formulaire de contact (visiteurs -> artistes);
-* Recherche simple d'œuvres (filtres).
+* Recherche simple d'œuvres (filtres);
+* Modération de contenus inappropriés (utilisteurs, images, commentaires.).
 
 &nbsp;
 
@@ -75,7 +76,7 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 * Système de recommandations basé sur les préférences des utilisateurs;
 * Messagerie assynchrone (messages privés);
 * Améliorer l'interface utilisateur;
-* Monétisation (page de dons).
+* Monétisation (page de dons);
 
 &nbsp;
 
@@ -121,7 +122,6 @@ En tant que | Je veux | Afin de |
 | Artiste | supprimer une collection | retirer une collection de sa page artiste |
 /*
 | Artiste | consulter sa messagerie | lire et répondre aux messages des visiteurs ou autres artistes |
-| Artiste | Choisir si les images sont téléchargeables | contrôler le téléchragement de ses oeuvres |
 */
 | Artiste | ajouter une oeuvre | exposer ses créations |
 | Artiste | supprimer une oeuvre | retirer une oeuvre de sa page |
@@ -129,7 +129,6 @@ En tant que | Je veux | Afin de |
 | Artiste | taguer une oeuvre | permettre aux visiteurs de trier les oeuvres selon des critères spécifiques |
 | Artiste | accepter les conditions d'utilisations | respecter les règles et conditions du site | 
 | Visiteur identifié | se deconnecter | ne pas laisser sa session active  |
-| Visiteur identifié | s'authentifier | accéder aux fonctionnalités réservées aux utilisteurs authentifiés |
 | Visiteur identifié | consulter ses données personnelles | vérifier ses informations personnelles |
 | Visiteur identifié | modifier son profil et ses données personnelles | modifier ses informations personnelles et personnaliser son profil |
 | Visiteur identifié | supprimer son profil | retirer mon profil de la plateforme |
@@ -144,8 +143,13 @@ En tant que | Je veux | Afin de |
 */
 | Visiteur anonyme | s'inscrire en tant que visiteur | avoir accès à plus de fonctionnalités et devenir un visiteur identifié |
 | Visiteur anonyme | s'inscrire en tant qu'artiste | avoir une page artiste et y partager ses oeuvres |
+| Visiteur anonyme | s'authentifier | accéder aux fonctionnalités réservées aux utilisteurs authentifiés |
 | Visiteur anonyme | consulter les pages artistes | découvrir des artistes et leurs oeuvres |
 | Visiteur anonyme | consulter la page d'une oeuvre |  avoir plus de détails sur une oeuvre |
+| Administrateur | se deconnecter | ne pas laisser sa session active  |
+| Administrateur | masquer un profil | satisfaire la réglementation de la plateforme  |
+| Administrateur | masquer une image | satisfaire la réglementation de la plateforme  |
+| Administrateur | supprimer un commentaire | modérer le contenu posté par les utilisateurs  |
 
 &nbsp;
 
