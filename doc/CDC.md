@@ -74,7 +74,8 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 ### Évolutions Potentielles 
 * Système de recommandations basé sur les préférences des utilisateurs;
 * Messagerie assynchrone (messages privés);
-* Améliorer l'interface utilisateur.
+* Améliorer l'interface utilisateur;
+* Monétisation (page de dons).
 
 &nbsp;
 
@@ -95,7 +96,8 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 &nbsp;
 
 ### Navigateurs Compatibles
-* Chrome, Firefox, Safari et Edge.
+* Dektop: Chrome, Firefox, Safari et Edge.
+* Mobile: Chrome, Firefox, Safari.
 
 &nbsp;
 
@@ -155,6 +157,6 @@ En tant que | Je veux | Afin de |
 * **Lead Dev Front-end :** Nicolas MOURET
 * **Lead Dev Back-end :** Arnaud PITHON
 * **Développeurs Front-end :** Nicolas MOURET, Jérôme PARNASSE, Sostell TODA, Aliénor BERTHINIER
-* **Développeurs Back-end :** Arnaud PITHON
-* **Référent Git :** Jérôme PARNASSE
+* **Développeurs Back-end :** Arnaud PITHON, Nicolas MOURET, Jérôme PARNASSE.
+* **Référent Git :** Jérôme PARNASSE, Arnaud PITHON.
 * **Référent Technologies :** à définir
