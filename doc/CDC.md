@@ -87,7 +87,7 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 ## Spécifications Techniques
 
 ### Technologies Utilisées
-* Front-end : React, SASS.
+* Front-end : React, NextJs, Tailwind, SASS.
 * Back-end : Node.js (Express), PostgreSQL.
 * Stockage des images : AWS S3 
 
@@ -110,8 +110,6 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 &nbsp;
 
 ### Routes Prévues
-* Enumérer ici les routes de l'application et les fonctionnalités associées.
-
 
 |URL|HTTP|DESCRIPTION|DONNEES ATTENDUES|AUTHORIZATION|
 |---|:---:|---|:---:|---|
