@@ -103,7 +103,7 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 &nbsp;
 
 ### Arborescence de l'Application
-* A définir ici (organisation des pages et des fonctionnalités).
+![ arborescence du site](../Arborescence-OGalerie.png)
 
 &nbsp;
 
