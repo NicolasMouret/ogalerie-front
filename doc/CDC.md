@@ -110,6 +110,31 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 ### Routes Prévues
 * Enumérer ici les routes de l'application et les fonctionnalités associées.
 
+
+|URL|HTTP|DESCRIPTION|DONNEES ATTENDUES|AUTHORIZATION|
+|---|:---:|---|:---:|---|
+|/login|POST|user connexion|{email, hash}|
+|/users|GET|user list|{tableau d'users}|
+||POST|create a user|{email, pseudo, hash, firstname, lastname, birthdate, ville, pays, avatar, rôle}|
+|/users/:id|GET|get a user|{email, pseudo, firstname, lastname, birthdate, ville, pays, avatar, rôle}|{{accessToken, refreshToken}}
+||PATCH|modify a user|{email, pseudo, hash, firstname, lastname, birthdate, ville, pays, avatar, rôle}|{{accessToken, refreshToken}}
+||DELETE|delete a user||{{accessToken, refreshToken}}
+|/users/:id/collections|GET|get user collections||
+|/users/:id/artworks|GET|get user artworks||
+|/artworks|GET|artwork list|{tableau d'artworks}|
+|/artworks|POST|create an artwork||
+|/artworks/:id|GET|get an artwork |{objet artwork}|
+||PATCH|modify an artwork||
+||DELETE|delete an artwork||
+|/tags/:id/artworks|GET|get artworks by tags||
+|/tags|GET|tag list||
+|/collections|GET|collection list||
+|/collections|POST|create a collection||
+|/collections/:id|GET|get a collection||
+||PATCH|modify a collection||
+||DELETE|delete a collection||
+|/collections/:id/artworks|GET|get collection artworks||
+
 &nbsp;
 
 ---
