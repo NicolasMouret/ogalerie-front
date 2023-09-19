@@ -77,6 +77,8 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 * Messagerie assynchrone (messages privés);
 * Améliorer l'interface utilisateur;
 * Monétisation (page de dons);
+* FAQ;
+* Page de settings (changer le thème, dark mode, etc).
 
 &nbsp;
 
