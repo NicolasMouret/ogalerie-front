@@ -33,6 +33,15 @@ Les utilisateurs peuvent parcourir la galerie, filtrer les œuvres par artiste, 
 
 &nbsp;
 
+### Glossaire :
+
+* **Utilisateur** : visiteur authentifié sur le site et possédant un profil.
+* **Oeuvre** : image au format numérique représentant la création d'un artiste.
+* **Collection** :  regroupement d'oeuvres.
+* **Artiste** : utilisateur ayant la capacité de publier des oeuvres et de les classer en collections.
+
+&nbsp;
+
 ---
 
 ## Spécifications Fonctionnelles
