@@ -3,3 +3,4 @@ mocodo_notebook/
 MCD-MLD-MPD.ipynb
 node_modules/
 .env
+.DS_Store
