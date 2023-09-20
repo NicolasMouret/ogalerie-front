@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="732" height="724" viewBox="0 0 732 724">
-<rect id="frame" x="0" y="0" width="732" height="724" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="732" height="706" viewBox="0 0 732 706">
+<rect id="frame" x="0" y="0" width="732" height="706" fill="#f7f7f7" stroke="none" stroke-width="0"/>
 
 <!-- Association caractériser -->
 <g>
-	<line x1="344" y1="189" x2="344" y2="44" stroke="#9970ab" stroke-width="1"/>
+	<line x1="344" y1="180" x2="344" y2="44" stroke="#9970ab" stroke-width="1"/>
 	<text x="349" y="119" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<line x1="487" y1="44" x2="344" y2="44" stroke="#9970ab" stroke-width="1"/>
 	<text x="415" y="60" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
@@ -18,138 +18,138 @@
 
 <!-- Association commenter -->
 <g>
-	<line x1="61" y1="189" x2="192" y2="189" stroke="#9970ab" stroke-width="1"/>
-	<text x="118" y="181" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
-	<line x1="344" y1="189" x2="192" y2="189" stroke="#9970ab" stroke-width="1"/>
-	<text x="243" y="181" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="61" y1="180" x2="192" y2="180" stroke="#9970ab" stroke-width="1"/>
+	<text x="118" y="172" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<line x1="344" y1="180" x2="192" y2="180" stroke="#9970ab" stroke-width="1"/>
+	<text x="243" y="172" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<g>
-		<path d="M224 163 a14 14 90 0 1 14 14 V189 h-92 V177 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
-		<path d="M238 189 v12 a14 14 90 0 1 -14 14 H160 a14 14 90 0 1 -14 -14 V189 H92" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
-		<rect x="146" y="163" width="92" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
-		<line x1="146" y1="189" x2="238" y2="189" stroke="#9970ab" stroke-width="1"/>
-		<text x="154" y="181.6" fill="#000" font-family="Courier New" font-size="14">commenter</text>
+		<path d="M224 154 a14 14 90 0 1 14 14 V180 h-92 V168 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M238 180 v12 a14 14 90 0 1 -14 14 H160 a14 14 90 0 1 -14 -14 V180 H92" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="146" y="154" width="92" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="146" y1="180" x2="238" y2="180" stroke="#9970ab" stroke-width="1"/>
+		<text x="154" y="172.6" fill="#000" font-family="Courier New" font-size="14">commenter</text>
 	</g>
 </g>
 
 <!-- Association classer -->
 <g>
-	<line x1="344" y1="189" x2="487" y2="189" stroke="#9970ab" stroke-width="1"/>
-	<text x="422" y="181" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
-	<line x1="675" y1="189" x2="487" y2="189" stroke="#9970ab" stroke-width="1"/>
-	<text x="599" y="205" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="344" y1="180" x2="487" y2="180" stroke="#9970ab" stroke-width="1"/>
+	<text x="422" y="172" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<line x1="675" y1="180" x2="487" y2="180" stroke="#9970ab" stroke-width="1"/>
+	<text x="599" y="196" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<g>
-		<path d="M510 163 a14 14 90 0 1 14 14 V189 h-74 V177 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
-		<path d="M524 189 v12 a14 14 90 0 1 -14 14 H464 a14 14 90 0 1 -14 -14 V189 H74" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
-		<rect x="450" y="163" width="74" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
-		<line x1="450" y1="189" x2="524" y2="189" stroke="#9970ab" stroke-width="1"/>
-		<text x="457" y="181.6" fill="#000" font-family="Courier New" font-size="14">classer</text>
+		<path d="M510 154 a14 14 90 0 1 14 14 V180 h-74 V168 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M524 180 v12 a14 14 90 0 1 -14 14 H464 a14 14 90 0 1 -14 -14 V180 H74" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="450" y="154" width="74" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="450" y1="180" x2="524" y2="180" stroke="#9970ab" stroke-width="1"/>
+		<text x="457" y="172.6" fill="#000" font-family="Courier New" font-size="14">classer</text>
 	</g>
 </g>
 
 <!-- Association réguler -->
 <g>
-	<line x1="61" y1="189" x2="192" y2="325" stroke="#9970ab" stroke-width="1"/>
-	<text x="73.6" y="240" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
-	<line x1="344" y1="189" x2="192" y2="325" stroke="#9970ab" stroke-width="1"/>
-	<text x="273.19" y="267" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
-	<line x1="192" y1="410" x2="192" y2="325" stroke="#9970ab" stroke-width="1"/>
-	<text x="197" y="367" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<line x1="61" y1="180" x2="192" y2="307" stroke="#9970ab" stroke-width="1"/>
+	<text x="76.02" y="231" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="344" y1="180" x2="192" y2="307" stroke="#9970ab" stroke-width="1"/>
+	<text x="279.39" y="249" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="192" y1="392" x2="192" y2="307" stroke="#9970ab" stroke-width="1"/>
+	<text x="197" y="349" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
 	<g>
-		<path d="M215 299 a14 14 90 0 1 14 14 V325 h-74 V313 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
-		<path d="M229 325 v12 a14 14 90 0 1 -14 14 H169 a14 14 90 0 1 -14 -14 V325 H74" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
-		<rect x="155" y="299" width="74" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
-		<line x1="155" y1="325" x2="229" y2="325" stroke="#9970ab" stroke-width="1"/>
-		<text x="162" y="317.6" fill="#000" font-family="Courier New" font-size="14">réguler</text>
+		<path d="M215 281 a14 14 90 0 1 14 14 V307 h-74 V295 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M229 307 v12 a14 14 90 0 1 -14 14 H169 a14 14 90 0 1 -14 -14 V307 H74" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="155" y="281" width="74" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="155" y1="307" x2="229" y2="307" stroke="#9970ab" stroke-width="1"/>
+		<text x="162" y="299.6" fill="#000" font-family="Courier New" font-size="14">réguler</text>
 	</g>
 </g>
 
 <!-- Association liker -->
 <g>
-	<line x1="344" y1="567" x2="344" y2="325" stroke="#9970ab" stroke-width="1"/>
-	<text x="316" y="461" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
-	<line x1="344" y1="189" x2="344" y2="325" stroke="#9970ab" stroke-width="1"/>
-	<text x="349" y="267" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="344" y1="549" x2="344" y2="307" stroke="#9970ab" stroke-width="1"/>
+	<text x="316" y="443" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="344" y1="180" x2="344" y2="307" stroke="#9970ab" stroke-width="1"/>
+	<text x="349" y="249" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<g>
-		<path d="M359 299 a14 14 90 0 1 14 14 V325 h-58 V313 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
-		<path d="M373 325 v12 a14 14 90 0 1 -14 14 H329 a14 14 90 0 1 -14 -14 V325 H58" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
-		<rect x="315" y="299" width="58" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
-		<line x1="315" y1="325" x2="373" y2="325" stroke="#9970ab" stroke-width="1"/>
-		<text x="323" y="317.6" fill="#000" font-family="Courier New" font-size="14">liker</text>
+		<path d="M359 281 a14 14 90 0 1 14 14 V307 h-58 V295 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M373 307 v12 a14 14 90 0 1 -14 14 H329 a14 14 90 0 1 -14 -14 V307 H58" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="315" y="281" width="58" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="315" y1="307" x2="373" y2="307" stroke="#9970ab" stroke-width="1"/>
+		<text x="323" y="299.6" fill="#000" font-family="Courier New" font-size="14">liker</text>
 	</g>
 </g>
 
 <!-- Association favori -->
 <g>
-	<line x1="344" y1="567" x2="487" y2="325" stroke="#9970ab" stroke-width="1"/>
-	<text x="378.49" y="461" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
-	<line x1="344" y1="189" x2="487" y2="325" stroke="#9970ab" stroke-width="1"/>
-	<text x="388.01" y="267" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="344" y1="549" x2="487" y2="307" stroke="#9970ab" stroke-width="1"/>
+	<text x="378.49" y="443" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="344" y1="180" x2="487" y2="307" stroke="#9970ab" stroke-width="1"/>
+	<text x="382.16" y="249" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<g>
-		<path d="M506 299 a14 14 90 0 1 14 14 V325 h-66 V313 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
-		<path d="M520 325 v12 a14 14 90 0 1 -14 14 H468 a14 14 90 0 1 -14 -14 V325 H66" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
-		<rect x="454" y="299" width="66" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
-		<line x1="454" y1="325" x2="520" y2="325" stroke="#9970ab" stroke-width="1"/>
-		<text x="461" y="317.6" fill="#000" font-family="Courier New" font-size="14">favori</text>
+		<path d="M506 281 a14 14 90 0 1 14 14 V307 h-66 V295 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M520 307 v12 a14 14 90 0 1 -14 14 H468 a14 14 90 0 1 -14 -14 V307 H66" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="454" y="281" width="66" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="454" y1="307" x2="520" y2="307" stroke="#9970ab" stroke-width="1"/>
+		<text x="461" y="299.6" fill="#000" font-family="Courier New" font-size="14">favori</text>
 	</g>
 </g>
 
 <!-- Association uploader -->
 <g>
-	<line x1="344" y1="567" x2="594" y2="325" stroke="#9970ab" stroke-width="1"/>
-	<text x="426" y="501.56" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
-	<line x1="344" y1="189" x2="594" y2="325" stroke="#9970ab" stroke-width="1"/>
-	<text x="422" y="224.95" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<line x1="344" y1="549" x2="594" y2="307" stroke="#9970ab" stroke-width="1"/>
+	<text x="426" y="483.56" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="344" y1="180" x2="594" y2="307" stroke="#9970ab" stroke-width="1"/>
+	<text x="422" y="213.05" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
 	<g>
-		<path d="M621 299 a14 14 90 0 1 14 14 V325 h-82 V313 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
-		<path d="M635 325 v12 a14 14 90 0 1 -14 14 H567 a14 14 90 0 1 -14 -14 V325 H82" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
-		<rect x="553" y="299" width="82" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
-		<line x1="553" y1="325" x2="635" y2="325" stroke="#9970ab" stroke-width="1"/>
-		<text x="560" y="317.6" fill="#000" font-family="Courier New" font-size="14">uploader</text>
+		<path d="M621 281 a14 14 90 0 1 14 14 V307 h-82 V295 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M635 307 v12 a14 14 90 0 1 -14 14 H567 a14 14 90 0 1 -14 -14 V307 H82" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="553" y="281" width="82" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="553" y1="307" x2="635" y2="307" stroke="#9970ab" stroke-width="1"/>
+		<text x="560" y="299.6" fill="#000" font-family="Courier New" font-size="14">uploader</text>
 	</g>
 </g>
 
 <!-- Association initier -->
 <g>
-	<line x1="344" y1="567" x2="192" y2="567" stroke="#9970ab" stroke-width="1"/>
-	<text x="239" y="559" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
-	<line x1="192" y1="410" x2="192" y2="567" stroke="#9970ab" stroke-width="1"/>
-	<text x="197" y="461" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<line x1="344" y1="549" x2="192" y2="549" stroke="#9970ab" stroke-width="1"/>
+	<text x="239" y="541" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="192" y1="392" x2="192" y2="549" stroke="#9970ab" stroke-width="1"/>
+	<text x="197" y="443" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
 	<g>
-		<path d="M215 541 a14 14 90 0 1 14 14 V567 h-74 V555 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
-		<path d="M229 567 v12 a14 14 90 0 1 -14 14 H169 a14 14 90 0 1 -14 -14 V567 H74" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
-		<rect x="155" y="541" width="74" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
-		<line x1="155" y1="567" x2="229" y2="567" stroke="#9970ab" stroke-width="1"/>
-		<text x="162" y="559.6" fill="#000" font-family="Courier New" font-size="14">initier</text>
+		<path d="M215 523 a14 14 90 0 1 14 14 V549 h-74 V537 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M229 549 v12 a14 14 90 0 1 -14 14 H169 a14 14 90 0 1 -14 -14 V549 H74" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="155" y="523" width="74" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="155" y1="549" x2="229" y2="549" stroke="#9970ab" stroke-width="1"/>
+		<text x="162" y="541.6" fill="#000" font-family="Courier New" font-size="14">initier</text>
 	</g>
 </g>
 
 <!-- Association créer -->
 <g>
-	<line x1="344" y1="567" x2="675" y2="567" stroke="#9970ab" stroke-width="1"/>
-	<text x="426" y="583" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
-	<line x1="675" y1="189" x2="675" y2="567" stroke="#9970ab" stroke-width="1"/>
-	<text x="680" y="231" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<line x1="344" y1="549" x2="675" y2="549" stroke="#9970ab" stroke-width="1"/>
+	<text x="426" y="565" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="675" y1="180" x2="675" y2="549" stroke="#9970ab" stroke-width="1"/>
+	<text x="680" y="222" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
 	<g>
-		<path d="M690 541 a14 14 90 0 1 14 14 V567 h-58 V555 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
-		<path d="M704 567 v12 a14 14 90 0 1 -14 14 H660 a14 14 90 0 1 -14 -14 V567 H58" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
-		<rect x="646" y="541" width="58" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
-		<line x1="646" y1="567" x2="704" y2="567" stroke="#9970ab" stroke-width="1"/>
-		<text x="654" y="559.6" fill="#000" font-family="Courier New" font-size="14">créer</text>
+		<path d="M690 523 a14 14 90 0 1 14 14 V549 h-58 V537 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M704 549 v12 a14 14 90 0 1 -14 14 H660 a14 14 90 0 1 -14 -14 V549 H58" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="646" y="523" width="58" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="646" y1="549" x2="704" y2="549" stroke="#9970ab" stroke-width="1"/>
+		<text x="654" y="541.6" fill="#000" font-family="Courier New" font-size="14">créer</text>
 	</g>
 </g>
 
 <!-- Association écrire -->
 <g>
-	<line x1="344" y1="567" x2="61" y2="689" stroke="#9970ab" stroke-width="1"/>
-	<text x="239" y="595.57" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
-	<line x1="61" y1="189" x2="61" y2="689" stroke="#9970ab" stroke-width="1"/>
-	<text x="33" y="240" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<line x1="344" y1="549" x2="61" y2="671" stroke="#9970ab" stroke-width="1"/>
+	<text x="239" y="577.57" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="61" y1="180" x2="61" y2="671" stroke="#9970ab" stroke-width="1"/>
+	<text x="33" y="231" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
 	<g>
-		<path d="M80 663 a14 14 90 0 1 14 14 V689 h-66 V677 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
-		<path d="M94 689 v12 a14 14 90 0 1 -14 14 H42 a14 14 90 0 1 -14 -14 V689 H66" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
-		<rect x="28" y="663" width="66" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
-		<line x1="28" y1="689" x2="94" y2="689" stroke="#9970ab" stroke-width="1"/>
-		<text x="35" y="681.6" fill="#000" font-family="Courier New" font-size="14">écrire</text>
+		<path d="M80 645 a14 14 90 0 1 14 14 V671 h-66 V659 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M94 671 v12 a14 14 90 0 1 -14 14 H42 a14 14 90 0 1 -14 -14 V671 H66" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="28" y="645" width="66" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="28" y1="671" x2="94" y2="671" stroke="#9970ab" stroke-width="1"/>
+		<text x="35" y="663.6" fill="#000" font-family="Courier New" font-size="14">écrire</text>
 	</g>
 </g>
 
@@ -169,74 +169,73 @@
 <!-- Entity commentaire -->
 <g>
 	<g>
-		<rect x="9" y="154" width="104" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
-		<rect x="9" y="180" width="104" height="44" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
-		<rect x="9" y="154" width="104" height="70" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
-		<line x1="9" y1="180" x2="113" y2="180" stroke="#5aae61" stroke-width="1"/>
+		<rect x="9" y="145" width="104" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
+		<rect x="9" y="171" width="104" height="44" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
+		<rect x="9" y="145" width="104" height="70" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
+		<line x1="9" y1="171" x2="113" y2="171" stroke="#5aae61" stroke-width="1"/>
 	</g>
-	<text x="14" y="172.6" fill="#000" font-family="Courier New" font-size="14">commentaire</text>
-	<text x="14" y="198.6" fill="#000" font-family="Courier New" font-size="14">date</text>
-	<text x="14" y="216.6" fill="#000" font-family="Courier New" font-size="14">contenu</text>
+	<text x="14" y="163.6" fill="#000" font-family="Courier New" font-size="14">commentaire</text>
+	<text x="14" y="189.6" fill="#000" font-family="Courier New" font-size="14">date</text>
+	<text x="14" y="207.6" fill="#000" font-family="Courier New" font-size="14">contenu</text>
 </g>
 
 <!-- Entity oeuvre -->
 <g>
 	<g>
 		<rect x="271" y="127" width="146" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
-		<rect x="271" y="153" width="146" height="98" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
-		<rect x="271" y="127" width="146" height="124" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
+		<rect x="271" y="153" width="146" height="80" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
+		<rect x="271" y="127" width="146" height="106" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
 		<line x1="271" y1="153" x2="417" y2="153" stroke="#5aae61" stroke-width="1"/>
 	</g>
 	<text x="318" y="145.6" fill="#000" font-family="Courier New" font-size="14">oeuvre</text>
 	<text x="276" y="171.6" fill="#000" font-family="Courier New" font-size="14">nom</text>
 	<text x="276" y="189.6" fill="#000" font-family="Courier New" font-size="14">url</text>
-	<text x="276" y="207.6" fill="#000" font-family="Courier New" font-size="14">support</text>
-	<text x="276" y="225.6" fill="#000" font-family="Courier New" font-size="14">date de création</text>
-	<text x="276" y="243.6" fill="#000" font-family="Courier New" font-size="14">description</text>
+	<text x="276" y="207.6" fill="#000" font-family="Courier New" font-size="14">date de création</text>
+	<text x="276" y="225.6" fill="#000" font-family="Courier New" font-size="14">description</text>
 </g>
 
 <!-- Entity collection -->
 <g>
 	<g>
-		<rect x="627" y="163" width="96" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
-		<rect x="627" y="189" width="96" height="26" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
-		<rect x="627" y="163" width="96" height="52" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
-		<line x1="627" y1="189" x2="723" y2="189" stroke="#5aae61" stroke-width="1"/>
+		<rect x="627" y="154" width="96" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
+		<rect x="627" y="180" width="96" height="26" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
+		<rect x="627" y="154" width="96" height="52" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
+		<line x1="627" y1="180" x2="723" y2="180" stroke="#5aae61" stroke-width="1"/>
 	</g>
-	<text x="633" y="181.6" fill="#000" font-family="Courier New" font-size="14">collection</text>
-	<text x="632" y="207.6" fill="#000" font-family="Courier New" font-size="14">nom</text>
+	<text x="633" y="172.6" fill="#000" font-family="Courier New" font-size="14">collection</text>
+	<text x="632" y="198.6" fill="#000" font-family="Courier New" font-size="14">nom</text>
 </g>
 
 <!-- Entity modération -->
 <g>
 	<g>
-		<rect x="144" y="375" width="96" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
-		<rect x="144" y="401" width="96" height="44" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
-		<rect x="144" y="375" width="96" height="70" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
-		<line x1="144" y1="401" x2="240" y2="401" stroke="#5aae61" stroke-width="1"/>
+		<rect x="144" y="357" width="96" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
+		<rect x="144" y="383" width="96" height="44" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
+		<rect x="144" y="357" width="96" height="70" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
+		<line x1="144" y1="383" x2="240" y2="383" stroke="#5aae61" stroke-width="1"/>
 	</g>
-	<text x="150" y="393.6" fill="#000" font-family="Courier New" font-size="14">modération</text>
-	<text x="149" y="419.6" fill="#000" font-family="Courier New" font-size="14">label</text>
-	<text x="149" y="437.6" fill="#000" font-family="Courier New" font-size="14">message</text>
+	<text x="150" y="375.6" fill="#000" font-family="Courier New" font-size="14">modération</text>
+	<text x="149" y="401.6" fill="#000" font-family="Courier New" font-size="14">label</text>
+	<text x="149" y="419.6" fill="#000" font-family="Courier New" font-size="14">message</text>
 </g>
 
 <!-- Entity personne -->
 <g>
 	<g>
-		<rect x="267" y="469" width="154" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
-		<rect x="267" y="495" width="154" height="170" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
-		<rect x="267" y="469" width="154" height="196" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
-		<line x1="267" y1="495" x2="421" y2="495" stroke="#5aae61" stroke-width="1"/>
+		<rect x="267" y="451" width="154" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
+		<rect x="267" y="477" width="154" height="170" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
+		<rect x="267" y="451" width="154" height="196" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
+		<line x1="267" y1="477" x2="421" y2="477" stroke="#5aae61" stroke-width="1"/>
 	</g>
-	<text x="310" y="487.6" fill="#000" font-family="Courier New" font-size="14">personne</text>
-	<text x="272" y="513.6" fill="#000" font-family="Courier New" font-size="14">prénom</text>
-	<text x="272" y="531.6" fill="#000" font-family="Courier New" font-size="14">nom</text>
-	<text x="272" y="549.6" fill="#000" font-family="Courier New" font-size="14">pseudo</text>
-	<text x="272" y="567.6" fill="#000" font-family="Courier New" font-size="14">couriel</text>
-	<text x="272" y="585.6" fill="#000" font-family="Courier New" font-size="14">date de naissance</text>
-	<text x="272" y="603.6" fill="#000" font-family="Courier New" font-size="14">ville</text>
-	<text x="272" y="621.6" fill="#000" font-family="Courier New" font-size="14">pays</text>
-	<text x="272" y="639.6" fill="#000" font-family="Courier New" font-size="14">avatar</text>
-	<text x="272" y="657.6" fill="#000" font-family="Courier New" font-size="14">role</text>
+	<text x="310" y="469.6" fill="#000" font-family="Courier New" font-size="14">personne</text>
+	<text x="272" y="495.6" fill="#000" font-family="Courier New" font-size="14">prénom</text>
+	<text x="272" y="513.6" fill="#000" font-family="Courier New" font-size="14">nom</text>
+	<text x="272" y="531.6" fill="#000" font-family="Courier New" font-size="14">pseudo</text>
+	<text x="272" y="549.6" fill="#000" font-family="Courier New" font-size="14">courriel</text>
+	<text x="272" y="567.6" fill="#000" font-family="Courier New" font-size="14">date de naissance</text>
+	<text x="272" y="585.6" fill="#000" font-family="Courier New" font-size="14">ville</text>
+	<text x="272" y="603.6" fill="#000" font-family="Courier New" font-size="14">pays</text>
+	<text x="272" y="621.6" fill="#000" font-family="Courier New" font-size="14">avatar</text>
+	<text x="272" y="639.6" fill="#000" font-family="Courier New" font-size="14">role</text>
 </g>
 </svg>
