@@ -88,6 +88,7 @@ Permettre aux utilisateurs de rentrer en contact avec les artistes via un formul
 * Monétisation (page de dons);
 * FAQ;
 * Page de settings (changer le thème, dark mode, etc).
+* Possibilité de changer son statut d'utilisateur pour celui d'artiste;
 
 &nbsp;
 
@@ -186,6 +187,7 @@ En tant que | Je veux | Afin de |
 |--|--|--|
 | Artiste | consulter sa messagerie | lire et répondre aux messages des visiteurs ou autres artistes |
 | Utilisateur | contacter un artiste via la messagerie | échanger directement avec des artistes sur la plateforme  |
+| Utilisateur | changer de profil | avoir un profil artiste et publier des oeuvres  |
 
 &nbsp;
 
