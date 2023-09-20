@@ -40,7 +40,7 @@ modération: _label, message
 
 :
 initier, 0N personne, 11 modération
-personne: _prénom, nom, pseudo, email, birthday, ville, pays, avatar, role
+personne: _prénom, nom, pseudo, courriel, date de naissance, ville, pays, avatar, role
 :
 :
 créer, 0N personne, 11 collection
@@ -61,27 +61,27 @@ créer, 0N personne, 11 collection
 
 ## MLD
 
-- tag (codeTag, label, categorie)
+- tag (<u>codeTag</u>, label, categorie)
 - caractériser (#codeTag, #codeOeuvre)
-- oeuvre (codeOeuvre, nom, url, support, date, description, #codeCollection, #codeAuteur)
-- commentaire (codeCommentaire, date, contenu, #codeOeuvre, #codeAuteur)
-- collection (codeCollection, nom, #codeAuteur)
-- modération (label, message, #codeAuteur, #codeOeuvre, #codeCommentaire)
+- oeuvre (<u>codeOeuvre</u>, nom, url, support, date, description, #codeCollection, #codeAuteur)
+- commentaire (<u>codeCommentaire</u>, date, contenu, #codeOeuvre, #codeAuteur)
+- collection (<u>codeCollection</u>, nom, #codeAuteur)
+- modération (<u>codeModération</u>, label, message, #codeAuteur, #codeOeuvre, #codeCommentaire)
 - like (#codeOeuvre, #codeAuteur)
 - favori (#codeOeuvre, #codePersonne)
-- personne (codePersonne, prénom, nom, pseudo, email, birthday, ville, pays, avatar, role
+- personne (<u>codePersonne</u>, prénom, nom, pseudo, courriel, date de naissance, ville, pays, avatar, role
 
 ## MPD
 
-- tag: id(INT), label(enum), category(enum)
+- tag: <u>id(INT)</u>, label(text), category(enum)
 - mark: #tag_id(int), #oeuvre_id(int)
-- artwork: id(int), label(text), uri(text), support(text), date(timestampz), description(text), #collection_id(int), #person_id(int)
-- comment: id(int), date(timestampz), content(text), #artwork_id(int), #person_id(int)
-- collection: id(int), label(text), #person_id(int)
-- moderate: id(int), label(enum), message(text), #person_id(int), #oeuvre_id(int), #comment_id(int)
+- artwork: <u>id(int)</u>, label(text), uri(text), support(text), date(timestampz), description(text), #collection_id(int), #person_id(int)
+- comment: <u>id(int)</u>, date(timestampz), content(text), #artwork_id(int), #person_id(int)
+- collection: <u>id(int)</u>, label(text), #person_id(int)
+- moderate: <u>id(int)</u>, label(text), message(text), #person_id(int), #oeuvre_id(int), #comment_id(int)
 - like: #oeuvre_id(int), #person_id(int)
 - favorite: #oeuvre_id(int), #person_id(int)
-- person: id(int), firstname(text), lastname(text), nickname(text), email(text), birthday(date), town(text), country(text), avatar(tex), role(enum)
+- personne: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), birthday(date), town(text), country(text), avatar(tex), role(enum)
 
 
 ### types
