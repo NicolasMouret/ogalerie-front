@@ -114,7 +114,7 @@ Permettre aux utilisateurs de rentrer en contact avec les artistes via un formul
 &nbsp;
 
 ### Arborescence de l'Application
-![ arborescence du site](../Arborescence-OGalerie.png)
+![ arborescence du site](./Arborescence_OGalerie.png)
 
 &nbsp;
 
