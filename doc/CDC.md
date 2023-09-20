@@ -21,7 +21,7 @@ Les utilisateurs peuvent parcourir la galerie, filtrer les œuvres par artiste, 
 ### Besoins :
 
 * Offrir un espace aux artistes pour exposer et partager leurs œuvres.
-* Permettre aux visiteurs d'explorer la galerie, filtrer les œuvres et interagir avec les artistes.
+* Permettre aux utilisateurs d'explorer la galerie, filtrer les œuvres et interagir avec les artistes.
 
 &nbsp;
 
@@ -148,33 +148,27 @@ Permettre aux utilisateurs de rentrer en contact avec les artistes via un formul
 
 ---
 
-## User Stories
+## User Stories V1
 En tant que | Je veux | Afin de |
 |--|--|--|
 | Artiste | créer une collection | grouper et présenter ses oeuvres à sa convenance, sur sa page artiste |
 | Artiste | renommer une collection | mettre à jour le nom d'une collection si besoin |
 | Artiste | supprimer une collection | retirer une collection de sa page artiste |
-/*
-| Artiste | consulter sa messagerie | lire et répondre aux messages des visiteurs ou autres artistes |
-*/
 | Artiste | ajouter une oeuvre | exposer ses créations |
 | Artiste | supprimer une oeuvre | retirer une oeuvre de sa page |
 | Artiste | modifier une oeuvre | mettre à jour les informations et/ou les images d'oeuvres exposées |
 | Artiste | taguer une oeuvre | permettre aux visiteurs de trier les oeuvres selon des critères spécifiques |
 | Artiste | accepter les conditions d'utilisations | respecter les règles et conditions du site | 
-| Visiteur identifié | se deconnecter | ne pas laisser sa session active  |
-| Visiteur identifié | consulter ses données personnelles | vérifier ses informations personnelles |
-| Visiteur identifié | modifier son profil et ses données personnelles | modifier ses informations personnelles et personnaliser son profil |
-| Visiteur identifié | supprimer son profil | retirer mon profil de la plateforme |
-| Visiteur identifié | consulter les pages artistes | découvrir des artistes et leurs oeuvres |
-| Visiteur identifié | consulter la page d'une oeuvre | avoir plus de détails sur une oeuvre |
-| Visiteur identifié | liker une oeuvre | montrer son appréciation |
-| Visiteur identifié | mettre une oeuvre en favoris | conserver une trace des oeuvres appréciées |
-| Visiteur identifié | commenter une oeuvre  | partager mon opinion sur une oeuvre et interagir |
-| Visiteur identifié | contacter un artiste via un formulaire | entrer en contact par mail avec des artistes |
-/*
-| Visiteur identifié | contacter un artiste via la messagerie | échanger directement avec des artistes sur la plateforme  |
-*/
+| Utilisateur | se deconnecter | ne pas laisser sa session active  |
+| Utilisateur | consulter ses données personnelles | vérifier ses informations personnelles |
+| Utilisateur | modifier son profil et ses données personnelles | modifier ses informations personnelles et personnaliser son profil |
+| Utilisateur | supprimer son profil | retirer mon profil de la plateforme |
+| Utilisateur | consulter les pages artistes | découvrir des artistes et leurs oeuvres |
+| Utilisateur | consulter la page d'une oeuvre | avoir plus de détails sur une oeuvre |
+| Utilisateur | liker une oeuvre | montrer son appréciation |
+| Utilisateur | mettre une oeuvre en favoris | conserver une trace des oeuvres appréciées |
+| Utilisateur | commenter une oeuvre  | partager mon opinion sur une oeuvre et interagir |
+| Utilisateur | contacter un artiste via un formulaire | entrer en contact par mail avec des artistes |
 | Visiteur anonyme | s'inscrire en tant que visiteur | avoir accès à plus de fonctionnalités et devenir un visiteur identifié |
 | Visiteur anonyme | s'inscrire en tant qu'artiste | avoir une page artiste et y partager ses oeuvres |
 | Visiteur anonyme | s'authentifier | accéder aux fonctionnalités réservées aux utilisteurs authentifiés |
@@ -184,6 +178,14 @@ En tant que | Je veux | Afin de |
 | Administrateur | masquer un profil | satisfaire la réglementation de la plateforme  |
 | Administrateur | masquer une image | satisfaire la réglementation de la plateforme  |
 | Administrateur | supprimer un commentaire | modérer le contenu posté par les utilisateurs  |
+
+&nbsp;
+
+## User Stories V2
+En tant que | Je veux | Afin de |
+|--|--|--|
+| Artiste | consulter sa messagerie | lire et répondre aux messages des visiteurs ou autres artistes |
+| Utilisateur | contacter un artiste via la messagerie | échanger directement avec des artistes sur la plateforme  |
 
 &nbsp;
 
@@ -197,4 +199,4 @@ En tant que | Je veux | Afin de |
 * **Développeurs Front-end :** Nicolas MOURET, Jérôme PARNASSE, Sostell TODA, Aliénor BERTHINIER
 * **Développeurs Back-end :** Arnaud PITHON, Nicolas MOURET, Jérôme PARNASSE.
 * **Référent Git :** Jérôme PARNASSE, Arnaud PITHON.
-* **Référent Technologies :** à définir
+* **Référent Technologies :** NextJs, Tailwind : Nicolas MOURET / Express, PostgresSQL : Arnaud PITHON.
