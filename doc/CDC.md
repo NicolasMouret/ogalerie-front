@@ -10,7 +10,7 @@ O’Galerie est une plateforme en ligne dédiée aux artistes visuels, offrant a
 Cette galerie virtuelle permet aux artistes de se créer un profil personnalisé, de télécharger des images de leurs créations, de les catégoriser selon divers styles, thèmes et médiums.
 &nbsp;
 
-Les visiteurs peuvent parcourir la galerie, filtrer les œuvres par artiste, tags, style et support, laisser des commentaires, ajouter des favoris et contacter les artistes pour des demandes d'informations, d'éventuels achats ou collaborations.
+Les utilisateurs peuvent parcourir la galerie, filtrer les œuvres par artiste, tags, style et support, laisser des commentaires, ajouter des favoris et contacter les artistes pour des demandes d'informations, d'éventuels achats ou collaborations.
 
 &nbsp;
 
@@ -27,9 +27,9 @@ Les visiteurs peuvent parcourir la galerie, filtrer les œuvres par artiste, tag
 
 ### Objectifs :
 
-* Créer une plateforme intuitive pour les artistes et les visiteurs.
+* Créer une plateforme intuitive pour les artistes et les utilisateurs.
 * Permettre aux artistes de gérer leur profil et leurs œuvres.
-* Faciliter l'exploration des œuvres pour les visiteurs.
+* Faciliter l'exploration des œuvres pour les utilisateurs.
 
 &nbsp;
 
@@ -48,16 +48,16 @@ Permettre aux artistes d'ajouter des œuvres à leur page.
 Catégoriser les œuvres selon différents critères comme le style, le thème, le médium, etc.
 
 4. **Interaction et Commentaires :**
-Permettre aux visiteurs de laisser des commentaires et des appréciations sur les œuvres.
+Permettre aux utilisateurs de laisser des commentaires et des appréciations sur les œuvres.
 
 5. **Recherche Avancée :**
 Offrir une fonction de recherche avancée pour filtrer les œuvres.
 
-6. **Profil Visiteur :**
-Permettre aux visiteurs d'ajouter des œuvres/artistes en favoris et consulter les profils des artistes.
+6. **Profil Utilisateur :**
+Permettre aux utilisateurs d'ajouter des œuvres en favoris et consulter les profils des artistes.
 
 7. **Formulaire de contact**
-Permettre aux visiteurs de rentrer en contact avec les artistes via un formulaire.
+Permettre aux utilisateurs de rentrer en contact avec les artistes via un formulaire.
 
 &nbsp;
 
@@ -65,8 +65,8 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 * Création des pages artistes;
 * Publication et visualisation d'œuvres;
 * Catégorisation des œuvres (tags);
-* Interaction basique entre les visiteurs et les artistes (commentaires et favoris);
-* Formulaire de contact (visiteurs -> artistes);
+* Interaction basique entre les utilisateurs et les artistes (commentaires et favoris);
+* Formulaire de contact (utilisateurs -> artistes);
 * Recherche simple d'œuvres (filtres);
 * Modération de contenus inappropriés (utilisteurs, images, commentaires.).
 
@@ -74,7 +74,7 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 
 ### Évolutions Potentielles 
 * Système de recommandations basé sur les préférences des utilisateurs;
-* Messagerie assynchrone (messages privés);
+* Messagerie asynchrone (messages privés);
 * Améliorer l'interface utilisateur;
 * Monétisation (page de dons);
 * FAQ;
@@ -94,7 +94,7 @@ Permettre aux visiteurs de rentrer en contact avec les artistes via un formulair
 &nbsp;
 
 ### Cible du Projet
-* Public visé : Artistes visuels (hors artistes musicuax et vidéo) et amateurs d'art.
+* Public visé : Artistes visuels (hors artistes musicaux et vidéo) et amateurs d'art.
 
 &nbsp;
 
