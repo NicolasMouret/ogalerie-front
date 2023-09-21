@@ -18,7 +18,7 @@ tag: _label, categorie
 
 commentaire: _date, contenu
 commenter, 11 commentaire, 0N oeuvre
-oeuvre: _nom, url, date de création, description
+oeuvre: _nom, url, date de création, description, mature
 classer, 11 oeuvre, 0N collection
 :
 collection: _nom
@@ -63,7 +63,7 @@ créer, 0N personne, 11 collection
 
 - tag (<u>codeTag</u>, label, categorie)
 - caractériser (#codeTag, #codeOeuvre)
-- oeuvre (<u>codeOeuvre</u>, nom, url, date, description, #codeCollection, #codeAuteur)
+- oeuvre (<u>codeOeuvre</u>, nom, url, date, description, mature, #codeCollection, #codeAuteur)
 - commentaire (<u>codeCommentaire</u>, date, contenu, #codeOeuvre, #codeAuteur)
 - collection (<u>codeCollection</u>, nom, #codeAuteur)
 - modération (<u>codeModération</u>, label, message, #codeAuteur, #codeOeuvre, #codeCommentaire)
@@ -75,13 +75,13 @@ créer, 0N personne, 11 collection
 
 - tag: <u>id(INT)</u>, label(text), category(enum)
 - mark: #tag_id(int), #oeuvre_id(int)
-- artwork: <u>id(int)</u>, label(text), uri(text), date(timestampz), description(text), #collection_id(int), #person_id(int)
+- artwork: <u>id(int)</u>, label(text), uri(text), date(timestampz), description(text), mature(enum), #collection_id(int), #person_id(int)
 - comment: <u>id(int)</u>, date(timestampz), content(text), #artwork_id(int), #person_id(int)
 - collection: <u>id(int)</u>, label(text), #person_id(int)
 - moderate: <u>id(int)</u>, label(text), message(text), #person_id(int), #oeuvre_id(int), #comment_id(int)
-- like: #oeuvre_id(int), #person_id(int)
+- appraise: #oeuvre_id(int), #person_id(int)
 - favorite: #oeuvre_id(int), #person_id(int)
-- person: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), birthday(date), town(text), country(text), avatar(tex), role(enum)
+- person: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), birthday(date), town(text), country(text), avatar(text), role(enum)
 
 
 ### types
@@ -90,6 +90,7 @@ créer, 0N personne, 11 collection
 - category (tag) : type, support, style
 - label (moderate) : alert, hide
 - role (person) : user, creator, admin
+- mature (artwork) : yes, no, nsp
 
 ## Dictionnaire de données
 
@@ -117,6 +118,7 @@ créer, 0N personne, 11 collection
 | uri | text | unique not null | url d'accés à l'œuvre |
 | date | timestampz | | date de création de l'œuvre |
 | description | text | not null | description accompagnant l'œuvre |
+| mature | enum |  | l'œuvre vise-t-elle un public mature .
 | collection_id | int | references collection(id) | identifiant d'une collection |
 | person_id | int | references person(id) | identifiant de l'auteur de l'œuvre |
 
@@ -150,7 +152,7 @@ créer, 0N personne, 11 collection
 | oeuvre_id | int | references oeuvre(id) | identifiant de l'oeuvre concernée |
 | comment_id | int | references comment(id) | identifiant du commentaire concerné |
 
-### table d'association *like* entre les tables *artwork* et *person*
+### table d'association *appraise* entre les tables *artwork* et *person*
 
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
