@@ -4,6 +4,8 @@ import SignalButton from "./components/Buttons/SignalButton"
 import ModerationButton from "./components/Buttons/ModerationButton"
 import CloseButton from "./components/Buttons/CloseButton"
 import ScrollButton from "./components/Buttons/ScrollButton"
+import CarouselButton from "./components/Buttons/CarouselButton"
+
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
       <CloseButton />
       <ScrollButton direction="up" />
       <ScrollButton direction="down" />
+      <CarouselButton direction="left" />
+      <CarouselButton direction="right" />
       </div>
     </main>
   )
