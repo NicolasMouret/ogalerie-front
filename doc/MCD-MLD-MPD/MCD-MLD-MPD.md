@@ -40,7 +40,7 @@ modération: _label, message
 
 :
 initier, 0N personne, 11 modération
-personne: _prénom, nom, pseudo, courriel, date de naissance, ville, pays, avatar, role
+personne: _prénom, nom, pseudo, courriel, date de naissance, ville, pays, avatar, situation
 :
 :
 créer, 0N personne, 11 collection
@@ -69,7 +69,7 @@ créer, 0N personne, 11 collection
 - modération (<u>codeModération</u>, label, message, #codeAuteur, #codeOeuvre, #codeCommentaire)
 - like (#codeOeuvre, #codeAuteur)
 - favori (#codeOeuvre, #codePersonne)
-- personne (<u>codePersonne</u>, prénom, nom, pseudo, courriel, date de naissance, ville, pays, avatar, role
+- personne (<u>codePersonne</u>, prénom, nom, pseudo, courriel, date de naissance, ville, pays, avatar, situation
 
 ## MPD
 
@@ -81,7 +81,7 @@ créer, 0N personne, 11 collection
 - moderate: <u>id(int)</u>, ticket(enum), message(text), #person_id(int), #oeuvre_id(int), #comment_id(int)
 - appraise: #oeuvre_id(int), #person_id(int)
 - favorite: #oeuvre_id(int), #person_id(int)
-- person: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), birthday(date), town(text), country(text), avatar(text), role(enum)
+- person: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), birthday(date), town(text), country(text), avatar(text), situation(enum)
 
 
 ### types
@@ -89,7 +89,7 @@ créer, 0N personne, 11 collection
 - name (tag) : aquarelle, photo, gravure, papier, …
 - category (tag) : type, support, style
 - ticket (moderate) : alert, hide
-- role (person) : user, creator, admin
+- situation (person) : user, creator, admin
 - mature (artwork) : yes, no, nsp
 
 ## Dictionnaire de données
@@ -180,7 +180,7 @@ créer, 0N personne, 11 collection
 | town | text | | ville |
 | country | text | | pays |
 | avatar | text |  | URL où récupérer une image d'avatar, en cas d'absence une version automatique sera créée |
-| role | enum | not null | situation sur le site : user, creator, moderator |
+| situation | enum | not null | situation sur le site : user, creator, moderator |
 
 
 
