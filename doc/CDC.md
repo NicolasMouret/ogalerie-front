@@ -7,7 +7,7 @@
 O’Galerie est une plateforme en ligne dédiée aux artistes visuels, offrant ainsi un espace pour exposer et partager leurs oeuvres.
 &nbsp;
 
-Cette galerie virtuelle permet aux artistes de se créer un profil personnalisé, de télécharger des images de leurs créations, de les catégoriser selon divers styles, thèmes et médiums.
+Cette galerie virtuelle permet aux artistes de se créer un profil personnalisé, d'enregistrer des images de leurs créations, de les catégoriser selon divers styles, thèmes et médiums.
 &nbsp;
 
 Les utilisateurs peuvent parcourir la galerie, filtrer les œuvres par artiste, tags, style et support, laisser des commentaires, ajouter des favoris et contacter les artistes pour des demandes d'informations, d'éventuels achats ou collaborations.
