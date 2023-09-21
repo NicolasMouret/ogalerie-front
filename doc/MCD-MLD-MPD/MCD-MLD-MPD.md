@@ -73,12 +73,12 @@ créer, 0N personne, 11 collection
 
 ## MPD
 
-- tag: <u>id(INT)</u>, label(text), category(enum)
+- tag: <u>id(INT)</u>, name(text), category(enum)
 - mark: #tag_id(int), #oeuvre_id(int)
-- artwork: <u>id(int)</u>, label(text), uri(text), date(timestampz), description(text), mature(enum), #collection_id(int), #person_id(int)
+- artwork: <u>id(int)</u>, title(text), uri(text), date(timestampz), description(text), mature(enum), #collection_id(int), #person_id(int)
 - comment: <u>id(int)</u>, date(timestampz), content(text), #artwork_id(int), #person_id(int)
-- collection: <u>id(int)</u>, label(text), #person_id(int)
-- moderate: <u>id(int)</u>, label(text), message(text), #person_id(int), #oeuvre_id(int), #comment_id(int)
+- collection: <u>id(int)</u>, title(text), #person_id(int)
+- moderate: <u>id(int)</u>, ticket(enum), message(text), #person_id(int), #oeuvre_id(int), #comment_id(int)
 - appraise: #oeuvre_id(int), #person_id(int)
 - favorite: #oeuvre_id(int), #person_id(int)
 - person: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), birthday(date), town(text), country(text), avatar(text), role(enum)
@@ -86,9 +86,9 @@ créer, 0N personne, 11 collection
 
 ### types
 
-- label (tag) : aquarelle, photo, gravure, papier, …
+- name (tag) : aquarelle, photo, gravure, papier, …
 - category (tag) : type, support, style
-- label (moderate) : alert, hide
+- ticket (moderate) : alert, hide
 - role (person) : user, creator, admin
 - mature (artwork) : yes, no, nsp
 
@@ -99,7 +99,7 @@ créer, 0N personne, 11 collection
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
 | id | int | generated always as identity primary key | identifiant du tag |
-| label | enum | unique not null | nom du tag : liste à définir |
+| name | enum | unique not null | nom du tag : liste à définir |
 | category | enum | unique not null | catégorie du tag : type, support, style |
 
 ### table d'association *mark* entre les table *tag* et *artwork*
@@ -114,7 +114,7 @@ créer, 0N personne, 11 collection
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
 | id | int | generated always as identity primary key | identifiant de l'artwork |
-| label | text | not null | titre de l'œuvre |
+| title | text | not null | titre de l'œuvre |
 | uri | text | unique not null | url d'accés à l'œuvre |
 | date | timestampz | | date de création de l'œuvre |
 | description | text | not null | description accompagnant l'œuvre |
@@ -138,7 +138,7 @@ créer, 0N personne, 11 collection
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
 | id | int | generated always as identity primary key | identifiant de la collection |
-| label | text | not null | titre de la collection |
+| title | text | not null | titre de la collection |
 | person_id | int | references person(id) | identifiant du propriétaire de la collection |
 
 ### table *moderate*
@@ -146,7 +146,7 @@ créer, 0N personne, 11 collection
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
 | id | int | generated always as identity primary key | identifiant de la modération |
-| label | enum | not null | type de modération : alert, hide |
+| ticket | enum | not null | type de modération : alert, hide |
 | message | text | not null | message justifiant l'action |
 | person_id | int | references person(id) | identifiant de l'auteur de la modération |
 | oeuvre_id | int | references oeuvre(id) | identifiant de l'oeuvre concernée |
