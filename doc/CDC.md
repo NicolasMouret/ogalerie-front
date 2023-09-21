@@ -170,15 +170,16 @@ En tant que | Je veux | Afin de |
 | Utilisateur | mettre une oeuvre en favoris | conserver une trace des oeuvres appréciées |
 | Utilisateur | commenter une oeuvre  | partager mon opinion sur une oeuvre et interagir |
 | Utilisateur | contacter un artiste via un formulaire | entrer en contact par mail avec des artistes |
+| Utilisateur | signaler un commentaire | signaler des commentaire choquant ou ne répondant pas à la réglementation de la plateforme |
+| Utilisateur | signaler une œuvre | signaler une image choquante ou ne répondant pas à la réglementation de la plateforme |
 | Visiteur anonyme | s'inscrire en tant que visiteur | avoir accès à plus de fonctionnalités et devenir un visiteur identifié |
 | Visiteur anonyme | s'inscrire en tant qu'artiste | avoir une page artiste et y partager ses oeuvres |
 | Visiteur anonyme | s'authentifier | accéder aux fonctionnalités réservées aux utilisteurs authentifiés |
 | Visiteur anonyme | consulter les pages artistes | découvrir des artistes et leurs oeuvres |
 | Visiteur anonyme | consulter la page d'une oeuvre |  avoir plus de détails sur une oeuvre |
 | Administrateur | se deconnecter | ne pas laisser sa session active  |
-| Administrateur | masquer un profil | satisfaire la réglementation de la plateforme  |
-| Administrateur | masquer une image | satisfaire la réglementation de la plateforme  |
-| Administrateur | supprimer un commentaire | modérer le contenu posté par les utilisateurs  |
+| Administrateur | masquer une œuvre | satisfaire la réglementation de la plateforme  |
+| Administrateur | masquer un commentaire | modérer le contenu posté par les utilisateurs  |
 
 &nbsp;
 
@@ -188,6 +189,7 @@ En tant que | Je veux | Afin de |
 | Artiste | consulter sa messagerie | lire et répondre aux messages des visiteurs ou autres artistes |
 | Utilisateur | contacter un artiste via la messagerie | échanger directement avec des artistes sur la plateforme  |
 | Utilisateur | changer de profil | avoir un profil artiste et publier des oeuvres  |
+| Administrateur | masquer un profil | satisfaire la réglementation de la plateforme  |
 
 &nbsp;
 
