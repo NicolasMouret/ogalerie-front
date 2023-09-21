@@ -1,10 +1,10 @@
-import LikeButton from "./components/Buttons/LikeButton"
-import FaveButton from "./components/Buttons/FaveButton"
-import SignalButton from "./components/Buttons/SignalButton"
-import ModerationButton from "./components/Buttons/ModerationButton"
-import CloseButton from "./components/Buttons/CloseButton"
-import ScrollButton from "./components/Buttons/ScrollButton"
-import CarouselButton from "./components/Buttons/CarouselButton"
+import LikeButton from "../components/Buttons/LikeButton"
+import FaveButton from "../components/Buttons/FaveButton"
+import SignalButton from "../components/Buttons/SignalButton"
+import ModerationButton from "../components/Buttons/ModerationButton"
+import CloseButton from "../components/Buttons/CloseButton"
+import ScrollButton from "../components/Buttons/ScrollButton"
+import CarouselButton from "../components/Buttons/CarouselButton"
 
 
 export default function Home() {

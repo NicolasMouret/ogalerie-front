@@ -1,4 +1,4 @@
-import TestCarousel from "../components/testCarousel/TestCarousel"
+import TestCarousel from "../../components/testCarousel/TestCarousel"
 
 export default function Home() {
   return (
