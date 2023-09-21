@@ -1,4 +1,4 @@
-// File: /home/nicolas/Oclock/apo/o-galerie-next/src/app/layout.tsx
+// File: /home/nicolas/Oclock/apo/projet-06-o-galerie-front/src/app/layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
