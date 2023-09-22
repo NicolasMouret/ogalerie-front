@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -6,5 +6,5 @@ export default function Home() {
       <Link href="/buttons" className="bg-slate-300 rounded-md px-2">Page demo boutons</Link>
       <Link href="/testCarousel" className="bg-slate-300 rounded-md px-2">Page demo carousel</Link>
     </main>
-  )
+  );
 }

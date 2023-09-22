@@ -8,17 +8,17 @@ interface CarouselProps {
 
 
 function CarouselButton({direction}: CarouselProps) {
-    if (direction === "left") {
-        return <button className="text-5xl">
-                <IoIosArrowDropleftCircle />
-            </button>
+  if (direction === "left") {
+    return <div className="text-5xl">
+      <IoIosArrowDropleftCircle />
+    </div>;
             
-    } if (direction === "right") {
-        return <button className="text-5xl">
-                <IoIosArrowDroprightCircle />
-                </button>
+  } if (direction === "right") {
+    return <div className="text-5xl">
+      <IoIosArrowDroprightCircle />
+    </div>;
             
-    }
+  }
 }
 
 export default CarouselButton;
