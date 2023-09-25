@@ -4,19 +4,21 @@ import { IoIosArrowDroprightCircle, IoIosArrowDropleftCircle } from 'react-icons
 
 interface CarouselProps {
     direction: string;
+    className?: string;
+    onClick?: () => void;
 }
 
 
-function CarouselButton({direction}: CarouselProps) {
+function CarouselButton({direction, className, onClick}: CarouselProps) {
   if (direction === "left") {
-    return <div className="text-5xl">
+    return <button onClick={onClick} className={`${className}`}>
       <IoIosArrowDropleftCircle />
-    </div>;
+    </button>;
             
   } if (direction === "right") {
-    return <div className="text-5xl">
+    return <button onClick={onClick} className={`${className}`}>
       <IoIosArrowDroprightCircle />
-    </div>;
+    </button>;
             
   }
 }
