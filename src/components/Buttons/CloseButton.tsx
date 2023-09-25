@@ -2,11 +2,17 @@
 
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
+interface CloseButtonProps {
+  onClick: () => void;
+  className?: string;
+}
 
-function CloseButton() {
-  return <button className="text-2xl">
+function CloseButton({ onClick, className }: CloseButtonProps) {
+  return (
+  <button className={`text-2xl ${className}`} onClick={onClick}>
     <AiOutlineCloseCircle />
-    </button>;
+    </button>
+  );
 }
 
 export default CloseButton;
