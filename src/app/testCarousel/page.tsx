@@ -1,6 +1,6 @@
 "use client";
-import { useWindowSize } from "@uidotdev/usehooks";
-import TestCarousel from "../../components/testCarousel/TestCarousel";
+import Carousel from "../../components/testCarousel/Carousel";
+
 
 const imageList = [
   { 
@@ -92,12 +92,16 @@ const imageList = [
 
 ];
 
-export default function Home() {
+export default function DemoCarousels() {
+
   return (
     <main className="">
-      <div className="h-screen w-screen flex flex-col justify-end items-center">
-        <TestCarousel imageList={imageList} />
-      </div>
+      <section className="h-screen w-screen flex flex-col justify-end items-center">
+        <Carousel imageList={imageList} page="user" />
+      </section>
+      <section className="h-screen w-screen flex flex-col justify-end items-center">
+        <Carousel imageList={imageList} page="home" />
+      </section>
     </main>
     );
 }
