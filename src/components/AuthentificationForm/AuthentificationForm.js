@@ -2,6 +2,7 @@
 
 import logo from "../../assets/images/logosmall.png"
 import Image from "next/image";
+import CloseButton from "../Buttons/CloseButton";
 
 
 const AuthentificationForm = () => {
@@ -13,6 +14,13 @@ const AuthentificationForm = () => {
 <section className="fixed inset-0 flex items-center justify-center z-50">
   <div className="bg-black opacity-30 fixed inset-0"></div>
   <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[700px] flex flex-col items-center">
+  <CloseButton
+            className="absolute top-4 left-4 text-gray-700 hover:bg-gray-200 active:bg-gray-400 p-1 rounded-full w-10 h-10 flex items-center justify-center"
+            onClick={() => {
+              setError(null);
+              closeModal();  
+            }}
+          />
     <div className="mb-4 items-center ">
       <Image
         alt="Logo of the O'Galerie platform"
@@ -28,7 +36,7 @@ const AuthentificationForm = () => {
             <input type="radio" name="role_choice" id="user" /><p className="font-bold">Je suis amateur d'art</p> : je souhaite rejoindre la communauté.
           </div>
           <div className="grid grid-cols-2 max-w-md mx-auto py-3.5 ">
-          <input type="text" placeholder="Nom" className="bg-gray-200 placeholder-gray-500 border-b-2 border-b-2 border-black pb-4 w-4/5"/>
+          <input type="text" placeholder="Nom" className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pb-4 w-4/5"/>
           <input type="text" placeholder="Prénom" className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pb-4 w-4/5"/>
           </div>
           <div className="grid grid-cols-2 max-w-md mx-auto py-1.5">
@@ -39,10 +47,10 @@ const AuthentificationForm = () => {
           <input type="text" placeholder="Ville" className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pb-4 w-4/5"/>
           <input type="text" placeholder="Pays" className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pb-4 w-4/5"/>
           </div>
-          <div className="max-w-md mx-auto py-1.5 border-b-2 border-black pb-4 w-4/12">
-              <input type="text" placeholder="Email" className="bg-gray-200 placeholder-gray-500"/>
+          <div className="max-w-xs mx-auto py-1.5 border-black pb-4 border-b-2 flex justify-start">
+              <input type="text" placeholder="Email" className="bg-gray-200 placeholder-gray-500 py-1.5"/>
           </div>
-          <div className="grid grid-cols-2 max-w-md mx-auto py-1.5">
+          <div className="grid grid-cols-2 max-w-md mx-auto py-6 border-black pb-4">
               <input type="text" placeholder="Mot de passe" className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pb-4 w-4/5"/>
               <input type="text" placeholder="Confirmer mot de passe" className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pb-4 w-4/5"/>
           </div>
