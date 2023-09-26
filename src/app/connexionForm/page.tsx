@@ -36,7 +36,7 @@ export default function LoginForm() {
             </button>
           </div>
          ) : (
-          // Sign In button to open login modal
+          // {/*Sign In button to open login modal*/}
         <h1 onClick={openModal} className="cursor-pointer hover:font-bold absolute top-0 right-0 p-4 z-50 sm:text-sm md:text-base lg:text-lg">
           Sign In
           </h1>

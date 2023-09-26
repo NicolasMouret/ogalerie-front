@@ -1,75 +1,95 @@
 "use client";
 
-import { nanoid } from "nanoid";
+import { useState } from "react";
+import { useWindowSize } from "@uidotdev/usehooks";
 import Image from "next/image";
-import "react-alice-carousel/lib/alice-carousel.css";
-import AliceCarousel from "react-alice-carousel";
+
 import CarouselButton from "../Buttons/CarouselButton";
-import { useRef } from "react";
+
+interface ImageProps {
+  id: string;
+  url: string;
+}
 
 interface SlideProps {
   url: string;
-  heightPx: number;
+  size: number;
 }
 
 interface TestCarouselProps {
-  slidesNb: number;
-  heightPx: number;
+  imageList: ImageProps[];
 }
-
-//Ideally, the images we use for the carousel would all be 350x350 
-const urlList = [
-  "https://picsum.photos/id/121/350/350",
-  "https://picsum.photos/id/122/350/350",
-  "https://picsum.photos/id/123/350/350",
-  "https://picsum.photos/id/124/350/350",
-  "https://picsum.photos/id/125/350/350",
-  "https://picsum.photos/id/126/350/350",
-  "https://picsum.photos/id/135/350/350",
-  "https://picsum.photos/id/129/350/350",
-  "https://picsum.photos/id/154/350/350",
-];
 
 //Takes a URL and a height in pixels and returns an image component for the carousel
-const Slide = ({url, heightPx}: SlideProps) => {
-  return (
-    <Image className="mx-auto" 
-    key={nanoid()} 
-    alt="image test" 
-    width={350} 
-    height={350} 
-    src={url}
-      style={{
-        width: "90%",
-        height: `${heightPx}px`,
-        objectFit: "fill"
-      }}
-     />
-  )
-}
-
-
-
-//Takes a number of slides and a height in pixels and returns a carousel component
-export default function TestCarousel({slidesNb, heightPx}: TestCarouselProps) {
-    const carousel = useRef<AliceCarousel>(null);
+const Slide = ({url, size}: SlideProps) => {
+  if (size > 768) {
     return (
-        <div className="flex relative  ">
-            <button className="absolute my-auto -left-2 top-0 bottom-0 z-10" onClick={(e) => carousel?.current?.slidePrev(e)}>
-            <CarouselButton direction="left"/>
-            </button>
-            <AliceCarousel  
-            ref={carousel}        
-            items={urlList.map((url) => (
-              <Slide url={url} heightPx={heightPx} />
-            ))}
-            disableDotsControls
-            disableButtonsControls
-            responsive={{ 1024: { items: slidesNb }}}
-        />
-            <button className="absolute my-auto -right-2 top-0 bottom-0 z-10" onClick={(e) => carousel?.current?.slideNext(e)}>
-            <CarouselButton direction="right"/>
-            </button>
-        </div>
-    );
+      <Image className="flex-shrink-0 px-2" 
+      alt="image test" 
+      width={1500} 
+      height={400} 
+      src={url}
+        style={{
+          width: `${29}vw`,
+          height: `${400}px`,
+          objectFit: "cover",
+        }}
+       />)
+  }
+  else {
+    return (
+  <Image className="flex-shrink-0" 
+  alt="image test" 
+  width={400} 
+  height={350} 
+  src={url}
+    style={{
+      width: `${90}vw`,
+      height: `${350}px`,
+      objectFit: "cover",
+    }}
+   />)
+  }
+};
+
+
+
+// Takes a list of Slide components as children and returns a carousel component
+export default function TestCarousel({imageList}: TestCarouselProps){
+  const size = useWindowSize();
+  const slides = imageList.map((imageList) => {
+    return <Slide key={imageList.id} url={imageList.url} size={size.width || 500}/>;
+  });
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const previousSlide = () => {
+    if (currentSlide === 0) {
+      return;
+    }
+    setCurrentSlide(currentSlide - 1);
+  }
+
+  const nextSlide = () => {
+    if (currentSlide === slides.length - 1) {
+      return;
+    }
+    setCurrentSlide(currentSlide + 1);
+    console.log(currentSlide);
+  }
+
+  return (
+    <div className="relative w-screen mb-24 lg:w-[90%] ">
+      <div className="w-[90vw] mx-auto lg:w-[87vw] overflow-hidden">
+      <div className="flex transition-transform ease-out duration-500 "
+          style={{transform: `translateX(-${currentSlide*100}%)`}}>
+        {slides}
+      </div>     
+    </div>
+    {currentSlide > 0 && <CarouselButton direction="left" className="text-4xl absolute top-1/2 -translate-y-1/2" onClick={previousSlide} />}
+    {size.width || 500 < 768 ? currentSlide < slides.length - 1 && <CarouselButton direction="right" className="text-4xl absolute right-0 top-1/2 -translate-y-1/2" onClick={nextSlide}/> : 
+    currentSlide < (slides.length/3) - 1 && <CarouselButton direction="right" className="text-4xl absolute right-0 top-1/2 -translate-y-1/2" onClick={nextSlide}/> }
+    </div>     
+
+  );
 }
