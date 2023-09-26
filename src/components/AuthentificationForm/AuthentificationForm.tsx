@@ -91,7 +91,7 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal }
       <div className={`fixed inset-0 bg-gray ${showModal ? 'opacity-30' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
       {/* Sign up form modal */}
       <div className={`fixed inset-0 flex items-center justify-center z-50 ${showModal ? '' : 'hidden'}`}>
-      <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[750px] mx-auto sm:w-3/4">
+      <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[700px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton
             className="absolute top-4 left-4 text-gray-700 hover:bg-gray-200 active:bg-gray-400 p-1 rounded-full w-10 h-10 flex items-center justify-center"
@@ -101,7 +101,7 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal }
             }}
           />
           {/* Platform logo */}
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-3">
             <Image
               alt="Logo of the O'Galerie platform"
               src={logo}
@@ -115,7 +115,7 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal }
 
         <form className="w-full" onSubmit={handleSubmit}>
           <div className="py-3 mx-auto max-w-xl flex flex-col">
-            <div className="flex items-center mb-3"> 
+            <div className="flex items-center mb-2"> 
               <input
               type="radio"
               name="role_choice"
@@ -137,7 +137,7 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal }
               />
               <label htmlFor="user" className="ml-2">
               <p className="font-bold inline-block">Je suis amateur d'art</p>
-              <span>: je souhaite rejoindre la communauté.</span>
+              <span> : je souhaite rejoindre la communauté.</span>
               </label>
             </div>
           </div>
@@ -159,8 +159,8 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal }
               />
             </div>
 
-            <div className="grid grid-cols-2 max-w-md mx-auto py-4">
-              <p className="text-gray-500">Date de naissance</p>
+            <div className="grid grid-cols-2 max-w-md mx-auto py-3">
+              <p className="text-gray-500 text-right pr-8">Date de naissance :</p>
               <input
               type="date"
               name="date"
@@ -170,7 +170,7 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal }
               />
             </div>
 
-            <div className="grid grid-cols-2 max-w-md mx-auto py-4">
+            <div className="grid grid-cols-2 max-w-md mx-auto py-3">
               <input
               type="text"
               placeholder="Ville"
@@ -186,7 +186,7 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal }
               />
             </div>
 
-            <div className="max-w-md mx-auto py-4">
+            <div className="max-w-md mx-auto py-3">
               <input type="text"
               placeholder="Email"
               name="email"
