@@ -8,6 +8,9 @@ export default function Home() {
       <Link href="/connexionForm" className="bg-slate-300 rounded-md px-2">Page demo formulaire de connexion</Link>
       <Link href="/addArtworkForm" className="bg-slate-300 rounded-md px-2">Page demo formulaire d'ajout d'une oeuvre</Link>
       <Link href="/editArtwork" className="bg-slate-300 rounded-md px-2">Page demo formulaire de modification d'une oeuvre</Link>
+      <Link href="/authentification" className="bg-slate-300 rounded-md px-2">Page demo formulaire d'inscription</Link>
+
+
 
     </main>
   );
