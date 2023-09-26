@@ -6,6 +6,8 @@ export default function Home() {
       <Link href="/buttons" className="bg-slate-300 rounded-md px-2">Page demo boutons</Link>
       <Link href="/testCarousel" className="bg-slate-300 rounded-md px-2">Page demo carousel</Link>
       <Link href="/connexionForm" className="bg-slate-300 rounded-md px-2">Page demo formulaire de connexion</Link>
+      <Link href="/addArtworkForm" className="bg-slate-300 rounded-md px-2">Page demo formulaire d'ajout d'une oeuvre</Link>
+
     </main>
   );
 }
