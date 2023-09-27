@@ -15,6 +15,7 @@
     "@types/react-slick": "^0.23.10",
     "@uidotdev/usehooks": "^2.3.1",
     "autoprefixer": "10.4.15",
+    "axios": "^1.5.1",
     "eslint": "8.49.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
