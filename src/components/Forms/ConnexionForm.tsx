@@ -8,69 +8,42 @@ import logo from "../../assets/images/logosmall.png";
 import CloseButton from '../Buttons/CloseButton';
 
 // Define the shape of form data for type checking
-interface FormData {
-  email?: string;
-  password?: string;
+interface ConnexionProps {
   showModal: boolean;
   closeModal: () => void;
-  successfulLogin: (user: typeof TEST_USER) => void;
 }
 
-// // Test user for mock authentication
-// const TEST_USER = {
-//   pseudo: "AliénorB",
-//   email: "alienor@exemple.com",
-//   password: "1234"
-// };
 
-function login(formData) {
-  const objData = Object.fromEntries(formData);
-  c
-}
-
-const ConnexionForm: React.FC<FormData> = ({ showModal, closeModal, successfulLogin }) => {
+export default function ConnexionForm({ showModal, closeModal } : ConnexionProps) {
   // State to store user input
-  const [formData, setFormData] = useState<FormData>({});
+  const [user, setUser] = useState({
+    logged: false,
+  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   // State to display error messages
   const [error, setError] = useState<string | null>(null);
   // Toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
 
-  // Handle change events from input fields
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   // Handle form submission
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const form = event.currentTarget;
     const formData = new FormData(form);
-    login(formData)
-    .then(TEST_USER => {
-      console.log(TEST_USER);
-      if (formData.email === TEST_USER.email && formData.password === TEST_USER.password) {
-        successfulLogin(TEST_USER.firstname);
-        setError(null);
-        closeModal();
-      } else {
-        setError("Email or password is incorrect");
-      }
+    const objData = Object.fromEntries(formData);
 
-      // Clear the form after submission
-      setFormData({
-        email: "",
-        password: ""
-      });
+  axios.post('http://localhost:3001/v1/login', objData)
+    .then(res => {
+      console.log(res.data);     
+      setUser(user => ({...user, ...res.data}));
+      console.log(user);
+      closeModal();     
     })
-    .catch(error => {
-      console.error(error);
-      setError("Failed to authenticate");
-    });
+    .catch(err => {
+      console.log(JSON.stringify(objData));
+      throw err});
 };
 
   return (
@@ -93,8 +66,8 @@ const ConnexionForm: React.FC<FormData> = ({ showModal, closeModal, successfulLo
             <Image
               alt="Logo of the O'Galerie platform"
               src={logo}
-              width={200}
-              height={'auto'}
+              width={400}
+              height={200}
             />
           </div>
           {/* Login form heading */}
@@ -105,18 +78,18 @@ const ConnexionForm: React.FC<FormData> = ({ showModal, closeModal, successfulLo
             <input
               type="text"
               placeholder="Email"
-              value={formData.email || ""}
+              value={email}
               name="email"
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
               className="block w-full p-2 mb-4 rounded"
             />
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Mot de passe"
-                value={formData.password || ""}
+                value={password}
                 name="password"
-                onChange={handleChange}
+                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full p-2 mb-4 rounded pr-10"
               />
               {/* Toggle password visibility */}
@@ -130,7 +103,7 @@ const ConnexionForm: React.FC<FormData> = ({ showModal, closeModal, successfulLo
             {/* Forgot password link */}
             <a className="text-sm underline cursor-pointer hover:font-bold">Mot de passe oublié</a>
             {/* Submit button */}
-            <button type="submit" className="block mx-auto font-bold py-2 px-4 rounded-full border border-gray-700 border-2 mt-8 hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200">
+            <button type="submit" className="block mx-auto font-bold py-2 px-4 rounded-full border-gray-700 border-2 mt-8 hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200">
               Se connecter
             </button>
           </form>
@@ -140,4 +113,3 @@ const ConnexionForm: React.FC<FormData> = ({ showModal, closeModal, successfulLo
   );
 }
 
-export default ConnexionForm;
