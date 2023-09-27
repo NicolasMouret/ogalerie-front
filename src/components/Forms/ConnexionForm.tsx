@@ -1,6 +1,7 @@
 "use client";
 
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Image from 'next/image';
 import logo from "../../assets/images/logosmall.png";
@@ -23,26 +24,8 @@ interface FormData {
 // };
 
 function login(formData) {
-  return fetch('http://localhost:3003/v1/login', {
-    method: 'POST',
-    mode: 'cors',
-    body: JSON.stringify(formData),
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-})
-.then(res => {
-  if (!res.ok) {
-    return res.text().then(text => {
-      console.error('Error response:', text); 
-      console.log(JSON.stringify(formData))
-      throw new Error('Failed to fetch data');
-    });
-  }
-  console.log(JSON.stringify(res));
-  return res.json();
-});
+  const objData = Object.fromEntries(formData);
+  c
 }
 
 const ConnexionForm: React.FC<FormData> = ({ showModal, closeModal, successfulLogin }) => {
@@ -65,7 +48,8 @@ const ConnexionForm: React.FC<FormData> = ({ showModal, closeModal, successfulLo
   // Handle form submission
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     login(formData)
     .then(TEST_USER => {
       console.log(TEST_USER);
