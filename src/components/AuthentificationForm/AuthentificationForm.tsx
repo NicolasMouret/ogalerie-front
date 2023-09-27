@@ -6,69 +6,51 @@ import logo from "../../assets/images/logosmall.png";
 import Image from "next/image";
 import CloseButton from "../Buttons/CloseButton";
 
-// Define the shape of form data for type checking
-interface FormData {
-  lastname?: string;
-  firstname?: string;
-  date?: string;
-  city?: string;
-  country?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-}
-
-interface AuthFormProps {
+interface AuthentificationFormProps {
   showModal: boolean;
   closeModal: () => void;
-  successfulLogin: (user: { firstname: string }) => void;
 }
 
-const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, successfulLogin }) => {
-  // State to store user input
-  const [formData, setFormData] = useState<FormData>({});
+export default function AuthentificationForm({ showModal, closeModal }: AuthentificationFormProps) {
+
+  const [firstname, setfirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [birthdate, setbirthdate] = useState('');
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
   // State to display error messages
   const [error, setError] = useState<string | null>(null);
   // Toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
   // State to store if cgu checked 
   const [acceptedTOS, setAcceptedTOS] = useState(false);
-  // State to store user role
-  const [userRole, setUserRole] = useState<string | null>(null);
 
   useEffect(() => {
     if (showModal) {
-       // If showModal is `true`, the modal is open.
-        setFormData({});
         // To reinitialize modal and errors.
         setError(null);
     }
 }, [showModal]);
 
-  // Handle change events from input fields
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-    if (name === "role_choice") {
-      setUserRole(value);
-    }
-  };
-
   // Handle form submission
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Données du formulaire saisies:", formData);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const objData = Object.fromEntries(formData);
+    console.log("Données du formulaire saisies:", objData);
 
     // Validation checks
-    if (formData.password !== formData.confirmPassword) {
+    if (objData.password !== objData.confirmPassword) {
       setError("Les mots de passe ne correspondent pas.");
       return;
     }
 
-    if (!formData.lastname || !formData.firstname || !formData.date || !formData.city || !formData.country || !formData.email || !formData.password) {
+    if (!objData.lastname || !objData.firstname || !objData.date || !objData.city || !objData.country || !objData.email || !objData.password) {
       setError("Merci de saisir tous les champs");
       return;
     }
@@ -76,13 +58,14 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
       setError("Merci d'accepter les conditions d'utilisation");
       return;
     }
-    if (!userRole) {
+    if (!objData.role_choice) {
       setError("Merci de choisir un type de profil (artiste / amateur d'art)");
       return;
     }
   
     // To prevent user under 18 years old to subscrire to the platform
-    const birthDate = new Date(formData.date);
+    const dateValue = objData.date instanceof File ? objData.date.name : objData.date;
+    const birthDate = new Date(dateValue);
     const currentDate = new Date();
     const ageLimit = new Date(currentDate);
     ageLimit.setFullYear(currentDate.getFullYear() - 18);
@@ -91,20 +74,10 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
       setError("L'âge minimum requis pour s'inscire est de 18 ans.");
       return;
     }
-
-    // Clear the form after submission.
-    setFormData({})
-    // Reset userRole
-    setUserRole(null); 
     // Reset acceptedTOS       
-    setAcceptedTOS(false);   
-    // Reset acceptedTOS       
-    setAcceptedTOS(false);   
+    setAcceptedTOS(false);     
     // Modal closing.
     closeModal();
-
-    // Passage de l'information de l'utilisateur à l'application principale
-    successfulLogin({ firstname: formData.firstname! });
 
   };
 
@@ -129,7 +102,7 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
               alt="Logo of the O'Galerie platform"
               src={logo}
               width={150}
-              height={'auto'}
+              height={75}
             />
           </div>
 
@@ -145,8 +118,6 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
                 name="role_choice"
                 id="artist"
                 value="artist"
-                checked={userRole === "artist"}
-                onChange={handleChange}
                 />
                 <label htmlFor="artist" className="ml-2">
                 <p className="font-bold inline-block">Je suis artiste</p>
@@ -160,8 +131,6 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
                 name="role_choice" 
                 id="user"
                 value="user"
-                checked={userRole === "user"}
-                onChange={handleChange}
                 />
                 <label htmlFor="user" className="ml-2">
                 <p className="font-bold inline-block">Je suis amateur d'art</p>
@@ -174,18 +143,18 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
                 <input
                 type="text"
                 placeholder="Nom"
-                value={formData.lastname || ""}
+                value={lastname}
                 name="lastname"
-                className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5"
-                onChange={handleChange}
+                className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
+                onChange={(e) => setLastname(e.target.value)}
                 />
                 <input
                 type="text"
                 placeholder="Prénom"
-                value={formData.firstname || ""}
+                value={firstname}
                 name="firstname"
-                className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5"
-                onChange={handleChange}
+                className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
+                onChange={(e) => setfirstname(e.target.value)}
                 />
               </div>
 
@@ -193,11 +162,11 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
                 <p className="text-gray-500 text-right pr-10">Date de naissance :</p>
                 <input
                 type="date"
-                value={formData.date || ""}
+                value={birthdate}
                 name="date"
                 id="birthdate"
-                className="bg-gray-200 text-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5"
-                onChange={handleChange}
+                className="bg-gray-200 text-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
+                onChange={(e) => setbirthdate(e.target.value)}
                 />
               </div>
 
@@ -205,17 +174,17 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
                 <input
                 type="text"
                 placeholder="Ville"
-                value={formData.city || ""}
+                value={city}
                 name="city"
-                className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5"
-                onChange={handleChange}
+                className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
+                onChange={(e) => setCity(e.target.value)}
                 />
                 <input type="text"
                 placeholder="Pays"
-                value={formData.country || ""}
+                value={country}
                 name="country"
-                className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5"
-                onChange={handleChange}
+                className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
+                onChange={(e) => setCountry(e.target.value)}
                 />
               </div>
 
@@ -223,10 +192,10 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
                 <input 
                   type="text"
                   placeholder="Email"
-                  value={formData.email || ""}
+                  value={email}
                   name="email"
-                  className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-full"  // changed from w-4/5 to w-full
-                  onChange={handleChange}
+                  className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-full outline-none"  // changed from w-4/5 to w-full
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -235,10 +204,10 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
                 <input 
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Mot de passe"
-                  value={formData.password || ""}
+                  value={password}
                   name="password"
-                  onChange={handleChange}
-                  className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5"
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
                 />
                 <span 
                   className="mr-4 mb-3 absolute inset-y-0 right-2 flex items-center cursor-pointer"
@@ -250,11 +219,11 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
               <div className="relative pb-3">
                 <input 
                   type={showPassword ? 'text' : 'password'}
-                  value={formData.confirmPassword || ""}
+                  value={confirmPassword}
                   placeholder="Confirmer mdp"
                   name="confirmPassword"
-                  onChange={handleChange}
-                  className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
                 />
                 <span 
                   className="mr-4 mb-3 absolute inset-y-0 right-2 flex items-center cursor-pointer"
@@ -297,5 +266,5 @@ const AuthentificationForm: React.FC<AuthFormProps> = ({ showModal, closeModal, 
   );
 };
   
-  export default AuthentificationForm;
+
   
