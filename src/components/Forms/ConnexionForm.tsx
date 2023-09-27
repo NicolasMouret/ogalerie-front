@@ -15,12 +15,35 @@ interface FormData {
   successfulLogin: (user: typeof TEST_USER) => void;
 }
 
-// Test user for mock authentication
-const TEST_USER = {
-  pseudo: "AliénorB",
-  email: "alienor@exemple.com",
-  password: "1234"
-};
+// // Test user for mock authentication
+// const TEST_USER = {
+//   pseudo: "AliénorB",
+//   email: "alienor@exemple.com",
+//   password: "1234"
+// };
+
+function login(formData) {
+  return fetch('http://localhost:3003/v1/login', {
+    method: 'POST',
+    mode: 'cors',
+    body: JSON.stringify(formData),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+})
+.then(res => {
+  if (!res.ok) {
+    return res.text().then(text => {
+      console.error('Error response:', text); 
+      console.log(JSON.stringify(formData))
+      throw new Error('Failed to fetch data');
+    });
+  }
+  console.log(JSON.stringify(res));
+  return res.json();
+});
+}
 
 const ConnexionForm: React.FC<FormData> = ({ showModal, closeModal, successfulLogin }) => {
   // State to store user input
@@ -43,21 +66,28 @@ const ConnexionForm: React.FC<FormData> = ({ showModal, closeModal, successfulLo
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Check for email and password match
-    if (formData.email === TEST_USER.email && formData.password === TEST_USER.password) {
-      successfulLogin(TEST_USER.pseudo);
-      setError(null);
-      closeModal();
-    } else {
-      setError("Email or password is incorrect");
-    }
+    login(formData)
+    .then(TEST_USER => {
+      console.log(TEST_USER);
+      if (formData.email === TEST_USER.email && formData.password === TEST_USER.password) {
+        successfulLogin(TEST_USER.firstname);
+        setError(null);
+        closeModal();
+      } else {
+        setError("Email or password is incorrect");
+      }
 
-    // Clear the form after submission
-    setFormData({
-      email: "",
-      password: ""
+      // Clear the form after submission
+      setFormData({
+        email: "",
+        password: ""
+      });
+    })
+    .catch(error => {
+      console.error(error);
+      setError("Failed to authenticate");
     });
-  };
+};
 
   return (
     <>
