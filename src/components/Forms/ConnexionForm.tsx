@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { UiContext } from '@/src/contexts/UiContext'
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { UserContext } from '@/src/contexts/UserContext';
-import axios from 'axios';
+import axiosInstance from '@/src/utils/axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Image from 'next/image';
 import logo from "../../assets/images/logosmall.png";
@@ -38,9 +38,11 @@ export default function ConnexionForm() {
       return;
     }
 
-  axios.post('http://localhost:3001/v1/login', objData)
+  axiosInstance.post('/login', objData)
     .then(res => {
-      console.log(res.data);     
+      console.log(res.data);  
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${res.data.token}` 
+      delete res.data.token;  
       setUser(user => ({...user, ...res.data}));
       console.log(user);
       closeModal();     

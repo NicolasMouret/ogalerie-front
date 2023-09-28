@@ -6,6 +6,8 @@ import { Inter } from 'next/font/google'
 import { UiContextProvider } from '../contexts/UiContext'
 import { UserContextProvider } from '../contexts/UserContext'
 import Header from '@/src/components/Header/Header'
+import AuthentificationForm from '../components/Forms/AuthentificationForm'
+import ConnexionForm from '../components/Forms/ConnexionForm'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,6 +27,8 @@ export default function RootLayout({
       <UiContextProvider>
         <body className={`${inter.className} flex flex-col`}>          
           <Header />
+          <ConnexionForm />
+          <AuthentificationForm />
           {children}         
         </body>
       </UiContextProvider>
