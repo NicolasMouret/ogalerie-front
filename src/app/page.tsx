@@ -7,6 +7,8 @@ import AuthentificationForm from "../components/Forms/AuthentificationForm";
 import Carousel from "@/src/components/testCarousel/Carousel";
 import Header from "@/src/components/Header/Header";
 import SearchBar from "../components/SearchBar/SearchBar";
+import FilterButton from "../components/Buttons/FilterButton";
+
 
 
 const imageList = [
