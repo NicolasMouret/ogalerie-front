@@ -15,11 +15,6 @@ export default function LoginForm() {
   // Function to close the modal
   const closeModal = () => setShowModal(false);
 
-  // function to handle successful login
-  const handleSuccessfullLogin = (user) => {
-    setLoggedInUser(user);
-    closeModal();
-  };
 
   return (
       <div className="relative min-h-screen">
@@ -45,7 +40,6 @@ export default function LoginForm() {
         <ConnexionForm
           showModal={showModal}
           closeModal={closeModal}
-          successfulLogin={handleSuccessfullLogin}
           />
       </div>
     );

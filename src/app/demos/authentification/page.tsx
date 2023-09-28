@@ -14,12 +14,6 @@ export default function Authentification() {
  // Function to close the modal
  const closeModal = () => setShowModal(false);
 
- // function to handle successful login
- const handleSuccessfulLogin = (user: { firstname: string }) => {
-  setLoggedInUser(user.firstname);
-  closeModal();
-};
-
  return (
      <div className="relative min-h-screen">
         <div className={`fixed inset-0 bg-black ${showModal ? 'opacity-5' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
@@ -44,7 +38,6 @@ export default function Authentification() {
        <AuthentificationForm
          showModal={showModal}
          closeModal={closeModal}
-         successfulLogin={handleSuccessfulLogin}
          />
      </div>
    );

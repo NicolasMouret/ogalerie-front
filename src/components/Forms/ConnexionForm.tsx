@@ -54,9 +54,9 @@ export default function ConnexionForm({ showModal, closeModal } : ConnexionProps
   return (
     <>
       {/* Background overlay when modal is open */}
-      <div className={`fixed inset-0 bg-gray ${showModal ? 'opacity-30' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
+      <div className={`bg-gray ${showModal ? 'opacity-30' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
       {/* Login form modal */}
-      <div className={`fixed inset-0 flex items-center justify-center z-50 ${showModal ? '' : 'hidden'}`}>
+      <div className={`flex items-center justify-center z-50 ${showModal ? '' : 'hidden'}`}>
       <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[512px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton

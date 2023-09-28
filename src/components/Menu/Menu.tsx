@@ -6,7 +6,9 @@
 'use client';
 
 import Link from 'next/link';
-import CloseButton from './CloseButtons/CloseButton';
+import CloseButton from '@/src/components/Buttons/CloseButton';
+import SignIn from '@/src/components/AuthentificationButtons/SignIn';
+import { Sign } from 'crypto';
 
 interface MenuButtonProps {
   isOpen: boolean;
@@ -16,6 +18,7 @@ interface MenuButtonProps {
 export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
   const handleClick = () => {
     setIsOpen(!isOpen);
+    console.log(isOpen);
   };
   return (
     <div className="flex items-center justify-between py-8">
@@ -30,9 +33,8 @@ export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
           <div className={isOpen ? 'showMenuNav' : 'hideMenuNav'}>
             <div
               className="absolute top-0 right-0 px-8 py-8 "
-              onClick={handleClick}
             >
-              <CloseButton />
+              <CloseButton onClick={handleClick}/>
             </div>
             <ul className="flex flex-col items-center justify-between min-h-[250px]">
               <li className="border-b border-gray-400 my-8 uppercase">
@@ -66,19 +68,10 @@ export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
 
         <section className="DESKTOP-MENU hidden  space-x-2 lg:flex ">
           <div className={isOpen ? 'hidden' : ''}>
-            <ul className="flex flex-row items-center justify-around gap-1">
-              <li className="m-4 text-lg">
-                <Link className="text-xl font-semibold" href="/#">
-                  Se connecter
-                </Link>
-              </li>
-              -
-              <li className="m-4">
-                <Link className="text-xl font-semibold" href="/">
-                  S'inscrire
-                </Link>
-              </li>
-            </ul>
+            <div className="flex flex-row items-center justify-around gap-1">
+              <SignIn />
+              <SignIn />
+            </div>
           </div>
           <div className={isOpen?"hidden":"HAMBURGER-ICON space-y-2 p-4"} onClick={handleClick}>
             <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
@@ -89,10 +82,10 @@ export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
           <div className={`fixed top-3.5 right-0 transform ${isOpen ? 'translate-x-0' : `translate-x-full`} transition-transform ease-linear duration-500 p-4 shadow-gray-400 shadow-xl rounded-lg bg-gray-200`}>
             
             <div
-              className="absolute top-0 right-0 px-8 py-8 "
-              onClick={handleClick}
+              className="absolute top-0 right-0 px-8 py-8"
+              
             >
-              <CloseButton />
+              <CloseButton onClick={handleClick}/>
             </div>
             <ul className="flex flex-col items-center justify-between min-h-[250px]">
               <li className="border-b border-gray-400 my-8 uppercase">

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Menu from '../Menu/Menu';
-import logo from '../../../assets/images/logo.png';
+import logo from '@/src/assets/images/logobig.png';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
