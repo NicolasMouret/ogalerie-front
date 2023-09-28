@@ -4,19 +4,16 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 'use client';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Link from 'next/link';
 import CloseButton from '@/src/components/Buttons/CloseButton';
 import { UiContext } from '@/src/contexts/UiContext';
 import { UserContext } from '@/src/contexts/UserContext';
 
-interface MenuButtonProps {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
 /* eslint-disable react/self-closing-comp */
-export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
+export default function Menu() {
   const { user, setUser } = useContext(UserContext);
+  const [isOpen, setIsOpen] = useState(false);
   const { showModalSignIn, setShowModalSignIn } = useContext(UiContext);
   const { showModalSignUp, setShowModalSignUp } = useContext(UiContext);
   const handleDeconnect = () => {
@@ -46,36 +43,37 @@ export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
             <span className="block h-0.5 w-8 animate-pulse bg-black"></span>
           </button>
 
-          <div className={isOpen ? 'showMenuNav' : 'hideMenuNav'}>
-            <div
-              className="absolute top-0 right-0 px-8 py-8 "
-            >
-              <CloseButton onClick={handleClick}/>
-            </div>
-            <ul className="flex flex-col items-center justify-between min-h-[250px]">
-              <li className="border-b border-gray-400 my-8 uppercase">
-                <Link className="text-2xl font-semibold" href="/#">
+          <div className={`${isOpen ? 'showMenuNav' : 'hideMenuNav'} h-[75vh]`}>           
+            <CloseButton className="absolute top-0 right-0 px-8 py-8 " onClick={handleClick}/>           
+            <ul className="flex flex-col items-center justify-between">
+              <li className="underline underline-offset-8 my-6 uppercase">
+                <Link onClick={handleClick} className="text-2xl font-semibold" href="/">
                   Accueil
                 </Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
-                <Link className="text-xl font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-6 uppercase">
+                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
                   Annuaire des artistes
                 </Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
-                <Link className="text-xl font-semibold" href="/#">
-                  A propos
+              <li className="underline underline-offset-8 my-6 uppercase">
+                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+                  à propos
                 </Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
-                <Link className="text-xl font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-6 uppercase">
+                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
                   Contact
                 </Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
-                <Link className="text-xl font-semibold" href="/#">
-                  Réglement & mentions légales
+              <li className="underline underline-offset-8 my-6 uppercase">
+                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+                  Règlement & mentions légales
+                </Link>
+              </li>
+              <li className="underline underline-offset-8 my-6 uppercase">
+                <Link onClick={handleClick} className="text-lg font-semibold" href="/demos">
+                  Demos
                 </Link>
               </li>
             </ul>
@@ -105,29 +103,34 @@ export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
             
                      
             <ul className="flex flex-col items-start justify-end min-h-[250px] pl-4">
-              <li className="hover:border-b border-gray-400 my-4 uppercase">
-                <Link className="text-sm font-semibold" href="/#">
+              <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/">
                   Accueil
                 </Link>
               </li>
-              <li className="hover:border-b border-gray-400 my-4 uppercase">
-                <Link className="text-sm font-semibold" href="/#">
+              <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Annuaire des artistes
                 </Link>
               </li>
-              <li className="hover:border-b border-gray-400 my-4 uppercase">
-                <Link className="text-sm font-semibold" href="/#">
+              <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   à propos
                 </Link>
               </li>
-              <li className="hover:border-b border-gray-400 my-4 uppercase">
-                <Link className="text-sm font-semibold" href="/#">
+              <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Contact
                 </Link>
               </li>
-              <li className="hover:border-b border-gray-400 my-4 uppercase">
-                <Link className="text-sm font-semibold" href="/#">
+              <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Règlement & mentions légales
+                </Link>
+              </li>
+              <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/demos">
+                  Demos
                 </Link>
               </li>
             </ul>

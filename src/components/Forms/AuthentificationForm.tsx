@@ -3,7 +3,7 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect, useContext } from 'react';
 import { UiContext } from '@/src/contexts/UiContext';
 import { UserContext } from '@/src/contexts/UserContext';
-import axios from 'axios';
+import axiosInstance from '@/src/utils/axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import logo from "../../assets/images/logosmall.png";
 import Image from "next/image";
@@ -80,9 +80,11 @@ export default function AuthentificationForm() {
       return;
     }
 
-    axios.post('http://localhost:3001/v1/users', objData)
+    axiosInstance.post('/users', objData)
       .then(res => {
         console.log(res.data);
+        axiosInstance.defaults.headers.common.Authorization = `Bearer ${res.data.token}`
+        delete res.data.token;
         setUser(user => ({...user, ...res.data}));
         closeModal();     
       })
