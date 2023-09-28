@@ -6,6 +6,8 @@ import ConnexionForm from "../components/Forms/ConnexionForm";
 import AuthentificationForm from "../components/Forms/AuthentificationForm";
 import Carousel from "@/src/components/testCarousel/Carousel";
 import Header from "@/src/components/Header/Header";
+import SearchBar from "../components/SearchBar/SearchBar";
+
 
 const imageList = [
   { 
@@ -100,9 +102,12 @@ const imageList = [
 export default function Home() {
   return (
     <>
-      <section className="h-[75vh] flex flex-col">
+      <section className="h-[75vh] flex flex-col items-center justify-center space-y-4">
+        <div className="pb-8"> 
+          <SearchBar />
+        </div>
         <Carousel imageList={imageList} page="home" />        
-      </section>   
+      </section>
       <section className="h-screen flex flex-col">
         <Carousel imageList={imageList} page="home" />        
       </section> 
