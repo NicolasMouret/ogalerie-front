@@ -3,6 +3,8 @@ import './globals.css'
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { UiContextProvider } from '../contexts/UiContext'
+import { UserContextProvider } from '../contexts/UserContext'
 import Header from '@/src/components/Header/Header'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,10 +21,14 @@ export default function RootLayout({
 }) {
   return (
       <html lang="en">
-      <body className={`${inter.className}`}>
-        <Header />
-        {children}
-      </body>
+      <UserContextProvider>
+      <UiContextProvider>
+        <body className={`${inter.className} flex flex-col`}>          
+          <Header />
+          {children}         
+        </body>
+      </UiContextProvider>
+      </UserContextProvider>
     </html>
   )
 }

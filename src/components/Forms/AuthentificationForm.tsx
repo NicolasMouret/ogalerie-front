@@ -1,18 +1,17 @@
 "use client"
 
-import React, { ChangeEvent, FormEvent, useState, useEffect } from 'react';
+import React, { ChangeEvent, FormEvent, useState, useEffect, useContext } from 'react';
+import { UiContext } from '@/src/contexts/UiContext';
+import { UserContext } from '@/src/contexts/UserContext';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import logo from "../../assets/images/logosmall.png";
 import Image from "next/image";
 import CloseButton from "../Buttons/CloseButton";
 
-interface AuthentificationFormProps {
-  showModal: boolean;
-  closeModal: () => void;
-}
-
-export default function AuthentificationForm({ showModal, closeModal }: AuthentificationFormProps) {
+export default function AuthentificationForm() {
+  const { user, setUser } = useContext(UserContext);
+  const {showModalSignUp, setShowModalSignUp} = useContext(UiContext);
   const [nickname, setNickname] = useState('');
   const [firstname, setfirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -22,9 +21,9 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [user, setUser] = useState({
-    logged: false,
-  });
+  
+
+  const closeModal = () => setShowModalSignUp(false);
 
   // State to display error messages
   const [error, setError] = useState<string | null>(null);
@@ -34,11 +33,11 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
   const [acceptedTOS, setAcceptedTOS] = useState(false);
 
   useEffect(() => {
-    if (showModal) {
+    if (showModalSignUp) {
         // To reinitialize modal and errors.
         setError(null);
     }
-}, [showModal]);
+}, [showModalSignUp]);
 
   // Handle form submission
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -101,9 +100,9 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
     return (
       <>
       {/* Background overlay when modal is open */}
-      <div className={`fixed inset-0 bg-gray ${showModal ? 'opacity-30' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
+      <div className={`fixed inset-0 bg-gray ${showModalSignUp ? 'opacity-30' : 'hidden'} z-40 transition-opacity duration-300`}></div>
       {/* Sign up form modal */}
-      <div className={`fixed inset-0 flex items-center justify-center z-50 ${showModal ? '' : 'hidden'}`}>
+      <div className={`fixed inset-0 flex items-center justify-center z-50 ${showModalSignUp ? '' : 'hidden'}`}>
       <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[600px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton

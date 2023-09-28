@@ -2,20 +2,25 @@
 import { ReactElement, createContext, useState } from 'react';
 
 interface UiContextProps {
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  showModalSignIn: boolean;
+  setShowModalSignIn: React.Dispatch<React.SetStateAction<boolean>>;
+  showModalSignUp: boolean;
+  setShowModalSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const UiContext = createContext<UiContextProps>({
-  showModal: false,
-  setShowModal: () => {},
+  showModalSignIn: false,
+  setShowModalSignIn: () => {},
+  showModalSignUp: false,
+  setShowModalSignUp: () => {},
 });
 
 function UiContextProvider({ children }: { children: ReactElement }) {
-  const [showModal, setShowModal] = useState(false);
+  const [showModalSignIn, setShowModalSignIn] = useState(false);
+  const [showModalSignUp, setShowModalSignUp] = useState(false);
 
   return (
-    <UiContext.Provider value={{ showModal, setShowModal }}>
+    <UiContext.Provider value={{ showModalSignIn, setShowModalSignIn, showModalSignUp, setShowModalSignUp }}>
       {children}
     </UiContext.Provider>
   );
