@@ -34,6 +34,11 @@ export default function ConnexionForm({ showModal, closeModal } : ConnexionProps
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
 
+    if ( !objData.email || !objData.password ) {
+      setError('Veuillez remplir tous les champs.');
+      return;
+    }
+
   axios.post('http://localhost:3001/v1/login', objData)
     .then(res => {
       console.log(res.data);     
@@ -42,7 +47,7 @@ export default function ConnexionForm({ showModal, closeModal } : ConnexionProps
       closeModal();     
     })
     .catch(err => {
-      console.log(JSON.stringify(objData));
+      console.log(objData);
       throw err});
 };
 
@@ -66,7 +71,7 @@ export default function ConnexionForm({ showModal, closeModal } : ConnexionProps
             <Image
               alt="Logo of the O'Galerie platform"
               src={logo}
-              width={400}
+              width={200}
               height={200}
             />
           </div>
