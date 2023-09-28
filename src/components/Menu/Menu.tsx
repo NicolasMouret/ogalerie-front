@@ -83,56 +83,51 @@ export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
         </section>
 
         <section className="DESKTOP-MENU hidden  space-x-2 lg:flex ">         
-          <div className="md:flex mr-8">
-          <div className={`flex items-center justify-around mr-8 gap-8 ${isOpen ? 'hidden' : ''}`}>
+          <div className="md:flex mr-16">
+          <div className={`flex items-center justify-around mr-14 gap-8 `}>
             {user.logged ? <div className="flex gap-8">
               <p className="font-semibold text-lg">{user.nickname}</p>
               <button className="font-semibold text-lg" onClick={handleDeconnect}>Se deconnecter</button>
             </div> : 
-            <div className="flex gap-8">
-            <button className="font-semibold text-lg" onClick={handleSignIn}>Se connecter</button>
-            <button className="font-semibold text-lg" onClick={handleSignup}>S'inscrire</button>
+          <div className="flex gap-10">
+            <button className="font-semibold text-2xl" onClick={handleSignIn}>Se connecter</button>
+            <button className="font-semibold text-2xl" onClick={handleSignup}>S'inscrire</button>
           </div>}
           </div>
-          <button className={`${isOpen?"hidden":"HAMBURGER-ICON space-y-2 p-4"}`} onClick={handleClick}>
+          <button className={`"HAMBURGER-ICON space-y-2 p-4"`} onClick={handleClick}>
             <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
             <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
             <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
           </button>
           </div>
           
-          <div className={`fixed top-3.5 right-0 z-50 transform ${isOpen ? 'translate-x-0' : `translate-x-full`} transition-transform ease-linear duration-500 p-4 shadow-gray-400 shadow-xl rounded-lg bg-gray-200`}>
+          <div className={`fixed flex flex-col justify-start h-[70vh] w-[20vw] top-[17vh] right-0 z-50 transform ${isOpen ? 'translate-x-0' : `translate-x-full`} transition-transform ease-linear duration-500 p-4 shadow-gray-400 shadow-xl rounded-lg bg-gray-200`}>
             
-            <div
-              className="absolute top-0 right-0 px-8 py-8"
-              
-            >
-              <CloseButton onClick={handleClick}/>
-            </div>
-            <ul className="flex flex-col items-center justify-between min-h-[250px]">
-              <li className="border-b border-gray-400 my-8 uppercase">
+                     
+            <ul className="flex flex-col items-start justify-end min-h-[250px] pl-4">
+              <li className="hover:border-b border-gray-400 my-4 uppercase">
                 <Link className="text-sm font-semibold" href="/#">
                   Accueil
                 </Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
+              <li className="hover:border-b border-gray-400 my-4 uppercase">
                 <Link className="text-sm font-semibold" href="/#">
                   Annuaire des artistes
                 </Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
+              <li className="hover:border-b border-gray-400 my-4 uppercase">
                 <Link className="text-sm font-semibold" href="/#">
-                  A propos
+                  à propos
                 </Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
+              <li className="hover:border-b border-gray-400 my-4 uppercase">
                 <Link className="text-sm font-semibold" href="/#">
                   Contact
                 </Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
+              <li className="hover:border-b border-gray-400 my-4 uppercase">
                 <Link className="text-sm font-semibold" href="/#">
-                  Réglement & mentions légales
+                  Règlement & mentions légales
                 </Link>
               </li>
             </ul>
