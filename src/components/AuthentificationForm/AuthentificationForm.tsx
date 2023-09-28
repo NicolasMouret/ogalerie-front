@@ -1,6 +1,7 @@
 "use client"
 
 import React, { ChangeEvent, FormEvent, useState, useEffect } from 'react';
+import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import logo from "../../assets/images/logosmall.png";
 import Image from "next/image";
@@ -12,7 +13,7 @@ interface AuthentificationFormProps {
 }
 
 export default function AuthentificationForm({ showModal, closeModal }: AuthentificationFormProps) {
-
+  const [nickname, setNickname] = useState('');
   const [firstname, setfirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [birthdate, setbirthdate] = useState('');
@@ -21,6 +22,9 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [user, setUser] = useState({
+    logged: false,
+  });
 
   // State to display error messages
   const [error, setError] = useState<string | null>(null);
@@ -49,8 +53,9 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
       setError("Les mots de passe ne correspondent pas.");
       return;
     }
+    delete objData.confirmPassword;
 
-    if (!objData.lastname || !objData.firstname || !objData.date || !objData.city || !objData.country || !objData.email || !objData.password) {
+    if ( !objData.nickname || !objData.lastname || !objData.firstname || !objData.birthday || !objData.town || !objData.country || !objData.email || !objData.password) {
       setError("Merci de saisir tous les champs");
       return;
     }
@@ -58,13 +63,14 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
       setError("Merci d'accepter les conditions d'utilisation");
       return;
     }
-    if (!objData.role_choice) {
+    delete objData.accept_cgu;
+    if (!objData.situation) {
       setError("Merci de choisir un type de profil (artiste / amateur d'art)");
       return;
     }
   
     // To prevent user under 18 years old to subscrire to the platform
-    const dateValue = objData.date instanceof File ? objData.date.name : objData.date;
+    const dateValue = objData.birthday instanceof File ? objData.birthday.name : objData.birthday;
     const birthDate = new Date(dateValue);
     const currentDate = new Date();
     const ageLimit = new Date(currentDate);
@@ -74,6 +80,17 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
       setError("L'âge minimum requis pour s'inscire est de 18 ans.");
       return;
     }
+
+    axios.post('http://localhost:3001/v1/users', objData)
+      .then(res => {
+        console.log(res.data);
+        setUser(user => ({...user, ...res.data}));
+        closeModal();     
+      })
+      .catch(err => {
+        console.log(objData);
+        throw err}
+      );
     // Reset acceptedTOS       
     setAcceptedTOS(false);     
     // Modal closing.
@@ -101,8 +118,8 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
             <Image
               alt="Logo of the O'Galerie platform"
               src={logo}
-              width={150}
-              height={75}
+              width={200}
+              height={200}
             />
           </div>
 
@@ -115,9 +132,9 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
               <div className="flex items-center mb-2"> 
                 <input
                 type="radio"
-                name="role_choice"
+                name="situation"
                 id="artist"
-                value="artist"
+                value="creator"
                 />
                 <label htmlFor="artist" className="ml-2">
                 <p className="font-bold inline-block">Je suis artiste</p>
@@ -128,7 +145,7 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
               <div className="flex items-center">
                 <input 
                 type="radio" 
-                name="role_choice" 
+                name="situation" 
                 id="user"
                 value="user"
                 />
@@ -138,6 +155,16 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
                 </label>
               </div>
             </div>
+            <div className="grid grid-cols-2 max-w-md mx-auto py-3">
+                <input
+                type="text"
+                placeholder="Pseudo"
+                value={nickname}
+                name="nickname"
+                className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
+                onChange={(e) => setNickname(e.target.value)}
+                />
+              </div>
 
               <div className="grid grid-cols-2 max-w-md mx-auto py-3">
                 <input
@@ -163,7 +190,7 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
                 <input
                 type="date"
                 value={birthdate}
-                name="date"
+                name="birthday"
                 id="birthdate"
                 className="bg-gray-200 text-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
                 onChange={(e) => setbirthdate(e.target.value)}
@@ -175,7 +202,7 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
                 type="text"
                 placeholder="Ville"
                 value={city}
-                name="city"
+                name="town"
                 className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
                 onChange={(e) => setCity(e.target.value)}
                 />
@@ -253,11 +280,14 @@ export default function AuthentificationForm({ showModal, closeModal }: Authenti
             </div>
 
             <div className="pt-3">
-              <input
+              {/* <input
               type="submit"
               value="Créer mon compte"
               className="border border-black rounded-full px-4 py-2 mx-auto max-w-xl flex font-bold border-b-4  hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200"
-              />
+              /> */}
+               <button type="submit" className="block mx-auto font-bold py-2 px-4 rounded-full border-gray-700 border-2 mt-4 hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200">
+              Se connecter
+              </button>
             </div>
         </form>
       </div>
