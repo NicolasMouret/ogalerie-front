@@ -3,7 +3,7 @@
 import ConnexionForm from "@/src/components/Forms/ConnexionForm";
 import { useState } from "react";
 
-export default function SignIn() {
+export default function SignIn({}) {
 
   // State to manage modal display
   const [showModal, setShowModal] = useState(false);
@@ -16,18 +16,9 @@ export default function SignIn() {
   const closeModal = () => setShowModal(false);
 
 
-  return (
-      <div className="text-xl font-semibold">
-         {/* <div className={` bg-black ${showModal ? 'opacity-5' : 'opacity-0'} z-40 transition-opacity duration-300`}>
-
-         </div> */}
-        <button onClick={openModal} className="cursor-pointer hover:font-bold p-4 z-50 sm:text-sm md:text-base lg:text-lg">
-          Sign In
-        </button>
-        <ConnexionForm
-          showModal={showModal}
-          closeModal={closeModal}
-          />
-      </div>
+  return (    
+    <button onClick={openModal} className="cursor-pointer hover:font-bold p-4 z-50 sm:text-sm md:text-base lg:text-lg">
+        Sign In
+    </button>    
     );
 }

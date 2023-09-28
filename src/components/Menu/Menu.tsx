@@ -4,11 +4,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 'use client';
-
+import { useContext } from 'react';
 import Link from 'next/link';
 import CloseButton from '@/src/components/Buttons/CloseButton';
-import SignIn from '@/src/components/AuthentificationButtons/SignIn';
-import { Sign } from 'crypto';
+import { UiContext } from '@/src/contexts/UiContext';
 
 interface MenuButtonProps {
   isOpen: boolean;
@@ -16,6 +15,11 @@ interface MenuButtonProps {
 }
 /* eslint-disable react/self-closing-comp */
 export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
+  const { showModal, setShowModal } = useContext(UiContext);
+  const handleSignIn = () => {
+    setShowModal(true);
+    console.log(showModal);
+  }
   const handleClick = () => {
     setIsOpen(!isOpen);
     console.log(isOpen);
@@ -69,8 +73,8 @@ export default function Menu({ isOpen, setIsOpen }: MenuButtonProps) {
         <section className="DESKTOP-MENU hidden  space-x-2 lg:flex ">
           <div className={isOpen ? 'hidden' : ''}>
             <div className="flex flex-row items-center justify-around gap-1">
-              <SignIn />
-              <SignIn />
+              <button onClick={handleSignIn}>Se connecter</button>
+              
             </div>
           </div>
           <div className={isOpen?"hidden":"HAMBURGER-ICON space-y-2 p-4"} onClick={handleClick}>

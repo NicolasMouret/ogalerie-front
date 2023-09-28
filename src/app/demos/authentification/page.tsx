@@ -1,6 +1,6 @@
 "use client";
 
-import AuthentificationForm from "@/src/components/AuthentificationForm/AuthentificationForm"
+import AuthentificationForm from "@/src/components/Forms/AuthentificationForm"
 import { useState } from "react";
 
 export default function Authentification() {

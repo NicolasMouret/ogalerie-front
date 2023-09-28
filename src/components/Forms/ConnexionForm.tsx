@@ -1,5 +1,7 @@
 "use client";
 
+import { useContext } from 'react'
+import { UiContext } from '@/src/contexts/UiContext'
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -7,14 +9,10 @@ import Image from 'next/image';
 import logo from "../../assets/images/logosmall.png";
 import CloseButton from '../Buttons/CloseButton';
 
-// Define the shape of form data for type checking
-interface ConnexionProps {
-  showModal: boolean;
-  closeModal: () => void;
-}
 
 
-export default function ConnexionForm({ showModal, closeModal } : ConnexionProps) {
+
+export default function ConnexionForm() {
   // State to store user input
   const [user, setUser] = useState({
     logged: false,
@@ -25,6 +23,8 @@ export default function ConnexionForm({ showModal, closeModal } : ConnexionProps
   const [error, setError] = useState<string | null>(null);
   // Toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
+  const { showModal, setShowModal } = useContext(UiContext);
+  const closeModal = () => setShowModal(false);
 
   // Handle form submission
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -54,9 +54,9 @@ export default function ConnexionForm({ showModal, closeModal } : ConnexionProps
   return (
     <>
       {/* Background overlay when modal is open */}
-      <div className={`bg-gray ${showModal ? 'opacity-30' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
+      <div className={`fixed inset-0 bg-gray ${showModal ? 'opacity-30' : 'hidden'}  transition-opacity duration-300`}></div>
       {/* Login form modal */}
-      <div className={`flex items-center justify-center z-50 ${showModal ? '' : 'hidden'}`}>
+      <div className={`fixed inset-0 flex items-center justify-center ${showModal ? '' : 'hidden'}`}>
       <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[512px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton

@@ -39,7 +39,6 @@ export default function LoginForm() {
 
         <ConnexionForm
           showModal={showModal}
-          closeModal={closeModal}
           />
       </div>
     );
