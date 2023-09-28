@@ -1,5 +1,5 @@
 "use client";
-import Carousel from "../../components/testCarousel/Carousel";
+import Carousel from "../../../components/testCarousel/Carousel";
 
 
 const imageList = [

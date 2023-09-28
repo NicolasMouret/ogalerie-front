@@ -77,7 +77,7 @@ export default function CarouselDesktop({imageList, page}: CarouselDesktopProps)
   }
 
   return (
-    <div className="relative w-[84vw] mb-16">
+    <div className="relative w-[84vw] my-auto mx-auto">
       <div className="mx-auto w-[84vw] overflow-hidden">
         <div className="flex transition-transform ease-out duration-500 "
             style={{transform: `translateX(-${currentSlide*100}%)`}}>
