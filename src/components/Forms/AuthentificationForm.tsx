@@ -8,6 +8,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import logo from "../../assets/images/logosmall.png";
 import Image from "next/image";
 import CloseButton from "../Buttons/CloseButton";
+import { close } from 'inspector';
 
 export default function AuthentificationForm() {
   const { user, setUser } = useContext(UserContext);
@@ -23,7 +24,10 @@ export default function AuthentificationForm() {
   const [confirmPassword, setConfirmPassword] = useState('');
   
 
-  const closeModal = () => setShowModalSignUp(false);
+  const closeModal = () => {
+    setShowModalSignUp(false);
+    console.log("closeModal");
+  }
 
   // State to display error messages
   const [error, setError] = useState<string | null>(null);
@@ -102,9 +106,9 @@ export default function AuthentificationForm() {
     return (
       <>
       {/* Background overlay when modal is open */}
-      <div className={`fixed inset-0 bg-gray ${showModalSignUp ? 'opacity-30' : 'hidden'} z-40 transition-opacity duration-300`}></div>
+      <div onClick={closeModal} className={`fixed inset-0 bg-black ${showModalSignUp ? 'opacity-40' : 'hidden'} z-40 transition-opacity duration-300`}></div>
       {/* Sign up form modal */}
-      <div className={`fixed inset-0 flex items-center justify-center z-50 ${showModalSignUp ? '' : 'hidden'}`}>
+      <div className={`fixed inset-0 flex items-center justify-center md:w-[600px] mx-auto z-50 ${showModalSignUp ? '' : 'hidden'}`}>
       <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[600px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton

@@ -18,7 +18,6 @@ export default function Menu() {
   const { showModalSignUp, setShowModalSignUp } = useContext(UiContext);
   const handleDeconnect = () => {
     setUser({logged: false});
-
   }
   const handleSignIn = () => {
     setShowModalSignIn(true);
