@@ -48,18 +48,22 @@ export default function CommentsBlock() {
   })
 
   const onEnter = (text: string) => {
-    commentsRawList.push(
-  { avatar: "https://picsum.photos/id/506/360/350",
+    //add at the beginning of the array
+   commentsRawList.unshift(
+    { avatar: "https://picsum.photos/id/506/360/350",
     nickname: "Utilisateur test",
     date: "29 Septembre 2023",
     content: text },
-    )
-    commentsContainerRef.current?.scrollTo(0, 1000);
+   )
+    commentsContainerRef.current?.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }
 
   return (
     <div className="flex flex-col justify-between overflow-hidden pt-4 h-[30vh] w-[600px] rounded-2xl border-gray-400 border-2">
-      <div ref={commentsContainerRef} className="flex flex-col-reverse justify-between gap-4 overflow-auto h-[75%] pl-6 py-2">
+      <div ref={commentsContainerRef} className="flex flex-col justify-between gap-4 overflow-auto h-[75%] pl-6 py-2">
         {commentsList}
       </div>
       <div className="flex max-h-[20%] w-[95%] mx-auto border-gray-300 border-t-2">
