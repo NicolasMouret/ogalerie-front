@@ -103,7 +103,7 @@ export default function Home() {
         <Carousel imageList={imageList} page="home" />        
       </section>
       <section className="h-screen flex flex-col">
-        <Carousel imageList={imageList} page="home" />        
+        <Carousel imageList={imageList} page="user" />        
       </section> 
     </>
   );

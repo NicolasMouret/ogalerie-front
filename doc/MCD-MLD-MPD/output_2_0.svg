@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+<svg xmlns="http://www.w3.org/2000/svg" width="732" height="689" viewBox="0 0 732 689">
+<rect id="frame" x="0" y="0" width="732" height="689" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+=======
 <svg xmlns="http://www.w3.org/2000/svg" width="732" height="742" viewBox="0 0 732 742">
 <rect id="frame" x="0" y="0" width="732" height="742" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+>>>>>>> 0cbb41130c8a195af1660467979375d189fe3568
 
 <!-- Association caractériser -->
 <g>
@@ -65,8 +70,13 @@
 
 <!-- Association liker -->
 <g>
+<<<<<<< HEAD
+	<line x1="344" y1="532" x2="344" y2="325" stroke="#9970ab" stroke-width="1"/>
+	<text x="316" y="426" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+=======
 	<line x1="344" y1="576" x2="344" y2="325" stroke="#9970ab" stroke-width="1"/>
 	<text x="316" y="461" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+>>>>>>> 0cbb41130c8a195af1660467979375d189fe3568
 	<line x1="344" y1="189" x2="344" y2="325" stroke="#9970ab" stroke-width="1"/>
 	<text x="349" y="267" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<g>
@@ -80,8 +90,13 @@
 
 <!-- Association favori -->
 <g>
+<<<<<<< HEAD
+	<line x1="344" y1="532" x2="487" y2="325" stroke="#9970ab" stroke-width="1"/>
+	<text x="388" y="486.27" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+=======
 	<line x1="344" y1="576" x2="487" y2="325" stroke="#9970ab" stroke-width="1"/>
 	<text x="381.39" y="461" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+>>>>>>> 0cbb41130c8a195af1660467979375d189fe3568
 	<line x1="344" y1="189" x2="487" y2="325" stroke="#9970ab" stroke-width="1"/>
 	<text x="388.01" y="267" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<g>
@@ -95,8 +110,13 @@
 
 <!-- Association uploader -->
 <g>
+<<<<<<< HEAD
+	<line x1="344" y1="532" x2="594" y2="325" stroke="#9970ab" stroke-width="1"/>
+	<text x="388" y="509.57" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+=======
 	<line x1="344" y1="576" x2="594" y2="325" stroke="#9970ab" stroke-width="1"/>
 	<text x="426" y="507.64" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+>>>>>>> 0cbb41130c8a195af1660467979375d189fe3568
 	<line x1="344" y1="189" x2="594" y2="325" stroke="#9970ab" stroke-width="1"/>
 	<text x="422" y="224.95" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
 	<g>
@@ -110,6 +130,18 @@
 
 <!-- Association initier -->
 <g>
+<<<<<<< HEAD
+	<line x1="344" y1="532" x2="192" y2="532" stroke="#9970ab" stroke-width="1"/>
+	<text x="277" y="524" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="192" y1="410" x2="192" y2="532" stroke="#9970ab" stroke-width="1"/>
+	<text x="197" y="461" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<g>
+		<path d="M215 506 a14 14 90 0 1 14 14 V532 h-74 V520 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M229 532 v12 a14 14 90 0 1 -14 14 H169 a14 14 90 0 1 -14 -14 V532 H74" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="155" y="506" width="74" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="155" y1="532" x2="229" y2="532" stroke="#9970ab" stroke-width="1"/>
+		<text x="162" y="524.6" fill="#000" font-family="Courier New" font-size="14">initier</text>
+=======
 	<line x1="344" y1="576" x2="192" y2="576" stroke="#9970ab" stroke-width="1"/>
 	<text x="239" y="568" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<line x1="192" y1="410" x2="192" y2="576" stroke="#9970ab" stroke-width="1"/>
@@ -120,11 +152,24 @@
 		<rect x="155" y="550" width="74" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
 		<line x1="155" y1="576" x2="229" y2="576" stroke="#9970ab" stroke-width="1"/>
 		<text x="162" y="568.6" fill="#000" font-family="Courier New" font-size="14">initier</text>
+>>>>>>> 0cbb41130c8a195af1660467979375d189fe3568
 	</g>
 </g>
 
 <!-- Association créer -->
 <g>
+<<<<<<< HEAD
+	<line x1="344" y1="532" x2="675" y2="532" stroke="#9970ab" stroke-width="1"/>
+	<text x="388" y="548" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="675" y1="189" x2="675" y2="532" stroke="#9970ab" stroke-width="1"/>
+	<text x="680" y="231" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<g>
+		<path d="M690 506 a14 14 90 0 1 14 14 V532 h-58 V520 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M704 532 v12 a14 14 90 0 1 -14 14 H660 a14 14 90 0 1 -14 -14 V532 H58" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="646" y="506" width="58" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="646" y1="532" x2="704" y2="532" stroke="#9970ab" stroke-width="1"/>
+		<text x="654" y="524.6" fill="#000" font-family="Courier New" font-size="14">créer</text>
+=======
 	<line x1="344" y1="576" x2="675" y2="576" stroke="#9970ab" stroke-width="1"/>
 	<text x="426" y="592" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<line x1="675" y1="189" x2="675" y2="576" stroke="#9970ab" stroke-width="1"/>
@@ -135,11 +180,24 @@
 		<rect x="646" y="550" width="58" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
 		<line x1="646" y1="576" x2="704" y2="576" stroke="#9970ab" stroke-width="1"/>
 		<text x="654" y="568.6" fill="#000" font-family="Courier New" font-size="14">créer</text>
+>>>>>>> 0cbb41130c8a195af1660467979375d189fe3568
 	</g>
 </g>
 
 <!-- Association écrire -->
 <g>
+<<<<<<< HEAD
+	<line x1="344" y1="532" x2="61" y2="654" stroke="#9970ab" stroke-width="1"/>
+	<text x="277" y="544.19" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
+	<line x1="61" y1="189" x2="61" y2="654" stroke="#9970ab" stroke-width="1"/>
+	<text x="33" y="240" fill="#1b7837" font-family="Courier New" font-size="12">1,1</text>
+	<g>
+		<path d="M80 628 a14 14 90 0 1 14 14 V654 h-66 V642 a14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"/>
+		<path d="M94 654 v12 a14 14 90 0 1 -14 14 H42 a14 14 90 0 1 -14 -14 V654 H66" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"/>
+		<rect x="28" y="628" width="66" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
+		<line x1="28" y1="654" x2="94" y2="654" stroke="#9970ab" stroke-width="1"/>
+		<text x="35" y="646.6" fill="#000" font-family="Courier New" font-size="14">écrire</text>
+=======
 	<line x1="344" y1="576" x2="61" y2="707" stroke="#9970ab" stroke-width="1"/>
 	<text x="239" y="607.27" fill="#1b7837" font-family="Courier New" font-size="12">0,N</text>
 	<line x1="61" y1="189" x2="61" y2="707" stroke="#9970ab" stroke-width="1"/>
@@ -150,6 +208,7 @@
 		<rect x="28" y="681" width="66" height="52" fill="none" rx="14" stroke="#9970ab" stroke-width="1.5"/>
 		<line x1="28" y1="707" x2="94" y2="707" stroke="#9970ab" stroke-width="1"/>
 		<text x="35" y="699.6" fill="#000" font-family="Courier New" font-size="14">écrire</text>
+>>>>>>> 0cbb41130c8a195af1660467979375d189fe3568
 	</g>
 </g>
 
@@ -190,9 +249,15 @@
 	<text x="318" y="145.6" fill="#000" font-family="Courier New" font-size="14">oeuvre</text>
 	<text x="276" y="171.6" fill="#000" font-family="Courier New" font-size="14">nom</text>
 	<text x="276" y="189.6" fill="#000" font-family="Courier New" font-size="14">url</text>
+<<<<<<< HEAD
+	<text x="276" y="207.6" fill="#000" font-family="Courier New" font-size="14">support</text>
+	<text x="276" y="225.6" fill="#000" font-family="Courier New" font-size="14">date de création</text>
+	<text x="276" y="243.6" fill="#000" font-family="Courier New" font-size="14">description</text>
+=======
 	<text x="276" y="207.6" fill="#000" font-family="Courier New" font-size="14">date de création</text>
 	<text x="276" y="225.6" fill="#000" font-family="Courier New" font-size="14">description</text>
 	<text x="276" y="243.6" fill="#000" font-family="Courier New" font-size="14">mature</text>
+>>>>>>> 0cbb41130c8a195af1660467979375d189fe3568
 </g>
 
 <!-- Entity collection -->
@@ -223,6 +288,23 @@
 <!-- Entity personne -->
 <g>
 	<g>
+<<<<<<< HEAD
+		<rect x="305" y="434" width="78" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
+		<rect x="305" y="460" width="78" height="170" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
+		<rect x="305" y="434" width="78" height="196" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
+		<line x1="305" y1="460" x2="383" y2="460" stroke="#5aae61" stroke-width="1"/>
+	</g>
+	<text x="310" y="452.6" fill="#000" font-family="Courier New" font-size="14">personne</text>
+	<text x="310" y="478.6" fill="#000" font-family="Courier New" font-size="14">prénom</text>
+	<text x="310" y="496.6" fill="#000" font-family="Courier New" font-size="14">nom</text>
+	<text x="310" y="514.6" fill="#000" font-family="Courier New" font-size="14">pseudo</text>
+	<text x="310" y="532.6" fill="#000" font-family="Courier New" font-size="14">email</text>
+	<text x="310" y="550.6" fill="#000" font-family="Courier New" font-size="14">birthday</text>
+	<text x="310" y="568.6" fill="#000" font-family="Courier New" font-size="14">ville</text>
+	<text x="310" y="586.6" fill="#000" font-family="Courier New" font-size="14">pays</text>
+	<text x="310" y="604.6" fill="#000" font-family="Courier New" font-size="14">avatar</text>
+	<text x="310" y="622.6" fill="#000" font-family="Courier New" font-size="14">role</text>
+=======
 		<rect x="267" y="469" width="154" height="26" fill="#a6dba0" stroke="#a6dba0" stroke-width="0" opacity="1"/>
 		<rect x="267" y="495" width="154" height="188" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0" opacity="1"/>
 		<rect x="267" y="469" width="154" height="214" fill="none" stroke="#5aae61" stroke-width="1.5" opacity="1"/>
@@ -239,5 +321,6 @@
 	<text x="272" y="639.6" fill="#000" font-family="Courier New" font-size="14">pays</text>
 	<text x="272" y="657.6" fill="#000" font-family="Courier New" font-size="14">avatar</text>
 	<text x="272" y="675.6" fill="#000" font-family="Courier New" font-size="14">situation</text>
+>>>>>>> 0cbb41130c8a195af1660467979375d189fe3568
 </g>
 </svg>
