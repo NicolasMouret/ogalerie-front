@@ -65,7 +65,7 @@ export default function CommentsBlock() {
   }
 
   return (
-     <div className="flex flex-col justify-between overflow-hidden pt-4 h-[30vh] w-[600px] rounded-2xl border-gray-400 border-2">
+     <div className="flex flex-col justify-between overflow-hidden pt-2 h-[30vh] w-[600px] rounded-2xl border-gray-400 border-2">
       <div ref={commentsContainerRef} className="flex flex-col justify-between gap-4 overflow-auto h-[75%] pl-6 py-2">
         {commentsList}
       </div>

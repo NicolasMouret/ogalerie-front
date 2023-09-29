@@ -17,8 +17,8 @@ function SignalButton({ className, size }: SignalButtonProps) {
     }
 
   return <button className={`${className}`} onClick={onOff}>
-    {isSignaled ? <span className={`${size ? `text-${size}` : `text-xs`}`}><MdReport className={`${isSignaled && "animate-ping"} ${size ? `text-${size}` : `text-xl`} inline`}/>Signalé</span> : 
-                <span className={`${size ? `text-${size}` : `text-xs`}`}><MdReportGmailerrorred className={`${size ? `text-${size}` : `text-xl`} inline`}/>Signaler</span>}
+    {isSignaled ? <span className={`${size ? `text-${size}` : `text-xs`}`}><MdReport className={`${isSignaled && "animate-ping"} ${size ? `text-${size}` : `text-xl`} inline mr-1`}/>Signalé</span> : 
+                <span className={`${size ? `text-${size}` : `text-xs`}`}><MdReportGmailerrorred className={`${size ? `text-${size}` : `text-xl`} inline mr-1`}/>Signaler</span>}
     </button>;
 }
 
