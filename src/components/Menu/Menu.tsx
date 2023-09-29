@@ -7,6 +7,7 @@
 import { useContext, useState } from 'react';
 import Link from 'next/link';
 import CloseButton from '@/src/components/Buttons/CloseButton';
+import { FaUserAlt } from 'react-icons/fa';
 import { UiContext } from '@/src/contexts/UiContext';
 import { UserContext } from '@/src/contexts/UserContext';
 
@@ -36,10 +37,10 @@ export default function Menu() {
     <div className="flex items-center justify-between py-8">
       <nav>
         <section className="MOBILE-MENU flex sm:hidden">
-          <button className="HAMBURGER-ICON space-y-2" onClick={handleClick}>
-            <span className="block h-0.5 w-8 animate-pulse bg-black"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-black"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-black"></span>
+          <button className="HAMBURGER-ICON space-y-1.5" onClick={handleClick}>
+            <span className="block rounded-full h-1 w-8 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1 w-8 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1 w-8 animate-pulse bg-black"></span>
           </button>
 
           <div className={`${isOpen ? 'showMenuNav' : 'hideMenuNav'} h-[75vh]`}>           
@@ -81,20 +82,23 @@ export default function Menu() {
 
         <section className="DESKTOP-MENU hidden  space-x-2 lg:flex ">         
           <div className="md:flex mr-16">
-          <div className={`flex items-center justify-around mr-14 gap-8 `}>
-            {user.logged ? <div className="flex gap-8">
-              <p className="font-semibold text-lg">{user.nickname}</p>
-              <button className="font-semibold text-lg" onClick={handleDeconnect}>Se deconnecter</button>
-            </div> : 
-          <div className="flex gap-10">
-            <button className="font-semibold text-2xl" onClick={handleSignIn}>Se connecter</button>
-            <button className="font-semibold text-2xl" onClick={handleSignup}>S'inscrire</button>
-          </div>}
+          <div className={`flex items-center justify-around mr-14 gap-4 text-lg`}>
+            {user.logged ? 
+            <>
+              <FaUserAlt /><span className="font-bold">Utilisateur :</span><p className="text-xl">{user.nickname}</p><span className="mx-4">-</span>
+              <button className="font-semibold text-xl" onClick={handleDeconnect}>Se deconnecter</button>
+            </>
+            : 
+            <>
+              <button className="text-2xl mr-8" onClick={handleSignIn}>Se connecter</button>
+              <button className="text-2xl" onClick={handleSignup}>S'inscrire</button>
+            </>
+            }
           </div>
           <button className={`"HAMBURGER-ICON space-y-2 p-4"`} onClick={handleClick}>
-            <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
-            <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
-            <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1.5 w-12 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1.5 w-12 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1.5 w-12 animate-pulse bg-black"></span>
           </button>
           </div>
           

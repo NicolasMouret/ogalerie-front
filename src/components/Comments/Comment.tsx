@@ -15,8 +15,8 @@ export default function Comment({avatar, nickname, date, content}: CommentProps)
         className="rounded-full h-fit"
         src={avatar}
         alt="Photo de profil de l'auteur"
-        width={45}
-        height={45}
+        width={40}
+        height={40}
         />
         <div className="flex flex-col max-w-[70%] ">
             <p>{nickname} - {date}</p>

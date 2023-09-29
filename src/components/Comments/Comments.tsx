@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useRef, useContext } from 'react';
+import { nanoid } from 'nanoid';
+import { UserContext } from '@/src/contexts/UserContext';
 import InputEmoji from 'react-input-emoji'
 import Comment from './Comment'
-import { useState, useEffect, useRef } from 'react';
 
 const commentsRawList = [
   { avatar: "https://picsum.photos/id/500/360/350",
@@ -33,12 +35,13 @@ const commentsRawList = [
 
 export default function CommentsBlock() {
   const [text, setText] = useState("");
+  const { user } = useContext(UserContext);
   const commentsContainerRef = useRef<HTMLDivElement>(null);
 
   const commentsList = commentsRawList.map((comment) => {
     return (
       <Comment
-        key={comment.avatar}
+        key={nanoid()}
         avatar={comment.avatar}
         nickname={comment.nickname}
         date={comment.date}
@@ -51,7 +54,7 @@ export default function CommentsBlock() {
     //add at the beginning of the array
    commentsRawList.unshift(
     { avatar: "https://picsum.photos/id/506/360/350",
-    nickname: "Utilisateur test",
+    nickname: `${user.nickname ? user.nickname : "Anonyme"}`,
     date: "29 Septembre 2023",
     content: text },
    )
@@ -62,7 +65,7 @@ export default function CommentsBlock() {
   }
 
   return (
-    <div className="flex flex-col justify-between overflow-hidden pt-4 h-[30vh] w-[600px] rounded-2xl border-gray-400 border-2">
+     <div className="flex flex-col justify-between overflow-hidden pt-4 h-[30vh] w-[600px] rounded-2xl border-gray-400 border-2">
       <div ref={commentsContainerRef} className="flex flex-col justify-between gap-4 overflow-auto h-[75%] pl-6 py-2">
         {commentsList}
       </div>
