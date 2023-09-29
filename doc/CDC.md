@@ -169,6 +169,7 @@ En tant que | Je veux | Afin de |
 | Utilisateur | consulter la page d'une oeuvre | avoir plus de détails sur une oeuvre |
 | Utilisateur | liker une oeuvre | montrer son appréciation |
 | Utilisateur | mettre une oeuvre en favoris | conserver une trace des oeuvres appréciées |
+| Utilisateur | retirer une oeuvre des favoris | actualiser sa liste d'oeuvres appréciées |
 | Utilisateur | commenter une oeuvre  | partager mon opinion sur une oeuvre et interagir |
 | Utilisateur | contacter un artiste via un formulaire | entrer en contact par mail avec des artistes |
 | Utilisateur | signaler un commentaire | signaler des commentaire choquant ou ne répondant pas à la réglementation de la plateforme |
