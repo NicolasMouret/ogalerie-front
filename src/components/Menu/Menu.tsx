@@ -45,37 +45,57 @@ export default function Menu() {
 
           <div className={`${isOpen ? 'showMenuNav' : 'hideMenuNav'} h-[75vh]`}>           
             <CloseButton className="absolute top-0 right-0 px-8 py-8 " onClick={handleClick}/>           
-            <ul className="flex flex-col items-center justify-between">
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-2xl font-semibold" href="/">
+            <ul className="flex flex-col items-start justify-end min-h-[250px]">
+              {user.logged ? 
+              <>
+              <li className=" my-4 uppercase">
+                Bienvenue <span className="mx-2">{user.nickname}</span>!
+              </li>
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/">Mon profil</Link>
+              </li> 
+              </>:
+              <>
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleSignIn} className="text-sm font-semibold" href="/">Se connecter</Link>
+              </li>
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleSignup} className="text-sm font-semibold" href="/">S'inscrire</Link>
+              </li> 
+              </>}
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-md font-semibold" href="/">
                   Accueil
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Annuaire des artistes
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   à propos
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Contact
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Règlement & mentions légales
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/demos">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/demos">
                   Demos
                 </Link>
               </li>
+              {user.logged && <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleDeconnect} className="text-xs font-semibold" href="/">Se déconnecter</Link>
+              </li>}
             </ul>
           </div>
         </section>

@@ -108,8 +108,8 @@ export default function AuthentificationForm() {
       {/* Background overlay when modal is open */}
       <div onClick={closeModal} className={`fixed inset-0 bg-black ${showModalSignUp ? 'opacity-40' : 'hidden'} z-40 transition-opacity duration-300`}></div>
       {/* Sign up form modal */}
-      <div className={`fixed inset-0 flex items-center justify-center md:w-[600px] mx-auto z-50 ${showModalSignUp ? '' : 'hidden'}`}>
-      <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[600px] mx-auto sm:w-3/4">
+      <div className={`fixed inset-0 flex items-center justify-center w-[95vw] md:w-[600px] mx-auto z-50 ${showModalSignUp ? '' : 'hidden'}`}>
+      <div className="relative bg-gray-200 px-2 sm:p-8 rounded-lg h-[95vh] md:h-[75vh] w-full md:w-[600px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton
             className="absolute top-4 left-4 text-gray-700 hover:bg-gray-200 active:bg-gray-400 p-1 rounded-full w-10 h-10 flex items-center justify-center"
@@ -119,12 +119,12 @@ export default function AuthentificationForm() {
             }}
           />
           {/* Platform logo */}
-          <div className="flex justify-center mb-1">
+          <div className="flex justify-center md:mb-1">
             <Image
               alt="Logo of the O'Galerie platform"
               src={logo}
-              width={200}
-              height={200}
+              width={170}
+              height={170}
             />
           </div>
 
@@ -133,7 +133,7 @@ export default function AuthentificationForm() {
 
         <form className="w-full text-sm" onSubmit={handleSubmit}>
           <div className="pl-8">
-            <div className="pl-7 py-3 mx-auto max-w-xl flex flex-col mb-2">
+            <div className="pb-2 md:py-3 mx-auto max-w-xl flex flex-col mb-2">
               <div className="flex items-center mb-2"> 
                 <input
                 type="radio"
@@ -160,7 +160,7 @@ export default function AuthentificationForm() {
                 </label>
               </div>
             </div>
-            <div className="grid grid-cols-2 max-w-md mx-auto py-3">
+            <div className="grid grid-cols-2 max-w-md mx-auto md:py-3">
                 <input
                 type="text"
                 placeholder="Pseudo"
@@ -266,12 +266,12 @@ export default function AuthentificationForm() {
               </div>
               </div>
 
-              <div className="flex py-4 pr-20">
+              <div className="flex md:py-4 pr-4 md:pr-20">
                 <input
                 type="checkbox" 
                 name="accept_cgu"
                 id="user"
-                className="mx-6"
+                className="mx-2 md:mx-6"
                 checked={acceptedTOS}
                 onChange={(e) => setAcceptedTOS(e.target.checked)}
                 />
@@ -290,7 +290,7 @@ export default function AuthentificationForm() {
               value="Créer mon compte"
               className="border border-black rounded-full px-4 py-2 mx-auto max-w-xl flex font-bold border-b-4  hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200"
               /> */}
-               <button type="submit" className="block mx-auto font-bold py-2 px-4 rounded-full border-gray-700 border-2 mt-4 hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200">
+               <button type="submit" className="block mx-auto font-bold py-2 px-4 rounded-full border-gray-700 border-2 mt-2 md:mt-4 hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200">
               Se connecter
               </button>
             </div>

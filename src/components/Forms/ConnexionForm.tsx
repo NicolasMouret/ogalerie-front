@@ -57,7 +57,7 @@ export default function ConnexionForm() {
       {/* Background overlay when modal is open */}
       <div onClick={closeModal} className={`fixed inset-0 bg-black ${showModalSignIn ? 'opacity-40' : 'hidden'} z-40 transition-opacity duration-300`}></div>
       {/* Login form modal */}
-      <div className={`fixed inset-0 flex items-center justify-center md:w-[512px] mx-auto z-50 ${showModalSignIn ? '' : 'hidden'}`}>
+      <div className={`fixed inset-0 flex items-center justify-center my-auto h-[70vh] w-[95vw] md:w-[512px] mx-auto z-50 ${showModalSignIn ? '' : 'hidden'}`}>
       <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[512px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton
