@@ -4,16 +4,21 @@ import { useState } from 'react';
 
 import { MdReportGmailerrorred, MdReport } from 'react-icons/md';
 
-function SignalButton() {
+interface SignalButtonProps {
+  className?: string;
+  size?: string;
+}
+
+function SignalButton({ className, size }: SignalButtonProps) {
     const [isSignaled, setIsSignaled] = useState(false)
 
     function onOff() {
         setIsSignaled(!isSignaled)
     }
 
-  return <button onClick={onOff}>
-    {isSignaled ? <span><MdReport className={`${isSignaled && "animate-ping"} inline text-3xl`}/>Signalé</span> : 
-                <span><MdReportGmailerrorred className="inline text-3xl"/>Signaler</span>}
+  return <button className={`${className}`} onClick={onOff}>
+    {isSignaled ? <span className={`${size ? `text-${size}` : `text-xs`}`}><MdReport className={`${isSignaled && "animate-ping"} ${size ? `text-${size}` : `text-xl`} inline`}/>Signalé</span> : 
+                <span className={`${size ? `text-${size}` : `text-xs`}`}><MdReportGmailerrorred className={`${size ? `text-${size}` : `text-xl`} inline`}/>Signaler</span>}
     </button>;
 }
 
