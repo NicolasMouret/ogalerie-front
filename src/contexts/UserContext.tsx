@@ -17,7 +17,6 @@ const UserContext = createContext<UserContextProps>({
     nickname: '',
     token: '',
     situation: '',
-
   },
  setUser: () => {},
 });

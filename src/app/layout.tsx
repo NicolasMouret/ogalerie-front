@@ -1,4 +1,3 @@
-
 import './globals.css'
 
 import type { Metadata } from 'next'
@@ -25,7 +24,7 @@ export default function RootLayout({
       <html lang="en">
       <UserContextProvider>
       <UiContextProvider>
-        <body className={`${inter.className} flex flex-col`}>          
+        <body className={inter.className}>          
           <Header />
           <ConnexionForm />
           <AuthentificationForm />
