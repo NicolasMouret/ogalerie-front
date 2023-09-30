@@ -12,6 +12,8 @@ import { close } from 'inspector';
 
 export default function AuthentificationForm() {
   const { user, setUser } = useContext(UserContext);
+  const [image, setImage] = useState<File | null>(null);
+  const imageInputRef = React.useRef<HTMLInputElement>(null);
   const {showModalSignUp, setShowModalSignUp} = useContext(UiContext);
   const [nickname, setNickname] = useState('');
   const [firstname, setfirstname] = useState('');
@@ -109,7 +111,7 @@ export default function AuthentificationForm() {
       <div onClick={closeModal} className={`fixed inset-0 bg-black ${showModalSignUp ? 'opacity-40' : 'hidden'} z-40 transition-opacity duration-300`}></div>
       {/* Sign up form modal */}
       <div className={`fixed inset-0 flex items-center justify-center w-[95vw] md:w-[600px] mx-auto z-50 ${showModalSignUp ? '' : 'hidden'}`}>
-      <div className="relative bg-gray-200 px-2 sm:p-8 rounded-lg h-[95vh] md:h-[75vh] w-full md:w-[600px] mx-auto sm:w-3/4">
+      <div className="relative bg-gray-200 px-2 sm:p-8 rounded-lg h-[98vh] md:h-[75vh] max-h-[725px] w-full md:w-[600px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton
             className="absolute top-4 left-4 text-gray-700 hover:bg-gray-200 active:bg-gray-400 p-1 rounded-full w-10 h-10 flex items-center justify-center"
@@ -169,6 +171,42 @@ export default function AuthentificationForm() {
                 className="bg-gray-200 placeholder-gray-500 border-b-2 border-black pl-1 pb-1 w-4/5 outline-none"
                 onChange={(e) => setNickname(e.target.value)}
                 />
+                <div className="relative">
+                  <button className={`py-2 px-4 mt-2 border-2 text-m font-medium text-gray-700 border-gray-300 rounded cursor-pointer ${image ? 'hidden' : ''}`}>
+                  Ajouter un avatar
+                  </button>
+
+                  <input
+                    type="file"
+                    ref={imageInputRef}
+                    name="image"
+                    id="image"
+                    accept="image/*"
+                  className={`absolute inset-0 w-[155px] h-[42px] translate-y-2 opacity-0 cursor-pointer ${image ? 'hidden' : ''}`}
+                    onChange={e => {
+                      if (e.target.files && e.target.files.length > 0) setImage(e.target.files[0]);
+                    }}
+                  />
+                  {image && (
+                <div className="flex items-center absolute inset-0 mt-2">
+                  <span className="mr-2 text-sm">{image.name}</span>
+
+                  <button
+                    className="border border-red-500 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white flex items-center justify-center w-4 h-4 rounded-full transition duration-150 ease-in-out text-xs font-normal"
+                    onClick={() => {
+                      setImage(null);
+                      if (imageInputRef.current) {
+                        imageInputRef.current.value = "";
+                      }
+                    }}
+                  >
+                    x
+                  </button>
+                </div>
+              )}
+                </div>
+
+              
               </div>
 
               <div className="grid grid-cols-2 max-w-md mx-auto py-3">

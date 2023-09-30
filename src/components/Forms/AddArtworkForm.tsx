@@ -148,7 +148,7 @@ const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
               <select
                 name="type"
                 value={type}
-                className="w-full text-sm text-gray-600 p-2 bg-white rounded"
+                className="text-sm text-gray-600 p-2 bg-white rounded"
                 onChange={e => setType(e.target.value)}>
                 <option value="" disabled>Type</option>
                 <option value="peinture">Peinture</option>
@@ -161,7 +161,7 @@ const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
              <select
                 name="support"
                 value={support}
-                className="mr-2 p-2 text-sm text-gray-600 bg-white rounded"
+                className="p-2 text-sm text-gray-600 bg-white rounded"
                 onChange={e => setSupport(e.target.value)}>
                 <option value="" disabled>Support</option>
                 <option value="toile">Toile</option>
@@ -174,7 +174,7 @@ const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
               <select
                 name="style"
                 value={style}
-                className="w-full text-sm text-gray-600 p-2 bg-white rounded"
+                className="text-sm text-gray-600 p-2 bg-white rounded"
                 onChange={e => setStyle(e.target.value)}>
               <option value="" disabled>Style</option>
                 <option value="portrait">Portrait</option>
@@ -197,7 +197,7 @@ const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
                   name="image"
                   id="image"
                   accept="image/*"
-                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                 className="absolute inset-0 w-[181px] h-[44px] translate-y-2 opacity-0 cursor-pointer"
                   onChange={e => {
                     if (e.target.files && e.target.files.length > 0) setImage(e.target.files[0]);
                   }}
