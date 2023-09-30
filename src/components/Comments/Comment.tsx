@@ -10,19 +10,19 @@ interface CommentProps {
 
 export default function Comment({avatar, nickname, date, content}: CommentProps) {
     return (
-      <div className="flex gap-4 ">
+      <div className="flex gap-4 group">
         <Image
         className="rounded-full h-fit"
         src={avatar}
         alt="Photo de profil de l'auteur"
-        width={45}
-        height={45}
+        width={40}
+        height={40}
         />
-        <div className="flex flex-col max-w-[70%] ">
+        <div className="flex flex-col max-w-[70%]">
             <p>{nickname} - {date}</p>
             <p>{content}</p>
         </div>
-        <SignalButton className="ml-auto text-left w-2/12 max-h-8" />
+        <SignalButton className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block" />
       </div>
       )
 }
