@@ -13,7 +13,7 @@ export default function NewArtworkForm() {
   const closeModal = () => setShowModal(false);
 
   return (
-      <div className="relative min-h-screen">
+      <div className="relative h-[85vh]">
          <div className={`fixed inset-0 bg-black ${showModal ? 'opacity-5' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
 
           {/*// Add new artwork button to open modal*/}
