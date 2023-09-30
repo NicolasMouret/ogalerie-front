@@ -15,7 +15,7 @@ export default function ArtworkPage() {
        <div className="flex flex-col ">
         <ArtworkInfos
         title="Fée mystique" 
-        likes={352} 
+        likes={156} 
         author="King Kong" 
         date="2023" 
         typeTag="aquarelle" 

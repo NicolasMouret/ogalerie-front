@@ -6,11 +6,12 @@ interface CommentProps {
     nickname: string;
     date: string;
     content: string;
+    className?: string;
 }
 
-export default function Comment({avatar, nickname, date, content}: CommentProps) {
+export default function Comment({avatar, nickname, date, content, className}: CommentProps) {
     return (
-      <div className="flex gap-4 group">
+      <div className={`flex gap-4 group ${className}`}>
         <Image
         className="rounded-full h-fit"
         src={avatar}
