@@ -6,7 +6,7 @@ import SearchBar from "../components/SearchBar/SearchBar";
 const imageList = [
   { 
     id: "1",
-    url: "https://picsum.photos/id/121/310/320"
+    url: "https://picsum.photos/id/184/310/320"
 },
   {
   id: "2",

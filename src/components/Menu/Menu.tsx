@@ -131,6 +131,9 @@ export default function Menu() {
                   Accueil
                 </Link>
               </li>
+              {user.logged && <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/">Mon profil</Link>
+              </li> }
               <li className="hover:underline underline-offset-8 my-4 uppercase">
                 <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Annuaire des artistes
