@@ -1,11 +1,11 @@
 "use client";
 
-import { MdModeEdit } from "react-icons/md"; 
+import 
 
 function ModifyButton () {
 
     return (<button>
-        <MdModeEdit className="text-2xl" />
+        <MdModeEdit />
     </button>
     )
 }

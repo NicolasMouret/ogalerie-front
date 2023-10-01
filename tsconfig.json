@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "additional.d.ts", "src/components/Forms/AuthentificationForm.tsx", "next.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "additional.d.ts", "src/components/Forms/AuthentificationForm.tsx", "next.config.js", "src/components/artistProfil/PublicArtistProfil.tsx"],
   "exclude": ["node_modules"]
 }
