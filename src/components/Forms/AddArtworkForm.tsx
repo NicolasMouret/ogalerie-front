@@ -1,23 +1,16 @@
 "use client";
 
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
+import  AxiosInstance  from '@/src/utils/axios';
+import { UiContext } from '@/src/contexts/UiContext';
 import Image from 'next/image';
 import logo from "../../assets/images/logosmall.png";
 import CloseButton from '../Buttons/CloseButton';
+import CloudinaryUpload from '../Buttons/CloudinaryUpload';
 
-// Define the shape of form data for type checking.
-interface FormData {
-  title?: string;
-  description?: string;
-  date?: string;
-  tag?: string;
-  showModal: boolean;
-  closeModal: () => void;
-}
 
-const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
-  // State to store user input.
-  const [formData, setFormData] = useState<FormData>({});
+export default function AddArtworkForm() {
+  const { showModalAddArtwork, setShowModalAddArtwork } = React.useContext(UiContext);
   // State to display error messages.
   const [error, setError] = useState<string | null>(null);
   // State to store added images
@@ -29,65 +22,69 @@ const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
    // State to store the selected artwork style (tags).
   const [style, setStyle] = useState("");
 
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [uploadUrl, setUploadUrl] = useState("");
+
+  const closeModal = () => {
+    setShowModalAddArtwork(false);
+  }
   const imageInputRef = React.useRef<HTMLInputElement>(null);
 
-  // Handle changes in input fields.
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  // Handle form submission.
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("Données du formulaire ajoutées:", formData, "Image:", image, "Type:", type, "Support:", support, "Style:", style);
-
-   // Validation checks
-    if (!formData.title || !formData.description || !formData.date || !image) {
-     setError("Merci de saisir tous les champs");
-     return 
-    } 
-    if (!type || !support || !style) {
-      setError("Merci de choisir 3 tags");
-      return;
-    }
-
-    clearForm();
-    closeModal();
-
-    // Test - simulated responses
-    setTimeout(() => {
-      alert("Oeuvre ajoutée à votre collection avec succès !");
-      clearForm();
-      closeModal();
-    }, 1000); 
-  }
-   
-   // Clear or close the form after submission
-   const clearForm = () => {
-    setFormData({
-      title: "",
-      description: "",
-      date: "",
-      tag: ""
-    });
+  const clearForm = () => {
+    setTitle("");
+    setDescription("");
+    setDate("");
     setType("");
     setSupport("");
     setStyle("");
     setImage(null);
     setError(null);
-  };
+  }
+
+  //get the url of the uploaded image
+  const handleOnUpload = (result: any) => {
+    console.log(result.info.secure_url);
+    setImage(result.info.name);
+    setUploadUrl(result.info.secure_url);  
+  }
+
+  // Handle form submission.
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const objData = Object.fromEntries(formData);
+    objData.url = uploadUrl;
+    console.log(objData);
+
+   // Validation checks
+    // if (!objData.title || !objData.description || !objData.date || !image) {
+    //  setError("Merci de saisir tous les champs");
+    //  return 
+    // } 
+    // if (!objData.type || !objData.support || !objData.style) {
+    //   setError("Merci de choisir 3 tags");
+    //   return;
+    // }
+    AxiosInstance.post("/users/1/artworks", objData)
+    .then((res) => {
+      console.log(res.data);
+      clearForm();
+      closeModal();
+    }).catch((err) => {
+      console.log(err);
+    } )
+  }
 
   return (
     <>
       {/* Background overlay when modal is open */}
-      <div className={`fixed inset-0 bg-gray ${showModal ? 'opacity-30' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
+      <div className={`fixed inset-0 bg-gray ${showModalAddArtwork ? 'opacity-30' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
      
       {/* modal */}
-      <div className={`fixed inset-0 flex items-center justify-center z-50 ${showModal ? '' : 'hidden'}`}>
+      <div className={`fixed inset-0 flex items-center justify-center z-50 ${showModalAddArtwork ? '' : 'hidden'}`}>
         <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[512px] mx-auto sm:w-3/4">
          
           {/* Close button for modal */}
@@ -104,7 +101,7 @@ const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
               alt="Logo of the O'Galerie platform"
               src={logo}
               width={150}
-              height={'auto'}
+              height={150}
             />
           </div>
 
@@ -119,28 +116,28 @@ const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
             <input
               type="text"
               placeholder="Titre de l'oeuvre"
-              value={formData.title || ""}
+              value={title}
               name="title"
-              onChange={handleChange}
-              className={`block w-full p-2 mb-4 rounded text-sm ${!formData.title && error ? 'border-red-500' : ''}`}
+              onChange={(e) => setTitle(e.target.value)}
+              className={`block w-full p-2 mb-4 rounded text-sm `}
             />
             <input
               type="text"
               placeholder="Description de l'oeuvre"
-              value={formData.description || ""}
+              value={description}
               name="description"
-              onChange={handleChange}
-              className={`block w-full p-2 mb-4 rounded pr-10 text-sm ${!formData.description && error ? 'border-red-500' : ''}`}
+              onChange={(e) => setDescription(e.target.value)}
+              className={`block w-full p-2 mb-4 rounded pr-10 text-sm `}
             />
             <input
               type="number"
               min="1900"
               max="2099"
               placeholder="Année de création"
-              value={formData.date || ""}
+              value={date}
               name="date"
-              onChange={handleChange}
-              className={`block w-full p-2 mb-4 rounded text-sm ${!formData.title && error ? 'border-red-500' : ''}`}
+              onChange={(e) => setDate(e.target.value)}
+              className={`block w-full p-2 mb-4 rounded text-sm `}
             />
 
             <p className="pt-2 pb-2 text-sm text-gray-700 ">Ajouter les tags associés :</p>
@@ -187,21 +184,7 @@ const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
            
             <div className="mt-4">
               <div className="relative">
-                <button className="py-2 px-4 mt-2 border-2 text-m font-medium text-gray-700 border-gray-300 rounded  ">
-                 Charger une image
-                </button>
-
-                <input
-                  type="file"
-                  ref={imageInputRef}
-                  name="image"
-                  id="image"
-                  accept="image/*"
-                 className="absolute inset-0 w-[181px] h-[44px] translate-y-2 opacity-0 cursor-pointer"
-                  onChange={e => {
-                    if (e.target.files && e.target.files.length > 0) setImage(e.target.files[0]);
-                  }}
-                />
+                <CloudinaryUpload handleOnUpload={handleOnUpload} />
               </div>
 
               {image && (
@@ -235,4 +218,3 @@ const AddArtworkForm: React.FC<FormData> = ({ showModal, closeModal }) => {
     </>
   )
 }
-export default AddArtworkForm;
