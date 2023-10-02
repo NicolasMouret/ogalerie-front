@@ -3,10 +3,10 @@ import { AiFillHeart } from 'react-icons/ai';
 // import Image from 'next/image';
 
 const UserPublicInfos = ({ 
-    nickname = "Martin DUPONT",
-    city = "Ville",
-    country = "Pays",
-    biography = "Biographie de l'utilisateur : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
+    nickname = "Marty",
+    city = "Lyon",
+    country = "France",
+    biography = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
     avatar = "/IMG_8378.jpg",
     likedCount = 0 }) => {
 

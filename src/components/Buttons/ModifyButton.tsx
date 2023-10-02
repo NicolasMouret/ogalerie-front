@@ -2,9 +2,10 @@
 
 import { MdModeEdit } from "react-icons/md"; 
 
-function ModifyButton () {
+function ModifyButton ({ onClick }) {
 
-    return (<button>
+    return (
+    <button onClick={onClick}>
         <MdModeEdit className="text-3xl"/>
     </button>
     )
