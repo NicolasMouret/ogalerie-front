@@ -13,12 +13,15 @@ interface ImageProps {
 interface CarouselProps {
     imageList: ImageProps[];
     page: string;
+    addButton?: boolean;
 }
 
 //Ce sera le composant Carousel à utiliser dans les pages
 //dans ce composant on on check juste si l'on est sur mobile ou desktop
 //pour afficher le carousel correspondant
-export default function Carousel({imageList, page}: CarouselProps) {
+//Prop page = "home" pour les 4 images ou "user" pour les 3 images
+//Prop addButton = true pour afficher le bouton d'ajout d'oeuvre
+export default function Carousel({imageList, page, addButton}: CarouselProps) {
   //useWindowSize().width renvoie la largeur de l'écran (en px)
   const screenWidth = useWindowSize().width || 800;
   const [isMobile, setIsMobile] = useState(false);
@@ -36,7 +39,8 @@ export default function Carousel({imageList, page}: CarouselProps) {
 
   return (
     <>
-      {isMobile ? <CarouselMobile imageList={imageList} /> : <CarouselDesktop imageList={imageList} page={page} />}
+      {isMobile ? <CarouselMobile imageList={imageList} addButton={addButton} /> :
+       <CarouselDesktop imageList={imageList} page={page} addButton={addButton} />}
     </>
   )
 }
