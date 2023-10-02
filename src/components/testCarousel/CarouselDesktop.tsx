@@ -14,6 +14,7 @@ interface ImageProps {
 interface CarouselDesktopProps {
   imageList: ImageProps[];
   page: string;
+  AddButton: 
 }
 
 
