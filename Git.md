@@ -1,4 +1,4 @@
-## Quelque commande Git utilse:
+## Quelque commande Git utile:
 
 # Git Add :
 
