@@ -7,6 +7,7 @@
 import { useContext, useState } from 'react';
 import Link from 'next/link';
 import CloseButton from '@/src/components/Buttons/CloseButton';
+import { FaUserAlt } from 'react-icons/fa';
 import { UiContext } from '@/src/contexts/UiContext';
 import { UserContext } from '@/src/contexts/UserContext';
 
@@ -18,7 +19,6 @@ export default function Menu() {
   const { showModalSignUp, setShowModalSignUp } = useContext(UiContext);
   const handleDeconnect = () => {
     setUser({logged: false});
-
   }
   const handleSignIn = () => {
     setShowModalSignIn(true);
@@ -37,65 +37,88 @@ export default function Menu() {
     <div className="flex items-center justify-between py-8">
       <nav>
         <section className="MOBILE-MENU flex sm:hidden">
-          <button className="HAMBURGER-ICON space-y-2" onClick={handleClick}>
-            <span className="block h-0.5 w-8 animate-pulse bg-black"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-black"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-black"></span>
+          <button className="HAMBURGER-ICON space-y-1.5" onClick={handleClick}>
+            <span className="block rounded-full h-1 w-8 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1 w-8 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1 w-8 animate-pulse bg-black"></span>
           </button>
 
           <div className={`${isOpen ? 'showMenuNav' : 'hideMenuNav'} h-[75vh]`}>           
             <CloseButton className="absolute top-0 right-0 px-8 py-8 " onClick={handleClick}/>           
-            <ul className="flex flex-col items-center justify-between">
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-2xl font-semibold" href="/">
+            <ul className="flex flex-col items-start justify-end min-h-[250px]">
+              {user.logged ? 
+              <>
+              <li className=" my-4 uppercase">
+                Bienvenue <span className="mx-2">{user.nickname}</span>!
+              </li>
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/">Mon profil</Link>
+              </li> 
+              </>:
+              <>
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleSignIn} className="text-sm font-semibold" href="/">Se connecter</Link>
+              </li>
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleSignup} className="text-sm font-semibold" href="/">S'inscrire</Link>
+              </li> 
+              </>}
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-md font-semibold" href="/">
                   Accueil
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Annuaire des artistes
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   à propos
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Contact
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/#">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Règlement & mentions légales
                 </Link>
               </li>
-              <li className="underline underline-offset-8 my-6 uppercase">
-                <Link onClick={handleClick} className="text-lg font-semibold" href="/demos">
+              <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/demos">
                   Demos
                 </Link>
               </li>
+              {user.logged && <li className="underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleDeconnect} className="text-xs font-semibold" href="/">Se déconnecter</Link>
+              </li>}
             </ul>
           </div>
         </section>
 
         <section className="DESKTOP-MENU hidden  space-x-2 lg:flex ">         
           <div className="md:flex mr-16">
-          <div className={`flex items-center justify-around mr-14 gap-8 `}>
-            {user.logged ? <div className="flex gap-8">
-              <p className="font-semibold text-lg">{user.nickname}</p>
-              <button className="font-semibold text-lg" onClick={handleDeconnect}>Se deconnecter</button>
-            </div> : 
-          <div className="flex gap-10">
-            <button className="font-semibold text-2xl" onClick={handleSignIn}>Se connecter</button>
-            <button className="font-semibold text-2xl" onClick={handleSignup}>S'inscrire</button>
-          </div>}
+          <div className={`flex items-center justify-around mr-14 gap-4 text-lg`}>
+            {user.logged ? 
+            <>
+              <FaUserAlt /><span className="font-bold">Utilisateur :</span><p className="text-xl">{user.nickname}</p><span className="mx-4">-</span>
+              <button className="font-semibold text-xl" onClick={handleDeconnect}>Se deconnecter</button>
+            </>
+            : 
+            <>
+              <button className="text-2xl mr-8" onClick={handleSignIn}>Se connecter</button>
+              <button className="text-2xl" onClick={handleSignup}>S'inscrire</button>
+            </>
+            }
           </div>
           <button className={`"HAMBURGER-ICON space-y-2 p-4"`} onClick={handleClick}>
-            <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
-            <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
-            <span className="block h-1.5 w-12 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1.5 w-12 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1.5 w-12 animate-pulse bg-black"></span>
+            <span className="block rounded-full h-1.5 w-12 animate-pulse bg-black"></span>
           </button>
           </div>
           
@@ -108,6 +131,9 @@ export default function Menu() {
                   Accueil
                 </Link>
               </li>
+              {user.logged && <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/">Mon profil</Link>
+              </li> }
               <li className="hover:underline underline-offset-8 my-4 uppercase">
                 <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
                   Annuaire des artistes
