@@ -2,7 +2,7 @@
 import { CldUploadWidget } from 'next-cloudinary';
 
 interface CloudinaryUploadProps {
-    handleOnUpload: () => void;
+    handleOnUpload: (result: any) => void;
 }
  
 export default function CloudinaryUpload({ handleOnUpload }: CloudinaryUploadProps) {

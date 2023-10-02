@@ -44,8 +44,9 @@ export default function AddArtworkForm() {
   }
 
   //get the url of the uploaded image
-  const handleOnUpload = (result) => {
+  const handleOnUpload = (result: any) => {
     console.log(result.info.secure_url);
+    setImage(result.info.name);
     setUploadUrl(result.info.secure_url);  
   }
 
@@ -67,7 +68,7 @@ export default function AddArtworkForm() {
     //   setError("Merci de choisir 3 tags");
     //   return;
     // }
-    AxiosInstance.post("/artworks", objData)
+    AxiosInstance.post("/users/1/artworks", objData)
     .then((res) => {
       console.log(res.data);
       clearForm();
