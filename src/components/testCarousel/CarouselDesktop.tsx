@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 import SlideDesktop from "./SlideDesktop";
 import CarouselButton from "../Buttons/CarouselButton";
+import AddArtworkButton from "../Buttons/addArtworkButton";
+import { on } from "events";
 
 //Interface for the temporary test image list
 interface ImageProps {
@@ -14,18 +16,26 @@ interface ImageProps {
 interface CarouselDesktopProps {
   imageList: ImageProps[];
   page: string;
-  AddButton: 
+  onClick: () => void;
+  addButton? : boolean;
 }
 
 
 
 //Le carousel desktop est similaire au mobile mais prend en plus 
 // le prop page (home/user) pour déterminer la taille des images
-export default function CarouselDesktop({imageList, page}: CarouselDesktopProps){
+export default function CarouselDesktop({imageList, page, onClick, addButton}: CarouselDesktopProps){
   //Je créé un tableau de slides en utilisant le tableau d'images
   const slides = imageList.map((imageList) => {
     return <SlideDesktop key={imageList.id} url={imageList.url} page={page} />;
   });
+  if (addButton) {
+    const add = () => {
+      return <AddArtworkButton screen="desktop" onClick={onClick}/>
+    }
+    //ajouter en premier élément du tableau slides
+    slides.unshift(add());
+  }
   //currentSlide est un state qui permet d'avoir un index 'symboliques' pour les images,
   //même s'il ne correspond pas réellement à l'index de l'image dans le tableau
   const [currentSlide, setCurrentSlide] = useState(0);

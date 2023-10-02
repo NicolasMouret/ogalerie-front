@@ -1,16 +1,16 @@
 import add from '@/src/assets/images/add.png';
-import SlideDesktop from '../testCarousel/SlideDesktop';
-import SlideMobile from '../testCarousel/SlideMobile';
+import SlideAddDesktop from '../testCarousel/SlideAddDesktop';
+import SlideAddMobile from '../testCarousel/SlideAddMobile';
 
 interface AddArtworkButtonProps {
     screen: string;
-    url: string;
+    onClick: () => void;
 }
 
-export default function AddArtworkButton({ screen, url }: AddArtworkButtonProps) {
+export default function AddArtworkButton({ screen, onClick }: AddArtworkButtonProps) {
     if (screen==="mobile") {
-        return <SlideMobile url={add} />
+        return <SlideAddMobile url={add} onClick={onClick} />
     } if (screen==="desktop") {
-        return <SlideDesktop url={url} page="home"/>
+        return <SlideAddDesktop url={add} onClick={onClick}/>
     }
 }

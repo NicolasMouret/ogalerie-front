@@ -1,11 +1,13 @@
 import Image, { StaticImageData } from "next/image";
 
 interface SlideMobileProps {
-    url: string | StaticImageData;
+    url: StaticImageData;
+    onClick: () => void;
   }
 
-export default function SlideMobile({url}: SlideMobileProps) {
+export default function SlideMobile({url, onClick}: SlideMobileProps) {
   return (
+   <button onClick={onClick}>
     <Image className="flex-shrink-0" 
     alt="image test" 
     width={400} 
@@ -20,6 +22,6 @@ export default function SlideMobile({url}: SlideMobileProps) {
         //à voir à terme si ça rend bien avec tout
         objectFit: "cover",
       }}
-     />)
+     />
+   </button>)
 };
-

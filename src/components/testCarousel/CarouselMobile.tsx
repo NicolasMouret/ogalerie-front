@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import SlideMobile from "./SlideMobile";
 import CarouselButton from "../Buttons/CarouselButton";
+import AddArtworkButton from "../Buttons/addArtworkButton";
 
 //Interface for the temporary test image list
 interface ImageProps {
@@ -13,14 +14,23 @@ interface ImageProps {
 
 interface CarouselMobileProps {
   imageList: ImageProps[];
+  onClick: () => void;
+  addButton?: boolean;
 }
 
 
-export default function CarouselMobile({imageList}: CarouselMobileProps){
+export default function CarouselMobile({imageList, addButton, onClick}: CarouselMobileProps){
   //Je créé un tableau de slides en utilisant le tableau d'images
   const slides = imageList.map((imageList) => {
     return <SlideMobile key={imageList.id} url={imageList.url} />;
   });
+  if (addButton) {
+    const add = () => {
+      return <AddArtworkButton screen="mobile" onClick={onClick} />
+    }
+    //ajouter en premier élément du tableau slides
+    slides.unshift(add());
+  }
   //currentSlide est un state qui permet d'avoir un index 'symboliques' pour les images, 
   //même s'il ne correspond pas réellement à l'index de l'image dans le tableau
   const [currentSlide, setCurrentSlide] = useState(0);
