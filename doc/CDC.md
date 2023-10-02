@@ -131,6 +131,7 @@ Permettre aux utilisateurs de rentrer en contact avec les artistes via un formul
 |URL|HTTP|DESCRIPTION|DONNEES ATTENDUES|AUTHORIZATION|
 |---|:---:|---|:---:|---|
 |/login|POST|user connexion|{email, hash}|
+|/users/:role|GET| admin or creator list|{tableau d'users}|
 |/users|GET|user list|{tableau d'users}|
 ||POST|create a user|{email, pseudo, hash, firstname, lastname, birthdate, ville, pays, avatar, rôle}|
 |/users/:id|GET|get a user|{email, pseudo, firstname, lastname, birthdate, ville, pays, avatar, rôle}|{{accessToken, refreshToken}}
@@ -175,6 +176,7 @@ En tant que | Je veux | Afin de |
 | Utilisateur | consulter la page d'une oeuvre | avoir plus de détails sur une oeuvre |
 | Utilisateur | liker une oeuvre | montrer son appréciation |
 | Utilisateur | mettre une oeuvre en favoris | conserver une trace des oeuvres appréciées |
+| Utilisateur | retirer une oeuvre des favoris | actualiser sa liste d'oeuvres appréciées |
 | Utilisateur | commenter une oeuvre  | partager mon opinion sur une oeuvre et interagir |
 | Utilisateur | contacter un artiste via un formulaire | entrer en contact par mail avec des artistes |
 <<<<<<< HEAD
