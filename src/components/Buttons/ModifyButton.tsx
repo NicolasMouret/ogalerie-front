@@ -5,7 +5,7 @@ import { MdModeEdit } from "react-icons/md";
 function ModifyButton () {
 
     return (<button>
-        <MdModeEdit className="text-2xl" />
+        <MdModeEdit className="text-3xl"/>
     </button>
     )
 }

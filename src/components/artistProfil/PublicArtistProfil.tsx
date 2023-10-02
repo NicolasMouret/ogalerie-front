@@ -9,7 +9,7 @@ import Image from 'next/image';
 const PublicArtistProfil = () => {
   return (
     <div className='relative'>
-      <div className='absolute top-0 right-0 m-1'>
+      <div className='absolute top-0 right-0 m-2'>
       <ModifyButton  />
       </div>
       <div className='flex'>
@@ -32,7 +32,7 @@ const PublicArtistProfil = () => {
         </div>
       </div>
       </div>
-      <p className='absolute bottom-0 right-0 m-1'>informations publiques</p>
+      <p className='absolute bottom-0 right-0 m-2'>informations publiques</p>
     </div>
   );
 };
