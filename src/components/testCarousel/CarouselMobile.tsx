@@ -26,7 +26,7 @@ export default function CarouselMobile({imageList, addButton, onClick}: Carousel
   });
   if (addButton) {
     const add = () => {
-      return <AddArtworkButton screen="mobile" onClick={onClick} />
+      return <AddArtworkButton key="addMobile" screen="mobile" onClick={onClick} />
     }
     //ajouter en premier élément du tableau slides
     slides.unshift(add());

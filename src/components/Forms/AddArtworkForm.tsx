@@ -56,7 +56,7 @@ export default function AddArtworkForm() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
-    objData.url = uploadUrl;
+    objData.uri = uploadUrl;
     console.log(objData);
 
    // Validation checks
@@ -130,7 +130,7 @@ export default function AddArtworkForm() {
               className={`block w-full p-2 mb-4 rounded pr-10 text-sm `}
             />
             <input
-              type="number"
+              type="text"
               min="1900"
               max="2099"
               placeholder="Année de création"
