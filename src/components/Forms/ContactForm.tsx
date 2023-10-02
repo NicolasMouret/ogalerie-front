@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from 'emailjs-com';
 
 export default function ContactForm() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -11,26 +12,32 @@ export default function ContactForm() {
     objet: '',
     message: ''
   });
-  
-  const handleSubmit = (e) => {
+
+  const form = useRef();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
-        formValues.nom.trim() !== '' &&
-        formValues.prenom.trim() !== '' &&
-        formValues.email.trim() !== '' &&
-        formValues.objet.trim() !== '' &&
-        formValues.message.trim() !== ''
-      ) {
+      formValues.nom.trim() !== '' &&
+      formValues.prenom.trim() !== '' &&
+      formValues.email.trim() !== '' &&
+      formValues.objet.trim() !== '' &&
+      formValues.message.trim() !== ''
+    ) {
+      try {
+        await emailjs.sendForm('service_76yu40d', 'template_734vc6t', form.current, 'td88Kkrc5HnlA8Ud1');
         setShowSuccessMessage(true);
-    
         setFormValues({
-         nom: '',
-         prenom: '',
-         email: '',
-         objet: '',
-         message: ''
-      });
+          nom: '',
+          prenom: '',
+          email: '',
+          objet: '',
+          message: ''
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -42,10 +49,11 @@ export default function ContactForm() {
     });
   };
 
+
   return (
     <>
       <div className="w-96 mx-auto mt-8">
-        <form onSubmit={handleSubmit} className="w-full">
+        <form  className="w-full" ref={form} onSubmit={handleSubmit}>
           <div className="mb-4">
             <input
               type="text"
@@ -104,6 +112,7 @@ export default function ContactForm() {
           <div className="text-center">
             <button
               type="submit"
+              value="Send"
               className="block mx-auto font-bold text-gray-800 py-2 px-4 rounded-full border-gray-400 border-2 mt-4 hover:text-white active:text-white hover:bg-gray-400 active:bg-gray-400 active:border-gray-200"
             >
               Envoyer
