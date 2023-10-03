@@ -61,6 +61,7 @@ créer, 0N personne, 11 collection
 
 ## MLD
 
+
 - tag (<u>codeTag</u>, label, categorie)
 - caractériser (#codeTag, #codeOeuvre)
 - oeuvre (<u>codeOeuvre</u>, nom, url, date, description, mature, #codeCollection, #codeAuteur)
@@ -82,7 +83,6 @@ créer, 0N personne, 11 collection
 - appraise: #oeuvre_id(int), #person_id(int)
 - favorite: #oeuvre_id(int), #person_id(int)
 - person: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), hash(text), birthday(date), town(text), country(text), biography, avatar(text), situation(enum)
-
 
 ### types
 
@@ -182,7 +182,6 @@ créer, 0N personne, 11 collection
 | avatar | text |  | URL où récupérer une image d'avatar, en cas d'absence une version automatique sera créée |
 | biography | text |  | courte biographie |
 | situation | enum | not null | situation sur le site : user, creator, moderator |
-
 
 
 ```python

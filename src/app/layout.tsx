@@ -1,6 +1,12 @@
 import './globals.css'
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { UiContextProvider } from '../contexts/UiContext'
+import { UserContextProvider } from '../contexts/UserContext'
+import Header from '@/src/components/Header/Header'
+import AuthentificationForm from '../components/Forms/AuthentificationForm'
+import ConnexionForm from '../components/Forms/ConnexionForm'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,10 +21,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {children}
-      </body>
+      <html lang="fr">
+      <UserContextProvider>
+      <UiContextProvider>
+        <body className={inter.className}>          
+          <Header />
+          <ConnexionForm />
+          <AuthentificationForm />
+          {children}         
+        </body>
+      </UiContextProvider>
+      </UserContextProvider>
     </html>
   )
 }
