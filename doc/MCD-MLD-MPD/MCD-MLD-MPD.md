@@ -40,7 +40,7 @@ modération: _label, message
 
 :
 initier, 0N personne, 11 modération
-personne: _prénom, nom, pseudo, courriel, mot de passe, date de naissance, ville, pays, avatar, situation
+personne: _prénom, nom, pseudo, courriel, mot de passe, date de naissance, ville, pays, biographie, avatar, situation
 :
 :
 créer, 0N personne, 11 collection
@@ -69,7 +69,7 @@ créer, 0N personne, 11 collection
 - modération (<u>codeModération</u>, label, message, #codeAuteur, #codeOeuvre, #codeCommentaire)
 - like (#codeOeuvre, #codeAuteur)
 - favori (#codeOeuvre, #codePersonne)
-- personne (<u>codePersonne</u>, prénom, nom, pseudo, courriel, mot de passe, date de naissance, ville, pays, avatar, situation
+- personne (<u>codePersonne</u>, prénom, nom, pseudo, courriel, mot de passe, date de naissance, ville, pays, biographie, avatar, situation
 
 ## MPD
 
@@ -78,10 +78,10 @@ créer, 0N personne, 11 collection
 - artwork: <u>id(int)</u>, title(text), uri(text), date(timestamptz), description(text), mature(boolean), #collection_id(int), #person_id(int)
 - art_comment: <u>id(int)</u>, date(timestamptz), content(text), #artwork_id(int), #person_id(int)
 - collection: <u>id(int)</u>, title(text), #person_id(int)
-- moderate: <u>id(int)</u>, ticket(enum), message(text), #person_id(int), #oeuvre_id(int), #comment_id(int)
+- moderate: <u>id(int)</u>, ticket(enum), message(text), #person_id(int), #artwork_id(int), #comment_id(int)
 - appraise: #oeuvre_id(int), #person_id(int)
 - favorite: #oeuvre_id(int), #person_id(int)
-- person: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), hash(text), birthday(date), town(text), country(text), avatar(text), situation(enum)
+- person: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), hash(text), birthday(date), town(text), country(text), biography, avatar(text), situation(enum)
 
 
 ### types
@@ -98,7 +98,7 @@ créer, 0N personne, 11 collection
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
 | id | int | generated always as identity primary key | identifiant du tag |
-| name | enum | unique not null | nom du tag : liste à définir |
+| name | enum | not null | nom du tag : liste à définir |
 | category | enum | unique not null | catégorie du tag : type, support, style |
 
 ### table d'association *mark* entre les table *tag* et *artwork*
@@ -115,7 +115,7 @@ créer, 0N personne, 11 collection
 | id | int | generated always as identity primary key | identifiant de l'artwork |
 | title | text | not null | titre de l'œuvre |
 | uri | text | unique not null | url d'accés à l'œuvre |
-| date | timestamptz | | date de création de l'œuvre |
+| date | date | | date de création de l'œuvre |
 | description | text | not null | description accompagnant l'œuvre |
 | mature | boolean |  | l'œuvre vise-t-elle un public mature .
 | collection_id | int | references collection(id) | identifiant d'une collection |
@@ -148,7 +148,7 @@ créer, 0N personne, 11 collection
 | ticket | enum | not null | type de modération : alert, hide |
 | message | text | not null | message justifiant l'action |
 | person_id | int | references person(id) | identifiant de l'auteur de la modération |
-| oeuvre_id | int | references oeuvre(id) | identifiant de l'oeuvre concernée |
+| artwork_id | int | references artwork(id) | identifiant de l'oeuvre concernée |
 | comment_id | int | references comment(id) | identifiant du commentaire concerné |
 
 ### table d'association *appraise* entre les tables *artwork* et *person*
@@ -171,15 +171,16 @@ créer, 0N personne, 11 collection
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
 | id | int | generated always as identity primary key | identifiant de la person |
-| firstname | text | not null | prénom |
-| lastname | text | not null | nom de famille |
+| firstname | text |  | prénom |
+| lastname | text |  | nom de famille |
 | nickname | text | unique not null | pseudonyme / nom affiché |
 | email | text | unique not null | addresse de contact et identifiant de connexion |
 | hash | text | not null | hash du mot de passe |
-| birthday | timestampz | not null | date de naissance pour déterminer la majorité ou non |
+| birthday | date | not null | date de naissance pour déterminer la majorité ou non |
 | town | text | | ville |
 | country | text | | pays |
 | avatar | text |  | URL où récupérer une image d'avatar, en cas d'absence une version automatique sera créée |
+| biography | text |  | courte biographie |
 | situation | enum | not null | situation sur le site : user, creator, moderator |
 
 
