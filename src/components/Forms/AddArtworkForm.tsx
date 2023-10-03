@@ -7,6 +7,7 @@ import Image from 'next/image';
 import logo from "../../assets/images/logosmall.png";
 import CloseButton from '../Buttons/CloseButton';
 import CloudinaryUpload from '../Buttons/CloudinaryUpload';
+import { RxCross2 } from 'react-icons/rx';
 
 
 export default function AddArtworkForm() {
@@ -14,7 +15,7 @@ export default function AddArtworkForm() {
   // State to display error messages.
   const [error, setError] = useState<string | null>(null);
   // State to store added images
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState<string | null>("hfdiuiuvfsdvuidueiuvghehvduhf.fgd");
   // State to store the selected artowork type (tags).
   const [type, setType] = useState("");
    // State to store the selected artwork support (tags).
@@ -45,8 +46,8 @@ export default function AddArtworkForm() {
 
   //get the url of the uploaded image
   const handleOnUpload = (result: any) => {
-    console.log(result.info.secure_url);
-    setImage(result.info.name);
+    console.log(result.info);
+    setImage(`${result.info.original_filename}.${result.info.format}`);
     setUploadUrl(result.info.secure_url);  
   }
 
@@ -85,7 +86,7 @@ export default function AddArtworkForm() {
      
       {/* modal */}
       <div className={`fixed inset-0 flex md:w-[512px] md:h-[560px] my-auto mx-auto items-center justify-center z-50 ${showModalAddArtwork ? '' : 'hidden'}`}>
-        <div className="relative bg-gray-200 px-4 md:p-8 sm:p-8 rounded-lg h-[98vh] md:h-[560px] w-[98vw] md:w-[512px] mx-auto sm:w-3/4">
+        <div className="relative bg-gray-200 px-4 md:p-8 sm:p-8 rounded-lg h-[660px] md:h-[575px] w-[98vw] md:w-[512px] mx-auto sm:w-3/4">
          
           {/* Close button for modal */}
           <CloseButton
@@ -183,16 +184,16 @@ export default function AddArtworkForm() {
             </div>
            
             <div className="mt-4">
-              <div className="relative">
+              <div className="flex justify-center py-2">
                 <CloudinaryUpload handleOnUpload={handleOnUpload} />
               </div>
 
               {image && (
-                <div className="flex items-center mt-2">
-                  <span className="mr-2 text-sm">{image.name}</span>
+                <div className="flex items-center justify-center mt-2">
+                  <span className="mr-2 text-sm">{image}</span>
 
                   <button
-                    className="border border-red-500 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white flex items-center justify-center w-4 h-4 rounded-full transition duration-150 ease-in-out text-xs font-normal"
+                    className="border border-red-500 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white w-4 h-4 rounded-full transition duration-150 ease-in-out text-xs font-normal"
                     onClick={() => {
                       setImage(null);
                       if (imageInputRef.current) {
@@ -200,7 +201,7 @@ export default function AddArtworkForm() {
                       }
                     }}
                   >
-                    x
+                    <RxCross2 className="mx-auto" />
                   </button>
                 </div>
               )}
@@ -208,7 +209,7 @@ export default function AddArtworkForm() {
             {/* Submit button */}
               <button
                 type="submit"
-                className="mb-2 block mx-auto font-bold py-2 px-4 rounded-full text-gray-700 border border-gray-600 mt-8 hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200"
+                className="mt-6 block mx-auto font-bold py-2 px-8 rounded-full text-gray-700 border border-gray-600  hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200"
               >
                 Ajouter
             </button>

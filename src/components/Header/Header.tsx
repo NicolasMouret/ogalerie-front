@@ -25,7 +25,7 @@ export default function Header() {
 
   if (pathname === "/") {
     return (
-      <header className="flex justify-evenly md:justify-between md:gap-28 items-center md:items-stretch w-screen h-[15vh] md:h-[25vh]">
+      <header className="flex justify-evenly  items-center md:items-stretch w-screen h-[15vh] md:h-[25vh]">
       <div className="self-auto md:p-4 w-7/12 container ml-14 md:w-2/5 md:mr-14 md:ml-16 md:m-5">
         <Link href="/"><Image object-fit="fill" alt="logo" src={logo} /></Link>
       </div>

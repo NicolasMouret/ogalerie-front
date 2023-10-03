@@ -36,9 +36,9 @@ export default function Menu() {
     console.log(user)
   };
   return (
-    <div className="flex items-center justify-between py-8">
+    <div className="flex items-center justify-end sm:items-start sm:justify-center sm:pt-14 xl:items-center xl:justify-end md:w-[50vw] py-8">
       <nav>
-        <section className="MOBILE-MENU flex sm:hidden">
+        <section className="MOBILE-MENU flex xl:hidden">
           <button className="HAMBURGER-ICON space-y-1.5" onClick={handleClick}>
             <span className="block rounded-full h-1 w-8 animate-pulse bg-black"></span>
             <span className="block rounded-full h-1 w-8 animate-pulse bg-black"></span>
@@ -102,7 +102,7 @@ export default function Menu() {
           </div>
         </section>
 
-        <section className="DESKTOP-MENU hidden  space-x-2 lg:flex ">         
+        <section className="DESKTOP-MENU hidden space-x-2 xl:flex ">         
           <div className="md:flex mr-16">
           <div className={`flex items-center justify-around mr-14 gap-4 text-lg`}>
             {user.logged ? 
