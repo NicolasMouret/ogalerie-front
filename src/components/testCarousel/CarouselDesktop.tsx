@@ -31,7 +31,7 @@ export default function CarouselDesktop({imageList, page, onClick, addButton}: C
   });
   if (addButton) {
     const add = () => {
-      return <AddArtworkButton screen="desktop" onClick={onClick}/>
+      return <AddArtworkButton key="addDesktop" screen="desktop" onClick={onClick}/>
     }
     //ajouter en premier élément du tableau slides
     slides.unshift(add());

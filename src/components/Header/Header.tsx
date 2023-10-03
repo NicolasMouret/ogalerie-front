@@ -1,12 +1,27 @@
 "use client";
+
+import { useEffect, useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Menu from '../Menu/Menu';
+import { UserContext } from '@/src/contexts/UserContext';
 import logo from '@/src/assets/images/logobig.png';
+import axiosInstance from '@/src/utils/axios';
+import Menu from '../Menu/Menu';
 
 export default function Header() {
   const pathname = usePathname();
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (localStorage.getItem('OgToken')) {
+      const token = localStorage.getItem('OgToken');
+      const nickname = localStorage.getItem('nickname');
+      const situation = localStorage.getItem('situation');
+      axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`
+      setUser(user => ({...user, logged: true, nickname: nickname, situation: situation}));
+    }
+  }, [])
 
   if (pathname === "/") {
     return (

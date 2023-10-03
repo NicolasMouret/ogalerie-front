@@ -42,6 +42,9 @@ export default function ConnexionForm() {
     .then(res => {
       console.log(res.data);  
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${res.data.token}` 
+      localStorage.setItem('OgToken', res.data.token);
+      localStorage.setItem('nickname', JSON.stringify(res.data.nickname));
+      localStorage.setItem('situation', JSON.stringify(res.data.situation));
       delete res.data.token;  
       setUser(user => ({...user, ...res.data}));
       console.log(user);
