@@ -31,6 +31,7 @@ export default function Carousel({imageList, page, addButton}: CarouselProps) {
 
   const handleClick = () => {
     setShowModalAddArtwork(true);
+    console.log(showModalAddArtwork);
   }
 
   //useEffect pour mettre à jour le state isMobile

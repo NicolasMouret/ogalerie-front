@@ -81,11 +81,11 @@ export default function AddArtworkForm() {
   return (
     <>
       {/* Background overlay when modal is open */}
-      <div className={`fixed inset-0 bg-gray ${showModalAddArtwork ? 'opacity-30' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
+      <div onClick={closeModal} className={`fixed inset-0 bg-black ${showModalAddArtwork ? 'opacity-40' : 'hidden'} z-40 transition-opacity duration-300`}></div>
      
       {/* modal */}
-      <div className={`fixed inset-0 flex items-center justify-center z-50 ${showModalAddArtwork ? '' : 'hidden'}`}>
-        <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[512px] mx-auto sm:w-3/4">
+      <div className={`fixed inset-0 flex md:w-[512px] md:h-[560px] my-auto mx-auto items-center justify-center z-50 ${showModalAddArtwork ? '' : 'hidden'}`}>
+        <div className="relative bg-gray-200 px-4 md:p-8 sm:p-8 rounded-lg h-[98vh] md:h-[560px] w-[98vw] md:w-[512px] mx-auto sm:w-3/4">
          
           {/* Close button for modal */}
           <CloseButton

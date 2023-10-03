@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import SlideDesktop from "./SlideDesktop";
 import CarouselButton from "../Buttons/CarouselButton";
 import AddArtworkButton from "../Buttons/addArtworkButton";
-import { on } from "events";
 
 //Interface for the temporary test image list
 interface ImageProps {

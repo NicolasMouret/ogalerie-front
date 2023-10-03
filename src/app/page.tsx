@@ -1,7 +1,8 @@
 "use client";
 
 import Carousel from "@/src/components/testCarousel/Carousel";
-import SearchBar from "../components/SearchBar/SearchBar";
+import SearchBar from "@/src/components/SearchBar/SearchBar";
+import AddArtworkForm from "@/src/components/Forms/AddArtworkForm";
 
 const imageList = [
   { 
@@ -103,7 +104,10 @@ export default function Home() {
         <Carousel imageList={imageList} page="home" />        
       </section>
       <section className="h-screen flex flex-col">
-        <Carousel imageList={imageList} page="user" />        
+        {/* demo du carousel avec le bouton d'ajout d'oeuvre
+        uniquement besoin de préciser addButton */}
+        <Carousel imageList={imageList} page="user" addButton />
+        <AddArtworkForm />
       </section> 
     </>
   );

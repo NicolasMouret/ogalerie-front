@@ -1,18 +1,18 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import add from '@/src/assets/images/add.png';
 
 interface SlideMobileProps {
-    url: StaticImageData;
     onClick: () => void;
   }
 
-export default function SlideMobile({url, onClick}: SlideMobileProps) {
+export default function SlideMobile({onClick}: SlideMobileProps) {
   return (
-   <button onClick={onClick}>
+   <button className="flex-shrink-0" onClick={onClick}>
     <Image className="flex-shrink-0" 
     alt="image test" 
     width={400} 
     height={350} 
-    src={url}
+    src='/add.png'
       style={{
         //Ici je set la largeur de l'image à 90% de la largeur de l'écran pour coller avec la largeur 
         //de la div qui affiche le carousel, puisque une image est affichée à la fois
