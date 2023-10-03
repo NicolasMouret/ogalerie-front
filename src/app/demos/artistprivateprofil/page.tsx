@@ -4,7 +4,7 @@ import React from 'react';
 import ModifyButton from '@/src/components/Buttons/ModifyButton';
 import PrivateArtistProfil from '@/src/components/artistProfil/PrivateArtistProfil';
 import PublicArtistProfil from '@/src/components/artistProfil/PublicArtistProfil';
-import CarouselDesktop from '@/src/components/testCarousel/CarouselDesktop';
+import Carousel from '@/src/components/testCarousel/Carousel';
 import AjoutOeuvre from '@/src/components/artistProfil/AjoutOeuvre';
 import AddButton from '@/src/components/Buttons/Addbutton';
 
@@ -56,10 +56,9 @@ export default function ArtistPrivateProfil() {
         </div>
         <div className='ml-20 h-160 flex'>
         <AjoutOeuvre />
-        <CarouselDesktop imageList={imageList} page="artistprivateprofil" />
         </div>
       </section>
-
+      <Carousel imageList={imageList} page="user" />
       <section className="">
         <div className='relative flex ml-20 mt-8 mb-4'>
           <h3 className="text-2xl font-extrabold mr-4">

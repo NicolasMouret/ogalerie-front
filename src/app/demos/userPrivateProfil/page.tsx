@@ -1,5 +1,6 @@
 import Carousel from "@/src/components/testCarousel/Carousel";
-import UserPublicInfos from "@/src/components/UserProfilPublic/UserPublicInfos";
+import UserPrivateInfos from "@/src/components/UserProfilPrivate/UserPrivateInfos";
+import UserPublicInfosPrivateProfile from "@/src/components/UserProfilPrivate/UserPublicInfosPrivateProfile";
 
 const imageList = [
   { 
@@ -64,13 +65,18 @@ const imageList = [
 
 ];
 
-export default function UserPublic() {
+export default function UserPrivate() {
   return (
     <div className="mx-4 md:mx-auto md:w-4/5">
-      <div className="mt-4 sm:mt-2 md:mt-10">
-        <UserPublicInfos />
+      <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
+        <div className="md:w-1/2 md:pr-4">
+          <UserPublicInfosPrivateProfile />
+        </div>
+        <div className="md:w-1/2 md:pl-4"> 
+          <UserPrivateInfos />
+        </div>
       </div>
-      <section className="h-full md:h-2/3 mt-20">
+      <section className="h-full md:h-2/3 mt-10">
         <div className='relative flex mt-8 mb-4 w-full md:w-2/5'>
           <h3 className="text-xl font-extrabold mx-auto md:ml-20">
             Oeuvres ajoutées aux favoris
