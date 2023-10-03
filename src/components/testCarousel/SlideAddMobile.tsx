@@ -1,5 +1,4 @@
 import Image from "next/image";
-import add from '@/src/assets/images/add.png';
 
 interface SlideMobileProps {
     onClick: () => void;

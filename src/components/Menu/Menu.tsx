@@ -5,6 +5,7 @@
 
 'use client';
 import { useContext, useState } from 'react';
+import axiosInstance from '@/src/utils/axios';
 import Link from 'next/link';
 import CloseButton from '@/src/components/Buttons/CloseButton';
 import { FaUserAlt } from 'react-icons/fa';
