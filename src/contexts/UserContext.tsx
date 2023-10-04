@@ -1,14 +1,14 @@
 "use client"; 
 import { ReactElement, createContext, useState } from 'react';
 
-interface UserContextProps {
+export interface UserContextProps {
   user: {
     logged: boolean;
     avatar: string;
     nickname: string;
     token: string;
     situation?: string;
-    id: number;
+    id: string;
     town: string;
     country: string;
     biography: string;
@@ -28,7 +28,7 @@ const UserContext = createContext<UserContextProps>({
     token: '',
     situation: '',
     avatar: '',
-    id: 0,
+    id: '',
     town: '',
     country: '',
     biography: '',
@@ -42,7 +42,7 @@ const UserContext = createContext<UserContextProps>({
 });
 
 function UserContextProvider({ children }: { children: ReactElement }) {
-  const [user, setUser] = useState({logged: false, id: 0, nickname: '', token: '', situation: '', avatar: '', town: '', country: '', biography: '', like: 0, lastname: '', firstname: '', birthday: '', email: ''});
+  const [user, setUser] = useState({logged: false, id: '', nickname: '', token: '', situation: '', avatar: '', town: '', country: '', biography: '', like: 0, lastname: '', firstname: '', birthday: '', email: ''});
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

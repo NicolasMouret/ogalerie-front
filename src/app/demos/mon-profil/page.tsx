@@ -78,13 +78,13 @@ export default function UserPrivate() {
       axiosInstance.get(`/users/${id}`)
       .then(res => {
         console.log(res.data);
-        setUser(res.data);
+        setUser({logged: true,...res.data});
       }).catch(err => {
         console.log(err);
         throw err;
       })
     }
-    getUser(user.id.toString());
+    getUser(user.id);
   }
   , []);
   

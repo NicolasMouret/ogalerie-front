@@ -49,7 +49,7 @@ export default function ConnexionForm() {
       localStorage.setItem('avatar', res.data.avatar);
       localStorage.setItem('id', res.data.id.toString());
       delete res.data.token;  
-      setUser(user => ({...user, ...res.data}));
+      setUser({...user, id: res.data.id.toString(), ...res.data,});
       console.log(user);
       closeModal();     
     })

@@ -18,8 +18,9 @@ export default function Header() {
       const token = localStorage.getItem('OgToken');
       const nickname = localStorage.getItem('nickname');
       const situation = localStorage.getItem('situation');
+      const id = localStorage.getItem('id');
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`
-      setUser(user => ({...user, logged: true, nickname: nickname, situation: situation}));
+      setUser({ ...user, logged: true, token: token, nickname: nickname, situation: situation, id: id });
     }
   }, [])
 
