@@ -45,7 +45,7 @@ const EditArtworkForm: React.FC<EditArtworkFormProps> = ({ testData, showModal, 
   const [imageName, setImageName] = useState(testData.imageUrl.name);
 
   useEffect(() => {
-    setImage(testData.imageUrl);
+    // setImage(testData.imageUrl);
   }, [testData.imageUrl]);
 
   // States to manage the chosen artwork tags.
@@ -97,7 +97,7 @@ const EditArtworkForm: React.FC<EditArtworkFormProps> = ({ testData, showModal, 
   }
    // Remove image.
   const removeImage = () => {
-    setImage(null);
+    // setImage(null);
     setImageName("");
     if (imageInputRef.current) {
       imageInputRef.current.value = "";
@@ -122,12 +122,12 @@ const EditArtworkForm: React.FC<EditArtworkFormProps> = ({ testData, showModal, 
           }} />
 
           {/* Logo */}
-          <div className="flex justify-center mb-1 hidden md:flex">
+          <div className="flex justify-center mb-1 md:flex">
             <Image
               alt="Logo of the O'Galerie platform"
               src={logo}
               width={150}
-              height={'auto'}
+              height={150}
             />
           </div>
 
@@ -223,7 +223,7 @@ const EditArtworkForm: React.FC<EditArtworkFormProps> = ({ testData, showModal, 
                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   onChange={e => {
                     if (e.target.files && e.target.files.length > 0) {
-                      setImage(e.target.files[0]);
+                      // setImage(e.target.files[0]);
                       setImageName(e.target.files[0].name);
                     }
                   }}
