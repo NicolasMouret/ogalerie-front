@@ -13,8 +13,8 @@ export default function CloudinaryUpload({ handleOnUpload }: CloudinaryUploadPro
       open();
     }
     return (
-      <button className="py-2 px-4 mt-2 border-2 text-m font-medium text-gray-700 border-gray-300 rounded" onClick={handleOnClick}>
-        Upload an Image
+      <button className="py-2 px-4 mx-auto border-2 text-m font-medium text-gray-700 border-gray-300 rounded" onClick={handleOnClick}>
+        Ajouter une image
       </button>
     );
   }}

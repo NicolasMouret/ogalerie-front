@@ -9,6 +9,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Image from 'next/image';
 import logo from "../../assets/images/logosmall.png";
 import CloseButton from '../Buttons/CloseButton';
+import { stringify } from 'json5';
 
 
 
@@ -43,8 +44,10 @@ export default function ConnexionForm() {
       console.log(res.data);  
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${res.data.token}` 
       localStorage.setItem('OgToken', res.data.token);
-      localStorage.setItem('nickname', JSON.stringify(res.data.nickname));
-      localStorage.setItem('situation', JSON.stringify(res.data.situation));
+      localStorage.setItem('nickname', res.data.nickname);
+      localStorage.setItem('situation', res.data.situation);
+      localStorage.setItem('avatar', res.data.avatar);
+      localStorage.setItem('id', res.data.id.toString());
       delete res.data.token;  
       setUser(user => ({...user, ...res.data}));
       console.log(user);

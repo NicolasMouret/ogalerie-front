@@ -4,9 +4,11 @@ import { ReactElement, createContext, useState } from 'react';
 interface UserContextProps {
   user: {
     logged: boolean;
+    avatar?: string;
     nickname?: string;
     token?: string;
     situation?: string;
+    id?: number;
   }
 setUser: React.Dispatch<React.SetStateAction<{logged: boolean}>>;
 }
@@ -17,6 +19,7 @@ const UserContext = createContext<UserContextProps>({
     nickname: '',
     token: '',
     situation: '',
+    avatar: '',
   },
  setUser: () => {},
 });
