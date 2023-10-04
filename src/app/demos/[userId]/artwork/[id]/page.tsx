@@ -20,7 +20,7 @@ const getArtworks = async (userId: string) => {
 
 export default async function ArtworkPage({params}: ArtworkPageProps) {
   const artworks = await getArtworks(params.userId);
-  const { title, uri, description, date } = artworks[2];
+  const { title, uri, description, date } = artworks[0];
   return (
     <div className="flex flex-col md:flex-row items-center gap-6 mx-auto mt-4 md:pl-8 md:mt-0 h-[85vh] w-[90vw]">
       <Image

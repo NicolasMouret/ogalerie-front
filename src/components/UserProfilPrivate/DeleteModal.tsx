@@ -4,6 +4,7 @@ import React from 'react';
 interface DeleteModalProps {
     isOpen: boolean;
     onClose: () => void;
+    children: React.ReactNode;
 }
 
 const DeleteModal: React.FC<DeleteModalProps> = ({ isOpen, onClose, children }) => {

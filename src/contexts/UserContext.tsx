@@ -4,13 +4,21 @@ import { ReactElement, createContext, useState } from 'react';
 interface UserContextProps {
   user: {
     logged: boolean;
-    avatar?: string;
-    nickname?: string;
-    token?: string;
+    avatar: string;
+    nickname: string;
+    token: string;
     situation?: string;
-    id?: number;
+    id: number;
+    town: string;
+    country: string;
+    biography: string;
+    like: number;
+    lastname: string;
+    firstname: string;
+    birthday: string;
+    email: string;
   }
-setUser: React.Dispatch<React.SetStateAction<{logged: boolean}>>;
+setUser: (user: any) => void;
 }
 
 const UserContext = createContext<UserContextProps>({
@@ -20,12 +28,21 @@ const UserContext = createContext<UserContextProps>({
     token: '',
     situation: '',
     avatar: '',
+    id: 0,
+    town: '',
+    country: '',
+    biography: '',
+    like: 0,
+    lastname: '',
+    firstname: '',
+    birthday: '',
+    email: '',
   },
- setUser: () => {},
+  setUser: () => {},
 });
 
 function UserContextProvider({ children }: { children: ReactElement }) {
-  const [user, setUser] = useState({logged: false});
+  const [user, setUser] = useState({logged: false, id: 0, nickname: '', token: '', situation: '', avatar: '', town: '', country: '', biography: '', like: 0, lastname: '', firstname: '', birthday: '', email: ''});
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

@@ -5,19 +5,25 @@ import ModifyButton from '../Buttons/ModifyButton';
 import SaveButton from '../Buttons/SaveButton';
 import DeleteModal from './DeleteModal';
 
+interface UserPrivateInfosProps {
+    lastname: string;
+    firstname: string;
+    birthday: string;
+    email: string;
+}
 
-const UserPrivateInfos = ({ 
-    lastname = "Dupont",
-    firstname = "Martin",
-    birthday = "18/03/1993",
-    email = "martindupont@exemple.com",
-}) => {
+export default function UserPrivateInfos({ 
+    lastname,
+    firstname,
+    birthday,
+    email,
+}: UserPrivateInfosProps) {
   
-  const [lastnameState, setLastname] = useState(lastname);
-  const [firstnameState, setFirstname] = useState(firstname);
-  const [birthdayState, setBirthday] = useState(birthday);
-  const [emailState, setEmail] = useState(email);
-  const [isEditing, setIsEditing] = useState(false);
+  const [lastnameState, setLastnameState] = useState(lastname);
+  const [firstnameState, setFirstnameState] = useState(firstname);
+  const [birthdayState, setBirthdayState] = useState(birthday);
+  const [emailState, setEmailState] = useState(email);
+  const [isEditing, setIsEditingState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // To delete the account
@@ -29,7 +35,7 @@ const UserPrivateInfos = ({
     <div className='flex flex-col md:flex-row border-2 rounded-xl mx-auto max-w-3xl pt-8 pb-5 pr-5 relative'> 
       <div className='w-full mx-auto flex flex-col justify-center ml-4'> 
         <div className="absolute top-2 right-2">
-          <ModifyButton onClick={() => setIsEditing(!isEditing)} />
+          <ModifyButton onClick={() => setIsEditingState(!isEditing)} />
         </div>
 
         {isEditing ? (
@@ -39,7 +45,7 @@ const UserPrivateInfos = ({
               <input 
                 type="text" 
                 value={lastnameState} 
-                onChange={(e) => setLastname(e.target.value)} 
+                onChange={(e) => setLastnameState(e.target.value)} 
                 className='p-2 border rounded' 
               />
             </div>
@@ -48,7 +54,7 @@ const UserPrivateInfos = ({
               <input 
                 type="text" 
                 value={firstnameState} 
-                onChange={(e) => setFirstname(e.target.value)} 
+                onChange={(e) => setFirstnameState(e.target.value)} 
                 className='p-2 border rounded' 
               />
             </div>
@@ -57,7 +63,7 @@ const UserPrivateInfos = ({
               <input 
                 type="text" 
                 value={birthdayState} 
-                onChange={(e) => setBirthday(e.target.value)} 
+                onChange={(e) => setBirthdayState(e.target.value)} 
                 className='p-2 border rounded' 
               />
             </div>
@@ -66,25 +72,25 @@ const UserPrivateInfos = ({
               <input 
                 type="email" 
                 value={emailState} 
-                onChange={(e) => setEmail(e.target.value)} 
+                onChange={(e) => setEmailState(e.target.value)} 
                 className='p-2 border rounded' 
               />
             </div>
-            <SaveButton onClick={() => setIsEditing(false)} />
+            <SaveButton onClick={() => setIsEditingState(false)} />
           </>
         ) : (
           <>
             <div className='my-1'>
-              <span className='font-bold ml-2'>NOM : </span>{lastnameState.toUpperCase()}
+              <span className='font-bold ml-2'>NOM : </span>{lastname.toUpperCase()}
             </div>
             <div className='my-1'>
-              <span className='font-bold ml-2'>Prénom : </span>{firstnameState}
+              <span className='font-bold ml-2'>Prénom : </span>{firstname}
             </div>
             <div className='my-1'>
-              <span className='font-bold ml-2'>Date de naissance : </span>{birthdayState}
+              <span className='font-bold ml-2'>Date de naissance : </span>{birthday}
             </div>
             <div className='my-1'>
-              <span className='font-bold ml-2'>Email : </span>{emailState}
+              <span className='font-bold ml-2'>Email : </span>{email}
             </div>
           </>
         )}
@@ -122,4 +128,3 @@ const UserPrivateInfos = ({
   );
 };
 
-export default UserPrivateInfos;

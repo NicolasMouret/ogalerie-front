@@ -3,30 +3,39 @@
 import React, { useState } from 'react';
 import { AiFillHeart } from 'react-icons/ai';
 import ModifyButton from '../Buttons/ModifyButton';
-import SaveButton from '../Buttons/saveButton';
+import SaveButton from '../Buttons/SaveButton';
 
-const UserPublicInfosPrivateProfile = ({ 
-    nickname = "Marty",
-    town = "Lyon",
-    country = "France",
-    biography = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
-    avatar = "/IMG_8378.jpg",
-    likedCount = 0 }) => {
+interface UserPublicInfosProps {
+    nickname: string;
+    town: string;
+    country: string;
+    biography?: string;
+    avatar: string;
+    likedCount: number;
+}
+
+export default function UserPublicInfosPrivateProfile({ 
+    nickname ,
+    town ,
+    country ,
+    biography,
+    avatar ,
+    likedCount}: UserPublicInfosProps)  {
     
-    const [nicknameState, setNickname] = useState(nickname);
-    const [townState, setTown] = useState(town);
-    const [countryState, setCountry] = useState(country);
-    const [biographyState, setBiography] = useState(biography);
-    const [isEditing, setIsEditing] = useState(false);
+    const [nicknameState, setNicknameState] = useState(nickname);
+    const [townState, setTownState] = useState(town);
+    const [countryState, setCountryState] = useState(country);
+    const [biographyState, setBiographyState] = useState(biography);
+    const [isEditing, setIsEditingState] = useState(false);
 
 
     return (
         <div className='flex flex-col md:flex-row mx-auto max-w-3xl border-2 rounded-xl p-5 relative'>
             <div className="absolute top-2 right-2">
-                <ModifyButton onClick={() => setIsEditing(!isEditing)} />
+                <ModifyButton onClick={() => setIsEditingState(!isEditing)} />
             </div>
             <div className='m-1 w-32 h-32 rounded-full overflow-hidden relative mb-4 md:mb-0'>
-                <img src={avatar} alt="Profile" layout="fill" objectFit="cover" className="absolute" />
+                <img src={avatar} alt="Profile" className="absolute" />
             </div>
             <div className='w-full md:w-5/6 mx-auto flex flex-col justify-center ml-4'>
                 {isEditing ? (
@@ -34,39 +43,39 @@ const UserPublicInfosPrivateProfile = ({
                         <input 
                             type="text" 
                             value={nicknameState} 
-                            onChange={(e) => setNickname(e.target.value)} 
+                            onChange={(e) => setNicknameState(e.target.value)} 
                             className='text-3xl font-bold mb-3 p-2 border rounded' 
                         />
                         <div className='text-2xl'>
                             <input 
                                 type="text" 
                                 value={townState} 
-                                onChange={(e) => setTown(e.target.value)} 
+                                onChange={(e) => setTownState(e.target.value)} 
                                 className='p-2 border rounded'
                             />, 
                             <input 
                                 type="text" 
                                 value={countryState} 
-                                onChange={(e) => setCountry(e.target.value)} 
+                                onChange={(e) => setCountryState(e.target.value)} 
                                 className='p-2 border rounded'
                             />
                         </div>
                         <textarea 
                             value={biographyState} 
-                            onChange={(e) => setBiography(e.target.value)} 
+                            onChange={(e) => setBiographyState(e.target.value)} 
                             className='mt-2 text-justify p-2 border rounded h-32'
                         />
-                        <SaveButton onClick={() => setIsEditing(false)} />
+                        <SaveButton onClick={() => setIsEditingState(false)} />
                     </>
                 ) : (
                     <>
-                        <h2 className='text-3xl font-bold mb-3'>{nicknameState}</h2>
+                        <h2 className='text-3xl font-bold mb-3'>{nickname}</h2>
                         <div className='text-2xl'>
-                            <span>{townState}, </span>
-                            <span>{countryState}</span>
+                            <span>{town}, </span>
+                            <span>{country}</span>
                         </div>
                         <div className='mt-2 mr-2 text-justify'>
-                            <p>{biographyState}</p>
+                            <p>{biography}</p>
                         </div>
                     </>
                 )}
@@ -82,4 +91,3 @@ const UserPublicInfosPrivateProfile = ({
     );
 };
 
-export default UserPublicInfosPrivateProfile;

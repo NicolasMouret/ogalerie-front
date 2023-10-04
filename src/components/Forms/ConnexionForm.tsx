@@ -2,7 +2,7 @@
 
 import { useContext } from 'react'
 import { UiContext } from '@/src/contexts/UiContext'
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { UserContext } from '@/src/contexts/UserContext';
 import axiosInstance from '@/src/utils/axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
