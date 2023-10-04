@@ -1,6 +1,15 @@
+'use client';
+import axiosInstance from '@/src/utils/axios';
 import Carousel from "@/src/components/testCarousel/Carousel";
-import UserPrivateInfos from "@/src/components/UserProfilPrivate/UserPrivateInfos";
-import UserPublicInfosPrivateProfile from "@/src/components/UserProfilPrivate/UserPublicInfosPrivateProfile";
+import UserPublicInfos from "@/src/components/UserProfilPublic/UserPublicInfos";
+import { useEffect, useState } from 'react';
+
+
+interface UserPublicProps {
+  params: {
+    id: string;
+  }
+}
 
 const imageList = [
   { 
@@ -65,18 +74,37 @@ const imageList = [
 
 ];
 
-export default function UserPrivate() {
+export default function UserPublic({params}: UserPublicProps) {
+  const [user, setUser] = useState({
+    nickname: "",
+    town: "",
+    country: "",
+    biography: "",
+    avatar: "",
+    like: 0,
+  });
+  
+  useEffect(() => {
+    const getUser = (id: string) => {
+      axiosInstance.get(`/users/${id}`)
+      .then(res => {
+        console.log(res.data);
+        setUser(res.data);
+      }).catch(err => {
+        console.log(err);
+        throw err;
+      })
+    }
+    getUser(params.id);
+  }
+  , [params.id]);
+
   return (
     <div className="mx-4 md:mx-auto md:w-4/5">
-      <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
-        <div className="md:w-1/2 md:pr-4">
-          <UserPublicInfosPrivateProfile />
-        </div>
-        <div className="md:w-1/2 md:pl-4"> 
-          <UserPrivateInfos />
-        </div>
+      <div className="mt-4 sm:mt-2 md:mt-10">
+        <UserPublicInfos nickname={user.nickname} town={user.town} country={user.country} avatar={user.avatar} likedCount={user.like} />
       </div>
-      <section className="h-full md:h-2/3 mt-10">
+      <section className="h-full md:h-2/3 mt-20">
         <div className='relative flex mt-8 mb-4 w-full md:w-2/5'>
           <h3 className="text-xl font-extrabold mx-auto md:ml-20">
             Oeuvres ajoutées aux favoris
@@ -89,3 +117,4 @@ export default function UserPrivate() {
     </div>
   );
 }
+

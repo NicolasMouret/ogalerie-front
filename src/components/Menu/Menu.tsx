@@ -54,7 +54,7 @@ export default function Menu() {
                 Bienvenue <span className="mx-2">{user.nickname}</span>!
               </li>
               <li className="underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/">Mon profil</Link>
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/demos/mon-profil">Mon profil</Link>
               </li> 
               </>:
               <>
@@ -134,7 +134,7 @@ export default function Menu() {
                 </Link>
               </li>
               {user.logged && <li className="hover:underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/">Mon profil</Link>
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/demos/mon-profil">Mon profil</Link>
               </li> }
               <li className="hover:underline underline-offset-8 my-4 uppercase">
                 <Link onClick={handleClick} className="text-sm font-semibold" href="/#">

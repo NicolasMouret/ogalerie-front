@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import axiosInstance from '@/src/utils/axios';
 import AlphabetFilter from '@/src/components/AlphabetFilter/AlphabetFilter';
 import SearchBar from '../../../components/SearchBar/SearchBar';
-import ArtistCarousel from '@/src/components/ArtistCarrousel/ArtistCarrousel';
 
 export default function Annuaire() {
   const [artists, setArtists] = useState([]);
