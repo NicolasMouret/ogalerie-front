@@ -91,7 +91,7 @@ export default function AuthentificationForm() {
         console.log(res.data);
         axiosInstance.defaults.headers.common.Authorization = `Bearer ${res.data.token}`
         delete res.data.token;
-        setUser(user => ({...user, ...res.data}));
+        setUser(({...user, ...res.data}));
         closeModal();     
       })
       .catch(err => {
