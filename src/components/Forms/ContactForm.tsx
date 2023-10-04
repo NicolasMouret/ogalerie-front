@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import emailjs from 'emailjs-com';
 
 export default function ContactForm() {
@@ -13,9 +13,9 @@ export default function ContactForm() {
     message: ''
   });
 
-  const form = useRef();
+  const form = useRef(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (
@@ -25,8 +25,8 @@ export default function ContactForm() {
       formValues.objet.trim() !== '' &&
       formValues.message.trim() !== ''
     ) {
-      try {
-        await emailjs.sendForm('service_76yu40d', 'template_734vc6t', form.current, 'td88Kkrc5HnlA8Ud1');
+        emailjs.sendForm('service_76yu40d', 'template_734vc6t', form.current!, 'td88Kkrc5HnlA8Ud1')
+        .then((result) => {
         setShowSuccessMessage(true);
         setFormValues({
           nom: '',
@@ -34,14 +34,15 @@ export default function ContactForm() {
           email: '',
           objet: '',
           message: ''
+        })  
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      } catch (error) {
-        console.error(error);
-      }
     }
-  };
+  }
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
@@ -101,7 +102,7 @@ export default function ContactForm() {
           <div className="mb-4">
             <textarea
               className="border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
-              rows="4"
+              rows={4}
               placeholder="Rédigez votre message"
               name="message"
               value={formValues.message}
