@@ -56,7 +56,7 @@ export default function ArtistPrivateProfil() {
         </div>
         <div className='ml-20 h-160 flex'>
         <AjoutOeuvre />
-        <CarouselDesktop imageList={imageList} page="artistprivateprofil" onClick={"hello"}/>
+        {/*<CarouselDesktop imageList={imageList} page="artistprivateprofil" onClick={"hello"}/>*/}
         </div>
       </section>
 
