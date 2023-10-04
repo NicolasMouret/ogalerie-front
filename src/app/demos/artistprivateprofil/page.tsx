@@ -52,10 +52,8 @@ export default function ArtistPrivateProfil() {
       <section className="h-2/3">
         <div className='relative flex ml-20 mt-8 mb-4'>
           <h3 className="text-2xl font-extrabold mr-4">Titre de votre collection</h3>
-          {/* <ModifyButton /> */}
           </div>
         <div className='ml-20 h-160 flex'>
-        {/*<CarouselDesktop imageList={imageList} page="artistprivateprofil" onClick={"hello"}/>*/}
         </div>
       </section>
 
