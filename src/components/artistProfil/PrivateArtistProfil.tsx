@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import ModifyButton from '../Buttons/ModifyButton';
 
 const PrivateArtistProfil = () => {
+  const [lastNameState, setLastname] = useState("");
+  const [firstnameState, setFirstname] = useState("");
+  const [birthdayState, setBirthday] = useState("");
+  const [emailState, setEmail] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
   return (
@@ -14,19 +18,51 @@ const PrivateArtistProfil = () => {
       {isEditing ? (
         <div className='flex justify-center flex-col h-90 my-auto leading-7'>
           <div>
-            <div><input type="text" /><label htmlFor=""></label> : DUPONT</div>
-            <div><span className='font-bold ml-2'>Prénom</span>: Martin</div>
-            <div><span className='font-bold ml-2'>Date de naissance</span>: 18/03/1993</div>
-            <div><span className='font-bold ml-2'>Email</span>: martindupont@exemple.com</div>
+            <div>
+              <span className='font-bold ml-2'>Nom :</span>
+              <input type="text" 
+              value={lastNameState}
+              onChange={(e) => setLastname(e.target.value)}
+              className='p-2 border rounded' 
+              />
+              </div>
+
+              <div>
+              <span className='font-bold ml-2'>Prénom :</span>
+              <input type="text" 
+              value={firstnameState}
+              onChange={(e) => setFirstname(e.target.value)}
+              className='p-2 border rounded' 
+              />
+              </div>
+
+              <div>
+              <span className='font-bold ml-2'>Date de naissance :</span>
+              <input type="text" 
+              value={birthdayState}
+              onChange={(e) => setBirthday(e.target.value)}
+              className='p-2 border rounded' 
+              />
+              </div>
+
+              <div>
+              <span className='font-bold ml-2'>Email :</span>
+              <input type="text" 
+              value={emailState}
+              onChange={(e) => setEmail(e.target.value)}
+              className='p-2 border rounded' 
+              />
+              </div>
+
           </div>
         </div>
       ) : (
         <div className='flex justify-center flex-col h-90 my-auto leading-7'>
           <div>
-            <div><span className='font-bold ml-2'>Nom</span>: DUPONT</div>
-            <div><span className='font-bold ml-2'>Prénom</span>: Martin</div>
-            <div><span className='font-bold ml-2'>Date de naissance</span>: 18/03/1993</div>
-            <div><span className='font-bold ml-2'>Email</span>: martindupont@exemple.com</div>
+            <div><span className='font-bold ml-2'>Nom</span>: </div>
+            <div><span className='font-bold ml-2'>Prénom</span>: </div>
+            <div><span className='font-bold ml-2'>Date de naissance</span>: </div>
+            <div><span className='font-bold ml-2'>Email</span>: </div>
           </div>
         </div>
       )}
