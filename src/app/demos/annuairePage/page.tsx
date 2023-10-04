@@ -22,15 +22,15 @@ export default function Annuaire() {
         });
 }, []);
 
-  const handleLetterSelect = (letter) => {
-    const filtered = artists.filter(artist => artist.nickname[0].toUpperCase() === letter);
-    console.log("Filtered Artists by Letter:", filtered); 
-    setFilteredArtists(filtered);
-  };
+//   const handleLetterSelect = (letter: string) => {
+//     const filtered = artists.filter(artist => artist.nickname[0].toUpperCase() === letter);
+//     console.log("Filtered Artists by Letter:", filtered); 
+//     setFilteredArtists(filtered);
+//   };
 
-  const filteredBySearch = filteredArtists.filter((artist) =>
-  artist.nickname.toLowerCase().includes(searchQuery.toLowerCase())
-);
+//   const filteredBySearch = filteredArtists.filter((artist) =>
+//   artist.nickname.toLowerCase().includes(searchQuery.toLowerCase())
+// );
 
   return (
     <>
@@ -41,8 +41,8 @@ export default function Annuaire() {
         <div className="pb-3">
           <SearchBar />
         </div>
-        <AlphabetFilter onLetterClick={handleLetterSelect} />
-        <ArtistCarousel artists={filteredBySearch}/>
+        <AlphabetFilter />
+        
       </main>
     </>
   );
