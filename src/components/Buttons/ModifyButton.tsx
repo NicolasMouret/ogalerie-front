@@ -2,7 +2,11 @@
 
 import { MdModeEdit } from "react-icons/md"; 
 
-function ModifyButton ({ onClick }) {
+interface ModifyButtonProps {
+    onClick: () => void;
+}
+
+function ModifyButton ({ onClick }: ModifyButtonProps) {
 
     return (
     <button onClick={onClick}>
