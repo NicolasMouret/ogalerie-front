@@ -50,17 +50,18 @@ export default function ArtistPrivateProfil() {
       </section>
 
       <section className="h-2/3">
-        <div className='relative flex ml-20 mt-8 mb-4'>
-          <h3 className="text-2xl font-extrabold mr-4">Titre de votre collection</h3>
-          {/* <ModifyButton /> */}
-          </div>
-        <div className='ml-20 h-160 flex'>
-        <AjoutOeuvre />
+        <div className="relative flex ml-20 mt-8 mb-4">
+          <h3 className="text-2xl font-extrabold mr-4">
+            Titre de votre collection
+          </h3>
+        </div>
+        <div className="ml-20 h-160 flex">
+          <AjoutOeuvre />
         </div>
       </section>
 
       <section className="">
-        <div className='relative flex ml-20 mt-8 mb-4'>
+        <div className="relative flex ml-20 mt-8 mb-4">
           <h3 className="text-2xl font-extrabold mr-4">
             Créer une nouvelle collection
           </h3>
