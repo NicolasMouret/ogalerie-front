@@ -102,7 +102,7 @@ export default function UserPublic({params}: UserPublicProps) {
   return (
     <div className="mx-4 md:mx-auto md:w-4/5">
       <div className="mt-4 sm:mt-2 md:mt-10">
-        <UserPublicInfos nickname={user.nickname} town={user.town} country={user.country} avatar={user.avatar} likedCount={user.like} />
+        <UserPublicInfos nickname={user.nickname} town={user.town} country={user.country} avatar={user.avatar} likedCount={user.like} biography={user.biography} />
       </div>
       <section className="h-full md:h-2/3 mt-20">
         <div className='relative flex mt-8 mb-4 w-full md:w-2/5'>

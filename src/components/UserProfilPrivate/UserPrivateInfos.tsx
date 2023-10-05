@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from '@/src/contexts/UserContext';
+import axiosInstance from '@/src/utils/axios';
 import ModifyButton from '../Buttons/ModifyButton';
 import SaveButton from '../Buttons/SaveButton';
 import DeleteModal from './DeleteModal';
@@ -18,6 +20,7 @@ export default function UserPrivateInfos({
     birthday,
     email,
 }: UserPrivateInfosProps) {
+  const {user, setUser} = useContext(UserContext);
   
   const [lastnameState, setLastnameState] = useState(lastname);
   const [firstnameState, setFirstnameState] = useState(firstname);
@@ -26,10 +29,34 @@ export default function UserPrivateInfos({
   const [isEditing, setIsEditingState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // To delete the account
   const handleDeleteConfirm = () => {
     setIsModalOpen(false);
-  };
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsEditingState(false);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    if(!formData.get('lastname')) formData.delete('lastname');
+    if(!formData.get('firstname')) formData.delete('firstname');
+    if(!formData.get('birthday')) formData.delete('birthday');
+    if(!formData.get('email')) formData.delete('email');
+
+    const objData = Object.fromEntries(formData);      
+
+    axiosInstance.patch(`/users/${user.id}`, objData)
+        .then((res) => {
+            console.log(res.data);
+            delete res.data.birthday
+            setUser({...user, ...res.data});
+        }).catch((err) => {
+            console.log(err);
+            throw err;
+        });
+}
 
   return (
     <div className='flex flex-col md:flex-row border-2 rounded-xl mx-auto max-w-3xl pt-8 pb-5 pr-5 relative'> 
@@ -40,48 +67,47 @@ export default function UserPrivateInfos({
 
         {isEditing ? (
           <>
+            <form className="flex flex-col" onSubmit={handleSubmit}>
             <div className='my-1'>
-              <span className='font-bold ml-2'>NOM : </span>
+              <span className='font-bold ml-2'>Nom : </span>
               <input 
                 type="text" 
+                placeholder="Nom"
                 value={lastnameState} 
                 onChange={(e) => setLastnameState(e.target.value)} 
                 className='p-2 border rounded' 
+                name="lastname"
               />
             </div>
             <div className='my-1'>
               <span className='font-bold ml-2'>Prénom : </span>
               <input 
                 type="text" 
+                placeholder="Prénom"
                 value={firstnameState} 
                 onChange={(e) => setFirstnameState(e.target.value)} 
                 className='p-2 border rounded' 
+                name="firstname"
               />
             </div>
-            <div className='my-1'>
+            {/* <div className='my-1'>
               <span className='font-bold ml-2'>Date de naissance : </span>
               <input 
                 type="text" 
+                placeholder="Date de naissance"
                 value={birthdayState} 
                 onChange={(e) => setBirthdayState(e.target.value)} 
                 className='p-2 border rounded' 
+                name="birthday"
               />
-            </div>
-            <div className='my-1'>
-              <span className='font-bold ml-2'>Email : </span>
-              <input 
-                type="email" 
-                value={emailState} 
-                onChange={(e) => setEmailState(e.target.value)} 
-                className='p-2 border rounded' 
-              />
-            </div>
-            <SaveButton onClick={() => setIsEditingState(false)} />
+            </div> */}
+            <SaveButton  />
+            </form>
           </>
         ) : (
           <>
             <div className='my-1'>
-              <span className='font-bold ml-2'>NOM : </span>{lastname.toUpperCase()}
+              <span className='font-bold ml-2'>NOM : </span>{lastname}
             </div>
             <div className='my-1'>
               <span className='font-bold ml-2'>Prénom : </span>{firstname}

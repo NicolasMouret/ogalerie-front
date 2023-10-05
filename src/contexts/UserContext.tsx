@@ -19,7 +19,7 @@ export interface UserContextProps {
     birthday: string;
     email: string;
   }
-setUser: (user: any) => void;
+  setUser: (user: any) => void;
 }
 
 const UserContext = createContext<UserContextProps>({

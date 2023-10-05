@@ -16,13 +16,19 @@ export default function Header() {
   useEffect(() => {
     if (localStorage.getItem('OgToken')) {
       const token = localStorage.getItem('OgToken');
-      const nickname = localStorage.getItem('nickname');
-      const situation = localStorage.getItem('situation');
-      const id = localStorage.getItem('id');
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`
-      setUser({ ...user, logged: true, token: token, nickname: nickname, situation: situation, id: id });
+      const id = localStorage.getItem('id');
+      axiosInstance.get(`/users/${id}`)
+        .then(res => {
+          console.log(res.data);
+          setUser({logged:true,...res.data });
+        }).catch(err => {
+          console.log(err);
+          throw err;
+        })
     }
   }, [])
+
 
   if (pathname === "/") {
     return (

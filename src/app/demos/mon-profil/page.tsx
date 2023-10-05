@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/src/contexts/UserContext";
 import axiosInstance from "@/src/utils/axios";
 import Carousel from "@/src/components/testCarousel/Carousel";
@@ -70,25 +70,29 @@ const imageList = [
 
 ];
 
-export default function UserPrivate() {
+export default function UserPrivate(): React.JSX.Element {
   const { user, setUser } = useContext(UserContext);
-  
+
+  const id = localStorage.getItem('id');
+
   useEffect(() => {
     const getUser = (id: string) => {
       axiosInstance.get(`/users/${id}`)
       .then(res => {
-        console.log(res.data);
-        setUser({logged: true,...res.data});
+        console.log("res.data", res.data);
+        setUser(res.data);
+      
       }).catch(err => {
         console.log(err);
         throw err;
       })
     }
-    getUser(user.id);
+    getUser(id!.toString());
   }
   , []);
   
   return (
+    <>
     <div className="mx-4 md:mx-auto md:w-4/5">
       <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
         <div className="md:w-1/2 md:pr-4">
@@ -119,5 +123,7 @@ export default function UserPrivate() {
         </div>
       </section>
     </div>
+    
+    </>
   );
 }

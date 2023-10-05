@@ -9,7 +9,6 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Image from 'next/image';
 import logo from "../../assets/images/logosmall.png";
 import CloseButton from '../Buttons/CloseButton';
-import { stringify } from 'json5';
 
 
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import emailjs from 'emailjs-com';
 import { BsSend } from "react-icons/bs";
 
@@ -12,9 +12,9 @@ export default function ContactArtistPublic() {
     message: ''
   });
 
-  const form = useRef();
+  const form = useRef(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (
@@ -23,7 +23,7 @@ export default function ContactArtistPublic() {
       formValues.message.trim() !== ''
     ) {
       try {
-        await emailjs.sendForm('service_76yu40d', 'template_734vc6t', form.current, 'td88Kkrc5HnlA8Ud1');
+        await emailjs.sendForm('service_76yu40d', 'template_734vc6t', form.current!, 'td88Kkrc5HnlA8Ud1');
         setShowSuccessMessage(true);
         setFormValues({
           nom: '',
@@ -36,7 +36,7 @@ export default function ContactArtistPublic() {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
@@ -76,7 +76,7 @@ export default function ContactArtistPublic() {
           <div>
             <textarea
               className="border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
-              rows="4"
+              rows={4}
               placeholder="Rédigez votre message"
               name="message"
               value={formValues.message}
@@ -93,7 +93,6 @@ export default function ContactArtistPublic() {
           <button
           type="submit"
           className="focus:outline-none text-gray-700 ml-2 mr-2 mb-2 flex flex-col justify-end items-center"
-          onClick={handleSubmit}
         >
           <BsSend size={30} />
         </button>

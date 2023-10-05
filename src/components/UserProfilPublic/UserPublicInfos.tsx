@@ -26,7 +26,7 @@ export default function UserPublicInfos ({
         </div>
         <div className='w-full md:w-2/5 mx-auto flex flex-col justify-center ml-4'>
             <h2 className='text-3xl font-bold mb-3'>{nickname}</h2> 
-        <div className='text-2xl'>
+        <div className='text-2xl'></div>
             <span>{town}, </span>
             <span>{country}</span>
         </div>
@@ -37,8 +37,8 @@ export default function UserPublicInfos ({
             <AiFillHeart className='mr-2 text-red-500'/>
             <span>{likedCount} œuvres likées</span>
         </div>
-        </div>
     </div>
+    
   );
 };
 
