@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ChangeEvent, FormEvent, useState, useEffect, useContext } from 'react';
+import React, { FormEvent, useState, useEffect, useContext } from 'react';
 import { UiContext } from '@/src/contexts/UiContext';
 import { UserContext } from '@/src/contexts/UserContext';
 import axiosInstance from '@/src/utils/axios';
@@ -8,7 +8,6 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import logo from "../../assets/images/logosmall.png";
 import Image from "next/image";
 import CloseButton from "../Buttons/CloseButton";
-import { close } from 'inspector';
 
 export default function AuthentificationForm() {
   const { user, setUser } = useContext(UserContext);
@@ -85,7 +84,7 @@ export default function AuthentificationForm() {
       setError("L'âge minimum requis pour s'inscire est de 18 ans.");
       return;
     }
-
+    delete objData.image;
     axiosInstance.post('/users', objData)
       .then(res => {
         console.log(res.data);

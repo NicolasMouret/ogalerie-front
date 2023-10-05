@@ -6,6 +6,7 @@ import axiosInstance from '@/src/utils/axios';
 import ModifyButton from '../Buttons/ModifyButton';
 import SaveButton from '../Buttons/SaveButton';
 import DeleteModal from './DeleteModal';
+import Link from 'next/link';
 
 interface UserPrivateInfosProps {
     lastname: string;
@@ -24,13 +25,25 @@ export default function UserPrivateInfos({
   
   const [lastnameState, setLastnameState] = useState(lastname);
   const [firstnameState, setFirstnameState] = useState(firstname);
-  const [birthdayState, setBirthdayState] = useState(birthday);
-  const [emailState, setEmailState] = useState(email);
   const [isEditing, setIsEditingState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDeleteConfirm = () => {
     setIsModalOpen(false);
+    axiosInstance.delete(`/users/${user.id}`)
+      .then((res) => {
+        console.log(res.data);
+        setUser({logged: false});
+        localStorage.removeItem('OgToken');
+        localStorage.removeItem('id');
+        localStorage.removeItem('nickname');
+        localStorage.removeItem('avatar');
+        delete axiosInstance.defaults.headers.common.Authorization;
+      }).catch((err) => {
+        console.log(err);
+        throw err;
+      });
+      console.log("delete");    
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -141,12 +154,13 @@ export default function UserPrivateInfos({
                 >
                     Annuler
                 </button>
-                <button 
+                <Link
+                    href="/"
                     onClick={handleDeleteConfirm}
                     className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
                 >
                     Confirmer
-                </button>
+                </Link>
             </div>
         </DeleteModal>
       </div>
