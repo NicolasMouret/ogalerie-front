@@ -8,10 +8,13 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import logo from "../../assets/images/logosmall.png";
 import Image from "next/image";
 import CloseButton from "../Buttons/CloseButton";
+import CloudinaryUpload from '../Buttons/CloudinaryUpload';
+import { RxCross2 } from 'react-icons/rx';
+
 
 export default function AuthentificationForm() {
   const { user, setUser } = useContext(UserContext);
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState<string | null>(null);
   const imageInputRef = React.useRef<HTMLInputElement>(null);
   const {showModalSignUp, setShowModalSignUp} = useContext(UiContext);
   const [nickname, setNickname] = useState('');
@@ -23,6 +26,7 @@ export default function AuthentificationForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [uploadUrl, setUploadUrl] = useState('');
   
 
   const closeModal = () => {
@@ -43,6 +47,12 @@ export default function AuthentificationForm() {
         setError(null);
     }
 }, [showModalSignUp]);
+
+  const handleOnUpload = (result: any) => {
+    console.log(result.info);
+    setImage(`${result.info.original_filename}.${result.info.format}`);
+    setUploadUrl(result.info.secure_url);  
+  }
 
   // Handle form submission
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -171,24 +181,10 @@ export default function AuthentificationForm() {
                 onChange={(e) => setNickname(e.target.value)}
                 />
                 <div className="relative">
-                  <button className={`py-2 px-4 mt-2 border-2 text-m font-medium text-gray-700 border-gray-300 rounded cursor-pointer ${image ? 'hidden' : ''}`}>
-                  Ajouter un avatar
-                  </button>
-
-                  <input
-                    type="file"
-                    ref={imageInputRef}
-                    name="image"
-                    id="image"
-                    accept="image/*"
-                  className={`absolute inset-0 w-[155px] h-[42px] translate-y-2 opacity-0 cursor-pointer ${image ? 'hidden' : ''}`}
-                    onChange={e => {
-                      if (e.target.files && e.target.files.length > 0) setImage(e.target.files[0]);
-                    }}
-                  />
+                {!image && <CloudinaryUpload avatar handleOnUpload={handleOnUpload} />}
                   {image && (
                 <div className="flex items-center absolute inset-0 mt-2">
-                  <span className="mr-2 text-sm">{image.name}</span>
+                  <span className="mr-2 text-sm">{image}</span>
 
                   <button
                     className="border border-red-500 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white flex items-center justify-center w-4 h-4 rounded-full transition duration-150 ease-in-out text-xs font-normal"
@@ -199,7 +195,7 @@ export default function AuthentificationForm() {
                       }
                     }}
                   >
-                    x
+                    <RxCross2 className="mx-auto" />
                   </button>
                 </div>
               )}
@@ -328,7 +324,7 @@ export default function AuthentificationForm() {
               className="border border-black rounded-full px-4 py-2 mx-auto max-w-xl flex font-bold border-b-4  hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200"
               /> */}
                <button type="submit" className="block mx-auto font-bold py-2 px-4 rounded-full border-gray-700 border-2 mt-2 md:mt-4 hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200">
-              Se connecter
+              Créer mon compte
               </button>
             </div>
         </form>

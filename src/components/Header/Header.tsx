@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -11,7 +11,8 @@ import Menu from '../Menu/Menu';
 
 export default function Header() {
   const pathname = usePathname();
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
+  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('OgToken')) {
@@ -32,7 +33,7 @@ export default function Header() {
 
   if (pathname === "/") {
     return (
-      <header className="flex justify-evenly  items-center md:items-stretch w-screen h-[15vh] md:h-[25vh]">
+      <header className={`flex justify-evenly items-center md:items-stretch w-screen h-[15vh] md:h-[25vh]`}>
       <div className="self-auto md:p-4 w-7/12 container ml-14 md:w-2/5 md:mr-14 md:ml-16 md:m-5">
         <Link href="/"><Image object-fit="fill" alt="logo" src={logo} /></Link>
       </div>

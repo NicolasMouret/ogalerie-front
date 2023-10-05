@@ -68,7 +68,7 @@ export default function CarouselMobile({imageList, addButton, onClick}: Carousel
 
   return (
     //Cette div contient le carousel en entier et les boutons de nav sont positionnés par rappport à elle
-    <div className="relative my-auto w-screen">
+    <div className="relative w-screen">
         {/*Cette div permet de délimiter ce que l'on peut voir de la div qu'elle contient*/}
       <div className="w-[90vw] mx-auto overflow-hidden">
         {/*Cette div contient toute les images 'à la suite' le translate permet

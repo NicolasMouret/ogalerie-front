@@ -47,7 +47,7 @@ export default function Carousel({imageList, page, addButton}: CarouselProps) {
 
   return (
     <>
-      {isMobile ? <CarouselMobile imageList={imageList} addButton={addButton} onClick={handleClick} /> :
+      {isMobile ? <CarouselMobile imageList={imageList} onClick={handleClick} /> :
        <CarouselDesktop imageList={imageList} page={page} addButton={addButton} onClick={handleClick}/>}
     </>
   )

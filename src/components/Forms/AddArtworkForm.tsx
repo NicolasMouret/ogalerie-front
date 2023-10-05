@@ -9,8 +9,11 @@ import CloseButton from '../Buttons/CloseButton';
 import CloudinaryUpload from '../Buttons/CloudinaryUpload';
 import { RxCross2 } from 'react-icons/rx';
 
+interface AddArtworkFormProps {
+  collectionId: string;
+}
 
-export default function AddArtworkForm() {
+export default function AddArtworkForm({collectionId}: AddArtworkFormProps) {
   const { showModalAddArtwork, setShowModalAddArtwork } = React.useContext(UiContext);
   // State to display error messages.
   const [error, setError] = useState<string | null>(null);
@@ -58,6 +61,7 @@ export default function AddArtworkForm() {
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
     objData.uri = uploadUrl;
+    objData.collection_id = collectionId;
     console.log(objData);
 
    // Validation checks
