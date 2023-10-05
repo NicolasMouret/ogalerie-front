@@ -13,6 +13,7 @@ export default function Demos() {
       <Link href="/demos/alphabet" className="bg-slate-300 rounded-md px-2">Page demo filtre alphabet</Link>
       <Link href="/demos/contactPage" className="bg-slate-300 rounded-md px-2">Page demo page formulaire de contact</Link>
       <Link href="/demos/user/2" className="bg-slate-300 rounded-md px-2">Page demo page profil utilisateur public</Link>
+      <Link href="/demos/artist/2" className="bg-slate-300 rounded-md px-2">Page demo page profil artiste public</Link>
       <Link href="/demos/artistprivateprofil" className="bg-slate-300 rounded-md px-2">Page demo page profil artiste privé</Link>
       <Link href="/demos/userPrivateProfil" className="bg-slate-300 rounded-md px-2">Page demo page profil utilisateur privé</Link>
 

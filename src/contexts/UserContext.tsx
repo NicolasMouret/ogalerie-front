@@ -13,6 +13,7 @@ export interface UserContextProps {
     country: string;
     biography: string;
     like: number;
+    liked: number;
     lastname: string;
     firstname: string;
     birthday: string;
@@ -33,6 +34,7 @@ const UserContext = createContext<UserContextProps>({
     country: '',
     biography: '',
     like: 0,
+    liked: 0,
     lastname: '',
     firstname: '',
     birthday: '',
@@ -42,7 +44,7 @@ const UserContext = createContext<UserContextProps>({
 });
 
 function UserContextProvider({ children }: { children: ReactElement }) {
-  const [user, setUser] = useState({logged: false, id: '', nickname: '', token: '', situation: '', avatar: '', town: '', country: '', biography: '', like: 0, lastname: '', firstname: '', birthday: '', email: ''});
+  const [user, setUser] = useState({logged: false, id: '', nickname: '', token: '', situation: '', avatar: '', town: '', country: '', biography: '', like: 0, liked: 0, lastname: '', firstname: '', birthday: '', email: '',});
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
