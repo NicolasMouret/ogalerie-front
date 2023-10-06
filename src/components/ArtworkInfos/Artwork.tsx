@@ -13,6 +13,10 @@ interface ArtworkInfosProps {
     support?: string;
     style?: string;
     description: string;
+	userId: string;
+	artworkId: string;
+	isFaves: boolean;
+	setIsFaves: (isFaves: boolean) => void;
 }
 
 export default function ArtworkInfos({ 
@@ -23,7 +27,11 @@ export default function ArtworkInfos({
 	typeTag, 
 	support, 
 	style, 
-	description }: ArtworkInfosProps) {
+	description,
+	userId,
+	artworkId,
+	isFaves,
+	setIsFaves }: ArtworkInfosProps) {
 	return (
 		<div className="flex flex-col justify-start gap-2 overflow-hidden h-[77vh] md:h-[40vh] w-[95vw] md:w-[800px]">
 			<div className="flex flex-col md:flex-row items-center">
@@ -36,15 +44,15 @@ export default function ArtworkInfos({
 			<p className="pl-4">Par <span className="underline font-bold">{author}</span></p>
 			<div className="flex items-center gap-1 pl-4 mt-4">
 				<p>{date} - </p>
-				<p>#{typeTag}</p>
-				<p>#{support}</p>
-				<p>#{style}</p>
+				<p>{typeTag}</p>
+				<p>{support}</p>
+				<p>{style}</p>
 			</div>
 			<p className="pl-4 underline">Voir la collection</p>
 			<p className="pl-4 mb-4 md:mb-0 mt-4">{description}</p>
 			<div className="flex items-center h-8 pl-4 mt-4 gap-12">
 				<LikeButton />
-				<FaveButton />
+				<FaveButton userId={userId} artworkId={artworkId} isFaves={isFaves} setIsFaves={setIsFaves} />
 				<SignalButton size="md" sizeIcon="3xl"/>
 			</div>
 		</div>

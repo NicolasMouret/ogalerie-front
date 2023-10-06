@@ -70,17 +70,35 @@ const imageList = [
 
 ];
 
+interface UserLocal {
+  logged: boolean;
+    avatar: string;
+    nickname: string;
+    token: string;
+    situation?: string;
+    id: string;
+    town: string;
+    country: string;
+    biography: string;
+    like: number;
+    liked: number;
+    lastname: string;
+    firstname: string;
+    birthday: string;
+    email: string;
+}
+
 export default function UserPrivate(): React.JSX.Element {
-  const { user, setUser } = useContext(UserContext);
+  const [userLocal, setUserLocal] = useState<UserLocal>();
 
-  const id = localStorage.getItem('id');
-
+  
   useEffect(() => {
+    const id = localStorage.getItem('id');
     const getUser = (id: string) => {
       axiosInstance.get(`/users/${id}`)
       .then(res => {
         console.log("res.data", res.data);
-        setUser(res.data);
+        setUserLocal(res.data);
       
       }).catch(err => {
         console.log(err);
@@ -93,36 +111,37 @@ export default function UserPrivate(): React.JSX.Element {
   
   return (
     <>
+    {userLocal && 
     <div className="mx-4 md:mx-auto md:w-4/5">
-      <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
-        <div className="md:w-1/2 md:pr-4">
-          <UserPublicInfosPrivateProfile 
-            nickname={user.nickname} 
-            town={user.town} 
-            country={user.country} 
-            biography={user.biography}
-            avatar={user.avatar}
-            likedCount={user.like} />
-        </div>
-        <div className="md:w-1/2 md:pl-4"> 
-          <UserPrivateInfos 
-            lastname={user.lastname} 
-            firstname={user.firstname} 
-            birthday={user.birthday} 
-            email={user.email} />
-        </div>
+    <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
+      <div className="md:w-1/2 md:pr-4">
+        <UserPublicInfosPrivateProfile 
+          nickname={userLocal.nickname} 
+          town={userLocal.town} 
+          country={userLocal.country} 
+          biography={userLocal.biography}
+          avatar={userLocal.avatar}
+          likedCount={userLocal.like} />
       </div>
-      <section className="h-full md:h-2/3 mt-10">
-        <div className='relative flex mt-8 mb-4 w-full md:w-2/5'>
-          <h3 className="text-xl font-extrabold mx-auto md:ml-20">
-            Oeuvres ajoutées aux favoris
-          </h3>
-        </div>
-        <div className='h-160 flex'>
-        <Carousel imageList={imageList} page="user" />
-        </div>
-      </section>
+      <div className="md:w-1/2 md:pl-4"> 
+        <UserPrivateInfos 
+          lastname={userLocal.lastname} 
+          firstname={userLocal.firstname} 
+          birthday={userLocal.birthday} 
+          email={userLocal.email} />
+      </div>
     </div>
+    <section className="h-full md:h-2/3 mt-10">
+      <div className='relative flex mt-8 mb-4 w-full md:w-2/5'>
+        <h3 className="text-xl font-extrabold mx-auto md:ml-20">
+          Oeuvres ajoutées aux favoris
+        </h3>
+      </div>
+      <div className='h-160 flex'>
+      <Carousel imageList={imageList} page="user" />
+      </div>
+    </section>
+  </div>}
     
     </>
   );

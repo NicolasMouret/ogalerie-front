@@ -22,6 +22,7 @@ interface comment {
     created_at: string;
     owner: string;
     owner_id: number;
+    avatar: string;
 }
 
 interface Artwork {
@@ -41,46 +42,57 @@ interface Artwork {
 
 
 export default function ArtworkPage({params}: ArtworkPageProps) {
-    const id = params.id;
+    const artworkId = params.id;
+    const [userId, setUserId] = useState('');
     const [artwork, setArtwork] = useState<Artwork>();
-  
-    const getArtwork = (id: string) => {
-        axiosInstance.get(`/artworks/${id}`)
-        .then((res) => {
-            console.log("res.data", res.data);
-            setArtwork(res.data);
-            console.log("tags", res.data.tags[0].name);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    }
+    const [isFaves, setIsFaves] = useState<boolean>()
+    
     useEffect(() => {
-        getArtwork(id);
+        setUserId(localStorage.getItem('id')!);
+    }, []);
+    
+    useEffect(() => {
+        const getArtwork = (id: string) => {
+            axiosInstance.get(`/artworks/${id}`)
+            .then((res) => {
+                console.log("res.data", res.data);
+                setArtwork(res.data);
+                setIsFaves(res.data.favorite_by === 0 ? false : true);
+                console.log("tags", res.data.tags[0].name);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        }
+        getArtwork(artworkId);
     }, []);
 
   return (
     <>
-    {artwork && 
+    {artwork && userId && 
     <div className="flex flex-col md:flex-row items-center gap-6 mx-auto mt-4 md:pl-8 md:mt-0 h-[85vh] w-[90vw]">
-    <Image
-      className="mx-auto md:mx-0"
-      src={artwork.uri}
-      alt="image"
-      width={600}
-      height={600}
-     />
-     <div className="flex flex-col ">
-      <ArtworkInfos
-      title={artwork.title} 
-      likes={2} 
-      author={artwork.owner} 
-      date={artwork.date}
-      typeTag={''}
-      support={''}
-      style={''}
-      description={artwork.description}/>
-      <CommentsBlock />
+        <Image
+        className="mx-auto md:mx-0"
+        src={artwork.uri}
+        alt="image"
+        width={600}
+        height={600}
+        />
+     <div className="flex flex-col">
+        <ArtworkInfos
+            setIsFaves={setIsFaves}
+            isFaves={isFaves!}
+            userId={userId}
+            artworkId={artworkId}
+            title={artwork.title} 
+            likes={artwork.likes} 
+            author={artwork.owner} 
+            date={artwork.date}
+            typeTag={artwork.tags[0] === undefined ? '' : `#${artwork.tags[0].name}`}
+            support={artwork.tags[1] === undefined ? '' : `#${artwork.tags[1].name}`}
+            style={artwork.tags[2] === undefined ? '' : `#${artwork.tags[2].name}`}
+            description={artwork.description}/>
+        <CommentsBlock comments={artwork.comment} />
      </div>
   </div>}
     </>

@@ -33,18 +33,27 @@ const commentsRawList = [
     content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates libero perferendis molestiae accusamus, consequuntur autem aliquam maiores debitis fugiat voluptatem!" },   
 ]
 
-export default function CommentsBlock() {
+interface comment {
+  id: number;
+  content: string;
+  created_at: string;
+  owner: string;
+  owner_id: number;
+  avatar: string;
+}
+
+export default function CommentsBlock({comments}: {comments: comment[]}) {
   const [text, setText] = useState("");
   const { user } = useContext(UserContext);
   const commentsContainerRef = useRef<HTMLDivElement>(null);
 
-  const commentsList = commentsRawList.map((comment) => {
+  const commentsList = comments.map((comment) => {
     return (
       <Comment
         key={nanoid()}
         avatar={comment.avatar}
-        nickname={comment.nickname}
-        date={comment.date}
+        nickname={comment.owner}
+        date={comment.created_at}
         content={comment.content}
       />
     )
