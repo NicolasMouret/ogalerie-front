@@ -16,6 +16,8 @@ export default function Demos() {
       <Link href="/demos/artist/2" className="bg-slate-300 rounded-md px-2">Page demo page profil artiste public</Link>
       <Link href="/demos/artistprivateprofil" className="bg-slate-300 rounded-md px-2">Page demo page profil artiste privé</Link>
       <Link href="/demos/userPrivateProfil" className="bg-slate-300 rounded-md px-2">Page demo page profil utilisateur privé</Link>
+      <Link href="/demos/a-propos" className="bg-slate-300 rounded-md px-2">Page demo à propos</Link>
+      <Link href="/demos/reglement" className="bg-slate-300 rounded-md px-2">Page demo règlement et cgu</Link>
 
     </main>
   );
