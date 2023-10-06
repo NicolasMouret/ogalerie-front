@@ -81,17 +81,16 @@ const collectionsFullScreen = collections.slice(1);
 
 export default function UserPrivate() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const { user, setUser } = useContext(UserContext);
+  const [ userLocal, setUserLocal] = useState<any>();
   // const [ collections, setCollections] = useState([]);
-
-  const id = localStorage.getItem('id')?.toString();
-
+  
   useEffect(() => {
+    const id = localStorage.getItem('id');
     const getUser = (id: string) => {
       axiosInstance.get(`/users/${id}`)
       .then(res => {
         console.log("res.data", res.data);
-        setUser(res.data);
+        setUserLocal(res.data);
       
       }).catch(err => {
         console.log(err);
@@ -108,6 +107,7 @@ export default function UserPrivate() {
     //         throw err;
     //     })
     // }
+    console.log("id", id);
     getUser(id!);
     // getcollections(id!);
   }
@@ -133,50 +133,51 @@ export default function UserPrivate() {
   
   return (
     <>
+    {userLocal &&
     <main className="overflow-auto snap-y snap-mandatory h-[85vh]" ref={scrollContainerRef}>
-      <AddArtworkForm collectionId="1"/>
-      <div className="sm:h-screen snap-start">
-      <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-4/5 md:flex-row md:py-4 sm:py-4">
-        <div className="md:w-1/2">
-        <UserPublicInfosPrivateProfile 
-          nickname={user.nickname} 
-          town={user.town} 
-          country={user.country} 
-          biography={user.biography}
-          avatar={user.avatar}
-          likedCount={user.like} />
-        </div>
-        <div className="md:w-1/2"> 
-        <UserPrivateInfos 
-          lastname={user.lastname} 
-          firstname={user.firstname} 
-          birthday={user.birthday} 
-          email={user.email} />
-        </div>
+    <AddArtworkForm collectionId="1"/>
+    <div className="sm:h-screen snap-start">
+    <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-4/5 md:flex-row md:py-4 sm:py-4">
+      <div className="md:w-1/2">
+      <UserPublicInfosPrivateProfile 
+        nickname={userLocal.nickname} 
+        town={userLocal.town} 
+        country={userLocal.country} 
+        biography={userLocal.biography}
+        avatar={userLocal.avatar}
+        likedCount={userLocal.like} />
       </div>
-      <section className="sm:flex-grow h-[85vh]  sm:block">
-        <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
-        Ma collection
-        </h3>      
-        <Carousel imageList={collections[0]} page="user" addButton />     
-        <ScrollButton direction="down" onClick={scrollToNextViewport} />         
-      </section>
+      <div className="md:w-1/2"> 
+      <UserPrivateInfos 
+        lastname={userLocal.lastname} 
+        firstname={userLocal.firstname} 
+        birthday={userLocal.birthday} 
+        email={userLocal.email} />
       </div>
-    
-    
-    {collectionsFullScreen.map((collection, index) => (
-      <section key={index} id={`section-${index}`} className="flex flex-col items-center justify-around h-[85vh] snap-start" >
-        <ScrollButton direction="up" onClick={scrollToPreviousViewport} />        
-          <div>
-            <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
-              Ma collection
-            </h3>
-            <Carousel imageList={collection} page="user" addButton />
-          </div>  
-        {index < collectionsFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}
-      </section>
-    ))}
-    </main>   
+    </div>
+    <section className="sm:flex-grow h-[85vh]  sm:block">
+      <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
+      Ma collection
+      </h3>      
+      <Carousel imageList={collections[0]} page="user" addButton />     
+      <ScrollButton direction="down" onClick={scrollToNextViewport} />         
+    </section>
+    </div>
+  
+  
+  {collectionsFullScreen.map((collection, index) => (
+    <section key={index} className="flex flex-col items-center justify-around h-[85vh] snap-start" >
+      <ScrollButton direction="up" onClick={scrollToPreviousViewport} />        
+        <div>
+          <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
+            Ma collection
+          </h3>
+          <Carousel imageList={collection} page="user" addButton />
+        </div>  
+      {index < collectionsFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}
+    </section>
+  ))}
+  </main> }  
     </>
            
   );

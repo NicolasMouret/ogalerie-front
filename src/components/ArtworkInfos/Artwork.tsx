@@ -1,20 +1,29 @@
+"use client";
 import LikeButton from '@/src/components/Buttons/LikeButton';
 import FaveButton from '@/src/components/Buttons/FaveButton';
 import SignalButton from '@/src/components/Buttons/SignalButton';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
 
 interface ArtworkInfosProps {
-    title?: string;
+    title: string;
     likes: number;
-    author?: string;
-    date?: string;
+    author: string;
+    date: string;
     typeTag?: string;
     support?: string;
     style?: string;
-    description?: string;
+    description: string;
 }
 
-export default function ArtworkInfos({ title, likes, author, date, typeTag, support, style, description }: ArtworkInfosProps) {
+export default function ArtworkInfos({ 
+	title, 
+	likes, 
+	author, 
+	date, 
+	typeTag, 
+	support, 
+	style, 
+	description }: ArtworkInfosProps) {
 	return (
 		<div className="flex flex-col justify-start gap-2 overflow-hidden h-[77vh] md:h-[40vh] w-[95vw] md:w-[800px]">
 			<div className="flex flex-col md:flex-row items-center">
