@@ -100,6 +100,11 @@ export default function AuthentificationForm() {
       .then(res => {
         console.log(res.data);
         axiosInstance.defaults.headers.common.Authorization = `Bearer ${res.data.token}`
+        localStorage.setItem('OgToken', res.data.token);
+        localStorage.setItem('nickname', res.data.nickname);
+        localStorage.setItem('situation', res.data.situation);
+        localStorage.setItem('avatar', res.data.avatar);
+        localStorage.setItem('id', res.data.id.toString());
         delete res.data.token;
         setUser(({...user, ...res.data}));
         closeModal();     
