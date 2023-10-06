@@ -60,6 +60,7 @@ export default function AuthentificationForm() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
+    objData.avatar = uploadUrl;
     console.log("Données du formulaire saisies:", objData);
 
     // Validation checks
