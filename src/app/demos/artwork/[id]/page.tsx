@@ -45,7 +45,8 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
     const artworkId = params.id;
     const [userId, setUserId] = useState('');
     const [artwork, setArtwork] = useState<Artwork>();
-    const [isFaves, setIsFaves] = useState<boolean>()
+    const [isFaves, setIsFaves] = useState<boolean>();
+    const [isLiked, setIsLiked] = useState<boolean>();
     
     useEffect(() => {
         setUserId(localStorage.getItem('id')!);
@@ -58,6 +59,7 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
                 console.log("res.data", res.data);
                 setArtwork(res.data);
                 setIsFaves(res.data.favorite_by === 0 ? false : true);
+                setIsLiked(res.data.liked_by === 0 ? false : true);
                 console.log("tags", res.data.tags[0].name);
             })
             .catch((err) => {
@@ -81,7 +83,9 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
      <div className="flex flex-col">
         <ArtworkInfos
             setIsFaves={setIsFaves}
+            setIsLiked={setIsLiked}
             isFaves={isFaves!}
+            isLiked={isLiked!}
             userId={userId}
             artworkId={artworkId}
             title={artwork.title} 

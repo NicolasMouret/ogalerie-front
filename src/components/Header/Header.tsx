@@ -12,7 +12,6 @@ import Menu from '../Menu/Menu';
 export default function Header() {
   const pathname = usePathname();
   const { setUser } = useContext(UserContext);
-  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('OgToken')) {

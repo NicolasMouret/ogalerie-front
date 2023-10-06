@@ -17,6 +17,8 @@ interface ArtworkInfosProps {
 	artworkId: string;
 	isFaves: boolean;
 	setIsFaves: (isFaves: boolean) => void;
+	isLiked: boolean;
+	setIsLiked: (isLiked: boolean) => void;
 }
 
 export default function ArtworkInfos({ 
@@ -31,7 +33,9 @@ export default function ArtworkInfos({
 	userId,
 	artworkId,
 	isFaves,
-	setIsFaves }: ArtworkInfosProps) {
+	setIsFaves,
+	isLiked,
+	setIsLiked }: ArtworkInfosProps) {
 	return (
 		<div className="flex flex-col justify-start gap-2 overflow-hidden h-[77vh] md:h-[40vh] w-[95vw] md:w-[800px]">
 			<div className="flex flex-col md:flex-row items-center">
@@ -51,8 +55,17 @@ export default function ArtworkInfos({
 			<p className="pl-4 underline">Voir la collection</p>
 			<p className="pl-4 mb-4 md:mb-0 mt-4">{description}</p>
 			<div className="flex items-center h-8 pl-4 mt-4 gap-12">
-				<LikeButton />
-				<FaveButton userId={userId} artworkId={artworkId} isFaves={isFaves} setIsFaves={setIsFaves} />
+				<LikeButton 
+				userId={userId}
+				artworkId={artworkId}
+				isLiked={isLiked}
+				setIsLiked={setIsLiked}
+				/>
+				<FaveButton 
+				userId={userId} 
+				artworkId={artworkId} 
+				isFaves={isFaves} 
+				setIsFaves={setIsFaves} />
 				<SignalButton size="md" sizeIcon="3xl"/>
 			</div>
 		</div>

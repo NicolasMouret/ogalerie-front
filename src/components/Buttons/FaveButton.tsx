@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from 'react';
 import axiosInstance from '@/src/utils/axios';
 import { RiHeartAddFill, RiHeartAddLine } from 'react-icons/ri';
 
