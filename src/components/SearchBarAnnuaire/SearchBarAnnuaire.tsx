@@ -2,7 +2,12 @@
 
 import { AiOutlineSearch } from 'react-icons/ai';
 
-export default function SearchBarAnnuaire({ searchQuery, setSearchQuery}) {
+interface SearchBarAnnuaireProps {
+    searchQuery: string;
+    setSearchQuery: (searchQuery: string) => void;
+}
+
+export default function SearchBarAnnuaire({ searchQuery, setSearchQuery}: SearchBarAnnuaireProps) {
 
     return (
         <div className="flex items-center border-2 rounded-full border-gray-600 relative w-full sm:w-96">

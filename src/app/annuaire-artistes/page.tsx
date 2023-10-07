@@ -5,10 +5,17 @@ import axiosInstance from '@/src/utils/axios';
 import AlphabetFilter from '@/src/components/AlphabetFilter/AlphabetFilter';
 import SearchBarAnnuaire from '@/src/components/SearchBarAnnuaire/SearchBarAnnuaire';
 
+interface Artist {
+  id: number;
+  nickname: string;
+  firstname: string;
+  lastname: string;
+  avatar: string;
+}
 
 
 export default function Annuaire() {
-  const [artists, setArtists] = useState([]);
+  const [artists, setArtists] = useState<Artist[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {

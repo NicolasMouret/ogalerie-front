@@ -40,7 +40,6 @@ export default function ArtworkInfos({
 		<div className="flex flex-col justify-start gap-2 overflow-hidden h-[77vh] md:h-[40vh] w-[95vw] md:w-[800px]">
 			<div className="flex flex-col md:flex-row items-center">
 				<h1 className="text-4xl mb-4 md:mb-0 md:mr-6">"{title}"</h1>
-				{/* {likes>0 ?  <span><BsHeartFill className="inline" /> {likes} likes</span>  : <span><BsHeartFill className="inline" /> {likes} like</span> }  */}
 				{likes === 0 && <span><BsHeart className="inline text-2xl mr-1" /> {likes} like</span>}
 				{likes === 1 && <span><BsHeartFill className="inline text-2xl mr-1" /> {likes} like</span>}
 				{likes > 1 && <span><BsHeartFill className="inline text-2xl mr-1" /> {likes} likes</span>}
@@ -52,7 +51,7 @@ export default function ArtworkInfos({
 				<p>{support}</p>
 				<p>{style}</p>
 			</div>
-			<p className="pl-4 underline">Voir la collection</p>
+			{/* <p className="pl-4 underline">Voir la collection</p> */}
 			<p className="pl-4 mb-4 md:mb-0 mt-4">{description}</p>
 			<div className="flex items-center h-8 pl-4 mt-4 gap-12">
 				<LikeButton 

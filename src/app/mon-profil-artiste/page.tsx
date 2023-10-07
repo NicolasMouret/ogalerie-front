@@ -1,12 +1,12 @@
 "use client";
-import { useContext, useEffect, useRef, useState } from "react";
-import { UserContext } from "@/src/contexts/UserContext";
+import { useEffect, useRef, useState } from "react";
 import axiosInstance from "@/src/utils/axios";
 import Carousel from "@/src/components/testCarousel/Carousel";
 import UserPrivateInfos from "@/src/components/UserProfilPrivate/UserPrivateInfos";
 import UserPublicInfosPrivateProfile from "@/src/components/UserProfilPrivate/UserPublicInfosPrivateProfile";
 import AddArtworkForm from "@/src/components/Forms/AddArtworkForm";
 import ScrollButton from "@/src/components/Buttons/ScrollButton";
+import AddCollectionButton from "@/src/components/Buttons/AddCollectionButton";
 
 
 const collection1 = [
@@ -76,13 +76,18 @@ const collection3 = [
 },
 ]
 
-const collections = [collection1, collection2, collection3];
-const collectionsFullScreen = collections.slice(1);
+const collectionsMock = [collection1, collection2, collection3];
+const collectionsMockFullScreen = collectionsMock.slice(1);
 
 export default function UserPrivate() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [ userLocal, setUserLocal] = useState<any>();
-  // const [ collections, setCollections] = useState([]);
+  const [userId, setUserId] = useState('');
+  const [ collections, setCollections] = useState([]);
+
+  useEffect(() => {
+    setUserId(localStorage.getItem('id')!);
+}, []);
   
   useEffect(() => {
     const id = localStorage.getItem('id');
@@ -91,25 +96,24 @@ export default function UserPrivate() {
       .then(res => {
         console.log("res.data", res.data);
         setUserLocal(res.data);
-      
+        console.log("biography", res.data.biography.length);
       }).catch(err => {
         console.log(err);
         throw err;
       })
     }
-    // const getcollections = (id: string) => {
-    //     axiosInstance.get(`/users/${id}/collections`)
-    //     .then(res => {
-    //         console.log("res.data collections", res.data);
-    //         setCollections(res.data);       
-    //     }).catch(err => {
-    //         console.log(err);
-    //         throw err;
-    //     })
-    // }
-    console.log("id", id);
+    const getcollections = (id: string) => {
+        axiosInstance.get(`/users/${id}/collections`)
+        .then(res => {
+            console.log("res.data collections", res.data);
+            setCollections(res.data);       
+        }).catch(err => {
+            console.log(err);
+            throw err;
+        })
+    }
     getUser(id!);
-    // getcollections(id!);
+    getcollections(id!);
   }
   , []);
 
@@ -133,11 +137,11 @@ export default function UserPrivate() {
   
   return (
     <>
-    {userLocal &&
+    {userLocal && userId &&
     <main className="overflow-auto snap-y snap-mandatory h-[85vh]" ref={scrollContainerRef}>
     <AddArtworkForm collectionId="1"/>
     <div className="sm:h-screen snap-start">
-    <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-4/5 md:flex-row md:py-4 sm:py-4">
+    <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:flex-row md:py-2 sm:py-4">
       <div className="md:w-1/2">
       <UserPublicInfosPrivateProfile 
         nickname={userLocal.nickname} 
@@ -155,17 +159,18 @@ export default function UserPrivate() {
         email={userLocal.email} />
       </div>
     </div>
-    <section className="sm:flex-grow h-[85vh]  sm:block">
-      <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
-      Ma collection
-      </h3>      
-      <Carousel imageList={collections[0]} page="user" addButton />     
-      <ScrollButton direction="down" onClick={scrollToNextViewport} />         
+    <section className="sm:flex-grow h-[85vh] ">
+      <div className="flex flex-col gap-4 items-start w-[90vw] py-2 md:w-[84vw] mx-auto">
+        <AddCollectionButton userId={userId} />
+        <h3 className="text-xl font-extrabold sm:mr-16">Ma collection</h3>      
+      </div>
+      <Carousel imageList={collectionsMock[0]} page="user" addButton />     
+      <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />         
     </section>
     </div>
   
   
-  {collectionsFullScreen.map((collection, index) => (
+  {collectionsMockFullScreen.map((collection, index) => (
     <section key={index} className="flex flex-col items-center justify-around h-[85vh] snap-start" >
       <ScrollButton direction="up" onClick={scrollToPreviousViewport} />        
         <div>
@@ -174,7 +179,7 @@ export default function UserPrivate() {
           </h3>
           <Carousel imageList={collection} page="user" addButton />
         </div>  
-      {index < collectionsFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}
+      {index < collectionsMockFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}
     </section>
   ))}
   </main> }  

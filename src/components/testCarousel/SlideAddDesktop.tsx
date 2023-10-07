@@ -15,7 +15,7 @@ export default function SlideMobile({onClick}: SlideMobileProps) {
           style={{
             //Le carousel desktop fait 84vw de large, donc je divise par 3 pour avoir la largeur d'une image
            width: `${28}vw`,
-           height: `${350}px`,
+           height: `${330}px`,
            objectFit: "cover",
           }}
           />

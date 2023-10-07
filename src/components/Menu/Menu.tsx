@@ -58,10 +58,10 @@ export default function Menu() {
               </>:
               <>
               <li className="underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleSignIn} className="text-sm font-semibold" href="/">Se connecter</Link>
+                <button onClick={handleSignIn} className="text-sm font-semibold" >Se connecter</button>
               </li>
               <li className="underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleSignup} className="text-sm font-semibold" href="/">S'inscrire</Link>
+                <button onClick={handleSignup} className="text-sm font-semibold" >S'inscrire</button>
               </li> 
               </>}
               <li className="underline underline-offset-8 my-4 uppercase">
@@ -70,22 +70,22 @@ export default function Menu() {
                 </Link>
               </li>
               <li className="underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/annuaire-artistes">
                   Annuaire des artistes
                 </Link>
               </li>
               <li className="underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/a-propos">
                   à propos
                 </Link>
               </li>
               <li className="underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/contact">
                   Contact
                 </Link>
               </li>
               <li className="underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/cgu-page">
                   Règlement & mentions légales
                 </Link>
               </li>
@@ -133,25 +133,25 @@ export default function Menu() {
                 </Link>
               </li>
               {user.logged && <li className="hover:underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href={`${user.situation === 'creator' ? '/demos/mon-profil-artiste' : '/demos/mon-profil'}`}>Mon profil</Link>
+                <Link onClick={handleClick} className="text-sm font-semibold" href={`${user.situation === 'creator' ? '/mon-profil-artiste' : '/mon-profil'}`}>Mon profil</Link>
               </li> }
               <li className="hover:underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/annuaire-artistes">
                   Annuaire des artistes
                 </Link>
               </li>
               <li className="hover:underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/a-propos">
                   à propos
                 </Link>
               </li>
               <li className="hover:underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/contact">
                   Contact
                 </Link>
               </li>
               <li className="hover:underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/#">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/cgu-page">
                   Règlement & mentions légales
                 </Link>
               </li>

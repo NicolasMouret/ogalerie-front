@@ -107,7 +107,7 @@ export default function Home() {
         {/* demo du carousel avec le bouton d'ajout d'oeuvre
         uniquement besoin de préciser addButton */}
         <Carousel imageList={imageList} page="user" addButton />
-        <AddArtworkForm />
+        <AddArtworkForm collectionId="1" />
       </section> 
     </>
   );

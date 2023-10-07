@@ -10,6 +10,15 @@ interface CommentProps {
 }
 
 export default function Comment({avatar, nickname, date, content, className}: CommentProps) {
+  const setDate = (date: string) => {
+    const isoDate = new Date(date);
+    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+    const formattedDate = isoDate.toLocaleDateString('fr-FR', options);
+    return formattedDate;
+  }
+
+  const formattedDate = setDate(date);
+
     return (
       <div className={`flex gap-4 group ${className}`}>
         <Image
@@ -20,7 +29,7 @@ export default function Comment({avatar, nickname, date, content, className}: Co
         height={40}
         />
         <div className="flex flex-col max-w-[70%]">
-            <p>{nickname} - {date}</p>
+            <p>{nickname} - {formattedDate}</p>
             <p>{content}</p>
         </div>
         <SignalButton className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block" />
