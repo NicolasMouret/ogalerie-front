@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import axiosInstance from "@/src/utils/axios";
 import Carousel from "@/src/components/testCarousel/Carousel";
 import SearchBar from "@/src/components/SearchBar/SearchBar";
-import AddArtworkForm from "@/src/components/Forms/AddArtworkForm";
+import { Collection, Artwork } from "@/src/@types";
 
 const imageList = [
   { 
@@ -95,20 +97,35 @@ const imageList = [
 ];
 
 export default function Home() {
+  const [collection, setCollection] = useState<Collection>();
+
+  useEffect(() => {
+    const getRandomArtworks = () => {
+      axiosInstance.get<Artwork[]>("/artworks/random")
+        .then(res => {
+          console.log("res.random", res.data);
+          setCollection({
+            id: 1,
+            title: "Random",
+            artworks: res.data
+          })
+        }).catch(err => {
+          console.log(err);
+          throw err;
+        }
+      );
+  }
+  getRandomArtworks();
+  }
+  , []);
+
+
   return (
     <>
-      <section className="h-[75vh] flex flex-col items-center justify-center space-y-4">
-        <div className="pb-8"> 
-          <SearchBar />
-        </div>
-        <Carousel imageList={imageList} page="home" />        
+      <section className="h-[75vh] flex flex-col items-center justify-center space-y-4">        
+        <SearchBar />       
+        {collection && <Carousel collection={collection} page="home"/>}        
       </section>
-      <section className="h-screen flex flex-col">
-        {/* demo du carousel avec le bouton d'ajout d'oeuvre
-        uniquement besoin de préciser addButton */}
-        <Carousel imageList={imageList} page="user" addButton />
-        <AddArtworkForm collectionId="1" />
-      </section> 
     </>
   );
 }

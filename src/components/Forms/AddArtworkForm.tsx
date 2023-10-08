@@ -4,21 +4,21 @@ import React, { FormEvent, useState } from 'react';
 import  AxiosInstance  from '@/src/utils/axios';
 import { UiContext } from '@/src/contexts/UiContext';
 import Image from 'next/image';
-import logo from "../../assets/images/logosmall.png";
 import CloseButton from '../Buttons/CloseButton';
 import CloudinaryUpload from '../Buttons/CloudinaryUpload';
 import { RxCross2 } from 'react-icons/rx';
 
 interface AddArtworkFormProps {
   collectionId: string;
+  userId: string;
 }
 
-export default function AddArtworkForm({collectionId}: AddArtworkFormProps) {
+export default function AddArtworkForm({collectionId, userId}: AddArtworkFormProps) {
   const { showModalAddArtwork, setShowModalAddArtwork } = React.useContext(UiContext);
   // State to display error messages.
   const [error, setError] = useState<string | null>(null);
   // State to store added images
-  const [image, setImage] = useState<string | null>("hfdiuiuvfsdvuidueiuvghehvduhf.fgd");
+  const [image, setImage] = useState<string | null>();
   // State to store the selected artowork type (tags).
   const [type, setType] = useState("");
    // State to store the selected artwork support (tags).
@@ -73,7 +73,7 @@ export default function AddArtworkForm({collectionId}: AddArtworkFormProps) {
     //   setError("Merci de choisir 3 tags");
     //   return;
     // }
-    AxiosInstance.post("/users/1/artworks", objData)
+    AxiosInstance.post(`/users/${userId}/artworks`, objData)
     .then((res) => {
       console.log(res.data);
       clearForm();
@@ -104,7 +104,7 @@ export default function AddArtworkForm({collectionId}: AddArtworkFormProps) {
           <div className="flex justify-center mb-4">
             <Image
               alt="Logo of the O'Galerie platform"
-              src={logo}
+              src={'/images/logosmall.png'}
               width={150}
               height={150}
             />

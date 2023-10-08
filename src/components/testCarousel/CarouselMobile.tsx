@@ -5,24 +5,21 @@ import { useEffect, useState } from "react";
 import SlideMobile from "./SlideMobile";
 import CarouselButton from "../Buttons/CarouselButton";
 import AddArtworkButton from "../Buttons/addArtworkButton";
+import { Artwork, Collection } from "@/src/@types";
 
-//Interface for the temporary test image list
-interface ImageProps {
-  id: string;
-  url: string;
-}
 
 interface CarouselMobileProps {
-  imageList: ImageProps[];
+  collection: Collection;
   onClick: () => void;
-  addButton?: boolean;
+  addButton? : boolean;
 }
 
 
-export default function CarouselMobile({imageList, addButton, onClick}: CarouselMobileProps){
+export default function CarouselMobile({collection, addButton, onClick}: CarouselMobileProps){
+  const { artworks } = collection;
   //Je créé un tableau de slides en utilisant le tableau d'images
-  const slides = imageList.map((imageList) => {
-    return <SlideMobile key={imageList.id} url={imageList.url} />;
+  const slides = artworks.map((imageList) => {
+    return <SlideMobile key={imageList.id} url={imageList.uri} />;
   });
   if (addButton) {
     const add = () => {

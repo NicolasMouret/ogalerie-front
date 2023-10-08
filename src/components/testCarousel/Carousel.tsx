@@ -5,14 +5,11 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { UiContext } from "@/src/contexts/UiContext";
 import CarouselMobile from "../../components/testCarousel/CarouselMobile";
 import CarouselDesktop from "../../components/testCarousel/CarouselDesktop";
-
-interface ImageProps {
-    id: string;
-    url: string;
-}
+import { Artwork, Collection } from "@/src/@types";
+import AddArtworkForm from "../Forms/AddArtworkForm";
 
 interface CarouselProps {
-    imageList: ImageProps[];
+    collection: Collection;
     page: string;
     addButton?: boolean;
 }
@@ -22,7 +19,7 @@ interface CarouselProps {
 //pour afficher le carousel correspondant
 //Prop page = "home" pour les 4 images ou "user" pour les 3 images
 //Prop addButton = true pour afficher le bouton d'ajout d'oeuvre
-export default function Carousel({imageList, page, addButton}: CarouselProps) {
+export default function Carousel({collection, page, addButton}: CarouselProps) {
   //useWindowSize().width renvoie la largeur de l'écran (en px)
   const screenWidth = useWindowSize().width || 800;
   const [isMobile, setIsMobile] = useState(false);
@@ -47,8 +44,8 @@ export default function Carousel({imageList, page, addButton}: CarouselProps) {
 
   return (
     <>
-      {isMobile ? <CarouselMobile imageList={imageList} onClick={handleClick} /> :
-       <CarouselDesktop imageList={imageList} page={page} addButton={addButton} onClick={handleClick}/>}
+      {isMobile ? <CarouselMobile collection={collection} onClick={handleClick} /> :
+       <CarouselDesktop collection={collection} page={page} addButton={addButton} onClick={handleClick}/>}
     </>
   )
 }

@@ -7,7 +7,6 @@ import { UserContext } from '@/src/contexts/UserContext';
 import axiosInstance from '@/src/utils/axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Image from 'next/image';
-import logo from "../../assets/images/logosmall.png";
 import CloseButton from '../Buttons/CloseButton';
 
 
@@ -76,7 +75,7 @@ export default function ConnexionForm() {
           <div className="flex justify-center mb-4">
             <Image
               alt="Logo of the O'Galerie platform"
-              src={logo}
+              src={'/images/logosmall.png'}
               width={200}
               height={200}
             />

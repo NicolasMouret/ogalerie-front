@@ -5,7 +5,6 @@ import { UiContext } from '@/src/contexts/UiContext';
 import { UserContext } from '@/src/contexts/UserContext';
 import axiosInstance from '@/src/utils/axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import logo from "../../assets/images/logosmall.png";
 import Image from "next/image";
 import CloseButton from "../Buttons/CloseButton";
 import CloudinaryUpload from '../Buttons/CloudinaryUpload';
@@ -139,7 +138,7 @@ export default function AuthentificationForm() {
           <div className="flex justify-center md:mb-1">
             <Image
               alt="Logo of the O'Galerie platform"
-              src={logo}
+              src={'/images/logosmall.png'}
               width={170}
               height={170}
             />

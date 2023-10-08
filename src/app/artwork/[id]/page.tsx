@@ -4,40 +4,13 @@ import axiosInstance from '@/src/utils/axios';
 import Image from 'next/image';
 import ArtworkInfos from "@/src/components/ArtworkInfos/Artwork";
 import CommentsBlock from "@/src/components/Comments/Comments";
+import { Artwork } from '@/src/@types';
+
 
 interface ArtworkPageProps {
   params: {
     id: string;
   }
-}
-
-interface tags {
-    category: string;
-    name: string;
-}
-
-interface comment {
-    id: number;
-    content: string;
-    created_at: string;
-    owner: string;
-    owner_id: number;
-    avatar: string;
-}
-
-interface Artwork {
-    id: number;
-    title: string;
-    description: string;
-    date: string;
-    owner: string;
-    uri: string;
-    likes: number;
-    comment: comment[];
-    tags: tags[];
-    owner_id: number;
-    liked_by: number;
-    favorite_by: number;
 }
 
 

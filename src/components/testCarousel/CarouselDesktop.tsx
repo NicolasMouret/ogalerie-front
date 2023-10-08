@@ -5,15 +5,11 @@ import { useEffect, useState } from "react";
 import SlideDesktop from "./SlideDesktop";
 import CarouselButton from "../Buttons/CarouselButton";
 import AddArtworkButton from "../Buttons/addArtworkButton";
+import { Artwork, Collection } from "@/src/@types";
 
-//Interface for the temporary test image list
-interface ImageProps {
-  id: string;
-  url: string;
-}
 
 interface CarouselDesktopProps {
-  imageList: ImageProps[];
+  collection: Collection;
   page: string;
   onClick: () => void;
   addButton? : boolean;
@@ -23,10 +19,11 @@ interface CarouselDesktopProps {
 
 //Le carousel desktop est similaire au mobile mais prend en plus 
 // le prop page (home/user) pour déterminer la taille des images
-export default function CarouselDesktop({imageList, page, onClick, addButton}: CarouselDesktopProps){
+export default function CarouselDesktop({collection, page, onClick, addButton}: CarouselDesktopProps){
+  const { artworks } = collection;
   //Je créé un tableau de slides en utilisant le tableau d'images
-  const slides = imageList.map((imageList) => {
-    return <SlideDesktop key={imageList.id} url={imageList.url} page={page} />;
+  const slides = artworks.map((imageList) => {
+    return <SlideDesktop key={imageList.id} url={imageList.uri} page={page} />;
   });
   if (addButton) {
     const add = () => {
