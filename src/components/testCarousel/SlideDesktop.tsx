@@ -4,11 +4,12 @@ import Link from "next/link";
 interface SlideDesktopProps {
     url: string | StaticImageData;
     page: string;
+    artworkId: string;
   }
 
 //Le slide desktop est similaire au mobile mais prend en plus
 // le prop page (home/user) pour déterminer la taille des images
-export default function SlideDesktop({url, page}: SlideDesktopProps) {
+export default function SlideDesktop({url, page, artworkId}: SlideDesktopProps) {
   //En fonction du page, je set la taille des images
   //La page home correspond à 4 images dans le carousel
   if (page === "home") {

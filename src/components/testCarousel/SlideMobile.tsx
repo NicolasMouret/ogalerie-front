@@ -2,9 +2,10 @@ import Image, { StaticImageData } from "next/image";
 
 interface SlideMobileProps {
     url: string | StaticImageData;
+    artworkId: string;
   }
 
-export default function SlideMobile({url}: SlideMobileProps) {
+export default function SlideMobile({url, artworkId}: SlideMobileProps) {
   return (
     <Image className="flex-shrink-0" 
     alt="image test" 

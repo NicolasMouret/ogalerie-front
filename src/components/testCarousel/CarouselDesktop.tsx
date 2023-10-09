@@ -22,8 +22,8 @@ interface CarouselDesktopProps {
 export default function CarouselDesktop({collection, page, onClick, addButton}: CarouselDesktopProps){
   const { artworks } = collection;
   //Je créé un tableau de slides en utilisant le tableau d'images
-  const slides = artworks.map((imageList) => {
-    return <SlideDesktop key={imageList.id} url={imageList.uri} page={page} />;
+  const slides = artworks.map((artwork) => {
+    return <SlideDesktop key={artwork.id} artworkId={artwork.id.toString()} url={artwork.uri} page={page} />;
   });
   if (addButton) {
     const add = () => {
