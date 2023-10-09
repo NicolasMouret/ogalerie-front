@@ -19,7 +19,7 @@ interface CarouselDesktopProps {
 
 //Le carousel desktop est similaire au mobile mais prend en plus 
 // le prop page (home/user) pour déterminer la taille des images
-export default function CarouselDesktop({collection, page, onClick, addButton}: CarouselDesktopProps){
+export default function CarouselDesktop({collection, page, onClick, addButton, }: CarouselDesktopProps){
   const { artworks } = collection;
   //Je créé un tableau de slides en utilisant le tableau d'images
   const slides = artworks.map((artwork) => {
@@ -57,7 +57,7 @@ export default function CarouselDesktop({collection, page, onClick, addButton}: 
     }
     //Même logique pour 4 images
     if (page === "home") {
-      if (currentSlide > (slides.length/4) - 1) {
+      if (currentSlide >= (slides.length/4) - 1) {
         setSlidesEnd(true);
       } else {
         setSlidesEnd(false);

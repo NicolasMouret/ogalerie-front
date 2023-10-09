@@ -1,8 +1,16 @@
 "use client";
+
+import { UiContext } from '@/src/contexts/UiContext';
+import axiosInstance from '@/src/utils/axios';
 import LikeButton from '@/src/components/Buttons/LikeButton';
 import FaveButton from '@/src/components/Buttons/FaveButton';
 import SignalButton from '@/src/components/Buttons/SignalButton';
+import ModifyButton from '../Buttons/ModifyButton';
+import EditArtworkForm from '../Forms/EditArtworkForm';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { useContext } from 'react';
+import Link from 'next/link';
 
 interface ArtworkInfosProps {
     title: string;
@@ -19,6 +27,7 @@ interface ArtworkInfosProps {
 	setIsFaves: (isFaves: boolean) => void;
 	isLiked: boolean;
 	setIsLiked: (isLiked: boolean) => void;
+	ownerId: string;
 }
 
 export default function ArtworkInfos({ 
@@ -35,9 +44,28 @@ export default function ArtworkInfos({
 	isFaves,
 	setIsFaves,
 	isLiked,
+	ownerId,
 	setIsLiked }: ArtworkInfosProps) {
+	const { showModalEditArtwork, setShowModalEditArtwork } = useContext(UiContext);
+
+	const showEdit = () => {
+		setShowModalEditArtwork(true);
+	}
+
+	const deleteArtwork = () => {
+		axiosInstance.delete(`artworks/${artworkId}`)
+			.then(res => {
+				console.log(res);
+			})
+			.catch(err => {
+				console.log(err);
+				throw err;
+			})
+	}
+
+	
 	return (
-		<div className="flex flex-col justify-start gap-2 overflow-hidden h-[77vh] md:h-[40vh] w-[95vw] md:w-[800px]">
+		<div className="flex flex-col justify-center gap-2 overflow-hidden pb-6 h-fit w-[95vw] md:w-[800px]">
 			<div className="flex flex-col md:flex-row items-center">
 				<h1 className="text-4xl mb-4 md:mb-0 md:mr-6">"{title}"</h1>
 				{likes === 0 && <span><BsHeart className="inline text-2xl mr-1" /> {likes} like</span>}
@@ -65,7 +93,18 @@ export default function ArtworkInfos({
 				artworkId={artworkId} 
 				isFaves={isFaves} 
 				setIsFaves={setIsFaves} />
-				<SignalButton size="md" sizeIcon="3xl"/>
+				<EditArtworkForm 
+					prevTitle={title} 
+					prevDate={date} 
+					prevTypeTag={typeTag} 
+					prevDescription={description}
+					prevStyle={style}
+					prevSupport={support}
+					userId={userId}
+					artworkId={artworkId} />
+				<button onClick={showEdit} className="flex items-center"><ModifyButton />Modifier l'oeuvre</button>
+				<Link href="/mon-profil-artiste" onClick={deleteArtwork} className="flex items-center"><RiDeleteBin6Line/>Supprimer l'oeuvre</Link>
+				{/* <SignalButton size="md" sizeIcon="3xl"/> */}
 			</div>
 		</div>
     )

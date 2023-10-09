@@ -2,7 +2,9 @@
 import axiosInstance from '@/src/utils/axios';
 import Carousel from "@/src/components/testCarousel/Carousel";
 import UserPublicInfos from "@/src/components/UserProfilPublic/UserPublicInfos";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { Collection, Artwork } from "@/src/@types";
+import ScrollButton from '@/src/components/Buttons/ScrollButton';
 
 
 interface UserPublicProps {
@@ -75,21 +77,17 @@ const imageList = [
 ];
 
 export default function UserPublic({params}: UserPublicProps) {
-  const [user, setUser] = useState({
-    nickname: "",
-    town: "",
-    country: "",
-    biography: "",
-    avatar: "",
-    like: 0,
-  });
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [ userLocal, setUserLocal] = useState<any>();
+  const [ favoris, setFavoris] = useState<Collection>();
+  
   
   useEffect(() => {
     const getUser = (id: string) => {
       axiosInstance.get(`/users/${id}`)
       .then(res => {
         console.log(res.data);
-        setUser(res.data);
+        setUserLocal(res.data);
       }).catch(err => {
         console.log(err);
         throw err;
@@ -97,24 +95,52 @@ export default function UserPublic({params}: UserPublicProps) {
     }
     getUser(params.id);
   }
-  , [params.id]);
+  , []);
+
+  useEffect(() => {
+    const getcollections = (id: string) => {
+        axiosInstance.get<Artwork[]>(`/users/${id}/favorites`)
+        .then(res => {
+            console.log("res.data collections", res.data);
+            setFavoris({
+              id: 1,
+              title: "Favoris",
+              artworks: res.data
+            });                   
+        }).catch(err => {
+            console.log(err);
+            throw err;
+        })
+    }
+    getcollections(params.id);
+  }
+  , []);
 
   return (
-    <div className="mx-4 md:mx-auto md:w-4/5">
-      <div className="mt-4 sm:mt-2 md:mt-10">
-        <UserPublicInfos nickname={user.nickname} town={user.town} country={user.country} avatar={user.avatar} likedCount={user.like} biography={user.biography} />
-      </div>
-      <section className="h-full md:h-2/3 mt-20">
-        <div className='relative flex mt-8 mb-4 w-full md:w-2/5'>
-          <h3 className="text-xl font-extrabold mx-auto md:ml-20">
-            Oeuvres ajoutées aux favoris
-          </h3>
+    <>
+    {userLocal && favoris && 
+    <main className="h-[85vh] flex flex-col" ref={scrollContainerRef}>     
+        <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:h-[40%] md:items-center md:flex-row md:py-2 sm:py-4">
+          <div className="md:w-2/3">
+            <UserPublicInfos 
+              nickname={userLocal.nickname}
+              biography={userLocal.biography}
+              avatar={userLocal.avatar}
+              town={userLocal.town}
+              country={userLocal.country}
+              likedCount={userLocal.like}
+            /> 
+          </div>  
         </div>
-        <div className='h-160 flex'>
-        <Carousel imageList={imageList} page="user" />
-        </div>
-      </section>
-    </div>
+        <section className="sm:flex-grow flex flex-col justify-start pt-4">
+          <>
+            <h3 className="text-xl font-extrabold sm:mx-auto w-[84vw] text-left py-4">Oeuvres ajoutées aux favoris</h3>                      
+            <Carousel collection={favoris} page="user" />     
+          </>       
+        </section>
+  </main> }  
+    </>
+           
   );
 }
 

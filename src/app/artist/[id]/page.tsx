@@ -1,9 +1,11 @@
 'use client';
 import axiosInstance from '@/src/utils/axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Carousel from "@/src/components/testCarousel/Carousel";
 import ArtistPublicInfos from '@/src/components/ArtistProfilPublic/ArtistPublicInfos';
 import ContactArtistPublic from '@/src/components/ArtistProfilPublic/ContactArtistPublic';
+import { Collection } from "@/src/@types";
+import ScrollButton from '@/src/components/Buttons/ScrollButton';
 
 
 interface ArtistPublicProps {
@@ -12,85 +14,18 @@ interface ArtistPublicProps {
   }
 }
 
-const imageList = [
-  { 
-    id: "1",
-    url: "https://picsum.photos/id/950/5000/3333"
-},
-  {
-  id: "2",
-  url: "https://picsum.photos/id/306/1024/768",
-},
-  {
-    id: "3",
-  url: "https://picsum.photos/id/791/5000/3333"
-},
-
-  {
-    id: "4",
-  url: "https://picsum.photos/id/1073/5000/3333"
-},
-
-  {
-    id: "5",
-  url: "https://picsum.photos//id/947/5000/3333"
-},
-
-  {
-    id: "6",
-  url: "https://picsum.photos/id/855/5000/3333"
-},
-
-  {
-    id: "7",
-  url: "https://picsum.photos/id/783/4096/2731"
-},
-
-  {
-    id: "8",
-  url: "https://picsum.photos//id/867/4288/2848"
-},
-  
-  {
-    id: "9",
-  url: "https://picsum.photos/id/846/4000/3000"
-},
-  { 
-    id: "10",
-    url: "https://picsum.photos/id/881/3000/2000"
-},
-  {
-  id: "11",
-  url: "https://picsum.photos/id/723/5000/3333",
-},
-  {
-    id: "12",
-  url: "https://picsum.photos/id/679/2448/2448"
-},
-
-  {
-    id: "13",
-  url: "https://picsum.photos/id/639/2365/1774"
-},
-
-];
-
 export default function ArtistPublic({params}: ArtistPublicProps) {
-  const [user, setUser] = useState({
-    nickname: "",
-    town: "",
-    country: "",
-    biography: "",
-    avatar: "",
-    liked: 0,
-  });
-  
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [ userLocal, setUserLocal] = useState<any>();
+  const [ collections, setCollections] = useState<Collection[]>();
+  const [ collectionsFullScreen, setCollectionsFullScreen] = useState<Collection[]>();
+
   useEffect(() => {
     const getUser = (id: string) => {
       axiosInstance.get(`/users/${id}`)
       .then(res => {
         console.log(res.data);
-        setUser(res.data);
+        setUserLocal(res.data);
       }).catch(err => {
         console.log(err);
         throw err;
@@ -98,35 +33,89 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
     }
     getUser(params.id);
   }
-  , [params.id]);
+  , []);
+
+  useEffect(() => {
+    const getcollections = (id: string) => {
+        axiosInstance.get<Collection[]>(`/users/${id}/collections`)
+        .then(res => {
+            console.log("res.data collections", res.data);
+            setCollections(res.data); 
+            setCollectionsFullScreen(res.data.slice(1));                  
+        }).catch(err => {
+            console.log(err);
+            throw err;
+        })
+    }
+    getcollections(params.id);
+  }
+  , []);
+
+  const scrollToNextViewport = () => {
+    if (scrollContainerRef.current) {     
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollTop + window.innerHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollToPreviousViewport = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollTop - window.innerHeight,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
-    <div className="mx-4 md:mx-auto md:w-4/5">
-      <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
-        <div className="md:w-3/5 md:pr-4">
-          <ArtistPublicInfos
-          nickname={user.nickname}
-          town={user.town}
-          country={user.country}
-          avatar={user.avatar}
-          biography={user.biography}
-          likedCount={user.liked}
-          />
-        </div>
-        <div className="md:pl-4 flex justify-start">
-          <ContactArtistPublic />
-        </div>
+    <>
+    {userLocal && collections && collectionsFullScreen &&
+    <main className="overflow-auto snap-y snap-mandatory h-[85vh]" ref={scrollContainerRef}>
+    <div className="sm:h-screen snap-start">
+    <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:flex-row md:py-2 sm:py-4">
+      <div className="md:w-1/2">
+      <ArtistPublicInfos 
+        nickname={userLocal.nickname}
+        town={userLocal.town}
+        country={userLocal.country}
+        biography={userLocal.biography}
+        avatar={userLocal.avatar}
+        likedCount={userLocal.likedCount}
+      />
       </div>
-        <section className="h-full md:h-2/3 mt-10">
-          <div className='relative flex mt-8 mb-4 w-full md:w-2/5'>
-            <h3 className="text-xl font-extrabold mx-auto md:ml-20">
-              Titre de la collection
-            </h3>
-          </div>
-          <div className='h-160 flex'>
-            <Carousel imageList={imageList} page="user" />
-          </div>
-        </section>
+      <div className="md:w-1/2"> 
+      <ContactArtistPublic />
+      </div>
     </div>
+    <section className="sm:flex-grow h-[85vh] ">
+      <div className="flex flex-col gap-4 items-start w-[90vw] py-2 md:w-[84vw] mx-auto">
+        {collections.length > 0 && <h3 className="text-xl font-extrabold sm:mr-16">Collection : {collections[0].title}</h3> }     
+      </div>
+      {collections.length > 0 && 
+      <>
+      <Carousel collection={collections[0]} page="user" addButton />     
+      <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />
+      </> }        
+    </section>
+    </div>
+  
+  
+  {collectionsFullScreen.map((collection, index) => (
+    <section key={index} className="flex flex-col items-center justify-around h-[85vh] snap-start" >
+      <ScrollButton direction="up" onClick={scrollToPreviousViewport} />        
+        <div>
+          <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
+            {collection.title}
+          </h3>
+          <Carousel collection={collection} page="user" addButton />
+        </div>  
+      {index < collectionsFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}
+    </section>
+  ))}
+  </main> }  
+    </>
+           
   );
 }

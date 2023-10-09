@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useContext } from 'react';
+import Image from 'next/image';
 import { UserContext } from '@/src/contexts/UserContext';
 import axiosInstance from '@/src/utils/axios';
 import { AiFillHeart } from 'react-icons/ai';
 import ModifyButton from '../Buttons/ModifyButton';
 import SaveButton from '../Buttons/SaveButton';
+import EditAvatarButton from '../Buttons/EditAvatarButton';
 
 interface UserPublicInfosProps {
     nickname: string;
@@ -29,7 +31,13 @@ export default function UserPublicInfosPrivateProfile({
     const [townState, setTownState] = useState('');
     const [countryState, setCountryState] = useState('');
     const [biographyState, setBiographyState] = useState('');
+    const [uploadUrl, setUploadUrl] = useState("");
     const [isEditing, setIsEditingState] = useState(false);
+
+    const handleOnUpload = (result: any) => {
+        console.log(result.info);
+        setUploadUrl(result.info.secure_url);  
+      }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -43,7 +51,11 @@ export default function UserPublicInfosPrivateProfile({
         if(!formData.get('country')) formData.delete('country');
         if(!formData.get('nickname')) formData.delete('nickname');
 
-        const objData = Object.fromEntries(formData);       
+        const objData = Object.fromEntries(formData);     
+        
+        if (uploadUrl) {
+            objData.avatar = uploadUrl;
+          }
 
         axiosInstance.patch(`/users/${user.id}`, objData)
             .then((res) => {
@@ -61,8 +73,9 @@ export default function UserPublicInfosPrivateProfile({
             <div className="absolute top-2 right-2">
                 <ModifyButton onClick={() => setIsEditingState(!isEditing)} />
             </div>
-            <div className='m-1 w-32 h-32 rounded-full overflow-hidden relative mb-4 md:mb-0'>
-                <img src={avatar} alt="Profile" className="absolute" />
+            <div className={`m-1 w-32 h-32 rounded-full overflow-hidden mb-4 md:mb-0 ${isEditing ? 'border-gray-300 border-2' : '' }`}>
+                {isEditing ? <EditAvatarButton handleOnUpload={handleOnUpload} /> : 
+                <Image src={avatar} width={200} height={200} alt="Profile" className="object-none h-full" />}
             </div>
             <div className='w-full md:w-5/6 mx-auto flex flex-col justify-center ml-4'>
                 {isEditing ? (
@@ -84,7 +97,7 @@ export default function UserPublicInfosPrivateProfile({
                                 onChange={(e) => setTownState(e.target.value)} 
                                 className='p-2 border rounded w-2/3'
                                 name="town"
-                            />, 
+                            />
                             <input 
                                 type="text" 
                                 value={countryState} 

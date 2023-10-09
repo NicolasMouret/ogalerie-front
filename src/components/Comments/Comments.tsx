@@ -55,6 +55,7 @@ export default function CommentsBlock({comments}: {comments: comment[]}) {
         nickname={comment.owner}
         date={comment.created_at}
         content={comment.content}
+        userId={comment.owner_id.toString()}
       />
     )
   })
@@ -74,7 +75,7 @@ export default function CommentsBlock({comments}: {comments: comment[]}) {
   }
 
   return (
-    <div className="flex flex-col justify-between overflow-hidden pt-2 h-[77vh] md:h-[35vh] w-[95vw] md:w-[45vw] rounded-2xl border-gray-400 border-2">
+    <div className="flex flex-col justify-between overflow-hidden pt-2 h-[77vh] md:h-[35vh] md:max-h-[400px] w-[95vw] md:w-[700px] rounded-2xl border-gray-400 border-2">
       <div ref={commentsContainerRef} className="flex flex-col justify-between gap-4 overflow-auto h-[75%] pl-6 py-2">
         {commentsList}
       </div>

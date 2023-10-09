@@ -45,16 +45,22 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
   return (
     <>
     {artwork && userId && 
-    <div className="flex flex-col md:flex-row items-center gap-6 mx-auto mt-4 md:pl-8 md:mt-0 h-[85vh] w-[90vw]">
+    <div className="flex flex-col md:flex-row md:justify-center items-center gap-6 mx-auto mt-4 md:mt-0 h-[85vh] w-[90vw] md:w-[1500px]">
+      <div className="w-[45%] flex items-center h-full py-10">
         <Image
-        className="mx-auto md:mx-0"
+        className="mx-auto"
         src={artwork.uri}
         alt="image"
-        width={600}
-        height={600}
+        width={700}
+        height={800}
+        style={{
+           objectFit: "cover",
+          }}
         />
-     <div className="flex flex-col">
+      </div>
+      <div className="flex flex-col gap-12 justify-center h-full">
         <ArtworkInfos
+            ownerId={artwork.owner_id.toString()}
             setIsFaves={setIsFaves}
             setIsLiked={setIsLiked}
             isFaves={isFaves!}
@@ -70,8 +76,8 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
             style={artwork.tags[2] === undefined ? '' : `#${artwork.tags[2].name}`}
             description={artwork.description}/>
         <CommentsBlock comments={artwork.comment} />
-     </div>
-  </div>}
+      </div>
+    </div>}
     </>
   );
 }

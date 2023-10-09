@@ -30,6 +30,7 @@ export default function AddArtworkForm({collectionId, userId}: AddArtworkFormPro
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [uploadUrl, setUploadUrl] = useState("");
+  console.log(collectionId);
 
   const closeModal = () => {
     setShowModalAddArtwork(false);

@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 
 interface SlideMobileProps {
     url: string | StaticImageData;
@@ -7,7 +8,8 @@ interface SlideMobileProps {
 
 export default function SlideMobile({url, artworkId}: SlideMobileProps) {
   return (
-    <Image className="flex-shrink-0" 
+    <Link className="flex-shrink-0" href={`/artwork/${artworkId}`}>
+      <Image 
     alt="image test" 
     width={400} 
     height={350} 
@@ -21,6 +23,8 @@ export default function SlideMobile({url, artworkId}: SlideMobileProps) {
         //à voir à terme si ça rend bien avec tout
         objectFit: "cover",
       }}
-     />)
+     />
+      </Link>
+    )
 };
 

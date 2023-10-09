@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-export default function SearchBar({ onSearchChange }) {
+interface SearchBarProps {
+    onSearchChange: (query: string) => void;
+}
+
+export default function SearchBar({ onSearchChange }: SearchBarProps) {
     const [searchQuery, setSearchQuery] = useState('');
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setSearchQuery(value);
         onSearchChange(value);

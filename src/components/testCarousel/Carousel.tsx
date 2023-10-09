@@ -12,6 +12,8 @@ interface CarouselProps {
     collection: Collection;
     page: string;
     addButton?: boolean;
+    collectionId: string;
+    handleAddClick?: (collectionId: string) => void;
 }
 
 //Ce sera le composant Carousel à utiliser dans les pages
@@ -19,7 +21,7 @@ interface CarouselProps {
 //pour afficher le carousel correspondant
 //Prop page = "home" pour les 4 images ou "user" pour les 3 images
 //Prop addButton = true pour afficher le bouton d'ajout d'oeuvre
-export default function Carousel({collection, page, addButton}: CarouselProps) {
+export default function Carousel({collection, page, addButton, collectionId, handleAddClick}: CarouselProps) {
   //useWindowSize().width renvoie la largeur de l'écran (en px)
   const screenWidth = useWindowSize().width || 800;
   const [isMobile, setIsMobile] = useState(false);
@@ -28,7 +30,8 @@ export default function Carousel({collection, page, addButton}: CarouselProps) {
 
   const handleClick = () => {
     setShowModalAddArtwork(true);
-    console.log(showModalAddArtwork);
+    handleAddClick!(collectionId);
+    console.log(collectionId); 
   }
 
   //useEffect pour mettre à jour le state isMobile

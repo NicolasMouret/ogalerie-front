@@ -9,83 +9,13 @@ import ScrollButton from "@/src/components/Buttons/ScrollButton";
 import AddCollectionButton from "@/src/components/Buttons/AddCollectionButton";
 import { Collection } from "@/src/@types";
 
-
-const collection1 = [
-  { 
-    id: "1",
-    url: "https://picsum.photos/id/950/5000/3333"
-},
-  {
-  id: "2",
-  url: "https://picsum.photos/id/306/1024/768",
-},
-  {
-    id: "3",
-  url: "https://picsum.photos/id/791/5000/3333"
-},
-
-  {
-    id: "4",
-  url: "https://picsum.photos/id/1073/5000/3333"
-},
-
-  {
-    id: "5",
-  url: "https://picsum.photos//id/947/5000/3333"
-}
-];
-
-const collection2 = [
-  {
-    id: "6",
-  url: "https://picsum.photos/id/855/5000/3333"
-},
-
-  {
-    id: "7",
-  url: "https://picsum.photos/id/783/4096/2731"
-},
-
-  {
-    id: "8",
-  url: "https://picsum.photos//id/867/4288/2848"
-},
-  
-  {
-    id: "9",
-  url: "https://picsum.photos/id/846/4000/3000"
-},
-];
-
-const collection3 = [
-  { 
-    id: "10",
-    url: "https://picsum.photos/id/881/3000/2000"
-},
-  {
-  id: "11",
-  url: "https://picsum.photos/id/723/5000/3333",
-},
-  {
-    id: "12",
-  url: "https://picsum.photos/id/679/2448/2448"
-},
-
-  {
-    id: "13",
-  url: "https://picsum.photos/id/639/2365/1774"
-},
-]
-
-// const collectionsMock = [collection1, collection2, collection3];
-// const collectionsMockFullScreen = collectionsMock.slice(1);
-
 export default function UserPrivate() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [ userLocal, setUserLocal] = useState<any>();
   const [userId, setUserId] = useState('');
   const [ collections, setCollections] = useState<Collection[]>();
   const [ collectionsFullScreen, setCollectionsFullScreen] = useState<Collection[]>();
+  const [collectionId, setCollectionId] = useState('');
 
   useEffect(() => {
     setUserId(localStorage.getItem('id')!);
@@ -125,7 +55,9 @@ export default function UserPrivate() {
   }
   , []);
 
-  
+  const handleAddClick = (collectionId: string) => {
+    setCollectionId(collectionId);
+  }
 
   const scrollToNextViewport = () => {
     if (scrollContainerRef.current) {     
@@ -149,53 +81,52 @@ export default function UserPrivate() {
     <>
     {userLocal && userId && collections && collectionsFullScreen &&
     <main className="overflow-auto snap-y snap-mandatory h-[85vh]" ref={scrollContainerRef}>
-    <div className="sm:h-screen snap-start">
-    <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:flex-row md:py-2 sm:py-4">
-      <div className="md:w-1/2">
-      <UserPublicInfosPrivateProfile 
-        nickname={userLocal.nickname} 
-        town={userLocal.town} 
-        country={userLocal.country} 
-        biography={userLocal.biography}
-        avatar={userLocal.avatar}
-        likedCount={userLocal.like} />
+      <AddArtworkForm collectionId={collectionId} userId={userId}/>
+      <div className="sm:h-screen snap-start">
+      <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:flex-row md:py-2 sm:py-4">
+        <div className="md:w-1/2">
+        <UserPublicInfosPrivateProfile 
+          nickname={userLocal.nickname} 
+          town={userLocal.town} 
+          country={userLocal.country} 
+          biography={userLocal.biography}
+          avatar={userLocal.avatar}
+          likedCount={userLocal.like} />
+        </div>
+        <div className="md:w-1/2"> 
+        <UserPrivateInfos 
+          lastname={userLocal.lastname} 
+          firstname={userLocal.firstname} 
+          birthday={userLocal.birthday} 
+          email={userLocal.email} />
+        </div>
       </div>
-      <div className="md:w-1/2"> 
-      <UserPrivateInfos 
-        lastname={userLocal.lastname} 
-        firstname={userLocal.firstname} 
-        birthday={userLocal.birthday} 
-        email={userLocal.email} />
+      <section className="sm:flex-grow h-[85vh] ">
+        <div className="flex flex-col gap-4 items-start w-[90vw] py-2 md:w-[84vw] mx-auto">
+          <AddCollectionButton userId={userId} />
+          {collections.length > 0 && <h3 className="text-xl font-extrabold sm:mr-16">Collection : {collections[0].title}</h3> }     
+        </div>
+        {collections.length > 0 && 
+        <>
+        <Carousel  handleAddClick={handleAddClick} collectionId={collections[0].id.toString()} collection={collections[0]} page="user" addButton />     
+        <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />
+        </> }        
+      </section>
       </div>
-    </div>
-    <section className="sm:flex-grow h-[85vh] ">
-      <div className="flex flex-col gap-4 items-start w-[90vw] py-2 md:w-[84vw] mx-auto">
-        <AddCollectionButton userId={userId} />
-        {collections.length > 0 && <h3 className="text-xl font-extrabold sm:mr-16">Collection : {collections[0].title}</h3> }     
-      </div>
-      {collections.length > 0 && 
-      <>
-      <AddArtworkForm collectionId={collections[0].id.toString()} userId={userId}/>
-      <Carousel collection={collections[0]} page="user" addButton />     
-      <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />
-      </> }        
-    </section>
-    </div>
-  
-  
-  {collectionsFullScreen.map((collection, index) => (
-    <section key={index} className="flex flex-col items-center justify-around h-[85vh] snap-start" >
-      <ScrollButton direction="up" onClick={scrollToPreviousViewport} />        
-        <div>
-          <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
-            {collection.title}
-          </h3>
-          <AddArtworkForm collectionId={collection.id.toString()} userId={userId}/>
-          <Carousel collection={collection} page="user" addButton />
-        </div>  
-      {index < collectionsFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}
-    </section>
-  ))}
+    
+    
+    {collectionsFullScreen.map((collection, index) => (
+      <section key={index} className="flex flex-col items-center justify-around h-[85vh] snap-start" >
+        <ScrollButton direction="up" onClick={scrollToPreviousViewport} />        
+          <div>
+            <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
+              {collection.title}
+            </h3>
+            <Carousel handleAddClick={handleAddClick} collectionId={collection.id.toString()} collection={collection} page="user" addButton />
+          </div>  
+        {index < collectionsFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}
+      </section>
+    ))}
   </main> }  
     </>
            

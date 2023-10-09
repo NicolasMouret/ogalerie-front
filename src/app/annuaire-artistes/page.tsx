@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axiosInstance from '@/src/utils/axios';
 import AlphabetFilter from '@/src/components/AlphabetFilter/AlphabetFilter';
 import SearchBarAnnuaire from '@/src/components/SearchBarAnnuaire/SearchBarAnnuaire';
+import Link from 'next/link';
 
 interface Artist {
   id: number;
@@ -51,10 +52,6 @@ const filteredArtistsByLetter = artists.filter((artist) =>
   artist.lastname.toLowerCase().startsWith(searchQuery.toLowerCase())
 );
 
-const goToArtistProfile = (artistId: number) => {
-  window.location.href = `/artist/${artistId}`;
-};
-
   return (
     <>
       <main className="flex h-[75vh] flex-col items-center gap-4 p-24">
@@ -70,13 +67,10 @@ const goToArtistProfile = (artistId: number) => {
           <div className="flex flex-col md:flex-row gap-5 results-container mt-5">
             {(isAlphabetSearch ? filteredArtistsByLetter : filteredArtists).map((artist) => (
               <div key={artist.id} className="flex flex-col items-center">
-                <div 
-                  onClick={() => goToArtistProfile(artist.id)} 
-                  style={{cursor: 'pointer', textAlign: 'center'}}
-                >
+                <Link href={localStorage.getItem('id') === artist.id.toString() ? '/mon-profil-artiste' : `/artist/${artist.id}`} >
                   <img src={artist.avatar} alt={artist.nickname} className="w-24 h-24 rounded-full"/>
                   <span>{artist.nickname}</span>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

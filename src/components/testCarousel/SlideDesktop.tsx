@@ -15,7 +15,8 @@ export default function SlideDesktop({url, page, artworkId}: SlideDesktopProps) 
   if (page === "home") {
     return (
       //Le padding permet de créer un espace entre les images
-        <Image className="flex-shrink-0 px-2" 
+        <Link href={`/artwork/${artworkId}`} className="min-w-[21vw] h-[480px]">
+          <Image className="flex-shrink-0 px-2"
         alt="image test" 
         width={500} 
         //Cette prop sert à définir la hauteur à occuper dans la page tant que l'image n'est pas chargée
@@ -28,11 +29,13 @@ export default function SlideDesktop({url, page, artworkId}: SlideDesktopProps) 
            height: `${480}px`,
            objectFit: "cover",
           }}
-          />)
+          />
+          </Link>)
   //La page user correspond à 3 images dans le carousel
   } else if (page === "user") {
     return (
-        <Image className="flex-shrink-0 px-2" 
+        <Link href={`/artwork/${artworkId}`} className="min-w-[28vw] h-[330px]">
+          <Image className="flex-shrink-0 px-2"
         alt="image test" 
         width={800} 
         height={350} 
@@ -43,6 +46,7 @@ export default function SlideDesktop({url, page, artworkId}: SlideDesktopProps) 
            height: `${330}px`,
            objectFit: "cover",
           }}
-          />)
+          />
+          </Link>)
   }
 };

@@ -1,185 +1,175 @@
 "use client";
 
-import React, { ChangeEvent, FormEvent, useState, useEffect } from 'react';
+import React, { FormEvent, useState, useContext } from 'react';
+import  AxiosInstance  from '@/src/utils/axios';
+import { UiContext } from '@/src/contexts/UiContext';
 import Image from 'next/image';
-import logo from "../../assets/images/logosmall.png";
 import CloseButton from '../Buttons/CloseButton';
+import CloudinaryUpload from '../Buttons/CloudinaryUpload';
+import { RxCross2 } from 'react-icons/rx';
 
-// Define data structure for tags associated with the artwork.
-interface TagData {
-  type: string;
-  support: string;
-  style: string;
-}
-// Define the shape of form data for type checking.
-interface FormData {
-  title: string;
-  description: string;
-  date: string;
-  tag: TagData;
-  imageUrl: {
-    path: string;
-    name: string;
-};
-  };
-  // Define props for the EditArtworkForm component.
 interface EditArtworkFormProps {
-  testData: FormData;
-  showModal: boolean;
-  closeModal: () => void;
+  collectionId?: string;
+  prevTitle: string;
+  prevDate: string;
+  prevTypeTag?: string;
+  prevSupport?: string;
+  prevStyle?: string;
+  prevDescription: string;
+	userId: string;
+	artworkId: string;
+
 }
 
-const EditArtworkForm: React.FC<EditArtworkFormProps> = ({ testData, showModal, closeModal }) => {
-  // State to manage and store the form data.
-  const [formData, setFormData] = useState<FormData>(testData);
-  
-  useEffect(() => {
-    setFormData(testData);
-  }, [testData]);
-
+export default function EditArtworkForm({userId, prevDate, prevTitle, prevStyle, prevSupport, prevTypeTag, prevDescription, artworkId }: EditArtworkFormProps) {
+  const { showModalEditArtwork, setShowModalEditArtwork } = useContext(UiContext);
   // State to display error messages.
   const [error, setError] = useState<string | null>(null);
+  // State to store added images
+  const [image, setImage] = useState<string | null>();
+  // State to store the selected artowork type (tags).
+  const [type, setType] = useState("");
+   // State to store the selected artwork support (tags).
+  const [support, setSupport] = useState("");
+   // State to store the selected artwork style (tags).
+  const [style, setStyle] = useState("");
 
-  // State to manage image data and display
-  const [image, setImage] = useState(testData.imageUrl.path);
-  const [imageName, setImageName] = useState(testData.imageUrl.name);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [uploadUrl, setUploadUrl] = useState("");
 
-  useEffect(() => {
-    // setImage(testData.imageUrl);
-  }, [testData.imageUrl]);
-
-  // States to manage the chosen artwork tags.
-  const [type, setType] = useState(testData.tag.type);
-  const [support, setSupport] = useState(testData.tag.support);
-  const [style, setStyle] = useState(testData.tag.style);
-
-  useEffect(() => {
-    setType(testData.tag.type);
-    setSupport(testData.tag.support);
-    setStyle(testData.tag.style);
-  }, [testData]);
-
-  // Ref for image input to clear it if needed.
+  const closeModal = () => {
+    setShowModalEditArtwork(false);
+  }
   const imageInputRef = React.useRef<HTMLInputElement>(null);
 
-  // Handle changes in input fields and update.
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const clearForm = () => {
+    setTitle("");
+    setDescription("");
+    setDate("");
+    setType("");
+    setSupport("");
+    setStyle("");
+    setImage(null);
+    setError(null);
+  }
+
+  //get the url of the uploaded image
+  const handleOnUpload = (result: any) => {
+    console.log(result.info);
+    setImage(`${result.info.original_filename}.${result.info.format}`);
+    setUploadUrl(result.info.secure_url);  
+  }
 
   // Handle form submission.
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Données du formulaire modifiées:", formData, "Image:", image, "Type:", type, "Support:", support, "Style:", style);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
-   // Validation
-    if (!formData.title || !formData.description || !formData.date || !image) {
-     setError("Merci de ne pas laisser de champ vide !");
-     return 
-    } 
-    if (!type || !support || !style) {
-      setError("Merci de choisir 3 tags");
-      return;
+    if(!formData.get('title')) formData.delete('title');
+    if(!formData.get('description')) formData.delete('description');
+    if(!formData.get('date')) formData.delete('date');
+    if(!formData.get('type')) formData.delete('type');
+    if(!formData.get('support')) formData.delete('support');
+    if(!formData.get('style')) formData.delete('style');
+
+    const objData = Object.fromEntries(formData);
+
+    if (uploadUrl) {
+      objData.uri = uploadUrl;
     }
+   
+    console.log(objData);
 
-    closeModal();
-
-    // Test - simulated response.
-    setTimeout(() => {
-      alert("Oeuvre modifiée avec succès !");
-      setError(null);
+    AxiosInstance.patch(`artworks/${artworkId}`, objData)
+    .then((res) => {
+      console.log(res.data);
+      clearForm();
       closeModal();
-    }, 1000); 
-  }
-   // Remove image.
-  const removeImage = () => {
-    // setImage(null);
-    setImageName("");
-    if (imageInputRef.current) {
-      imageInputRef.current.value = "";
-    }
+    }).catch((err) => {
+      console.log(err);
+    } )
   }
 
   return (
     <>
       {/* Background overlay when modal is open */}
-      <div className={`fixed inset-0 bg-gray ${showModal ? 'opacity-30' : 'opacity-0'} z-40 transition-opacity duration-300`}></div>
+      <div onClick={closeModal} className={`fixed inset-0 bg-black ${showModalEditArtwork ? 'opacity-40' : 'hidden'} z-40 transition-opacity duration-300`}></div>
      
       {/* modal */}
-      <div className={`fixed inset-0 flex items-center justify-center z-50 ${showModal ? '' : 'hidden'}`}>
-        <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[512px] mx-auto sm:w-3/4">
+      <div className={`fixed inset-0 flex md:w-[512px] md:h-[560px] my-auto mx-auto items-center justify-center z-50 ${showModalEditArtwork ? '' : 'hidden'}`}>
+        <div className="relative bg-gray-200 px-4 md:p-8 sm:p-8 rounded-lg h-[660px] md:h-[575px] w-[98vw] md:w-[512px] mx-auto sm:w-3/4">
          
           {/* Close button for modal */}
           <CloseButton
             className="absolute top-4 left-4 text-gray-700 hover:bg-gray-200 active:bg-gray-400 p-1 rounded-full w-10 h-10 flex items-center justify-center"
-            onClick={() => {;
-              setError(null);
+            onClick={() => {
+              clearForm();
               closeModal();  
           }} />
 
-          {/* Logo */}
-          <div className="flex justify-center mb-1 md:flex">
+          {/* Platform logo */}
+          <div className="flex justify-center mb-4">
             <Image
               alt="Logo of the O'Galerie platform"
-              src={logo}
+              src={'/images/logosmall.png'}
               width={150}
               height={150}
             />
           </div>
 
-          {/* Form title */}
-          <h1 className="text-center font-bold text-gray-700 mb-4 text-base ">Modifier une oeuvre</h1>
+          {/* Form heading */}
+          <h1 className="text-center font-bold text-gray-700 mb-4 text-base ">Modifier mon oeuvre</h1>
           
-          {/* Display error message */}
+          {/* Display error messages */}
           {error && <p className="text-sm text-red-500 text-center p-3 mt-4">{error}</p>}
 
           {/* Form */}
           <form onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Modifier le titre de l'oeuvre"
-              value={formData.title || ""}
+              placeholder={prevTitle}
+              value={title}
               name="title"
-              onChange={handleChange}
-              className={`block w-full p-2 mb-4 rounded text-sm ${!formData.title && error ? 'border-red-500' : ''}`}
+              onChange={(e) => setTitle(e.target.value)}
+              className={`block w-full p-2 mb-4 rounded text-sm `}
             />
             <input
               type="text"
-              placeholder="Modifier la description de l'oeuvre"
-              value={formData.description || ""}
+              placeholder={prevDescription}
+              value={description}
               name="description"
-              onChange={handleChange}
-              className={`block w-full p-2 mb-4 rounded pr-10 text-sm ${!formData.description && error ? 'border-red-500' : ''}`}
+              onChange={(e) => setDescription(e.target.value)}
+              className={`block w-full p-2 mb-4 rounded pr-10 text-sm `}
             />
             <input
-              type="number"
+              type="text"
               min="1900"
               max="2099"
-              placeholder="Modifier l'année de création"
-              value={formData.date || ""}
+              placeholder={prevDate}
+              value={date}
               name="date"
-              onChange={handleChange}
-              className={`block w-full p-2 mb-4 rounded text-sm ${!formData.title && error ? 'border-red-500' : ''}`}
+              onChange={(e) => setDate(e.target.value)}
+              className={`block w-full p-2 mb-4 rounded text-sm `}
             />
 
-            <p className="pt-2 pb-2 text-sm text-gray-700 ">Tags associés :</p>
+            <p className="pt-2 pb-2 text-sm text-gray-700 ">Ajouter les tags associés :</p>
             <div className="relative grid grid-cols-1 md:grid-cols-3 gap-4">
               <select
                 name="type"
                 value={type}
-                className="w-full text-sm text-gray-600 p-2 bg-white rounded"
+                className="text-sm text-gray-600 p-2 bg-white rounded"
                 onChange={e => setType(e.target.value)}>
+                
                 <option value="" disabled>Type</option>
-                <option value="Peinture">Peinture</option>
-                <option value="Dessin">Dessin</option>
-                <option value="Aquarelle">Aquarelle</option>
-                <option value="Sculpture">Sculpture</option>
-                <option value="Photo">Photo</option>
-                <option value="Autre">Autre</option>
+                <option value="peinture">Peinture</option>
+                <option value="dessin">Dessin</option>
+                <option value="aquarelle">Aquarelle</option>
+                <option value="sculpture">Sculpture</option>
+                <option value="photographie">Photo</option>
+                <option value="autre">Autre</option>
               </select>
              <select
                 name="support"
@@ -187,66 +177,54 @@ const EditArtworkForm: React.FC<EditArtworkFormProps> = ({ testData, showModal, 
                 className="p-2 text-sm text-gray-600 bg-white rounded"
                 onChange={e => setSupport(e.target.value)}>
                 <option value="" disabled>Support</option>
-                <option value="Toile">Toile</option>
-                <option value="Papier">Papier</option>
-                <option value="Bois">Bois</option>
-                <option value="Textile">Textile</option>
-                <option value="Photo">Photo</option>
-                <option value="Autre">Autre</option>
+                <option value="toile">Toile</option>
+                <option value="papier">Papier</option>
+                <option value="bois">Bois</option>
+                <option value="textile">Textile</option>
+                <option value="photo">Photo</option>
+                <option value="autre">Autre</option>
               </select>
               <select
                 name="style"
                 value={style}
-                className="w-full text-sm text-gray-600 p-2 bg-white rounded"
+                className="text-sm text-gray-600 p-2 bg-white rounded"
                 onChange={e => setStyle(e.target.value)}>
               <option value="" disabled>Style</option>
-                <option value="Portrait">Portrait</option>
-                <option value="Figuratif">Figuratif</option>
-                <option value="Paysage">Paysage</option>
-                <option value="Abstrait">Abstrait</option>
-                <option value="Autre">Autre</option>
+                <option value="portrait">Portrait</option>
+                <option value="figuratif">Figuratif</option>
+                <option value="paysage">Paysage</option>
+                <option value="abstrait">Abstrait</option>
+                <option value="autre">Autre</option>
               </select>
             </div>
            
             <div className="mt-4">
-              <div className="relative">
-                <button className="py-2 px-4 mt-2 border-2 text-m font-medium text-gray-700 border-gray-300 rounded  ">
-                 Remplacer l'image
-                </button>
-
-                <input
-                  type="file"
-                  ref={imageInputRef}
-                  name="image"
-                  id="image"
-                  accept="image/*"
-                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                  onChange={e => {
-                    if (e.target.files && e.target.files.length > 0) {
-                      // setImage(e.target.files[0]);
-                      setImageName(e.target.files[0].name);
-                    }
-                  }}
-                />
+              <div className="flex justify-center py-2">
+                <CloudinaryUpload handleOnUpload={handleOnUpload} />
               </div>
 
               {image && (
-                <div className="flex items-center mt-2">
-                  <span className="ml-2 text-sm">Image actuelle: {imageName}</span>
+                <div className="flex items-center justify-center mt-2">
+                  <span className="mr-2 text-sm">{image}</span>
+
                   <button
-                    className="border border-red-500 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white flex items-center justify-center w-4 h-4 rounded-full ml-2 transition duration-150 ease-in-out text-xs font-normal"
-                    onClick={removeImage}
+                    className="border border-red-500 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white w-4 h-4 rounded-full transition duration-150 ease-in-out text-xs font-normal"
+                    onClick={() => {
+                      setImage(null);
+                      if (imageInputRef.current) {
+                        imageInputRef.current.value = "";
+                      }
+                    }}
                   >
-                    x
+                    <RxCross2 className="mx-auto" />
                   </button>
                 </div>
               )}
-            
             </div>
             {/* Submit button */}
               <button
                 type="submit"
-                className="mb-2 block mx-auto font-bold py-2 px-4 rounded-full text-gray-700 border border-gray-600 mt-8 hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200"
+                className="mt-6 block mx-auto font-bold py-2 px-8 rounded-full text-gray-700 border border-gray-600  hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200"
               >
                 Modifier
             </button>
@@ -256,4 +234,3 @@ const EditArtworkForm: React.FC<EditArtworkFormProps> = ({ testData, showModal, 
     </>
   )
 }
-export default EditArtworkForm;

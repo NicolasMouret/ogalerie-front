@@ -5,6 +5,7 @@ import axiosInstance from "@/src/utils/axios";
 import Carousel from "@/src/components/testCarousel/Carousel";
 import UserPrivateInfos from "@/src/components/UserProfilPrivate/UserPrivateInfos";
 import UserPublicInfosPrivateProfile from "@/src/components/UserProfilPrivate/UserPublicInfosPrivateProfile";
+import { Artwork, Collection } from "@/src/@types";
 
 
 const imageList = [
@@ -90,6 +91,7 @@ interface UserLocal {
 
 export default function UserPrivate(): React.JSX.Element {
   const [userLocal, setUserLocal] = useState<UserLocal>();
+  const [ favoris, setFavoris] = useState<Collection>();
 
   
   useEffect(() => {
@@ -108,10 +110,30 @@ export default function UserPrivate(): React.JSX.Element {
     getUser(id!.toString());
   }
   , []);
+
+  useEffect(() => {
+    const id = localStorage.getItem('id');
+    const getcollections = (id: string) => {
+        axiosInstance.get<Artwork[]>(`/users/${id}/favorites`)
+        .then(res => {
+            console.log("res.data collections", res.data);
+            setFavoris({
+              id: 1,
+              title: "Favoris",
+              artworks: res.data
+            });                   
+        }).catch(err => {
+            console.log(err);
+            throw err;
+        })
+    }
+    getcollections(id!.toString());
+  }
+  , []);
   
   return (
     <>
-    {userLocal && 
+    {userLocal && favoris &&
     <div className="mx-4 md:mx-auto md:w-4/5">
     <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
       <div className="md:w-1/2 md:pr-4">
@@ -131,15 +153,14 @@ export default function UserPrivate(): React.JSX.Element {
           email={userLocal.email} />
       </div>
     </div>
-    <section className="h-full md:h-2/3 mt-10">
-      <div className='relative flex mt-8 mb-4 w-full md:w-2/5'>
-        <h3 className="text-xl font-extrabold mx-auto md:ml-20">
+    <section className="sm:flex-grow flex flex-col justify-start pt-4">     
+        {favoris.artworks.length > 0 ? <h3 className="text-xl font-extrabold sm:mx-auto w-[84vw] text-left py-4">
           Oeuvres ajoutées aux favoris
-        </h3>
-      </div>
-      <div className='h-160 flex'>
-      <Carousel imageList={imageList} page="user" />
-      </div>
+        </h3> :
+        <h3 className="text-xl font-extrabold sm:mx-auto w-[84vw] text-left py-4">
+          Vous n'avez pas encore ajouté d'oeuvres à vos favoris
+          </h3>}
+      {favoris.artworks.length > 0 && <Carousel collectionId={favoris.id.toString()} collection={favoris} page="user" />}
     </section>
   </div>}
     

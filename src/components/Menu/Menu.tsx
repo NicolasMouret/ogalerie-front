@@ -20,6 +20,9 @@ export default function Menu() {
   const handleDeconnect = () => {
     setUser({logged: false});
     localStorage.removeItem('OgToken');
+    localStorage.removeItem('nickname');
+    localStorage.removeItem('situation');
+    localStorage.removeItem('id');
   }
   const handleSignIn = () => {
     setShowModalSignIn(true);
@@ -53,7 +56,7 @@ export default function Menu() {
                 Bienvenue <span className="mx-2">{user.nickname}</span>!
               </li>
               <li className="underline underline-offset-8 my-4 uppercase">
-                <Link onClick={handleClick} className="text-sm font-semibold" href="/demos/mon-profil">Mon profil</Link>
+                <Link onClick={handleClick} className="text-sm font-semibold" href={`${user.situation === 'creator' ? '/mon-profil-artiste' : '/mon-profil'}`}>Mon profil</Link>
               </li> 
               </>:
               <>
@@ -107,7 +110,7 @@ export default function Menu() {
             {user.logged ? 
             <>
               <FaUserAlt /><span className="font-bold">Utilisateur :</span><p className="text-xl">{user.nickname}</p><span className="mx-4">-</span>
-              <button className="font-semibold text-xl" onClick={handleDeconnect}>Se deconnecter</button>
+              <Link href="/" className="font-semibold text-xl" onClick={handleDeconnect}>Se deconnecter</Link>
             </>
             : 
             <>

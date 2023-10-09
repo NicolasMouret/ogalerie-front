@@ -19,7 +19,7 @@ export default function CarouselMobile({collection, addButton, onClick}: Carouse
   const { artworks } = collection;
   //Je créé un tableau de slides en utilisant le tableau d'images
   const slides = artworks.map((imageList) => {
-    return <SlideMobile key={imageList.id} url={imageList.uri} />;
+    return <SlideMobile key={imageList.id} artworkId={collection.id.toLocaleString()} url={imageList.uri} />;
   });
   if (addButton) {
     const add = () => {
