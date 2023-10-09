@@ -72,7 +72,7 @@ export default function ArtworkInfos({
 				{likes === 1 && <span><BsHeartFill className="inline text-2xl mr-1" /> {likes} like</span>}
 				{likes > 1 && <span><BsHeartFill className="inline text-2xl mr-1" /> {likes} likes</span>}
 			</div>
-			<p className="pl-4">Par <span className="underline font-bold"><Link href={`/artist/${ownerId}`}>{author}</Link></span></p>
+			<p className="pl-4">Par <span className="underline font-bold"><Link href={`${ownerId === userId ? '/mon-profil-artiste' : `/artist/${ownerId}`}`}>{author}</Link></span></p>
 			<div className="flex items-center gap-1 pl-4 mt-4">
 				<p>{date} - </p>
 				<p>{typeTag}</p>
