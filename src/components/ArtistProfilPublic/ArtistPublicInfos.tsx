@@ -24,7 +24,7 @@ export default function ArtistPublicInfos ({
         <div className='m-1 w-32 h-32 rounded-full overflow-hidden relative mb-4 md:mb-0'>
             <img src={avatar} alt="Profile" className="absolute" />
         </div>
-        <div className='w-full md:w-2/5 mx-auto flex flex-col justify-center ml-4'>
+        <div className='w-full md:w-3/5 mx-auto flex flex-col justify-center ml-4'>
             <h2 className='text-3xl font-bold mb-3'>{nickname}</h2> 
         <div className='text-2xl'>
             <span>{town}, </span>

@@ -97,6 +97,32 @@ const imageList = [
 ];
 
 export default function Home() {
+
+  const [artworkResults, setArtworkResults] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchChange = (query) => {
+    setSearchQuery(query);
+    
+    axiosInstance.get(`/artworks`)
+        .then(response => {
+            setArtworkResults(response.data);
+        })
+        .catch(error => {
+            console.error("Erreur lors de la recherche :", error);
+        });
+}
+
+  const filteredArtworks = artworkResults.filter(artwork =>
+     artwork.title.toLowerCase().includes(searchQuery.toLowerCase())
+    //  (artwork.description && artwork.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    //  (artwork.artist.firstname && artwork.firstname.toLowerCase().includes(searchQuery.toLowerCase()))
+    //  (artwork.artist.lastname && artwork.firstname.toLowerCase().includes(searchQuery.toLowerCase()))
+    //  (artwork.artist.nickname && artwork.artist.nickname.toLowerCase().includes(searchQuery.toLowerCase()))
+
+
+  );
+  
   const [collection, setCollection] = useState<Collection>();
 
   useEffect(() => {
@@ -117,13 +143,17 @@ export default function Home() {
   }
   getRandomArtworks();
   }
-  , []);
-
+  , []);       
 
   return (
     <>
       <section className="h-[75vh] flex flex-col items-center justify-center space-y-4">        
-        <SearchBar />       
+        <SearchBar onSearchChange={handleSearchChange} /> 
+        <div className="artworks-results">
+          {filteredArtworks.map(artwork => (
+            <img key={artwork.id} src={artwork.uri} alt={`Artwork ${artwork.id}`} />
+          ))}
+        </div>
         {collection && <Carousel collection={collection} page="home"/>}        
       </section>
     </>

@@ -13,10 +13,10 @@ interface Artist {
   avatar: string;
 }
 
-
 export default function Annuaire() {
   const [artists, setArtists] = useState<Artist[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isAlphabetSearch, setIsAlphabetSearch] = useState(false);
 
   useEffect(() => {
     axiosInstance.get('/users/creator')
@@ -29,11 +29,31 @@ export default function Annuaire() {
         });
 }, []);
 
+const handleSearchInputChange = (query: string) => {
+  setSearchQuery(query);
+  setIsAlphabetSearch(false);
+};
+
+const handleLetterClick = (letter: string) => {
+  setSearchQuery(letter);
+  setIsAlphabetSearch(true);
+};
+
 const filteredArtists = artists.filter((artist) =>
-    artist.nickname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    artist.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    artist.lastname.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  artist.nickname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  artist.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  artist.lastname.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+const filteredArtistsByLetter = artists.filter((artist) =>
+  artist.nickname.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
+  artist.firstname.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
+  artist.lastname.toLowerCase().startsWith(searchQuery.toLowerCase())
+);
+
+const goToArtistProfile = (artistId: number) => {
+  window.location.href = `/artist/${artistId}`;
+};
 
   return (
     <>
@@ -42,16 +62,21 @@ const filteredArtists = artists.filter((artist) =>
           Annuaire des artistes
         </h1>
         <div className="pb-3">
-          <SearchBarAnnuaire searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <SearchBarAnnuaire searchQuery={searchQuery} setSearchQuery={handleSearchInputChange} />
         </div>
-        <AlphabetFilter />
+          <AlphabetFilter onLetterClick={handleLetterClick} />
     
-        {searchQuery && filteredArtists.length > 0 && (
+          {(searchQuery && (isAlphabetSearch ? filteredArtistsByLetter : filteredArtists).length > 0) && (
           <div className="flex flex-col md:flex-row gap-5 results-container mt-5">
-            {filteredArtists.map((artist) => (
+            {(isAlphabetSearch ? filteredArtistsByLetter : filteredArtists).map((artist) => (
               <div key={artist.id} className="flex flex-col items-center">
-                <img src={artist.avatar} alt={artist.nickname} className="w-24 h-24 rounded-full"/>
-                <span>{artist.nickname}</span>
+                <div 
+                  onClick={() => goToArtistProfile(artist.id)} 
+                  style={{cursor: 'pointer', textAlign: 'center'}}
+                >
+                  <img src={artist.avatar} alt={artist.nickname} className="w-24 h-24 rounded-full"/>
+                  <span>{artist.nickname}</span>
+                </div>
               </div>
             ))}
           </div>

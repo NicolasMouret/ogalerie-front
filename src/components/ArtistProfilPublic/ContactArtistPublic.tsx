@@ -22,19 +22,20 @@ export default function ContactArtistPublic() {
       formValues.email.trim() !== '' &&
       formValues.message.trim() !== ''
     ) {
-      try {
-        await emailjs.sendForm('service_76yu40d', 'template_734vc6t', form.current!, 'td88Kkrc5HnlA8Ud1');
+        emailjs.sendForm('service_76yu40d', 'template_734vc6t', form.current!, 'td88Kkrc5HnlA8Ud1')
+        .then((result) => {
         setShowSuccessMessage(true);
         setFormValues({
           nom: '',
           email: '',
           message: ''
-        });
-      } catch (error) {
+        })
+        })
+      .catch((error) => {
         console.error(error);
-      }
+      });
     }
-  };
+  }
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -47,7 +48,7 @@ export default function ContactArtistPublic() {
 
   return (
     <>
-      <div className="w-96 mx-auto mt-8">
+      <div className="w-11/12 md:w-96 mx-auto mt-2">
         <p className="font-bold text-lg mb-2">Contactez-moi !</p>
         <div className="flex">
         <form  className="w-full" ref={form} onSubmit={handleSubmit}>
@@ -85,18 +86,20 @@ export default function ContactArtistPublic() {
             ></textarea>
           </div>
           {showSuccessMessage && (
-            <div className="bg-green-100 text-green-700 p-2 mt-2 text-center">
+            <div className="bg-green-100 text-green-700 p-2 mt-1 text-center">
               Votre message a été envoyé.
             </div>
           )}
-          </form>
+          <div className="flex justify-end mt-3">
           <button
-          type="submit"
-          className="focus:outline-none text-gray-700 ml-2 mr-2 mb-2 flex flex-col justify-end items-center"
-        >
+            type="submit"
+            className="focus:outline-none text-gray-700 ml-2 mr-2 mb-2"
+          >
           <BsSend size={30} />
-        </button>
-      </div>
+          </button>
+        </div>
+      </form>
+    </div>
     </div>
   </>
 );

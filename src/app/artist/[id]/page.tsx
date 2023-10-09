@@ -103,7 +103,7 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
   return (
     <div className="mx-4 md:mx-auto md:w-4/5">
       <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
-        <div className="md:w-1/2 md:pr-4">
+        <div className="md:w-3/5 md:pr-4">
           <ArtistPublicInfos
           nickname={user.nickname}
           town={user.town}
@@ -113,7 +113,7 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
           likedCount={user.liked}
           />
         </div>
-        <div className="md:w-1/2 md:pl-4">
+        <div className="md:pl-4 flex justify-start">
           <ContactArtistPublic />
         </div>
       </div>
