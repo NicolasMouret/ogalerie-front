@@ -72,7 +72,7 @@ export default function ArtworkInfos({
 				{likes === 1 && <span><BsHeartFill className="inline text-2xl mr-1" /> {likes} like</span>}
 				{likes > 1 && <span><BsHeartFill className="inline text-2xl mr-1" /> {likes} likes</span>}
 			</div>
-			<p className="pl-4">Par <span className="underline font-bold">{author}</span></p>
+			<p className="pl-4">Par <span className="underline font-bold"><Link href={`/artist/${ownerId}`}>{author}</Link></span></p>
 			<div className="flex items-center gap-1 pl-4 mt-4">
 				<p>{date} - </p>
 				<p>{typeTag}</p>
@@ -88,11 +88,12 @@ export default function ArtworkInfos({
 				isLiked={isLiked}
 				setIsLiked={setIsLiked}
 				/>
+				{localStorage.getItem("situation") !== "creator" &&
 				<FaveButton 
 				userId={userId} 
 				artworkId={artworkId} 
 				isFaves={isFaves} 
-				setIsFaves={setIsFaves} />
+				setIsFaves={setIsFaves} />}
 				<EditArtworkForm 
 					prevTitle={title} 
 					prevDate={date} 
@@ -102,8 +103,12 @@ export default function ArtworkInfos({
 					prevSupport={support}
 					userId={userId}
 					artworkId={artworkId} />
+				{userId === ownerId &&
+				<>
 				<button onClick={showEdit} className="flex items-center"><ModifyButton />Modifier l'oeuvre</button>
 				<Link href="/mon-profil-artiste" onClick={deleteArtwork} className="flex items-center"><RiDeleteBin6Line/>Supprimer l'oeuvre</Link>
+				</>
+				}
 				{/* <SignalButton size="md" sizeIcon="3xl"/> */}
 			</div>
 		</div>
