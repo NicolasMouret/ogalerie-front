@@ -8,7 +8,7 @@ interface FilterGalerieButtonProps {
 
 function FilterGalerieButton({onClick}: FilterGalerieButtonProps) {
   return (
-  <button onClick={onClick} className="text-4xl flex justify-end items-center w-[30%]">
+  <button onClick={onClick} className="text-2xl md:text-3xl flex justify-center md:justify-end items-center md:gap-2 w-[90%] md:w-[30%] mb-4 md:mb-0">
     <MdOutlineTune /><span>Filtrer la galerie</span>
     </button>
   );

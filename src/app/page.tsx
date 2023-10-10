@@ -67,8 +67,8 @@ export default function Home() {
 
   return (
     <>
-      <section className="h-[75vh] flex flex-col items-center justify-center space-y-4">   
-      <div className="mx-auto w-[84vw] flex justify-between items-center">
+      <section className="h-[75vh] flex flex-col items-center justify-center sm:gap-8">   
+      <div className="mx-auto w-[84vw] flex flex-col gap-4 md:flex-row justify-between items-center">
           {/* Div contenant la SearchBar (reste au milieu) */}  
             <div className="PLACEHOLDER w-[30%]"></div>        
             <SearchBar onSearchChange={handleSearchChange} />

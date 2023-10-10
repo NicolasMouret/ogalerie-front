@@ -15,18 +15,19 @@ export default function SlideDesktop({url, page, artworkId}: SlideDesktopProps) 
   if (page === "home") {
     return (
       //Le padding permet de créer un espace entre les images
-        <Link href={`/artwork/${artworkId}`} className="min-w-[21vw] h-[480px]">
+        <Link href={`/artwork/${artworkId}`} className="min-w-[21vw] max-h-[590px]">
           <Image className="flex-shrink-0 px-2"
         alt="image test" 
         width={500} 
         //Cette prop sert à définir la hauteur à occuper dans la page tant que l'image n'est pas chargée
         //Elle doit correspondre à la hauteur de l'image
-        height={480} 
+        height={590} 
         src={url}
           style={{
           //Le carousel desktop fait 84vw de large, donc je divise par 4 pour avoir la largeur d'une image
            width: `${21}vw`,
-           height: `${480}px`,
+           height: `${50}vh`,
+           maxHeight: `${590}px`,
            objectFit: "cover",
           }}
           />

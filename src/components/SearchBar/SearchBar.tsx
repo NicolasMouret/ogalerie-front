@@ -15,7 +15,7 @@ export default function SearchBar({ onSearchChange }: SearchBarProps) {
     }
 
     return (
-        <div className="flex items-center border-2 rounded-full border-gray-600 relative w-[90vw] sm:w-[30%]">
+        <div className="flex items-center border-2 rounded-full border-gray-600 relative w-[90vw] sm:w-[35%] h-10 md:h-12">
             <input
                 type="text"
                 className="text-center py-1 sm:py-2 px-3 sm:px-4 text-sm sm:text-lg w-full outline-none rounded-full bg-transparent pl-3 sm:pl-4 pr-10"
