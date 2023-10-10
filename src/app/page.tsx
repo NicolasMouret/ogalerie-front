@@ -6,7 +6,6 @@ import Carousel from "@/src/components/testCarousel/Carousel";
 import SearchBar from "@/src/components/SearchBar/SearchBar";
 import { Collection, Artwork } from "@/src/@types";
 import FilterGalerieButton from '../components/Buttons/FilterGalerieButton';
-import FilterGalerieMenu from '../components/Buttons/FilterGalerieMenu';
 import Filter from '../components/Filter/Filter';
 
 export default function Home() {
