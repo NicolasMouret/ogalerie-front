@@ -1,13 +1,11 @@
 "use client";
 
 
-interface FilterGalerieMenuProps {
-  onClick: () => void|undefined;
-}
 
-function FilterGalerieMenu({ onClick }: FilterGalerieMenuProps) {
+
+function FilterGalerieMenu() {
   return (
-    <button className="px-5 text-3xl" onClick={onClick}>
+    <button className="px-5 text-3xl">
         Filtrer la galerie
         </button>
   );

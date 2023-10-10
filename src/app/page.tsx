@@ -59,8 +59,12 @@ export default function Home() {
   , []);       
 
   const handleClick = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(true);
   };
+
+  const handleClose = () => {
+    setIsOpen(false)
+  }
 
   return (
     <>
@@ -70,17 +74,16 @@ export default function Home() {
           <div>
             <SearchBar onSearchChange={handleSearchChange} />
           </div>
-          <div className="ml-44 flex">
-            <div>
-              <FilterGalerieButton onClick={handleClick} />
-            </div>
-            <FilterGalerieMenu onClick={handleClick} />
-          </div>
-          <div>{isOpen ? <Filter /> : null}</div>
-        </div>     
-        <SearchBar onSearchChange={handleSearchChange} /> 
+
+            <button className="ml-44 flex" onClick={handleClick}>
+            <FilterGalerieButton />
+            <FilterGalerieMenu />
+            </button>
+          
+          <div>{isOpen ? <Filter handleClose={handleClose} /> : null}</div>
+        </div>      
         {collectionRandom && !collectionSearch && <Carousel collectionId="1" collection={collectionRandom} page="home"/>}  
-        {collectionSearch && collectionSearch.artworks.length > 0 && <Carousel collectionId="1" collection={collectionSearch} page="home"/>}      
+        {collectionSearch && collectionSearch.artworks.length > 0 && <Carousel collectionId="1" collection={collectionSearch} page="home"/>} 
       </section>
     </>
   );

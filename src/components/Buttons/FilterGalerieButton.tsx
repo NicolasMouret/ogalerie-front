@@ -2,13 +2,11 @@
 
 import { MdOutlineTune } from 'react-icons/md';
 
-interface FilterGalerieButtonProps {
-  onClick: () => void|undefined;
-}
 
-function FilterGalerieButton({ onClick }: FilterGalerieButtonProps) {
+
+function FilterGalerieButton() {
   return (
-  <button className="text-4xl" onClick={onClick}>
+  <button className="text-4xl">
     <MdOutlineTune />
     </button>
   );
