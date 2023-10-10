@@ -5,12 +5,15 @@ import axiosInstance from "@/src/utils/axios";
 import Carousel from "@/src/components/testCarousel/Carousel";
 import SearchBar from "@/src/components/SearchBar/SearchBar";
 import { Collection, Artwork } from "@/src/@types";
+import FilterGalerieButton from '../components/Buttons/FilterGalerieButton';
+import FilterGalerieMenu from '../components/Buttons/FilterGalerieMenu';
+import Filter from '../components/Filter/Filter';
 
 export default function Home() {
   const [collectionRandom, setCollectionRandom] = useState<Collection>();
   const [collectionSearch, setCollectionSearch] = useState<Collection>();
   const [artworkResults, setArtworkResults] = useState<Artwork[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     axiosInstance.get<Artwork[]>("/artworks")
@@ -55,9 +58,26 @@ export default function Home() {
   }
   , []);       
 
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
-      <section className="h-[75vh] flex flex-col items-center justify-center space-y-4">        
+      <section className="h-[75vh] flex flex-col items-center justify-center space-y-4">   
+      <div className="mx-auto w-[84vw] flex justify-end">
+          {/* Div contenant la SearchBar (reste au milieu) */}
+          <div>
+            <SearchBar onSearchChange={handleSearchChange} />
+          </div>
+          <div className="ml-44 flex">
+            <div>
+              <FilterGalerieButton onClick={handleClick} />
+            </div>
+            <FilterGalerieMenu onClick={handleClick} />
+          </div>
+          <div>{isOpen ? <Filter /> : null}</div>
+        </div>     
         <SearchBar onSearchChange={handleSearchChange} /> 
         {collectionRandom && !collectionSearch && <Carousel collectionId="1" collection={collectionRandom} page="home"/>}  
         {collectionSearch && collectionSearch.artworks.length > 0 && <Carousel collectionId="1" collection={collectionSearch} page="home"/>}      
