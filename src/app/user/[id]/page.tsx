@@ -135,7 +135,7 @@ export default function UserPublic({params}: UserPublicProps) {
         <section className="sm:flex-grow flex flex-col justify-start pt-4">
           <>
             <h3 className="text-xl font-extrabold sm:mx-auto w-[84vw] text-left py-4">Oeuvres ajoutées aux favoris</h3>                      
-            <Carousel collection={favoris} page="user" />     
+            <Carousel collectionId="1" collection={favoris} page="user" />     
           </>       
         </section>
   </main> }  
