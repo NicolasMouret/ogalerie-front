@@ -75,7 +75,7 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
             support={artwork.tags[1] === undefined ? '' : `#${artwork.tags[1].name}`}
             style={artwork.tags[2] === undefined ? '' : `#${artwork.tags[2].name}`}
             description={artwork.description}/>
-        <CommentsBlock comments={artwork.comment} />
+        <CommentsBlock userId={userId} artworkId={artworkId} comments={artwork.comment} />
       </div>
     </div>}
     </>
