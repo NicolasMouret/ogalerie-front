@@ -6,6 +6,7 @@
 'use client';
 import { useContext, useState } from 'react';
 import Link from 'next/link';
+import OutsideClickHandler from 'react-outside-click-handler';
 import CloseButton from '@/src/components/Buttons/CloseButton';
 import { FaUserAlt } from 'react-icons/fa';
 import { UiContext } from '@/src/contexts/UiContext';
@@ -39,6 +40,11 @@ export default function Menu() {
   };
   return (
     <div className="flex items-center justify-end sm:items-start sm:justify-center sm:pt-14 xl:items-center xl:justify-end md:w-[50vw] py-8">
+      <OutsideClickHandler
+        onOutsideClick={() => {
+          if (isOpen) setIsOpen(false);
+        }}
+      >
       <nav>
         <section className="MOBILE-MENU flex xl:hidden">
           <button className="HAMBURGER-ICON space-y-1.5" onClick={handleClick}>
@@ -188,6 +194,7 @@ export default function Menu() {
         align-items: center;
       }
     `}</style>
+    </OutsideClickHandler>
     </div>
   );
 }
