@@ -59,8 +59,8 @@ export default function Home() {
     <>
       <section className="h-[75vh] flex flex-col items-center justify-center space-y-4">        
         <SearchBar onSearchChange={handleSearchChange} /> 
-        {collectionRandom && !collectionSearch && <Carousel collection={collectionRandom} page="home"/>}  
-        {collectionSearch && collectionSearch.artworks.length > 0 && <Carousel collection={collectionSearch} page="home"/>}      
+        {collectionRandom && !collectionSearch && <Carousel collectionId="1" collection={collectionRandom} page="home"/>}  
+        {collectionSearch && collectionSearch.artworks.length > 0 && <Carousel collectionId="1" collection={collectionSearch} page="home"/>}      
       </section>
     </>
   );

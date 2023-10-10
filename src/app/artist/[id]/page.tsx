@@ -95,7 +95,7 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
       </div>
       {collections.length > 0 && 
       <>
-      <Carousel collection={collections[0]} page="user" addButton />     
+      <Carousel collectionId="1" collection={collections[0]} page="user"  />     
       <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />
       </> }        
     </section>
@@ -109,7 +109,7 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
           <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
             {collection.title}
           </h3>
-          <Carousel collection={collection} page="user" addButton />
+          <Carousel collectionId="1" collection={collection} page="user"  />
         </div>  
       {index < collectionsFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}
     </section>
