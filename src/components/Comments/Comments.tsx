@@ -2,54 +2,30 @@
 
 import { useState, useRef, useContext } from 'react';
 import { nanoid } from 'nanoid';
+import axiosInstance from '@/src/utils/axios';
 import { UserContext } from '@/src/contexts/UserContext';
+import { Comment } from '@/src/@types';
 import InputEmoji from 'react-input-emoji'
-import Comment from './Comment'
+import CommentSingle from './CommentSingle'
 
-const commentsRawList = [
-  { avatar: "https://picsum.photos/id/500/360/350",
-    nickname: "Fred",
-    date: "29 Août 2023",
-    content: "Superbe !" },
-  { avatar: "https://picsum.photos/id/501/360/350",
-    nickname: "Bob",
-    date: "2 Septembre 2023",
-    content: "Pas mal, mais pas ma préférée de cet artiste." },
-  { avatar: "https://picsum.photos/id/502/360/350",
-    nickname: "Peter Parker",
-    date: "3 Septembre 2023",
-    content: "Très laid..." },
-  { avatar: "https://picsum.photos/id/503/360/350",
-    nickname: "Fred",
-    date: "29 Août 2023",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates libero perferendis molestiae accusamus, consequuntur autem aliquam maiores debitis fugiat voluptatem!" },
-  { avatar: "https://picsum.photos/id/504/360/350",
-    nickname: "Bob",
-    date: "2 Septembre 2023",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates libero perferendis molestiae accusamus." },
-  { avatar: "https://picsum.photos/id/505/360/350",
-    nickname: "Peter Parker",
-    date: "3 Septembre 2023",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates libero perferendis molestiae accusamus, consequuntur autem aliquam maiores debitis fugiat voluptatem!" },   
-]
-
-interface comment {
-  id: number;
-  content: string;
-  created_at: string;
-  owner: string;
-  owner_id: number;
-  avatar: string;
+interface CommentsBlockProps {
+  comments: Comment[];
+  userId: string;
+  artworkId: string;
 }
 
-export default function CommentsBlock({comments}: {comments: comment[]}) {
-  const [text, setText] = useState("");
-  const { user } = useContext(UserContext);
+export default function CommentsBlock({comments, userId, artworkId}: CommentsBlockProps) {
   const commentsContainerRef = useRef<HTMLDivElement>(null);
+  const [text, setText] = useState<string>("");
+  // const [payload, setPayload] = useState({
+  //   content: "",
+  //   artwork_id: artworkId,
+  //   id: userId
+  // });
 
   const commentsList = comments.map((comment) => {
     return (
-      <Comment
+      <CommentSingle
         key={nanoid()}
         avatar={comment.avatar}
         nickname={comment.owner}
@@ -61,17 +37,24 @@ export default function CommentsBlock({comments}: {comments: comment[]}) {
   })
 
   const onEnter = (text: string) => {
-    //add at the beginning of the array
-   commentsRawList.unshift(
-    { avatar: "https://picsum.photos/id/506/360/350",
-    nickname: `${user.nickname ? user.nickname : "Anonyme"}`,
-    date: "29 Septembre 2023",
-    content: text },
-   )
-    commentsContainerRef.current?.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    const payload = {
+      content: text,
+      artwork_id: artworkId,
+    }
+    axiosInstance.post(`/users/${userId}/comments`, {
+      data: payload,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => {
+      console.log("res.data comments", res.data);
+    }
+    ).catch((err) => {
+      console.log(err);
+      console.log(payload)
+      throw err;
+    }) 
+
   }
 
   return (

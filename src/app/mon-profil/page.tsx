@@ -134,9 +134,9 @@ export default function UserPrivate(): React.JSX.Element {
   return (
     <>
     {userLocal && favoris &&
-    <div className="mx-4 md:mx-auto md:w-4/5">
+    <div className="md:mx-auto md:w-4/5">
     <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
-      <div className="md:w-1/2 md:pr-4">
+      <div className="mx-2 md:w-1/2 md:pr-4">
         <UserPublicInfosPrivateProfile 
           nickname={userLocal.nickname} 
           town={userLocal.town} 
@@ -145,7 +145,7 @@ export default function UserPrivate(): React.JSX.Element {
           avatar={userLocal.avatar}
           likedCount={userLocal.like} />
       </div>
-      <div className="md:w-1/2 md:pl-4"> 
+      <div className="mx-2 md:w-1/2 md:pl-4"> 
         <UserPrivateInfos 
           lastname={userLocal.lastname} 
           firstname={userLocal.firstname} 
@@ -154,7 +154,7 @@ export default function UserPrivate(): React.JSX.Element {
       </div>
     </div>
     <section className="sm:flex-grow flex flex-col justify-start pt-4">     
-        {favoris.artworks.length > 0 ? <h3 className="text-xl font-extrabold sm:mx-auto w-[84vw] text-left py-4">
+        {favoris.artworks.length > 0 ? <h3 className="pl-2 md:pl-0 text-xl font-extrabold sm:mx-auto w-[84vw] text-left py-4">
           Oeuvres ajoutées aux favoris
         </h3> :
         <h3 className="text-xl font-extrabold sm:mx-auto w-[84vw] text-left py-4">

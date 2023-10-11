@@ -2,12 +2,14 @@
 
 import { MdOutlineTune } from 'react-icons/md';
 
+interface FilterGalerieButtonProps {
+  onClick?: () => void;
+}
 
-
-function FilterGalerieButton() {
+function FilterGalerieButton({onClick}: FilterGalerieButtonProps) {
   return (
-  <button className="text-4xl">
-    <MdOutlineTune />
+  <button onClick={onClick} className="text-2xl md:text-3xl flex justify-center md:justify-end items-center md:gap-2 w-[90%] md:w-[30%] mb-4 md:mb-0">
+    <MdOutlineTune /><span>Filtrer la galerie</span>
     </button>
   );
 }

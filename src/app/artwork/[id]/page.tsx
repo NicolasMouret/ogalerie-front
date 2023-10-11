@@ -44,7 +44,7 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
 
   return (
     <>
-    {artwork && userId && 
+    {artwork &&  
     <div className="flex flex-col md:flex-row md:justify-center items-center gap-6 mx-auto mt-4 md:mt-0 h-[85vh] w-[90vw] md:w-[1500px]">
       <div className="w-[45%] flex items-center h-full py-10">
         <Image
@@ -75,7 +75,7 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
             support={artwork.tags[1] === undefined ? '' : `#${artwork.tags[1].name}`}
             style={artwork.tags[2] === undefined ? '' : `#${artwork.tags[2].name}`}
             description={artwork.description}/>
-        <CommentsBlock comments={artwork.comment} />
+        <CommentsBlock userId={userId} artworkId={artworkId} comments={artwork.comment} />
       </div>
     </div>}
     </>

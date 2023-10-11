@@ -11,7 +11,7 @@ interface CommentProps {
     userId: string;
 }
 
-export default function Comment({avatar, nickname, date, content, className, userId}: CommentProps) {
+export default function CommentSingle({avatar, nickname, date, content, className, userId}: CommentProps) {
   const setDate = (date: string) => {
     const isoDate = new Date(date);
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };

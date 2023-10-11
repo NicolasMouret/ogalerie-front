@@ -6,7 +6,6 @@ import Carousel from "@/src/components/testCarousel/Carousel";
 import SearchBar from "@/src/components/SearchBar/SearchBar";
 import { Collection, Artwork } from "@/src/@types";
 import FilterGalerieButton from '../components/Buttons/FilterGalerieButton';
-import FilterGalerieMenu from '../components/Buttons/FilterGalerieMenu';
 import Filter from '../components/Filter/Filter';
 
 export default function Home() {
@@ -68,19 +67,13 @@ export default function Home() {
 
   return (
     <>
-      <section className="h-[75vh] flex flex-col items-center justify-center space-y-4">   
-      <div className="mx-auto w-[84vw] flex justify-end">
-          {/* Div contenant la SearchBar (reste au milieu) */}
-          <div>
+      <section className="h-[75vh] flex flex-col items-center justify-center sm:gap-8">   
+      <div className="mx-auto w-[84vw] flex flex-col gap-4 md:flex-row justify-between items-center">
+          {/* Div contenant la SearchBar (reste au milieu) */}  
+            <div className="PLACEHOLDER w-[30%]"></div>        
             <SearchBar onSearchChange={handleSearchChange} />
-          </div>
-
-            <button className="ml-44 flex" onClick={handleClick}>
-            <FilterGalerieButton />
-            <FilterGalerieMenu />
-            </button>
-          
-          <div>{isOpen ? <Filter handleClose={handleClose} /> : null}</div>
+            <FilterGalerieButton onClick={handleClick} />                                     
+            {isOpen ? <Filter handleClose={handleClose} /> : null}
         </div>      
         {collectionRandom && !collectionSearch && <Carousel collectionId="1" collection={collectionRandom} page="home"/>}  
         {collectionSearch && collectionSearch.artworks.length > 0 && <Carousel collectionId="1" collection={collectionSearch} page="home"/>} 

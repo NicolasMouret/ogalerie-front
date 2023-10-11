@@ -82,13 +82,13 @@ export default function ArtworkInfos({
 			{/* <p className="pl-4 underline">Voir la collection</p> */}
 			<p className="pl-4 mb-4 md:mb-0 mt-4">{description}</p>
 			<div className="flex items-center h-8 pl-4 mt-4 gap-12">
-				<LikeButton 
+				{userId && <LikeButton 
 				userId={userId}
 				artworkId={artworkId}
 				isLiked={isLiked}
 				setIsLiked={setIsLiked}
-				/>
-				{localStorage.getItem("situation") !== "creator" &&
+				/>}
+				{userId && localStorage.getItem("situation") !== "creator" &&
 				<FaveButton 
 				userId={userId} 
 				artworkId={artworkId} 
