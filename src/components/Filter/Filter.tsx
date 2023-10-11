@@ -1,20 +1,37 @@
 'use client';
 
-
-import { useContext, useState } from 'react';
-import Link from 'next/link';
+import axiosInstance from '@/src/utils/axios';
+import { useContext, useState, useEffect } from 'react';
 import CloseButton from '@/src/components/Buttons/CloseButton';
-import { UiContext } from '@/src/contexts/UiContext';
-import { UserContext } from '@/src/contexts/UserContext';
+import { Tags } from '@/src/@types';
 
 interface FilterProps {
   handleClose: () => void
 }
 
 export default function Filter({handleClose}: FilterProps) {
-  const { user, setUser } = useContext(UserContext);
-  const [isOpen, setIsOpen] = useState(true)
+  const [TagId, setTagId] = useState('');
+  const [tag, setTag] = useState<Tags>();
 
+
+  useEffect(() => {
+    setTagId(localStorage.getItem('id')!);
+}, []);
+
+  useEffect(() => {
+    const getTag = (id: string) => {
+      axiosInstance.get(`/tags/${id}`)
+      .then(res => {
+        console.log("res.data", res.data);
+        setTag(res.data);
+      }).catch(err => {
+        console.log(err);
+        throw err;
+      })
+    }
+    getTag(TagId);
+  }
+  , []);
   
 
   return (
