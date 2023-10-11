@@ -63,16 +63,16 @@ export default function Filter({ handleClose, setCollectionSearch }: FilterProps
 
   const getSearchResults = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  //  axiosInstance.get<Artwork[]>(`/artworks/filter/${searchParams.toString()}`)
-  //     .then(res => {
-  //       setCollectionSearch({
-  //         id: 2,
-  //         title: "SearchResult",
-  //         artworks: res.data
-  //       })
-  //     }).catch(err => {
-  //       throw err;
-  //     })
+   axiosInstance.get<Artwork[]>(`/artworks/filter/?${searchParams.toString()}`)
+      .then(res => {
+        setCollectionSearch({
+          id: 2,
+          title: "SearchResult",
+          artworks: res.data
+        })
+      }).catch(err => {
+        throw err;
+      })
   handleClose();
   }
 
