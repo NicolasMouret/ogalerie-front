@@ -5,8 +5,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { UiContext } from "@/src/contexts/UiContext";
 import CarouselMobile from "../../components/testCarousel/CarouselMobile";
 import CarouselDesktop from "../../components/testCarousel/CarouselDesktop";
-import { Artwork, Collection } from "@/src/@types";
-import AddArtworkForm from "../Forms/AddArtworkForm";
+import { Collection } from "@/src/@types";
 
 interface CarouselProps {
     collection: Collection;
@@ -26,7 +25,7 @@ export default function Carousel({collection, page, addButton, collectionId, han
   const screenWidth = useWindowSize().width || 800;
   const [isMobile, setIsMobile] = useState(false);
 
-  const { showModalAddArtwork, setShowModalAddArtwork } = useContext(UiContext);
+  const { setShowModalAddArtwork } = useContext(UiContext);
 
   const handleClick = () => {
     setShowModalAddArtwork(true);
