@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import axiosInstance from "@/src/utils/axios";
+import OutsideClickHandler from 'react-outside-click-handler';
 import { BiSolidAddToQueue } from "react-icons/bi";
 
 interface AddCollectionButtonProps {
@@ -35,6 +36,7 @@ export default function AddCollectionButton({userId}: AddCollectionButtonProps) 
     {isInput ? 
         <div className="flex items-center gap-2 py-4 w-[50vw] mx-auto sm:w-fit sm:mx-0 sm:py-0 text-lg font-bold">
             <BiSolidAddToQueue/>
+            <OutsideClickHandler onOutsideClick={() => setIsInput(false)} >
             <input 
                 name="title"
                 value={title}
@@ -43,6 +45,7 @@ export default function AddCollectionButton({userId}: AddCollectionButtonProps) 
                 type="text" 
                 placeholder="Titre de la collection" />
             <button onClick={addCollection} className=" px-2 bg-slate-100 border-2 text-m font-medium border-gray-400 rounded">Ajouter</button>
+            </OutsideClickHandler>
         </div>
      :    
         <button onClick={showInput} className="flex items-center gap-2 py-4 w-[50vw] mx-auto sm:w-fit sm:mx-0 sm:py-0 text-lg font-bold">

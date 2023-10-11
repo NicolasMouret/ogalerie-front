@@ -8,6 +8,7 @@ import AddArtworkForm from "@/src/components/Forms/AddArtworkForm";
 import ScrollButton from "@/src/components/Buttons/ScrollButton";
 import AddCollectionButton from "@/src/components/Buttons/AddCollectionButton";
 import { Collection } from "@/src/@types";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export default function UserPrivate() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -102,9 +103,9 @@ export default function UserPrivate() {
         </div>
       </div>
       <section className="sm:flex-grow h-[85vh] ">
-        <div className="flex flex-col gap-4 items-start w-[90vw] py-2 md:w-[84vw] mx-auto">
+        <div className="flex flex-col gap-4 items-start w-[90vw] py-2 md:w-[84vw] mx-auto group">
           <AddCollectionButton userId={userId} />
-          {collections.length > 0 && <h3 className="text-xl font-extrabold sm:mr-16">Collection : {collections[0].title}</h3> }     
+          {collections.length > 0 && <div className="flex items-center"><h3 className="text-xl font-extrabold mr-4">Collection : {collections[0].title}</h3> <RiDeleteBin6Line className="text-xl hidden group-hover:block" /></div>}     
         </div>
         {collections.length > 0 && 
         <>
@@ -119,9 +120,12 @@ export default function UserPrivate() {
       <section key={index} className="flex flex-col items-center justify-around h-[85vh] snap-start" >
         <ScrollButton direction="up" onClick={scrollToPreviousViewport} />        
           <div>
-            <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto">
+          <div className="flex items-center flex-start">
+            <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto flex items-center group mr-4">
               {collection.title}
+              <RiDeleteBin6Line className="text-xl hidden group-hover:block" />
             </h3>
+          </div>
             <Carousel handleAddClick={handleAddClick} collectionId={collection.id.toString()} collection={collection} page="user" addButton />
           </div>  
         {index < collectionsFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}

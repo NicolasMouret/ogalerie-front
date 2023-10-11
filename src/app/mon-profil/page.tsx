@@ -1,6 +1,5 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "@/src/contexts/UserContext";
+import { useEffect, useState } from "react";
 import axiosInstance from "@/src/utils/axios";
 import Carousel from "@/src/components/testCarousel/Carousel";
 import UserPrivateInfos from "@/src/components/UserProfilPrivate/UserPrivateInfos";

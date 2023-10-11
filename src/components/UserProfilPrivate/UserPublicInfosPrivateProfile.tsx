@@ -14,7 +14,7 @@ interface UserPublicInfosProps {
     town: string;
     country: string;
     biography?: string;
-    avatar: string;
+    avatar?: string;
     likedCount: number;
 }
 
@@ -75,7 +75,7 @@ export default function UserPublicInfosPrivateProfile({
             </div>
             <div className={`m-1 w-32 h-32 rounded-full overflow-hidden mb-4 md:mb-0 ${isEditing ? 'border-gray-300 border-2' : '' }`}>
                 {isEditing ? <EditAvatarButton handleOnUpload={handleOnUpload} /> : 
-                <Image src={avatar} width={200} height={200} alt="Profile" className="object-none h-full" />}
+                <Image src={`${avatar ? avatar : '/DefaultAvatar.svg'}`} width={200} height={200} alt="Profile" className="object-none h-full" />}
             </div>
             <div className='w-full md:w-5/6 mx-auto flex flex-col justify-center ml-4'>
                 {isEditing ? (
