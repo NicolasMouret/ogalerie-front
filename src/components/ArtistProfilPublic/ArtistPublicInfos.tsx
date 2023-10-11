@@ -19,6 +19,7 @@ export default function ArtistPublicInfos ({
     likedCount,
     }: ArtistPublicInfosProps) {
 
+
   return (
     <div className='flex flex-col md:flex-row mr-8'>
         <div className='m-1 w-32 h-32 rounded-full overflow-hidden relative mb-4 md:mb-0'>
@@ -35,7 +36,7 @@ export default function ArtistPublicInfos ({
         </div>
         <div className='flex items-center mt-3'>
             <AiFillHeart className='mr-2 text-red-500'/>
-            <span>{likedCount} likes</span>
+            <span>{likedCount ?? 0} likes reçus</span>
         </div>
         </div>
     </div>

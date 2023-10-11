@@ -37,7 +37,7 @@ export default function Header() {
   if (pathname === "/") {
     return (
       <header className={`flex justify-around items-center w-screen h-[15vh] md:h-[25vh]`}>
-      <div className="w-7/12 md:w-2/5 md:p-2">
+      <div className="w-7/12 md:w-2/5 md:p-2 slide-in-left">
         <Link href="/"><Image height={280} width={560} alt="logo" src={'/images/logobig.png'} style={{maxHeight: '95%'}}/></Link>
       </div>
       <Menu />
