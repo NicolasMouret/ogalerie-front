@@ -23,6 +23,11 @@ export default function Header() {
           setUser({logged:true,...res.data });
         }).catch(err => {
           console.log(err);
+          localStorage.removeItem('OgToken');
+          localStorage.removeItem('id');
+          setUser({logged:false});
+          localStorage.removeItem('nickname');
+          localStorage.removeItem('situation');
           throw err;
         })
     }
