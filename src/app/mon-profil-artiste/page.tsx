@@ -110,7 +110,7 @@ export default function UserPrivate() {
         {collections.length > 0 && 
         <>
         <Carousel  handleAddClick={handleAddClick} collectionId={collections[0].id.toString()} collection={collections[0]} page="user" addButton />     
-        {collectionsFullScreen && <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />}
+        {collectionsFullScreen.length > 0 && <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />}
         </> }        
       </section>
       </div>

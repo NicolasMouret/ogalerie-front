@@ -96,7 +96,7 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
       {collections.length > 0 && 
       <>
       <Carousel collectionId="1" collection={collections[0]} page="user"  />     
-      <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />
+      {collections.length > 1 && <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />}
       </> }        
     </section>
     </div>
