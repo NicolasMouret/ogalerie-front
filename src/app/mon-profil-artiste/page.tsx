@@ -7,58 +7,80 @@ import UserPublicInfosPrivateProfile from "@/src/components/UserProfilPrivate/Us
 import AddArtworkForm from "@/src/components/Forms/AddArtworkForm";
 import ScrollButton from "@/src/components/Buttons/ScrollButton";
 import AddCollectionButton from "@/src/components/Buttons/AddCollectionButton";
+import DeleteModal from "@/src/components/UserProfilPrivate/DeleteModal";
 import { Collection } from "@/src/@types";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 export default function UserPrivate() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [ userLocal, setUserLocal] = useState<any>();
-  const [userId, setUserId] = useState('');
+  const [ userId, setUserId] = useState('');
   const [ collections, setCollections] = useState<Collection[]>();
   const [ collectionsFullScreen, setCollectionsFullScreen] = useState<Collection[]>();
-  const [collectionId, setCollectionId] = useState('');
+  const [ collectionId, setCollectionId] = useState('');
+  const [ isModalOpen, setIsModalOpen] = useState(false);
+  const [ collectionToDelete, setCollectionToDelete] = useState<string | null>(null);
 
-  useEffect(() => {
-    setUserId(localStorage.getItem('id')!);
-}, []);
-  
-  useEffect(() => {
-    const id = localStorage.getItem('id');
-    const getUser = (id: string) => {
-      axiosInstance.get(`/users/${id}`)
-      .then(res => {
-        console.log("res.data", res.data);
-        setUserLocal(res.data);
-        console.log("biography", res.data.biography.length);
-      }).catch(err => {
+  const getcollections = (id: string) => {
+    axiosInstance.get<Collection[]>(`/users/${id}/collections`)
+    .then(res => {
+        console.log("res.data collections", res.data);
+        setCollections(res.data); 
+        setCollectionsFullScreen(res.data.slice(1));                  
+    }).catch(err => {
         console.log(err);
         throw err;
-      })
-    }
-    getUser(id!);
-  }
-  , []);
+    });
+  };
 
   useEffect(() => {
     const id = localStorage.getItem('id');
-    const getcollections = (id: string) => {
-        axiosInstance.get<Collection[]>(`/users/${id}/collections`)
-        .then(res => {
-            console.log("res.data collections", res.data);
-            setCollections(res.data); 
-            setCollectionsFullScreen(res.data.slice(1));                  
-        }).catch(err => {
-            console.log(err);
-            throw err;
-        })
+    if(id) {
+      setUserId(id);
+      axiosInstance.get(`/users/${id}`)
+      .then(response => {
+        console.log("response.data", response.data);
+        setUserLocal(response.data);
+      }).catch(error => {
+        console.log(error);
+        throw error;
+      });
+      getcollections(id);
     }
-    getcollections(id!);
-  }
-  , []);
+  }, []);
 
   const handleAddClick = (collectionId: string) => {
     setCollectionId(collectionId);
   }
+
+  const handleDeleteCollection = (collectionId: string) => {
+    axiosInstance.delete(`/collections/${collectionId}`)
+    .then(response => {
+      console.log("Collection supprimée avec succès", response.data);
+      const id = localStorage.getItem("id")
+      getcollections(id!);
+    })
+    .catch(error => {
+      console.error("Erreur lors de la suppression de la collection", error);
+    });
+  };
+
+  const handleDeleteClick = (collectionId: string) => {
+    setCollectionToDelete(collectionId);
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (collectionToDelete) {
+      handleDeleteCollection(collectionToDelete);
+      setIsModalOpen(false);
+  }
+  };
+
+  const handleCancelDelete = () => {
+    setCollectionToDelete(null);
+    setIsModalOpen(false);
+  };
 
   const scrollToNextViewport = () => {
     if (scrollContainerRef.current) {     
@@ -123,7 +145,7 @@ export default function UserPrivate() {
           <div className="flex items-center flex-start">
             <h3 className="w-[90vw] py-4 md:w-[84vw] text-xl font-extrabold mx-auto flex items-center group mr-4">
               {collection.title}
-              <RiDeleteBin6Line className="text-xl hidden group-hover:block" />
+              <RiDeleteBin6Line className="text-xl ml-2 md:hidden group-hover:block" onClick={() => handleDeleteClick(collection.id.toString())} />
             </h3>
           </div>
             <Carousel handleAddClick={handleAddClick} collectionId={collection.id.toString()} collection={collection} page="user" addButton />
@@ -131,6 +153,13 @@ export default function UserPrivate() {
         {index < collectionsFullScreen.length - 1 && (<ScrollButton direction="down" onClick={scrollToNextViewport} />)}
       </section>
     ))}
+      <DeleteModal isOpen={isModalOpen} onClose={handleCancelDelete}>
+        <p>Êtes-vous sûr de vouloir supprimer la collection ?</p>
+        <div className="flex justify-end space-x-4 mt-6">
+        <button className="px-4 py-2 border rounded-md hover:bg-gray-100" onClick={handleCancelDelete}>Annuler</button>
+          <button className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600" onClick={handleConfirmDelete}>Confirmer</button>
+        </div>
+      </DeleteModal>
   </main> }  
     </>
            
