@@ -1,4 +1,5 @@
-export interface Tags {
+export interface Tag {
+    id: number;
     category: string;
     name: string;
 }
@@ -21,7 +22,7 @@ export interface Artwork {
     uri: string;
     likes: number;
     comment: Comment[];
-    tags: Tags[];
+    tags: Tag[];
     owner_id: number;
     liked_by: number;
     favorite_by: number;

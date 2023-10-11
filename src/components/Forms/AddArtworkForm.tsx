@@ -171,7 +171,7 @@ export default function AddArtworkForm({collectionId, userId}: AddArtworkFormPro
                 <option value="papier">Papier</option>
                 <option value="bois">Bois</option>
                 <option value="textile">Textile</option>
-                <option value="photo">Photo</option>
+                <option value="numérique">Numérique</option>
                 <option value="autre">Autre</option>
               </select>
               <select

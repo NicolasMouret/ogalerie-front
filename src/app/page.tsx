@@ -73,7 +73,7 @@ export default function Home() {
             <div className="PLACEHOLDER w-[30%]"></div>        
             <SearchBar onSearchChange={handleSearchChange} />
             <FilterGalerieButton onClick={handleClick} />                                     
-            {isOpen ? <Filter handleClose={handleClose} /> : null}
+            {isOpen ? <Filter setCollectionSearch={setCollectionSearch} handleClose={handleClose} /> : null}
         </div>      
         {collectionRandom && !collectionSearch && <Carousel collectionId="1" collection={collectionRandom} page="home"/>}  
         {collectionSearch && collectionSearch.artworks.length > 0 && <Carousel collectionId="1" collection={collectionSearch} page="home"/>} 

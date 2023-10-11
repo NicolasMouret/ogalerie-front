@@ -65,6 +65,7 @@ export default function UserPublicInfosPrivateProfile({
                 console.log(err);
                 throw err;
             });
+        
     }
 
 
