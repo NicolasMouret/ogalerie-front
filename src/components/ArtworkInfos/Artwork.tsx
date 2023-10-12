@@ -7,10 +7,12 @@ import FaveButton from '@/src/components/Buttons/FaveButton';
 import SignalButton from '@/src/components/Buttons/SignalButton';
 import ModifyButton from '../Buttons/ModifyButton';
 import EditArtworkForm from '../Forms/EditArtworkForm';
+import DeleteModal from '../UserProfilPrivate/DeleteModal';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface ArtworkInfosProps {
     title: string;
@@ -47,6 +49,8 @@ export default function ArtworkInfos({
 	ownerId,
 	setIsLiked }: ArtworkInfosProps) {
 	const { showModalEditArtwork, setShowModalEditArtwork } = useContext(UiContext);
+	const [showDeleteModal, setShowDeleteModal] = useState(false);
+	const router = useRouter();
 
 	const showEdit = () => {
 		setShowModalEditArtwork(true);
@@ -63,7 +67,16 @@ export default function ArtworkInfos({
 			})
 	}
 
+	const requestDeleteArtwork = () => {
+		setShowDeleteModal(true);
+	}
 	
+	const confirmDelete = () => {
+		deleteArtwork();
+		setShowDeleteModal(false);
+		router.back(); 
+	}
+
 	return (
 		<div className="flex flex-col justify-center gap-2 overflow-hidden pb-6 h-fit w-[95vw] md:w-[800px]">
 			<div className="flex flex-col md:flex-row items-center">
@@ -106,11 +119,20 @@ export default function ArtworkInfos({
 				{userId === ownerId &&
 				<>
 				<button onClick={showEdit} className="flex items-center"><ModifyButton />Modifier l'oeuvre</button>
-				<Link href="/mon-profil-artiste" onClick={deleteArtwork} className="flex items-center"><RiDeleteBin6Line/>Supprimer l'oeuvre</Link>
+				<button onClick={requestDeleteArtwork} className="flex items-center"><RiDeleteBin6Line/>Supprimer l'oeuvre</button>
 				</>
+				
 				}
 				{/* <SignalButton size="md" sizeIcon="3xl"/> */}
 			</div>
+			<DeleteModal isOpen={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
+            <h2>Confirmer la suppression</h2>
+            <p>Êtes-vous sûr de vouloir supprimer cette œuvre ?</p>
+            <div className="flex justify-end gap-4">
+                <button onClick={() => setShowDeleteModal(false)} className="bg-gray-300 px-4 py-2 rounded">Annuler</button>
+                <button onClick={confirmDelete} className="bg-red-600 text-white px-4 py-2 rounded">Supprimer</button>
+            </div>
+        </DeleteModal>
 		</div>
     )
 }
