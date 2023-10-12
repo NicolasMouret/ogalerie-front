@@ -67,8 +67,7 @@ export default function UserPrivate() {
     axiosInstance.delete(`/collections/${collectionId}`)
     .then(response => {
       console.log("Collection supprimée avec succès", response.data);
-      const id = localStorage.getItem("id")
-      getCollections(id!);
+      getCollections(userId);
     })
     .catch(error => {
       console.error("Erreur lors de la suppression de la collection", error);
@@ -136,7 +135,7 @@ export default function UserPrivate() {
         </div>
         <section className="h-screen sm:flex-grow sm:h-[85vh] snap-start">
           <div className="flex flex-col gap-4 items-start w-[90vw] py-2 md:w-[84vw] mx-auto group">
-            <AddCollectionButton userId={userId} />
+            <AddCollectionButton userId={userId} reGetCollections={getCollections} />
             {collections.length > 0 && 
             <div className="flex items-center">
               <h3 className="flex flex-col gap-2 sm:flex-row text-xl font-extrabold mr-4">{collections[0].title}

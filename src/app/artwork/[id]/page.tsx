@@ -56,6 +56,8 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
       </div>
       <div className="flex flex-col gap-12 justify-center h-full">
         <ArtworkInfos
+            artwork={artwork}
+            setArtwork={setArtwork}
             ownerId={artwork.owner_id.toString()}
             setIsFaves={setIsFaves}
             setIsLiked={setIsLiked}

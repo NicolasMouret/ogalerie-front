@@ -6,6 +6,7 @@ import { UiContext } from '@/src/contexts/UiContext';
 import Image from 'next/image';
 import CloseButton from '../Buttons/CloseButton';
 import CloudinaryUpload from '../Buttons/CloudinaryUpload';
+import { Artwork } from '@/src/@types';
 import { RxCross2 } from 'react-icons/rx';
 
 interface EditArtworkFormProps {
@@ -18,10 +19,11 @@ interface EditArtworkFormProps {
   prevDescription: string;
 	userId: string;
 	artworkId: string;
-
+  artwork: Artwork;
+  setArtwork: (artwork: Artwork) => void;
 }
 
-export default function EditArtworkForm({userId, prevDate, prevTitle, prevStyle, prevSupport, prevTypeTag, prevDescription, artworkId }: EditArtworkFormProps) {
+export default function EditArtworkForm({userId, prevDate, prevTitle, prevStyle, prevSupport, prevTypeTag, prevDescription, artworkId, artwork, setArtwork }: EditArtworkFormProps) {
   const { showModalEditArtwork, setShowModalEditArtwork } = useContext(UiContext);
   // State to display error messages.
   const [error, setError] = useState<string | null>(null);
@@ -85,7 +87,8 @@ export default function EditArtworkForm({userId, prevDate, prevTitle, prevStyle,
 
     AxiosInstance.patch(`artworks/${artworkId}`, objData)
     .then((res) => {
-      console.log(res.data);
+      const updatedArtwork = { ...artwork, ...res.data };
+      setArtwork(updatedArtwork)
       clearForm();
       closeModal();
     }).catch((err) => {

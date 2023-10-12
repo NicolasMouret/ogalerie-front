@@ -6,9 +6,10 @@ import { BiSolidAddToQueue } from "react-icons/bi";
 
 interface AddCollectionButtonProps {
     userId: string;
+    reGetCollections: (id: string) => void;
 }
 
-export default function AddCollectionButton({userId}: AddCollectionButtonProps) {
+export default function AddCollectionButton({userId, reGetCollections}: AddCollectionButtonProps) {
     const [isInput, setIsInput] = useState(false);
     const [title, setTitle] = useState("");
     console.log("userId", userId);
@@ -26,6 +27,7 @@ export default function AddCollectionButton({userId}: AddCollectionButtonProps) 
                 'Content-Type': 'application/json'
             }}).then((res) => {
                 console.log("res collections", res.data);
+                reGetCollections(userId);
             }).catch((err) => {
             console.log(err);
             throw err;

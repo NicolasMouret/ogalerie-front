@@ -1,18 +1,18 @@
 "use client";
 
+import { useContext, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { UiContext } from '@/src/contexts/UiContext';
 import axiosInstance from '@/src/utils/axios';
 import LikeButton from '@/src/components/Buttons/LikeButton';
 import FaveButton from '@/src/components/Buttons/FaveButton';
-import SignalButton from '@/src/components/Buttons/SignalButton';
 import ModifyButton from '../Buttons/ModifyButton';
 import EditArtworkForm from '../Forms/EditArtworkForm';
 import DeleteModal from '../UserProfilPrivate/DeleteModal';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { useContext, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { Artwork } from '@/src/@types';
 
 interface ArtworkInfosProps {
     title: string;
@@ -30,6 +30,8 @@ interface ArtworkInfosProps {
 	isLiked: boolean;
 	setIsLiked: (isLiked: boolean) => void;
 	ownerId: string;
+	artwork: Artwork;
+	setArtwork: (artwork: Artwork) => void;
 }
 
 export default function ArtworkInfos({ 
@@ -47,10 +49,19 @@ export default function ArtworkInfos({
 	setIsFaves,
 	isLiked,
 	ownerId,
-	setIsLiked }: ArtworkInfosProps) {
+	setIsLiked,
+	artwork,
+	setArtwork }: ArtworkInfosProps) {
 	const { showModalEditArtwork, setShowModalEditArtwork } = useContext(UiContext);
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const router = useRouter();
+
+	const setDate = (date: string) => {
+		const isoDate = new Date(date);
+		const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+		const formattedDate = isoDate.toLocaleDateString('fr-FR', options);
+		return formattedDate;
+	  }
 
 	const showEdit = () => {
 		setShowModalEditArtwork(true);
@@ -87,7 +98,7 @@ export default function ArtworkInfos({
 			</div>
 			<p className="pl-4">Par <span className="underline font-bold"><Link href={`${ownerId === userId ? '/mon-profil-artiste' : `/artist/${ownerId}`}`}>{author}</Link></span></p>
 			<div className="flex items-center gap-1 pl-4 mt-4">
-				<p>{date} - </p>
+				<p>{setDate(date)} - </p>
 				<p>{typeTag}</p>
 				<p>{support}</p>
 				<p>{style}</p>
@@ -115,7 +126,9 @@ export default function ArtworkInfos({
 					prevStyle={style}
 					prevSupport={support}
 					userId={userId}
-					artworkId={artworkId} />
+					artworkId={artworkId}
+					artwork={artwork}
+					setArtwork={setArtwork} />
 				{userId === ownerId &&
 				<>
 				<button onClick={showEdit} className="flex items-center"><ModifyButton />Modifier l'oeuvre</button>
