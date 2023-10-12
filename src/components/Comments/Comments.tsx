@@ -73,7 +73,7 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
           onEnter={onEnter}
           shouldReturn
         />
-      </div>
+      </div>￼
     </div>
     )
 }
