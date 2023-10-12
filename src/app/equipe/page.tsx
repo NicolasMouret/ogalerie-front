@@ -4,12 +4,12 @@ export default function Equipe() {
   return (
     <>
         <div className="bg-black text-white">
-      <div className="flex flex-col items-center justify-center mt-20 mb-15">
+      <div className="flex flex-col items-center justify-center mt-20 mb-20">
         <h1 className="text-8xl lg:text-6xl font-bold pt-20 pb-4 lg:pb-10 mt-20 sm:mt-0">
           L'équipe O'GALERIE
         </h1>
       </div>
-      <div className="text-2xl mt-20 ml-5">
+      <div className="max-w-7xl text-2xl m-auto border-4 border-white pl-10 pt-10 pb-10 ">
         <section className="flex mb-5">
           <Image src="/alienorcadre.jpg" alt="Alienor" width={150} height={200} />
           <div className="flex items-center ml-5">
