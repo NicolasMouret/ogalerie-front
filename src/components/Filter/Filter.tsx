@@ -13,7 +13,6 @@ interface FilterProps {
 
 export default function Filter({ handleClose, setCollectionSearch }: FilterProps) {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [tagStyle, setTagStyle] = useState<Tag[]>([]);
   const [tagSupport, setTagSupport] = useState<Tag[]>([]);
