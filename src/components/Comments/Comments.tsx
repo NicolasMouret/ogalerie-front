@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef, useContext, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import axiosInstance from '@/src/utils/axios';
 import { Comment } from '@/src/@types';
 import InputEmoji from 'react-input-emoji'
 import CommentSingle from './CommentSingle'
+import { create } from 'domain';
 
 interface CommentsBlockProps {
   comments: Comment[];
@@ -16,24 +17,33 @@ interface CommentsBlockProps {
 export default function CommentsBlock({comments, userId, artworkId}: CommentsBlockProps) {
   const commentsContainerRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState<string>("");
-  // const [payload, setPayload] = useState({
-  //   content: "",
-  //   artwork_id: artworkId,
-  //   id: userId
-  // });
+  const [commentsList, setCommentsList] = useState<JSX.Element[]>();
 
-  const commentsList = comments.map((comment) => {
-    return (
-      <CommentSingle
-        key={nanoid()}
-        avatar={comment.avatar? comment.avatar : "/DefaultAvatar.svg"}
-        nickname={comment.owner}
-        date={comment.created_at}
-        content={comment.content}
-        userId={comment.owner_id.toString()}
-      />
-    )
-  })
+  
+  const createCommentsList = (comments: Comment[]) => {
+    console.log("comments", comments);
+    setCommentsList(comments.map((comment) => {
+      return (
+        <CommentSingle
+          key={comment.id}
+          avatar={comment.avatar? comment.avatar : "/DefaultAvatar.svg"}
+          nickname={comment.owner}
+          date={comment.created_at}
+          content={comment.content}
+          userId={comment.owner_id.toString()}
+          id={comment.id.toString()}
+          handleDelete={handleDelete}
+        />
+      )
+    }))
+  }
+  
+  useEffect(() => {
+    createCommentsList(comments);
+  }
+  , []);
+  
+    
 
   const onEnter = (text: string) => {
     const payload = {
@@ -47,13 +57,26 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
       }
     }).then((res) => {
       console.log("res.data comments", res.data);
+      comments.unshift(res.data);
+      createCommentsList(comments);
     }
     ).catch((err) => {
       console.log(err);
       console.log(payload)
       throw err;
     }) 
+  }
 
+  const handleDelete = (id: string) => {
+    axiosInstance.delete(`/comments/${id}`)
+    .then((res) => {
+      console.log("res.data", res.data);
+      const newComments = comments.filter((comment) => comment.id !== parseInt(id));
+      createCommentsList(newComments);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   return (

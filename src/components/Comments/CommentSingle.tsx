@@ -1,24 +1,27 @@
 import Image from 'next/image'
-import SignalButton from '@/src/components/Buttons/SignalButton'
+import axiosInstance from '@/src/utils/axios';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import Link from 'next/link'
+import axios from '@/src/utils/axios';
 
 interface CommentProps {
+    handleDelete: (id: string) => void;
     avatar: string;
     nickname: string;
     date: string;
     content: string;
     className?: string;
     userId: string;
+    id: string;
 }
 
-export default function CommentSingle({avatar, nickname, date, content, className, userId}: CommentProps) {
+export default function CommentSingle({avatar, nickname, date, content, className, userId, id, handleDelete}: CommentProps) {
   const setDate = (date: string) => {
     const isoDate = new Date(date);
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
     const formattedDate = isoDate.toLocaleDateString('fr-FR', options);
     return formattedDate;
   }
-
   const formattedDate = setDate(date);
 
     return (
@@ -36,7 +39,7 @@ export default function CommentSingle({avatar, nickname, date, content, classNam
             <p><Link href={`/user/${userId}`}>{nickname}</Link>- {formattedDate}</p>
             <p>{content}</p>
         </div>
-        <SignalButton className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block" />
+        <button onClick={() => handleDelete(id)} className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block"><RiDeleteBin6Line  /></button>
       </div>
       )
 }
