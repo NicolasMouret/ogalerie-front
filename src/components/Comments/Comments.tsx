@@ -3,7 +3,6 @@
 import { useState, useRef, useContext } from 'react';
 import { nanoid } from 'nanoid';
 import axiosInstance from '@/src/utils/axios';
-import { UserContext } from '@/src/contexts/UserContext';
 import { Comment } from '@/src/@types';
 import InputEmoji from 'react-input-emoji'
 import CommentSingle from './CommentSingle'
@@ -27,7 +26,7 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
     return (
       <CommentSingle
         key={nanoid()}
-        avatar={comment.avatar}
+        avatar={comment.avatar? comment.avatar : "/DefaultAvatar.svg"}
         nickname={comment.owner}
         date={comment.created_at}
         content={comment.content}

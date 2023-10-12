@@ -22,10 +22,10 @@ export default function CommentSingle({avatar, nickname, date, content, classNam
   const formattedDate = setDate(date);
 
     return (
-      <div className={`flex gap-4 group ${className}`}>
-        <Link href={`/user/${userId}`}>
+      <div className={`flex items-center gap-4 group ${className}`}>
+        <Link className="h-[90%]" href={`/user/${userId}`}>
         <Image
-        className="rounded-full h-fit"
+        className="rounded-full h-[90%]"
         src={avatar}
         alt="Photo de profil de l'auteur"
         width={40}
