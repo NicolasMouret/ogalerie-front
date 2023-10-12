@@ -17,12 +17,17 @@ interface CommentsBlockProps {
 export default function CommentsBlock({comments, userId, artworkId}: CommentsBlockProps) {
   const commentsContainerRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState<string>("");
+  const [commentsRaw, setCommentsRaw] = useState<Comment[]>(comments);
   const [commentsList, setCommentsList] = useState<JSX.Element[]>();
 
+  useEffect(() => {
+      setCommentsList(createCommentsList(commentsRaw));
+      console.log("comments", comments);
+    }
+    , [commentsRaw]);
   
   const createCommentsList = (comments: Comment[]) => {
-    console.log("comments", comments);
-    setCommentsList(comments.map((comment) => {
+    return (comments.map((comment) => {
       return (
         <CommentSingle
           key={comment.id}
@@ -38,13 +43,6 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
     }))
   }
   
-  useEffect(() => {
-    createCommentsList(comments);
-  }
-  , []);
-  
-    
-
   const onEnter = (text: string) => {
     const payload = {
       content: text,
@@ -57,22 +55,24 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
       }
     }).then((res) => {
       console.log("res.data comments", res.data);
-      comments.unshift(res.data);
-      createCommentsList(comments);
+      const comment = res.data;
+      setCommentsRaw([comment, ...commentsRaw]);
     }
     ).catch((err) => {
       console.log(err);
       console.log(payload)
       throw err;
     }) 
+    console.log("comments after enter final", comments);
   }
 
   const handleDelete = (id: string) => {
+    console.log("id", id);
     axiosInstance.delete(`/comments/${id}`)
     .then((res) => {
       console.log("res.data", res.data);
-      const newComments = comments.filter((comment) => comment.id !== parseInt(id));
-      createCommentsList(newComments);
+      const comments = commentsRaw.filter((comment) => comment.id !== parseInt(id));
+      setCommentsRaw(comments);
     })
     .catch((err) => {
       console.log(err);
