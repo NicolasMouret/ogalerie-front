@@ -92,21 +92,22 @@ export default function UserPrivate(): React.JSX.Element {
   const [userLocal, setUserLocal] = useState<UserLocal>();
   const [ favoris, setFavoris] = useState<Collection>();
 
+  const getUser = (id: string) => {
+    axiosInstance.get(`/users/${id}`)
+    .then(res => {
+      console.log("res.data", res.data);
+      setUserLocal(res.data);   
+    }).catch(err => {
+      console.log(err);
+      throw err;
+    })
+  }
   
   useEffect(() => {
     const id = localStorage.getItem('id');
-    const getUser = (id: string) => {
-      axiosInstance.get(`/users/${id}`)
-      .then(res => {
-        console.log("res.data", res.data);
-        setUserLocal(res.data);
-      
-      }).catch(err => {
-        console.log(err);
-        throw err;
-      })
+    if (id) {
+      getUser(id);
     }
-    getUser(id!.toString());
   }
   , []);
 
@@ -137,6 +138,8 @@ export default function UserPrivate(): React.JSX.Element {
     <div className="flex flex-col md:flex-row mt-4 sm:mt-2 md:mt-10">
       <div className="mx-2 md:w-1/2 md:pr-4">
         <UserPublicInfosPrivateProfile 
+          userLocal={userLocal}
+          getUser={getUser}
           nickname={userLocal.nickname} 
           town={userLocal.town} 
           country={userLocal.country} 
@@ -146,6 +149,8 @@ export default function UserPrivate(): React.JSX.Element {
       </div>
       <div className="mx-2 md:w-1/2 md:pl-4"> 
         <UserPrivateInfos 
+          userLocal={userLocal}
+          getUser={getUser}
           lastname={userLocal.lastname} 
           firstname={userLocal.firstname} 
           birthday={userLocal.birthday} 

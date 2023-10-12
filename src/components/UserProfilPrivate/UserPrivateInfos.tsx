@@ -13,6 +13,7 @@ interface UserPrivateInfosProps {
     firstname: string;
     birthday: string;
     email: string;
+    userLocal: any;
     getUser: (id: string) => void;
 }
 
@@ -21,6 +22,7 @@ export default function UserPrivateInfos({
     firstname,
     birthday,
     email,
+    userLocal,
     getUser
 }: UserPrivateInfosProps) {
   const {user, setUser} = useContext(UserContext);
@@ -62,12 +64,12 @@ export default function UserPrivateInfos({
 
     const objData = Object.fromEntries(formData);      
 
-    axiosInstance.patch(`/users/${user.id}`, objData)
+    axiosInstance.patch(`/users/${userLocal.id}`, objData)
         .then((res) => {
             console.log(res.data);
             delete res.data.birthday
             setUser({...user, ...res.data});
-            getUser(user.id);
+            getUser(userLocal.id);
         }).catch((err) => {
             console.log(err);
             throw err;

@@ -16,6 +16,7 @@ interface UserPublicInfosProps {
     biography?: string;
     avatar?: string;
     likedCount: number;
+    userLocal: any;
     getUser: (id: string) => void;
 }
 
@@ -26,6 +27,7 @@ export default function UserPublicInfosPrivateProfile({
     biography,
     avatar ,
     likedCount,
+    userLocal,
     getUser}: UserPublicInfosProps)  {
     const {user, setUser} = useContext(UserContext);
     
@@ -59,11 +61,11 @@ export default function UserPublicInfosPrivateProfile({
             objData.avatar = uploadUrl;
           }
 
-        axiosInstance.patch(`/users/${user.id}`, objData)
+        axiosInstance.patch(`/users/${userLocal.id}`, objData)
             .then((res) => {
                 console.log(res.data);
                 setUser({...user, ...res.data});
-                getUser(user.id);
+                getUser(userLocal.id);
             }).catch((err) => {
                 console.log(err);
                 throw err;

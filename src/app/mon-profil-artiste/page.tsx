@@ -122,6 +122,7 @@ export default function UserPrivate() {
         <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:flex-row md:py-2 sm:py-4">
           <div className="md:w-1/2">
           <UserPublicInfosPrivateProfile 
+            userLocal={userLocal}
             getUser={getUser}
             nickname={userLocal.nickname} 
             town={userLocal.town} 
@@ -132,6 +133,7 @@ export default function UserPrivate() {
           </div>
           <div className="md:w-1/2"> 
           <UserPrivateInfos 
+            userLocal={userLocal}
             getUser={getUser}
             lastname={userLocal.lastname} 
             firstname={userLocal.firstname} 
