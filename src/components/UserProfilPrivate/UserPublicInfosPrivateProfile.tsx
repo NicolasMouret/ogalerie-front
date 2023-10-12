@@ -16,6 +16,7 @@ interface UserPublicInfosProps {
     biography?: string;
     avatar?: string;
     likedCount: number;
+    getUser: (id: string) => void;
 }
 
 export default function UserPublicInfosPrivateProfile({ 
@@ -24,7 +25,8 @@ export default function UserPublicInfosPrivateProfile({
     country ,
     biography,
     avatar ,
-    likedCount}: UserPublicInfosProps)  {
+    likedCount,
+    getUser}: UserPublicInfosProps)  {
     const {user, setUser} = useContext(UserContext);
     
     const [nicknameState, setNicknameState] = useState('');
@@ -61,6 +63,7 @@ export default function UserPublicInfosPrivateProfile({
             .then((res) => {
                 console.log(res.data);
                 setUser({...user, ...res.data});
+                getUser(user.id);
             }).catch((err) => {
                 console.log(err);
                 throw err;

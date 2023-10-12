@@ -38,11 +38,8 @@ export default function UserPrivate() {
     });
   };
 
-  useEffect(() => {
-    const id = localStorage.getItem('id');
-    if(id) {
-      setUserId(id);
-      axiosInstance.get(`/users/${id}`)
+  const getUser = (id: string) => {
+    axiosInstance.get(`/users/${id}`)
       .then(response => {
         console.log("response.data", response.data);
         setUserLocal(response.data);
@@ -50,6 +47,13 @@ export default function UserPrivate() {
         console.log(error);
         throw error;
       });
+  }
+
+  useEffect(() => {
+    const id = localStorage.getItem('id');
+    if(id) {
+      setUserId(id);
+      getUser(id);
       getCollections(id);
     }
   }, []);
@@ -118,6 +122,7 @@ export default function UserPrivate() {
         <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:flex-row md:py-2 sm:py-4">
           <div className="md:w-1/2">
           <UserPublicInfosPrivateProfile 
+            getUser={getUser}
             nickname={userLocal.nickname} 
             town={userLocal.town} 
             country={userLocal.country} 
@@ -127,6 +132,7 @@ export default function UserPrivate() {
           </div>
           <div className="md:w-1/2"> 
           <UserPrivateInfos 
+            getUser={getUser}
             lastname={userLocal.lastname} 
             firstname={userLocal.firstname} 
             birthday={userLocal.birthday} 

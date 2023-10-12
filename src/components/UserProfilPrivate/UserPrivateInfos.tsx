@@ -13,6 +13,7 @@ interface UserPrivateInfosProps {
     firstname: string;
     birthday: string;
     email: string;
+    getUser: (id: string) => void;
 }
 
 export default function UserPrivateInfos({ 
@@ -20,6 +21,7 @@ export default function UserPrivateInfos({
     firstname,
     birthday,
     email,
+    getUser
 }: UserPrivateInfosProps) {
   const {user, setUser} = useContext(UserContext);
   
@@ -65,6 +67,7 @@ export default function UserPrivateInfos({
             console.log(res.data);
             delete res.data.birthday
             setUser({...user, ...res.data});
+            getUser(user.id);
         }).catch((err) => {
             console.log(err);
             throw err;
