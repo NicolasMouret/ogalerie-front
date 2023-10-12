@@ -2,13 +2,14 @@
 export default function submission_policies () {
     return (
   <>
+  <div className="m-10">
     <p className="mt-32">Cette Politique de confidentialité décrit comment O'Galerie collecte, utilise et protège les informations personnelles que vous nous fournissez lorsque vous utilisez notre site Web.</p>
 
 <h2 className="text 9xl m-16 font-extrabold uppercase">Collecte de données personnelles</h2>
 
 <p>Nous collectons les données personnelles suivantes lorsque vous utilisez notre site Web :</p>
 
-<ul>
+<ul className="list-disc ml-20 mt-5 mb-5">
     <li>Nom et prénom</li>
     <li>Adresse e-mail</li>
     <li>Adresse postale</li>
@@ -20,7 +21,7 @@ export default function submission_policies () {
 
 <p>Nous utilisons vos données personnelles pour les finalités suivantes :</p>
 
-<ul>
+<ul className="list-disc ml-20 mt-5 mb-5">
     <li>Vous fournir les produits ou services demandés</li>
     <li>Vous envoyer des informations, des newsletters ou des offres spéciales</li>
     <li>Améliorer notre site Web et nos services</li>
@@ -42,7 +43,7 @@ export default function submission_policies () {
 
 <p>Pour toute question concernant notre Politique de confidentialité, veuillez nous contacter à [adresse e-mail de contact] ou à l'adresse postale suivante :</p>
 
-<ul>
+<ul className="list-disc ml-20 mt-5 mb-5">
     <li>Nom de votre entreprise</li>
     <li>Adresse postale</li>
     <li>Code postal, Ville</li>
@@ -50,6 +51,7 @@ export default function submission_policies () {
 </ul>
 
 <p>Cette Politique de confidentialité est en vigueur à partir du [date d'entrée en vigueur]. Toute modification de cette politique sera publiée sur cette page.</p>
+</div>
   </>
     );
   }

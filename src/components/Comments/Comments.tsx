@@ -94,7 +94,7 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
           language='fr'
           onEnter={onEnter}
         />
-      </div>
+      </div>￼
     </div>
     )
 }
