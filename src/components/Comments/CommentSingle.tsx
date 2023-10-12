@@ -1,8 +1,7 @@
 import Image from 'next/image'
-import axiosInstance from '@/src/utils/axios';
+import { useWindowSize } from "@uidotdev/usehooks";
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Link from 'next/link'
-import axios from '@/src/utils/axios';
 import { useEffect, useState } from 'react';
 
 interface CommentProps {
@@ -17,6 +16,7 @@ interface CommentProps {
 }
 
 export default function CommentSingle({avatar, nickname, date, content, className, userId, id, handleDelete}: CommentProps) {
+  const screenWidth = useWindowSize().width || 800;
   const [isOwner, setIsOwner] = useState(false);
   const setDate = (date: string) => {
     const isoDate = new Date(date);

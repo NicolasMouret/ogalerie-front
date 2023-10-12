@@ -18,8 +18,8 @@ interface CarouselMobileProps {
 export default function CarouselMobile({collection, addButton, onClick}: CarouselMobileProps){
   const { artworks } = collection;
   //Je créé un tableau de slides en utilisant le tableau d'images
-  const slides = artworks.map((imageList) => {
-    return <SlideMobile key={imageList.id} artworkId={collection.id.toLocaleString()} url={imageList.uri} />;
+  const slides = artworks.map((artwork) => {
+    return <SlideMobile key={artwork.id} artworkId={artwork.id.toLocaleString()} url={artwork.uri} />;
   });
   if (addButton) {
     const add = () => {
