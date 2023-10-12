@@ -142,7 +142,7 @@ export default function UserPrivate() {
               <h3 className="flex flex-col gap-2 sm:flex-row text-xl font-extrabold mr-4">{collections[0].title}
               {screenWidth! < 768 && <button onClick={() => handleMobileAdd(collections[0].id.toString())} className="flex gap-1 font-bold text-base"><RiImageAddFill className="text-2xl"  />Ajouter une oeuvre</button>}
               </h3> 
-              <RiDeleteBin6Line className="text-xl hidden group-hover:block" /></div>}     
+              <button onClick={() => handleDeleteClick(collections[0].id.toString())}> <RiDeleteBin6Line className="text-xl ml-2 md:hidden group-hover:block" /> </button></div>}     
           </div>
           {collections.length > 0 && 
           <>
@@ -160,7 +160,7 @@ export default function UserPrivate() {
           <div className="flex flex-col sm:gap-2 sm:flex-row flex-start">
             <h3 className="w-[90vw] py-2 md:w-[84vw] text-xl font-extrabold mx-auto flex items-center group mr-4">
               {collection.title}
-              <RiDeleteBin6Line className="text-xl ml-2 md:hidden group-hover:block" onClick={() => handleDeleteClick(collection.id.toString())} />
+              <button onClick={() => handleDeleteClick(collection.id.toString())}> <RiDeleteBin6Line className="text-xl ml-2 md:hidden group-hover:block" /> </button> 
             </h3>
             {screenWidth! < 768 && <button onClick={() => handleMobileAdd(collection.id.toString())} className="flex gap-1 w-[90vw] mx-auto mb-2 font-bold text-base"><RiImageAddFill className="text-2xl"  />Ajouter une oeuvre</button>}
           </div>
