@@ -67,7 +67,7 @@ export default function ArtworkInfos({
 	return (
 		<div className="flex flex-col justify-center gap-2 overflow-hidden pb-6 h-fit w-[95vw] md:w-[800px]">
 			<div className="flex flex-col md:flex-row items-center">
-				<h1 className="text-4xl mb-4 md:mb-0 md:mr-6">"{title}"</h1>
+			<h1 className="text-3xl sm:text-4xl md:text-4xl mb-4 md:mb-0 md:mr-6">"{title}"</h1>
 				{likes === 0 && <span><BsHeart className="inline text-2xl mr-1" /> {likes} like</span>}
 				{likes === 1 && <span><BsHeartFill className="inline text-2xl mr-1" /> {likes} like</span>}
 				{likes > 1 && <span><BsHeartFill className="inline text-2xl mr-1" /> {likes} likes</span>}

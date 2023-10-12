@@ -31,6 +31,12 @@
   animation: slideInFromLeft 1s forwards;
 }
 
+@media screen and (max-height: 850px) {
+  .custom-artwork-image {
+    height: 600px !important; 
+  }
+}
+
 
 
 

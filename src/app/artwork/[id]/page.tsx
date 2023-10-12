@@ -45,18 +45,14 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
   return (
     <>
     {artwork &&  
-    <div className="flex flex-col md:flex-row md:justify-center items-center gap-6 mx-auto mt-4 md:mt-0 h-[85vh] w-[90vw] md:w-[1500px]">
-      <div className="w-[45%] flex items-center h-full py-10">
-        <Image
-        className="mx-auto"
-        src={artwork.uri}
-        alt="image"
-        width={700}
-        height={800}
-        style={{
-           objectFit: "cover",
-          }}
-        />
+    <div className="flex flex-col md:flex-row md:justify-center items-center gap-6 mx-auto mt-10 w-[90vw] md:w-[1500px]">
+      <div className={`relative w-full h-[300px] sm:w-[50%] sm:h-[400px] md:w-[40%] md:h-[450px] lg:w-[65%] lg:h-[600px] xl:w-[70%] xl:h-[700px] md:pb-0 custom-artwork-image`}>
+      <Image
+    className="absolute top-0 left-0 w-full h-full object-contain md:max-w-[80%] md:mx-auto lg:max-w-[90%]"
+    src={artwork.uri}
+    alt="image"
+    layout="fill"
+/>
       </div>
       <div className="flex flex-col gap-12 justify-center h-full">
         <ArtworkInfos
@@ -75,7 +71,9 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
             support={artwork.tags[1] === undefined ? '' : `#${artwork.tags[1].name}`}
             style={artwork.tags[2] === undefined ? '' : `#${artwork.tags[2].name}`}
             description={artwork.description}/>
-        <CommentsBlock userId={userId} artworkId={artworkId} comments={artwork.comment} />
+        <div className="h-[250px] sm:h-auto overflow-y-auto">
+    <CommentsBlock userId={userId} artworkId={artworkId} comments={artwork.comment} />
+</div>
       </div>
     </div>}
     </>
