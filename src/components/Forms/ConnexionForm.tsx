@@ -37,7 +37,7 @@ export default function ConnexionForm() {
       return;
     }
 
-  axiosInstance.post('/login', objData)
+  axiosInstance.post('/users/login', objData)
     .then(res => {
       console.log(res.data);  
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${res.data.token}` 

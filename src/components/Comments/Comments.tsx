@@ -1,12 +1,10 @@
 "use client";
 
-import { useState, useRef, useContext, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+import { useState, useRef, useEffect } from 'react';
 import axiosInstance from '@/src/utils/axios';
 import { Comment } from '@/src/@types';
 import InputEmoji from 'react-input-emoji'
 import CommentSingle from './CommentSingle'
-import { create } from 'domain';
 
 interface CommentsBlockProps {
   comments: Comment[];
