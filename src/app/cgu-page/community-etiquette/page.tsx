@@ -3,6 +3,7 @@
 export default function community_etiquette () {
     return (
         <>
+        <div className="m-10">
         <h2 className="text 9xl m-16 font-extrabold uppercase">Droit d'auteur et vos soumissions</h2>
         <p>En tant que communauté d'individus créatifs, O’Galerie considère la protection du droit d'auteur et l'infraction au droit d'auteur comme une question sérieuse. Notre politique de droit d'auteur apparaît comme un lien en bas de la plupart des pages sur O’Galerie et peut être consultée directement à l'adresse suivante : <a href="http://about.O’Galerie.com/policy/copyright/">http://about.O’Galerie.com/policy/copyright/</a></p>
         
@@ -89,6 +90,7 @@ export default function community_etiquette () {
         <p>Ne publiez pas de contenu impliquant l'exploitation des enfants (c'est-à-dire la représentation sexualisée de mineurs). Cela est vrai pour tout type de contenu, y compris les personnages fictifs, et peut inclure des contenus où les mineurs sont habillés de manière inappropriée pour leur âge (lingerie, vêtements sexuellement provocateurs), sont montrés dans des poses séduisantes ou érotiques, sont associés à des situations obscènes ou obscènes, ou sont montrés impliqués dans toute situation liée à un fétichisme (y compris des fétichismes plus triviaux tels que le chatouillement ou le fétichisme des pieds).</p>
         
         <p>Nous pouvons signaler ce type de contenu au Centre national pour les enfants disparus et exploités (NCMEC), conformément à la loi applicable.</p>
+        </div>
         </>
     );
   }

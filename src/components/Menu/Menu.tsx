@@ -165,6 +165,11 @@ export default function Menu() {
                 </Link>
               </li>
               <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <Link onClick={handleClick} className="text-sm font-semibold" href="/equipe">
+                  L'équipe
+                </Link>
+              </li>
+              <li className="hover:underline underline-offset-8 my-4 uppercase">
                 <Link onClick={handleClick} className="text-sm font-semibold" href="/demos">
                   Demos
                 </Link>

@@ -1,10 +1,13 @@
 export default function InformationPage() {
 
   return (
-    <div className="flex flex-col items-center justify-center mt-[-30px] h-[75vh] lg:mt-0">
-        <h1 className="text-xl lg:text-2xl font-bold pb-4 lg:pb-10 mt-20 sm:mt-0">
-            À propos
-        </h1>
+    <div
+      className="flex flex-col items-center justify-center mt-[-30px] h-[75vh] lg:mt-0 bg-background bg-cover bg-center"
+      style={{ backgroundImage: `url('/images/background_image_a_propos.png')` }}
+    >
+      <h1 className="text-xl lg:text-4xl font-bold pb-4 lg:pb-10 mt-20 sm:mt-0">
+        À propos
+      </h1>
         <p className="text-justify max-w-xs lg:max-w-2xl mx-4 lg:mx-auto indent-4 lg:indent-8">
             O’Galerie est une plateforme en ligne 100% gratuite, dédiée aux artistes visuels, permettant
             d’offrir à tous, professionnels ou amateurs, un espace pour exposer et partager leurs oeuvres.<br /><br />
