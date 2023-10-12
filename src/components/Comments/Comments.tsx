@@ -25,12 +25,13 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
   const commentsList = comments.map((comment) => {
     return (
       <CommentSingle
-        key={nanoid()}
+        key={comment.id}
         avatar={comment.avatar? comment.avatar : "/DefaultAvatar.svg"}
         nickname={comment.owner}
         date={comment.created_at}
         content={comment.content}
         userId={comment.owner_id.toString()}
+        id={comment.id.toString()}
       />
     )
   })
@@ -47,6 +48,17 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
       }
     }).then((res) => {
       console.log("res.data comments", res.data);
+      commentsList.push(
+        <CommentSingle
+        id={res.data.id.toString()}
+        key={res.data.id}
+        avatar={res.data.avatar? res.data.avatar : "/DefaultAvatar.svg"}
+        nickname={res.data.owner}
+        date={res.data.created_at}
+        content={res.data.content}
+        userId={res.data.owner_id.toString()}
+      />
+      )
     }
     ).catch((err) => {
       console.log(err);
