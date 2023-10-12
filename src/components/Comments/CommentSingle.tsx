@@ -5,6 +5,7 @@ import Link from 'next/link'
 import axios from '@/src/utils/axios';
 
 interface CommentProps {
+    handleDelete: (id: string) => void;
     avatar: string;
     nickname: string;
     date: string;
@@ -14,7 +15,7 @@ interface CommentProps {
     id: string;
 }
 
-export default function CommentSingle({avatar, nickname, date, content, className, userId, id}: CommentProps) {
+export default function CommentSingle({avatar, nickname, date, content, className, userId, id, handleDelete}: CommentProps) {
   const setDate = (date: string) => {
     const isoDate = new Date(date);
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -23,15 +24,6 @@ export default function CommentSingle({avatar, nickname, date, content, classNam
   }
   const formattedDate = setDate(date);
 
-  const handleDelete = () => {
-    axiosInstance.delete(`/comments/${id}`)
-    .then((res) => {
-      console.log("res.data", res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
     return (
       <div className={`flex items-center gap-4 group ${className}`}>
         <Link className="h-[90%]" href={`/user/${userId}`}>
@@ -47,7 +39,7 @@ export default function CommentSingle({avatar, nickname, date, content, classNam
             <p><Link href={`/user/${userId}`}>{nickname}</Link>- {formattedDate}</p>
             <p>{content}</p>
         </div>
-        <button onClick={handleDelete} className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block"><RiDeleteBin6Line  /></button>
+        <button onClick={() => handleDelete(id)} className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block"><RiDeleteBin6Line  /></button>
       </div>
       )
 }
