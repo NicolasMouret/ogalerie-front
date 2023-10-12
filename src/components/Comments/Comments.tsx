@@ -14,7 +14,7 @@ interface CommentsBlockProps {
 
 export default function CommentsBlock({comments, userId, artworkId}: CommentsBlockProps) {
   const commentsContainerRef = useRef<HTMLDivElement>(null);
-  const [text, setText] = useState<string>("");
+  const [text, setText] = useState("");
   const [commentsRaw, setCommentsRaw] = useState<Comment[]>(comments);
   const [commentsList, setCommentsList] = useState<JSX.Element[]>();
 
@@ -42,6 +42,7 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
   }
   
   const onEnter = (text: string) => {
+    console.log("text before enter", text);
     const payload = {
       content: text,
       artwork_id: artworkId,
@@ -92,7 +93,6 @@ export default function CommentsBlock({comments, userId, artworkId}: CommentsBlo
           aria-label="Ajoutez un commentaire"
           language='fr'
           onEnter={onEnter}
-          shouldReturn
         />
       </div>
     </div>

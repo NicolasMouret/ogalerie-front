@@ -29,8 +29,7 @@ export default function Carousel({collection, page, addButton, collectionId, han
 
   const handleClick = () => {
     setShowModalAddArtwork(true);
-    handleAddClick!(collectionId);
-    console.log(collectionId); 
+    handleAddClick!(collectionId); 
   }
 
   //useEffect pour mettre à jour le state isMobile

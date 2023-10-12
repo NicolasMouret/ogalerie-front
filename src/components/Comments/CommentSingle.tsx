@@ -3,6 +3,7 @@ import axiosInstance from '@/src/utils/axios';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Link from 'next/link'
 import axios from '@/src/utils/axios';
+import { useEffect, useState } from 'react';
 
 interface CommentProps {
     handleDelete: (id: string) => void;
@@ -16,6 +17,7 @@ interface CommentProps {
 }
 
 export default function CommentSingle({avatar, nickname, date, content, className, userId, id, handleDelete}: CommentProps) {
+  const [isOwner, setIsOwner] = useState(false);
   const setDate = (date: string) => {
     const isoDate = new Date(date);
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -23,6 +25,11 @@ export default function CommentSingle({avatar, nickname, date, content, classNam
     return formattedDate;
   }
   const formattedDate = setDate(date);
+
+  useEffect(() => {
+    localStorage.getItem("id") === userId ? setIsOwner(true) : setIsOwner(false);
+  }
+  , []);
 
     return (
       <div className={`flex items-center gap-4 group ${className}`}>
@@ -39,7 +46,7 @@ export default function CommentSingle({avatar, nickname, date, content, classNam
             <p><Link href={`/user/${userId}`}>{nickname}</Link>- {formattedDate}</p>
             <p>{content}</p>
         </div>
-        <button onClick={() => handleDelete(id)} className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block"><RiDeleteBin6Line  /></button>
+        {isOwner && <button onClick={() => handleDelete(id)} className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block"><RiDeleteBin6Line  /></button>}
       </div>
       )
 }

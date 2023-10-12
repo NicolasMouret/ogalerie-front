@@ -26,7 +26,7 @@ export default function UserPrivate() {
   const [ isModalOpen, setIsModalOpen] = useState(false);
   const [ collectionToDelete, setCollectionToDelete] = useState<string | null>(null);
 
-  const getcollections = (id: string) => {
+  const getCollections = (id: string) => {
     axiosInstance.get<Collection[]>(`/users/${id}/collections`)
     .then(res => {
         console.log("res.data collections", res.data);
@@ -50,7 +50,7 @@ export default function UserPrivate() {
         console.log(error);
         throw error;
       });
-      getcollections(id);
+      getCollections(id);
     }
   }, []);
 
@@ -68,7 +68,7 @@ export default function UserPrivate() {
     .then(response => {
       console.log("Collection supprimée avec succès", response.data);
       const id = localStorage.getItem("id")
-      getcollections(id!);
+      getCollections(id!);
     })
     .catch(error => {
       console.error("Erreur lors de la suppression de la collection", error);
@@ -114,7 +114,7 @@ export default function UserPrivate() {
     <>
     {userLocal && userId && collections && collectionsFullScreen &&
     <main className="overflow-auto snap-y snap-mandatory h-[85vh]" ref={scrollContainerRef}>
-      <AddArtworkForm collectionId={collectionId} userId={userId}/>
+      <AddArtworkForm collectionId={collectionId} userId={userId} getCollections={getCollections}/>
       <div className="sm:h-screen snap-start">
         <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:flex-row md:py-2 sm:py-4">
           <div className="md:w-1/2">

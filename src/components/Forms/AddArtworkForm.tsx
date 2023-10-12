@@ -7,13 +7,15 @@ import Image from 'next/image';
 import CloseButton from '../Buttons/CloseButton';
 import CloudinaryUpload from '../Buttons/CloudinaryUpload';
 import { RxCross2 } from 'react-icons/rx';
+import { get } from 'http';
 
 interface AddArtworkFormProps {
   collectionId: string;
   userId: string;
+  getCollections: (id: string) => void;
 }
 
-export default function AddArtworkForm({collectionId, userId}: AddArtworkFormProps) {
+export default function AddArtworkForm({collectionId, userId, getCollections}: AddArtworkFormProps) {
   const { showModalAddArtwork, setShowModalAddArtwork } = React.useContext(UiContext);
   // State to display error messages.
   const [error, setError] = useState<string | null>(null);
@@ -65,20 +67,12 @@ export default function AddArtworkForm({collectionId, userId}: AddArtworkFormPro
     objData.collection_id = collectionId;
     console.log(objData);
 
-   // Validation checks
-    // if (!objData.title || !objData.description || !objData.date || !image) {
-    //  setError("Merci de saisir tous les champs");
-    //  return 
-    // } 
-    // if (!objData.type || !objData.support || !objData.style) {
-    //   setError("Merci de choisir 3 tags");
-    //   return;
-    // }
     AxiosInstance.post(`/users/${userId}/artworks`, objData)
     .then((res) => {
       console.log(res.data);
       clearForm();
       closeModal();
+      getCollections(userId);
     }).catch((err) => {
       console.log(err);
     } )
