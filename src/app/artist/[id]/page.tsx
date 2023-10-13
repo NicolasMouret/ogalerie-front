@@ -1,6 +1,7 @@
 'use client';
 import axiosInstance from '@/src/utils/axios';
 import { useEffect, useRef, useState } from 'react';
+import { notFound } from "next/navigation";
 import Carousel from "@/src/components/testCarousel/Carousel";
 import ArtistPublicInfos from '@/src/components/ArtistProfilPublic/ArtistPublicInfos';
 import ContactArtistPublic from '@/src/components/ArtistProfilPublic/ContactArtistPublic';
@@ -16,6 +17,7 @@ interface ArtistPublicProps {
 
 export default function ArtistPublic({params}: ArtistPublicProps) {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [isNotFound, setIsNotFound] = useState<boolean>(false);
   const [ userLocal, setUserLocal] = useState<any>();
   const [ collections, setCollections] = useState<Collection[]>();
   const [ collectionsFullScreen, setCollectionsFullScreen] = useState<Collection[]>();
@@ -24,11 +26,11 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
     const getUser = (id: string) => {
       axiosInstance.get(`/users/${id}`)
       .then(res => {
-        console.log(res.data);
+        console.log("user infos", res.data);
         setUserLocal(res.data);
       }).catch(err => {
+        setIsNotFound(true);
         console.log(err);
-        throw err;
       })
     }
     getUser(params.id);
@@ -69,6 +71,10 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
     }
   };
 
+  if (isNotFound) {
+    notFound();
+  }
+
   return (
     <>
     {userLocal && collections && collectionsFullScreen &&
@@ -77,12 +83,7 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
     <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:flex-row md:py-2 sm:py-4">
       <div className="md:w-1/2">
       <ArtistPublicInfos 
-        nickname={userLocal.nickname}
-        town={userLocal.town}
-        country={userLocal.country}
-        biography={userLocal.biography}
-        avatar={userLocal.avatar}
-        likedCount={userLocal.likedCount}
+        userLocal={userLocal}
       />
       </div>
       <div className="md:w-1/2"> 

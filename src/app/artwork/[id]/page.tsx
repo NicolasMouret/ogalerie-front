@@ -2,6 +2,7 @@
 import { useEffect, useContext, useState } from 'react';
 import axiosInstance from '@/src/utils/axios';
 import Image from 'next/image';
+import { notFound } from "next/navigation";
 import ArtworkInfos from "@/src/components/ArtworkInfos/Artwork";
 import CommentsBlock from "@/src/components/Comments/Comments";
 import { Artwork } from '@/src/@types';
@@ -16,31 +17,39 @@ interface ArtworkPageProps {
 
 export default function ArtworkPage({params}: ArtworkPageProps) {
     const artworkId = params.id;
+    const [isNotFound, setIsNotFound] = useState<boolean>(false);
     const [userId, setUserId] = useState('');
     const [artwork, setArtwork] = useState<Artwork>();
     const [isFaves, setIsFaves] = useState<boolean>();
     const [isLiked, setIsLiked] = useState<boolean>();
+    console.log("artwork", artwork);
+
+    const getArtwork = (id: string) => {
+      axiosInstance.get(`/artworks/${id}`)
+      .then((res) => {
+          console.log("res.data", res.data);
+          setArtwork(res.data);
+          setIsFaves(res.data.favorite_by === 0 ? false : true);
+          setIsLiked(res.data.liked_by === 0 ? false : true);
+          console.log("tags", res.data.tags[0].name);
+      })
+      .catch((err) => {
+          setIsNotFound(true)
+          console.log(err);
+      })
+  }
     
     useEffect(() => {
         setUserId(localStorage.getItem('id')!);
     }, []);
     
     useEffect(() => {
-        const getArtwork = (id: string) => {
-            axiosInstance.get(`/artworks/${id}`)
-            .then((res) => {
-                console.log("res.data", res.data);
-                setArtwork(res.data);
-                setIsFaves(res.data.favorite_by === 0 ? false : true);
-                setIsLiked(res.data.liked_by === 0 ? false : true);
-                console.log("tags", res.data.tags[0].name);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-        }
         getArtwork(artworkId);
     }, []);
+
+    if (isNotFound) {
+      notFound();
+    }
 
   return (
     <>

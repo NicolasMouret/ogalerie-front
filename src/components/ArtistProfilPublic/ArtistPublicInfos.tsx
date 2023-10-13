@@ -2,23 +2,21 @@ import React from 'react';
 import { AiFillHeart } from 'react-icons/ai';
 
 interface ArtistPublicInfosProps {
-    nickname: string,
-    town: string;
-    country: string;
-    biography?: string;
-    avatar: string;
-    likedCount: number;
+    userLocal: {
+        avatar: string;
+        nickname: string;
+        town: string;
+        country: string;
+        biography: string;
+        liked: number;
+    }
 }
 
 export default function ArtistPublicInfos ({ 
-    nickname,
-    town,
-    country,
-    biography,
-    avatar,
-    likedCount,
+    userLocal
     }: ArtistPublicInfosProps) {
 
+    const { avatar, nickname, town, country, biography, liked } = userLocal;
 
   return (
     <div className='flex flex-col md:flex-row mr-8'>
@@ -36,7 +34,7 @@ export default function ArtistPublicInfos ({
         </div>
         <div className='flex items-center mt-3'>
             <AiFillHeart className='mr-2 text-red-500'/>
-            <span>{likedCount ?? 0} likes reçus</span>
+            <span>{liked} likes reçus</span>
         </div>
         </div>
     </div>

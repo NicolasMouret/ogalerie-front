@@ -1,10 +1,10 @@
 'use client';
 import axiosInstance from '@/src/utils/axios';
+import { notFound } from 'next/navigation';
 import Carousel from "@/src/components/testCarousel/Carousel";
 import UserPublicInfos from "@/src/components/UserProfilPublic/UserPublicInfos";
 import { useEffect, useState, useRef } from 'react';
 import { Collection, Artwork } from "@/src/@types";
-import ScrollButton from '@/src/components/Buttons/ScrollButton';
 
 
 interface UserPublicProps {
@@ -78,6 +78,7 @@ const imageList = [
 
 export default function UserPublic({params}: UserPublicProps) {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [isNotFound, setIsNotFound] = useState<boolean>(false);
   const [ userLocal, setUserLocal] = useState<any>();
   const [ favoris, setFavoris] = useState<Collection>();
   
@@ -89,8 +90,8 @@ export default function UserPublic({params}: UserPublicProps) {
         console.log(res.data);
         setUserLocal(res.data);
       }).catch(err => {
+        setIsNotFound(true);
         console.log(err);
-        throw err;
       })
     }
     getUser(params.id);
@@ -115,6 +116,10 @@ export default function UserPublic({params}: UserPublicProps) {
     getcollections(params.id);
   }
   , []);
+
+  if (isNotFound) {
+    notFound();
+  }
 
   return (
     <>
