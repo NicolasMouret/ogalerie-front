@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 import axiosInstance from "@/src/utils/axios";
+import { useRouter } from "next/navigation";
 import Carousel from "@/src/components/testCarousel/Carousel";
 import SearchBar from "@/src/components/SearchBar/SearchBar";
-import { Collection, Artwork } from "@/src/@types";
 import FilterGalerieButton from '../components/Buttons/FilterGalerieButton';
 import Filter from '../components/Filter/Filter';
+import { Collection, Artwork } from "@/src/@types";
 
 export default function Home() {
+  const router = useRouter();
   const [collectionRandom, setCollectionRandom] = useState<Collection>();
   const [collectionSearch, setCollectionSearch] = useState<Collection>();
   const [artworkResults, setArtworkResults] = useState<Artwork[]>([]);
@@ -59,6 +61,7 @@ export default function Home() {
 
   const handleClick = () => {
     setIsOpen(true);
+    router.replace('/', undefined)
   };
 
   const handleClose = () => {

@@ -2,7 +2,7 @@
 
 import axiosInstance from '@/src/utils/axios';
 import { useState, useEffect } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import CloseButton from '@/src/components/Buttons/CloseButton';
 import { Tag, Artwork, Collection } from '@/src/@types';
 
@@ -73,6 +73,7 @@ export default function Filter({ handleClose, setCollectionSearch }: FilterProps
         throw err;
       })
   handleClose();
+  
   }
 
   const handleChange = (tag: Tag) => {
