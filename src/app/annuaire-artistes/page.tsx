@@ -41,15 +41,15 @@ const handleLetterClick = (letter: string) => {
 };
 
 const filteredArtists = artists.filter((artist) =>
-  artist.nickname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  artist.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  artist.lastname.toLowerCase().includes(searchQuery.toLowerCase())
+  artist.nickname.toLowerCase().includes(searchQuery.toLowerCase())
+  // artist.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  // artist.lastname.toLowerCase().includes(searchQuery.toLowerCase())
 );
 
 const filteredArtistsByLetter = artists.filter((artist) =>
-  artist.nickname.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
-  artist.firstname.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
-  artist.lastname.toLowerCase().startsWith(searchQuery.toLowerCase())
+  artist.nickname.toLowerCase().startsWith(searchQuery.toLowerCase())
+  // artist.firstname.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
+  // artist.lastname.toLowerCase().startsWith(searchQuery.toLowerCase())
 );
 
   return (
@@ -67,10 +67,19 @@ const filteredArtistsByLetter = artists.filter((artist) =>
           <div className="flex flex-col md:flex-row gap-5 results-container mt-5">
             {(isAlphabetSearch ? filteredArtistsByLetter : filteredArtists).map((artist) => (
               <div key={artist.id} className="flex flex-col items-center">
-                <Link href={localStorage.getItem('id') === artist.id.toString() ? '/mon-profil-artiste' : `/artist/${artist.id}`} >
-                  <img src={artist.avatar} alt={artist.nickname} className="w-24 h-24 rounded-full"/>
-                  <span>{artist.nickname}</span>
-                </Link>
+                <Link 
+  href={localStorage.getItem('id') === artist.id.toString() ? '/mon-profil-artiste' : `/artist/${artist.id}`}
+  className="flex flex-col items-center"
+>
+    <div className="w-24 h-24 rounded-full overflow-hidden relative mb-2">
+        <img 
+            src={artist.avatar} 
+            alt={artist.nickname} 
+            className="absolute top-50% left-50% transform translate--50% translate-y--50% w-full h-full object-cover"
+        />
+    </div>
+    <span className="block text-center">{artist.nickname}</span>
+</Link>
               </div>
             ))}
           </div>
