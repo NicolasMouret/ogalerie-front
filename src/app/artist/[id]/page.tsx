@@ -29,7 +29,9 @@ export default function ArtistPublic({params}: ArtistPublicProps) {
         console.log("user infos", res.data);
         setUserLocal(res.data);
       }).catch(err => {
-        setIsNotFound(true);
+        if (err.response?.status === 404) {
+          setIsNotFound(true);
+        }
         console.log(err);
       })
     }

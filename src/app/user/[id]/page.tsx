@@ -90,7 +90,9 @@ export default function UserPublic({params}: UserPublicProps) {
         console.log(res.data);
         setUserLocal(res.data);
       }).catch(err => {
-        setIsNotFound(true);
+        if (err.response?.status === 404) {
+          setIsNotFound(true);
+        }
         console.log(err);
       })
     }

@@ -34,7 +34,9 @@ export default function ArtworkPage({params}: ArtworkPageProps) {
           console.log("tags", res.data.tags[0].name);
       })
       .catch((err) => {
-          setIsNotFound(true)
+          if (err.response?.status === 404) {
+            setIsNotFound(true);
+          }
           console.log(err);
       })
   }
