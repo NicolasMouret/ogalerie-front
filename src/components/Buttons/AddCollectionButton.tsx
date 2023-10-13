@@ -50,7 +50,7 @@ export default function AddCollectionButton({userId, reGetCollections}: AddColle
             </OutsideClickHandler>
         </div>
      :    
-        <button onClick={showInput} className="flex items-center gap-2 py-4 w-[90vw] sm:w-[85vw] mx-auto sm:mx-0 sm:py-0 text-lg font-bold">
+        <button onClick={showInput} className="flex items-center gap-2 py-4 w-[90vw] sm:w-[250px] mx-auto sm:mx-0 sm:py-0 text-lg font-bold">
             <BiSolidAddToQueue/> Ajouter une collection
         </button>
     }</>)
