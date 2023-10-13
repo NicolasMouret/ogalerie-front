@@ -116,7 +116,7 @@ export default function Menu() {
             {user.logged ? 
             <>
               <FaUserAlt /><span className="font-bold">Utilisateur :</span><p className="text-xl">{user.nickname}</p><span className="mx-4">-</span>
-              <Link href="/" className="font-semibold text-xl" onClick={handleDeconnect}>Se deconnecter</Link>
+              <Link href="/" className="font-semibold text-xl" onClick={handleDeconnect}>Se déconnecter</Link>
             </>
             : 
             <>

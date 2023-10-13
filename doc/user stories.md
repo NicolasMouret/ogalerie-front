@@ -13,7 +13,7 @@ En tant que | Je veux | Afin de |
 | Artiste | modifier une oeuvre | mettre à jour les informations et/ou les images d'oeuvres exposées |
 | Artiste | taguer une oeuvre | permettre aux visiteurs de trier les oeuvres selon des critères spécifiques |
 | Artiste | accepter les conditions d'utilisations | respecter les règles et conditions du site | 
-| Visiteur identifié | se deconnecter | ne pas laisser sa session active  |
+| Visiteur identifié | se déconnecter | ne pas laisser sa session active  |
 | Visiteur identifié | consulter ses données personnelles | vérifier ses informations personnelles |
 | Visiteur identifié | modifier son profil et ses données personnelles | modifier ses informations personnelles et personnaliser son profil |
 | Visiteur identifié | supprimer son profil | retirer mon profil de la plateforme |
@@ -31,7 +31,7 @@ En tant que | Je veux | Afin de |
 | Visiteur anonyme | s'authentifier | accéder aux fonctionnalités réservées aux utilisteurs authentifiés |
 | Visiteur anonyme | consulter les pages artistes | découvrir des artistes et leurs oeuvres |
 | Visiteur anonyme | consulter la page d'une oeuvre |  avoir plus de détails sur une oeuvre |
-| Administrateur | se deconnecter | ne pas laisser sa session active  |
+| Administrateur | se déconnecter | ne pas laisser sa session active  |
 | Administrateur | masquer un profil | satisfaire la réglementation de la plateforme  |
 | Administrateur | masquer une image | satisfaire la réglementation de la plateforme  |
 | Administrateur | supprimer un commentaire | modérer le contenu posté par les utilisateurs  |
