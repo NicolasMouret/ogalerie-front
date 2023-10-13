@@ -26,7 +26,7 @@ export default function RootLayout({
       <UserContextProvider>
       <UiContextProvider>
       <ArtworkContextProvider>
-        <body className={inter.className}>          
+        <body className={`${inter.className}`}>          
           <Header />
           <ConnexionForm />
           <AuthentificationForm />

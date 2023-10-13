@@ -118,8 +118,8 @@ export default function UserPrivate() {
     {userLocal && userId && collections && collectionsFullScreen &&
     <main className="overflow-auto snap-y snap-mandatory h-[85vh]" ref={scrollContainerRef}>
       <AddArtworkForm collectionId={collectionId} userId={userId} getCollections={getCollections}/>
-      <div className="sm:h-screen snap-start">
-        <div className="flex flex-col gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] md:flex-row md:py-2 sm:py-4">
+      <section className="flex flex-col items-center justify-around sm:snap-start sm:min-h-[85vh]" >      
+        <div className="flex flex-col min-h-[85vh] sm:min-h-fit gap-4 md:gap-8 mx-4 md:mx-auto md:w-[85vw] max-w-[1700px] md:flex-row md:py-2 sm:py-4 snap-start sm:snap-align-none">
           <div className="md:w-1/2">
           <UserPublicInfosPrivateProfile 
             userLocal={userLocal}
@@ -131,7 +131,7 @@ export default function UserPrivate() {
             avatar={userLocal.avatar}
             likedCount={userLocal.like} />
           </div>
-          <div className="md:w-1/2"> 
+          <div className="md:w-1/2 snap-start sm:snap-align-none"> 
           <UserPrivateInfos 
             userLocal={userLocal}
             getUser={getUser}
@@ -141,27 +141,24 @@ export default function UserPrivate() {
             email={userLocal.email} />
           </div>
         </div>
-        <section className="h-screen sm:flex-grow sm:h-[85vh] snap-start">
-          <div className="flex flex-col gap-4 items-start w-[90vw] py-2 md:w-[84vw] mx-auto group">
-            <AddCollectionButton userId={userId} reGetCollections={getCollections} />
-            {collections.length > 0 && 
-            <div className="flex items-center">
-              <h3 className="flex flex-col gap-2 sm:flex-row text-xl font-extrabold mr-4">{collections[0].title}
-              {screenWidth! < 768 && <button onClick={() => handleMobileAdd(collections[0].id.toString())} className="flex gap-1 font-bold text-base"><RiImageAddFill className="text-2xl"  />Ajouter une oeuvre</button>}
-              </h3> 
-              <button onClick={() => handleDeleteClick(collections[0].id.toString())}> <RiDeleteBin6Line className="text-xl ml-2 md:hidden group-hover:block" /> </button></div>}     
+        <AddCollectionButton userId={userId} reGetCollections={getCollections} />          
+        <div className="flex flex-col justify-around min-h-[85vh] sm:min-h-0 sm:gap-2 flex-start snap-start sm:snap-align-none">
+          {screenWidth ! < 768 && <ScrollButton direction="up" onClick={scrollToPreviousViewport} />}
+          <div className="flex flex-col sm:gap-2 sm:flex-row flex-start">
+          <h3 className="w-[90vw] py-2 md:w-[84vw] text-xl font-extrabold mx-auto flex items-center group mr-4">
+            {collections[0].title}
+            <button onClick={() => handleDeleteClick(collections[0].id.toString())}> <RiDeleteBin6Line className="text-xl ml-2 md:hidden group-hover:block" /> </button> 
+          </h3>
+          {screenWidth! < 768 && <button onClick={() => handleMobileAdd(collections[0].id.toString())} className="flex gap-1 w-[90vw] mx-auto mb-2 font-bold text-base"><RiImageAddFill className="text-2xl"  />Ajouter une oeuvre</button>}
           </div>
-          {collections.length > 0 && 
-          <>
-          <Carousel  handleAddClick={handleAddClick} collectionId={collections[0].id.toString()} collection={collections[0]} page="user" addButton />     
-          {collectionsFullScreen.length > 0 && <ScrollButton className="mt-4" direction="down" onClick={scrollToNextViewport} />}
-          </> }        
-        </section>
-      </div>
+          <Carousel handleAddClick={handleAddClick} collectionId={collections[0].id.toString()} collection={collections[0]} page="user" addButton />           
+          <ScrollButton direction="down" onClick={scrollToNextViewport} />
+        </div>
+      </section>
     
     
     {collectionsFullScreen.map((collection, index) => (
-      <section key={index} className="flex flex-col items-center justify-around h-[85vh] snap-start" >
+      <section key={index} className="flex flex-col items-center justify-around min-h-[85vh] snap-start" >
         <ScrollButton direction="up" onClick={scrollToPreviousViewport} />        
           <div>
           <div className="flex flex-col sm:gap-2 sm:flex-row flex-start">
