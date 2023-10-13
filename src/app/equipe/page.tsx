@@ -5,7 +5,7 @@ export default function Equipe() {
     <>
         <div className="bg-black text-white">
       <div className="flex flex-col items-center justify-center mt-20 mb-20">
-        <h1 className="text-8xl lg:text-6xl font-bold pt-20 pb-4 lg:pb-10 mt-20 sm:mt-0">
+        <h1 className="text-8xl md:text-6xl font-bold pt-20 pb-4 lg:pb-10 mt-20 sm:mt-0">
           L'équipe O'GALERIE
         </h1>
       </div>
