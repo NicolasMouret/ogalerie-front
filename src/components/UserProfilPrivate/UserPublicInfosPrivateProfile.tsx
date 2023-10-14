@@ -17,7 +17,8 @@ interface UserPublicInfosProps {
     country: string;
     biography?: string;
     avatar?: string;
-    likedCount: number;
+    likesEmitted: number;
+    likesReceived: number;
     userLocal: any;
     getUser: (id: string) => void;
 }
@@ -28,7 +29,8 @@ export default function UserPublicInfosPrivateProfile({
   country,
   biography,
   avatar,
-  likedCount,
+  likesEmitted,
+  likesReceived,
   userLocal,
   getUser,
 }: UserPublicInfosProps) {
@@ -140,13 +142,19 @@ export default function UserPublicInfosPrivateProfile({
             </div>
           </>
         )}
-        <div className="flex justify-between items-center mt-7">
+        <div className="flex items-center mt-4">
+          <AiFillHeart className="mr-2 text-red-500" />
+          <span>
+            {likesEmitted}
+            {likesEmitted === 1 ? ' oeuvre likée' : ' oeuvres likées'}
+          </span>
+        </div>
+        <div className="flex justify-between items-center">
           <div className="flex items-center">
             <AiFillHeart className="mr-2 text-red-500" />
             <span>
-              {likedCount}
-              {' '}
-              œuvres likées
+              {likesReceived}
+              {likesReceived === 1 ? ' like reçu' : ' likes reçus'}
             </span>
           </div>
           <p className="text-gray-400">Informations publiques</p>

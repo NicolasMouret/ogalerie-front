@@ -134,7 +134,8 @@ export default function UserPrivate() {
               country={userLocal.country}
               biography={userLocal.biography}
               avatar={userLocal.avatar}
-              likedCount={userLocal.like}
+              likesEmitted={userLocal.like}
+              likesReceived={userLocal.liked}
             />
           </div>
           <div className="md:w-1/2 snap-start sm:snap-align-none">
