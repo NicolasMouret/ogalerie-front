@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 'use client';
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import Link from 'next/link';
 import OutsideClickHandler from 'react-outside-click-handler';
 import CloseButton from '@/src/components/Buttons/CloseButton';
