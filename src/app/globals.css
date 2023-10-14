@@ -35,7 +35,11 @@
   .custom-artwork-image {
     height: 600px !important; 
   }
+  .modal-artwork-image {
+    height: 700px !important;
+  }
 }
+
 
 
 
