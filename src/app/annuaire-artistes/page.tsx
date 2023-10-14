@@ -45,8 +45,8 @@ export default function Annuaire() {
   const filteredArtistsByLetter = artists.filter((artist) => artist.nickname.toLowerCase().startsWith(searchQuery.toLowerCase()));
 
   return (
-    <main className="flex h-[75vh] flex-col items-center gap-4 p-24">
-      <h1 className="text-2xl font-bold pb-10">
+    <main className="flex h-[75vh] flex-col items-center gap-4 pl-8 pr-8 pt-24">
+      <h1 className="text-center text-xl sm:text-2xl font-bold pb-4 sm:pb-10">
         Annuaire des artistes
       </h1>
       <div className="pb-3">
