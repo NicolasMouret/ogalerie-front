@@ -8,7 +8,7 @@ interface SlideMobileProps {
 
 export default function SlideMobile({ url, artworkId }: SlideMobileProps) {
   return (
-    <Link className="flex-shrink-0" href={`/artwork/${artworkId}`}>
+    <Link className="flex-shrink-0 snap-center w-[91vw]" href={`/artwork/${artworkId}`}>
       <Image
         alt="image test"
         width={400}
