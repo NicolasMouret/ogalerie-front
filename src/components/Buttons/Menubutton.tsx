@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { MdDensityMedium } from 'react-icons/md';
 
-function MenuButton(props) {
+interface MenuButtonProps {
+  onClick?: () => void;
+}
+
+function MenuButton(props: MenuButtonProps) {
   const [rotation, setRotation] = useState(0);
 
   const rotateIcon = () => {
