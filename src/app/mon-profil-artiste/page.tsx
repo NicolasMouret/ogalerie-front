@@ -147,7 +147,7 @@ export default function UserPrivate() {
           </div>
         </div>
         <AddCollectionButton userId={userId} reGetCollections={getCollections} />
-        <div className="flex flex-col justify-around min-h-[85vh] sm:min-h-0 sm:gap-2 flex-start snap-start sm:snap-align-none">
+        <div className="flex flex-col justify-around pb-[5vh] sm:pb-0 min-h-[85vh] sm:min-h-0 sm:gap-2 flex-start snap-start sm:snap-align-none">
           {screenWidth ! < 768 && <ScrollButton direction="up" onClick={scrollToPreviousViewport} />}
           <div className="flex flex-col sm:gap-2 sm:flex-row flex-start">
             <h3 className="w-[90vw] py-2 md:w-[84vw] text-xl font-extrabold mx-auto flex items-center group mr-4">
@@ -171,7 +171,7 @@ export default function UserPrivate() {
       </section>
 
       {collectionsFullScreen.map((collection, index) => (
-        <section key={collection.id} className="flex flex-col items-center justify-around min-h-[85vh] snap-start">
+        <section key={collection.id} className="flex flex-col items-center justify-around pb-[5vh] sm:pb-0 min-h-[85vh] snap-start">
           <ScrollButton direction="up" onClick={scrollToPreviousViewport} />
           <div>
             <div className="flex flex-col sm:gap-2 sm:flex-row flex-start">
