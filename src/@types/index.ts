@@ -33,4 +33,3 @@ export interface Collection {
     title: string;
     artworks: Artwork[];
 }
-

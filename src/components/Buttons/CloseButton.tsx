@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
@@ -7,12 +7,14 @@ interface CloseButtonProps {
   className?: string;
 }
 
-function CloseButton({ onClick, className }: CloseButtonProps) {
+export default function CloseButton({ onClick, className }: CloseButtonProps) {
   return (
-  <button className={`text-2xl ${className}`} onClick={onClick}>
-    <AiOutlineCloseCircle />
+    <button type="button" className={`text-2xl ${className}`} onClick={onClick}>
+      <AiOutlineCloseCircle />
     </button>
   );
 }
 
-export default CloseButton;
+CloseButton.defaultProps = {
+  className: '',
+};

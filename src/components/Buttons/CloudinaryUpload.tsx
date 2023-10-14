@@ -1,4 +1,8 @@
-"use client";
+/* eslint-disable no-unused-vars */
+
+'use client';
+
+import { MouseEvent } from 'react';
 import { CldUploadWidget } from 'next-cloudinary';
 
 interface CloudinaryUploadProps {
@@ -6,20 +10,26 @@ interface CloudinaryUploadProps {
     className?: string;
     avatar?: boolean;
 }
- 
+
 export default function CloudinaryUpload({ handleOnUpload, className, avatar }: CloudinaryUploadProps) {
-    return <CldUploadWidget uploadPreset="kgxd9epe" onUpload={handleOnUpload}>
-  {({ open }) => {
-    function handleOnClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-      e.preventDefault();
-      open();
-    }
-    return (
-      <button className={`${className} py-2 px-4 mx-auto border-2 text-m font-medium text-gray-700 border-gray-300 rounded`} onClick={handleOnClick}>
-        {avatar ? "Ajouter un avatar" : "Ajouter une image"}
-      </button>
-    );
-  }}
-</CldUploadWidget>
+  return (
+    <CldUploadWidget uploadPreset="kgxd9epe" onUpload={handleOnUpload}>
+      {({ open }) => {
+        function handleOnClick(e: MouseEvent<HTMLButtonElement>) {
+          e.preventDefault();
+          open();
+        }
+        return (
+          <button type="button" className={`${className} py-2 px-4 mx-auto border-2 text-m font-medium text-gray-700 border-gray-300 rounded`} onClick={handleOnClick}>
+            {avatar ? 'Ajouter un avatar' : 'Ajouter une image'}
+          </button>
+        );
+      }}
+    </CldUploadWidget>
+  );
 }
 
+CloudinaryUpload.defaultProps = {
+  className: '',
+  avatar: false,
+};

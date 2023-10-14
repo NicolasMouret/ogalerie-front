@@ -1,4 +1,8 @@
-"use client"; 
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable no-unused-vars */
+
+'use client';
+
 import { ReactElement, createContext, useState } from 'react';
 
 export interface UserContextProps {
@@ -44,7 +48,9 @@ const UserContext = createContext<UserContextProps>({
 });
 
 function UserContextProvider({ children }: { children: ReactElement }) {
-  const [user, setUser] = useState({logged: false, id: '', nickname: '', token: '', situation: '', avatar: '', town: '', country: '', biography: '', like: 0, liked: 0, lastname: '', firstname: '', birthday: '', email: '',});
+  const [user, setUser] = useState({
+    logged: false, id: '', nickname: '', token: '', situation: '', avatar: '', town: '', country: '', biography: '', like: 0, liked: 0, lastname: '', firstname: '', birthday: '', email: '',
+  });
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

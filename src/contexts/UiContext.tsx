@@ -1,15 +1,20 @@
-"use client"; 
-import { ReactElement, createContext, useState } from 'react';
+/* eslint-disable react/jsx-no-constructed-context-values */
+
+'use client';
+
+import {
+  ReactElement, createContext, useState, Dispatch, SetStateAction,
+} from 'react';
 
 interface UiContextProps {
   showModalSignIn: boolean;
-  setShowModalSignIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowModalSignIn: Dispatch<SetStateAction<boolean>>;
   showModalSignUp: boolean;
-  setShowModalSignUp: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowModalSignUp: Dispatch<SetStateAction<boolean>>;
   showModalAddArtwork: boolean;
-  setShowModalAddArtwork: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowModalAddArtwork: Dispatch<SetStateAction<boolean>>;
   showModalEditArtwork: boolean;
-  setShowModalEditArtwork: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowModalEditArtwork: Dispatch<SetStateAction<boolean>>;
 }
 
 const UiContext = createContext<UiContextProps>({
@@ -30,15 +35,17 @@ function UiContextProvider({ children }: { children: ReactElement }) {
   const [showModalEditArtwork, setShowModalEditArtwork] = useState(false);
 
   return (
-    <UiContext.Provider value={{ 
-      showModalSignIn, 
-      setShowModalSignIn, 
-      showModalSignUp, 
+    <UiContext.Provider value={{
+      showModalSignIn,
+      setShowModalSignIn,
+      showModalSignUp,
       setShowModalSignUp,
       showModalAddArtwork,
       setShowModalAddArtwork,
       showModalEditArtwork,
-      setShowModalEditArtwork }}>
+      setShowModalEditArtwork,
+    }}
+    >
       {children}
     </UiContext.Provider>
   );

@@ -1,13 +1,16 @@
-"use client";
+'use client';
 
-import { MdReportGmailerrorred } from 'react-icons/md';
+import { MdReportGmailerrorred } from 'react-icons/md';
 
 function ModerationButton() {
-    
-
-  return <button>
-    <span><MdReportGmailerrorred className="inline text-3xl"/>Modérer</span>              
-    </button>;
+  return (
+    <button type="button">
+      <span>
+        <MdReportGmailerrorred className="inline text-3xl" />
+        Modérer
+      </span>
+    </button>
+  );
 }
 
 export default ModerationButton;

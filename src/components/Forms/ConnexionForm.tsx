@@ -1,16 +1,14 @@
-"use client";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 
-import { useContext } from 'react'
-import { UiContext } from '@/src/contexts/UiContext'
-import React, { FormEvent, useState } from 'react';
-import { UserContext } from '@/src/contexts/UserContext';
-import axiosInstance from '@/src/utils/axios';
+'use client';
+
+import React, { useContext, FormEvent, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Image from 'next/image';
+import { UiContext } from '@/src/contexts/UiContext';
+import { UserContext } from '@/src/contexts/UserContext';
+import axiosInstance from '@/src/utils/axios';
 import CloseButton from '../Buttons/CloseButton';
-
-
-
 
 export default function ConnexionForm() {
   // State to store user input
@@ -32,50 +30,51 @@ export default function ConnexionForm() {
     const formData = new FormData(form);
     const objData = Object.fromEntries(formData);
 
-    if ( !objData.email || !objData.password ) {
+    if (!objData.email || !objData.password) {
       setError('Veuillez remplir tous les champs.');
       return;
     }
 
-  axiosInstance.post('/users/login', objData)
-    .then(res => {
-      console.log(res.data);  
-      axiosInstance.defaults.headers.common.Authorization = `Bearer ${res.data.token}` 
-      localStorage.setItem('OgToken', res.data.token);
-      localStorage.setItem('nickname', res.data.nickname);
-      localStorage.setItem('situation', res.data.situation);
-      localStorage.setItem('avatar', res.data.avatar);
-      localStorage.setItem('id', res.data.id.toString());
-      delete res.data.token;  
-      setUser({...user, id: res.data.id.toString(), ...res.data,});
-      console.log(user);
-      closeModal();     
-    })
-    .catch(err => {
-      console.log(objData);
-      throw err});
-};
+    axiosInstance.post('/users/login', objData)
+      .then((res) => {
+        console.log(res.data);
+        axiosInstance.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
+        localStorage.setItem('OgToken', res.data.token);
+        localStorage.setItem('nickname', res.data.nickname);
+        localStorage.setItem('situation', res.data.situation);
+        localStorage.setItem('avatar', res.data.avatar);
+        localStorage.setItem('id', res.data.id.toString());
+        delete res.data.token;
+        setUser({ ...user, id: res.data.id.toString(), ...res.data });
+        console.log(user);
+        closeModal();
+      })
+      .catch((err) => {
+        console.log(objData);
+        throw err;
+      });
+  };
 
   return (
     <>
       {/* Background overlay when modal is open */}
-      <div onClick={closeModal} className={`fixed inset-0 bg-black ${showModalSignIn ? 'opacity-40' : 'hidden'} z-40 transition-opacity duration-300`}></div>
+      <div onClick={closeModal} className={`fixed inset-0 bg-black ${showModalSignIn ? 'opacity-40' : 'hidden'} z-40 transition-opacity duration-300`} />
       {/* Login form modal */}
       <div className={`fixed inset-0 flex items-center justify-center my-auto h-[70vh] w-[95vw] md:w-[512px] mx-auto z-50 ${showModalSignIn ? '' : 'hidden'}`}>
-      <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[512px] mx-auto sm:w-3/4">
+        <div className="relative bg-gray-200 p-8 sm:p-8 rounded-lg w-full md:w-[512px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton
             className="absolute top-4 left-4 text-gray-700 hover:bg-gray-200 active:bg-gray-400 p-1 rounded-full w-10 h-10 flex items-center justify-center"
             onClick={() => {
               setError(null);
-              closeModal();  
+              closeModal();
             }}
           />
           {/* Platform logo */}
           <div className="flex justify-center mb-4">
             <Image
               alt="Logo of the O'Galerie platform"
-              src={'/images/logosmall.png'}
+              src="/images/logosmall.png"
               width={200}
               height={200}
             />
@@ -103,7 +102,7 @@ export default function ConnexionForm() {
                 className="block w-full p-2 mb-4 rounded pr-10"
               />
               {/* Toggle password visibility */}
-              <span 
+              <span
                 className="absolute inset-y-0 right-2 flex items-center cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
@@ -111,7 +110,7 @@ export default function ConnexionForm() {
               </span>
             </div>
             {/* Forgot password link */}
-            <a className="text-sm underline cursor-pointer hover:font-bold">Mot de passe oublié</a>
+            {/* <a className="text-sm underline cursor-pointer hover:font-bold">Mot de passe oublié</a> */}
             {/* Submit button */}
             <button type="submit" className="block mx-auto font-bold py-2 px-4 rounded-full border-gray-700 border-2 mt-8 hover:text-gray-500 active:text-white hover:bg-gray-200 active:bg-gray-400 active:border-gray-200">
               Se connecter
@@ -122,4 +121,3 @@ export default function ConnexionForm() {
     </>
   );
 }
-

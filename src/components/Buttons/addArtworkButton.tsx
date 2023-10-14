@@ -1,4 +1,3 @@
-
 import SlideAddDesktop from '../testCarousel/SlideAddDesktop';
 import SlideAddMobile from '../testCarousel/SlideAddMobile';
 
@@ -8,9 +7,9 @@ interface AddArtworkButtonProps {
 }
 
 export default function AddArtworkButton({ screen, onClick }: AddArtworkButtonProps) {
-    if (screen==="mobile") {
-        return <SlideAddMobile  onClick={onClick} />
-    } if (screen==="desktop") {
-        return <SlideAddDesktop  onClick={onClick}/>
-    }
+  if (screen === 'mobile') {
+    return <SlideAddMobile onClick={onClick} />;
+  } if (screen === 'desktop') {
+    return <SlideAddDesktop onClick={onClick} />;
+  }
 }
