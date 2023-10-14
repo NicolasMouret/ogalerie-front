@@ -146,8 +146,8 @@ export default function UserPrivate() {
             />
           </div>
         </div>
+        <AddCollectionButton userId={userId} reGetCollections={getCollections} />
         <div className="flex flex-col justify-around min-h-[85vh] sm:min-h-0 sm:gap-2 flex-start snap-start sm:snap-align-none">
-          <AddCollectionButton userId={userId} reGetCollections={getCollections} />
           {screenWidth ! < 768 && <ScrollButton direction="up" onClick={scrollToPreviousViewport} />}
           <div className="flex flex-col sm:gap-2 sm:flex-row flex-start">
             <h3 className="w-[90vw] py-2 md:w-[84vw] text-xl font-extrabold mx-auto flex items-center group mr-4">

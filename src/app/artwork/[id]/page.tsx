@@ -116,37 +116,3 @@ export default function ArtworkPage({ params }: ArtworkPageProps) {
     </>
   );
 }
-
-// collection: "Lemonade"
-//
-// collection_id: 1
-//
-// comment: Array [ {…} ]
-//
-// created_at: "2023-10-03T17:00:54.278119+02:00"
-//
-// date: "2016-04-23"
-//
-// description: "photo de l'album Lemonade"
-//
-// favorite_by: 0
-//
-// id: 1
-//
-// liked_by: 0
-//
-// likes: 1
-//
-// mature: null
-//
-// owner: "Beyonce"
-//
-// owner_id: 2
-//
-// tags: Array [ {…} ]
-//
-// title: "cover"
-//
-// updated_at: null
-//
-// uri: "https://upload.wikimedia.org/wikipedia/en/5/53/Beyonce_-_Lemonade_%28Official_Album_Cover%29.png"

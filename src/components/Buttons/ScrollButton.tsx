@@ -15,7 +15,7 @@ export default function ScrollButton({ direction, onClick, className }: ScrollPr
         <button type="button" onClick={onClick} className="text-6xl flex justify-center">
           <IoIosArrowDropup />
         </button>
-        <p>Collection précedente</p>
+        <p className="hidden sm:block">Collection précedente</p>
       </div>
     );
   } if (direction === 'down') {
@@ -24,7 +24,7 @@ export default function ScrollButton({ direction, onClick, className }: ScrollPr
         <button type="button" onClick={onClick} className="text-6xl flex justify-center">
           <IoIosArrowDropdown />
         </button>
-        <p>Collection suivante</p>
+        <p className="hidden sm:block">Collection suivante</p>
       </div>
     );
   }
