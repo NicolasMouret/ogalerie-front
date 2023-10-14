@@ -50,7 +50,7 @@ export default function Carousel({
 
   return (
     <>
-      {isMobile ? <CarouselMobile collection={collection} onClick={handleClick} />
+      {isMobile ? <CarouselMobile collection={collection} />
         : <CarouselDesktop collection={collection} page={page} addButton={addButton} onClick={handleClick} />}
     </>
   );
