@@ -23,7 +23,7 @@
     }
   },
 
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "additional.d.ts", "src/components/Forms/AuthentificationForm.tsx", "next.config.js", ".eslintrc.cjs"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "additional.d.ts", "src/components/Forms/AuthentificationForm.tsx", "next.config.js", ".eslintrc.cjs", "src/components/CollectionTitle"],
 
   "exclude": ["node_modules"]
 }

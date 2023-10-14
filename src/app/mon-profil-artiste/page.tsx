@@ -4,7 +4,7 @@ import {
   useEffect, useRef, useState, useContext,
 } from 'react';
 import { useWindowSize } from '@uidotdev/usehooks';
-import { RiImageAddFill, RiDeleteBin6Line } from 'react-icons/ri';
+import { RiImageAddFill } from 'react-icons/ri';
 import { UiContext } from '@/src/contexts/UiContext';
 import axiosInstance from '@/src/utils/axios';
 import Carousel from '@/src/components/testCarousel/Carousel';
@@ -14,6 +14,7 @@ import AddArtworkForm from '@/src/components/Forms/AddArtworkForm';
 import ScrollButton from '@/src/components/Buttons/ScrollButton';
 import AddCollectionButton from '@/src/components/Buttons/AddCollectionButton';
 import DeleteModal from '@/src/components/UserProfilPrivate/DeleteModal';
+import CollectionTitle from '@/src/components/CollectionTitle/CollectionTitle';
 import { Collection } from '@/src/@types';
 
 export default function UserPrivate() {
@@ -32,8 +33,9 @@ export default function UserPrivate() {
     axiosInstance.get<Collection[]>(`/users/${id}/collections`)
       .then((res) => {
         console.log('res.data collections', res.data);
-        setCollections(res.data);
-        setCollectionsFullScreen(res.data.slice(1));
+        const reversedCollections = res.data.reverse();
+        setCollections(reversedCollections);
+        setCollectionsFullScreen(reversedCollections.slice(1));
       }).catch((err) => {
         console.log(err);
         throw err;
@@ -150,20 +152,13 @@ export default function UserPrivate() {
         <div className="flex flex-col justify-around pb-[5vh] sm:pb-0 min-h-[85vh] sm:min-h-0 sm:gap-2 flex-start snap-start sm:snap-align-none">
           {screenWidth ! < 768 && <ScrollButton direction="up" onClick={scrollToPreviousViewport} />}
           <div className="flex flex-col sm:gap-2 sm:flex-row flex-start">
-            <h3 className="w-[90vw] py-2 md:w-[84vw] text-xl font-extrabold mx-auto flex items-center group mr-4">
-              {collections[0].title}
-              <button type="button" onClick={() => handleDeleteClick(collections[0].id.toString())}>
-                {' '}
-                <RiDeleteBin6Line className="text-xl ml-2 md:hidden group-hover:block" />
-                {' '}
-              </button>
-            </h3>
+            <CollectionTitle originalTitle={collections[0].title} id={collections[0].id.toString()} handleDeleteClick={handleDeleteClick} />
             {screenWidth! < 768 && (
             <button type="button" onClick={() => handleMobileAdd(collections[0].id.toString())} className="flex gap-1 w-[90vw] mx-auto mb-2 font-bold text-base">
               <RiImageAddFill className="text-2xl" />
               Ajouter une oeuvre
             </button>
-)}
+            )}
           </div>
           <Carousel handleAddClick={handleAddClick} collectionId={collections[0].id.toString()} collection={collections[0]} page="user" addButton />
           <ScrollButton direction="down" onClick={scrollToNextViewport} />
@@ -175,14 +170,7 @@ export default function UserPrivate() {
           <ScrollButton direction="up" onClick={scrollToPreviousViewport} />
           <div>
             <div className="flex flex-col sm:gap-2 sm:flex-row flex-start">
-              <h3 className="w-[90vw] py-2 md:w-[84vw] text-xl font-extrabold mx-auto flex items-center group mr-4">
-                {collection.title}
-                <button type="button" onClick={() => handleDeleteClick(collection.id.toString())}>
-                  {' '}
-                  <RiDeleteBin6Line className="text-xl ml-2 md:hidden group-hover:block" />
-                  {' '}
-                </button>
-              </h3>
+              <CollectionTitle originalTitle={collection.title} id={collection.id.toString()} handleDeleteClick={handleDeleteClick} />
               {screenWidth! < 768 && (
               <button type="button" onClick={() => handleMobileAdd(collection.id.toString())} className="flex gap-1 w-[90vw] mx-auto mb-2 font-bold text-base">
                 <RiImageAddFill className="text-2xl" />
