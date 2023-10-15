@@ -9,7 +9,9 @@ export default function Equipe() {
             L'équipe O'GALERIE
           </h1>
         </div>
-        <div className="max-w-7xl text-2xl m-auto border-4 border-white pl-10 pt-10 pb-10 ">
+          <div className="max-w-7xl text-2xl m-auto">
+          <div className='border-4 border-white pl-5 pt-5 pb-5'>
+          
           <section className="flex mb-5">
             <Image src="/alienorcadre.jpg" alt="Alienor" width={150} height={200} />
             <div className="flex items-center ml-5">
@@ -65,7 +67,7 @@ export default function Equipe() {
             </div>
           </section>
           <section className="flex mb-5">
-            <Image src="/nicocadre.jpg" alt="Nico" width={150} height={200} />
+            <Image src="/nicocadre.jpg" alt="Sostell" width={150} height={200} />
             <div className="flex items-center ml-5">
               <div>
                 <div>
@@ -84,6 +86,47 @@ export default function Equipe() {
               </div>
             </div>
           </section>
+          <section className="flex mb-5">
+            <Image src="/sostellcadre.jpg" alt="Nico" width={150} height={200} />
+            <div className="flex items-center ml-5">
+              <div>
+                <div>
+                  <h3 className="font-bold mb-4">Sostell</h3>
+                  <p>
+                    <strong><em>Rôle</em></strong>
+                    {' '}
+                    : Scrum Master
+                  </p>
+                  <p>
+                    <strong><em>Citation</em></strong>
+                    {' '}
+                    : "Bon si on récapitule, nous en sommes où là ? ...."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
         </div>
       </div>
     </>
