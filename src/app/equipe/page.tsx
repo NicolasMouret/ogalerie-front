@@ -4,6 +4,7 @@ export default function Equipe() {
   return (
     <>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className="bg-black text-white">
       <div className="flex flex-col items-center justify-center mt-20 mb-20">
         <h1 className="text-8xl md:text-6xl font-bold pt-20 pb-4 lg:pb-10 mt-20 sm:mt-0">
@@ -52,12 +53,17 @@ export default function Equipe() {
           </div>
           </div>
 =======
+=======
+>>>>>>> sostell/rotate2
       <div className="bg-black text-white">
         <div className="flex flex-col items-center justify-center mt-20 mb-20">
           <h1 className="text-8xl lg:text-6xl font-bold pt-20 pb-4 lg:pb-10 mt-20 sm:mt-0">
             L'équipe O'GALERIE
           </h1>
+<<<<<<< HEAD
 >>>>>>> ac2cc05dded90e3ca89d5f8dfde3cc949b98a4a6
+=======
+>>>>>>> sostell/rotate2
         </div>
         <div className="max-w-7xl text-2xl m-auto border-4 border-white pl-10 pt-10 pb-10 ">
           <section className="flex mb-5">
