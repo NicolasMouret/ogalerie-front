@@ -88,7 +88,8 @@ export default function UserPrivate() {
             country={userLocal.country}
             biography={userLocal.biography}
             avatar={userLocal.avatar}
-            likedCount={userLocal.like}
+            likesReceived={userLocal.liked}
+            likesEmitted={userLocal.like}
           />
         </div>
         <div className="mx-2 md:w-1/2 md:pl-4">

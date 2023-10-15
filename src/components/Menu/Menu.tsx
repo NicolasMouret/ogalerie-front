@@ -138,10 +138,10 @@ export default function Menu() {
                     </>
                   )}
               </div>
-              <button type="button" className={'"HAMBURGER-ICON space-y-2 p-4"'} onClick={handleClick}>
-                <span className="block rounded-full h-1.5 w-12 animate-pulse bg-black"></span>
-                <span className="block rounded-full h-1.5 w-12 animate-pulse bg-black"></span>
-                <span className="block rounded-full h-1.5 w-12 animate-pulse bg-black"></span>
+              <button type="button" className={`HAMBURGER-ICON space-y-2 p-4 ${isOpen ? 'rotate-90' : ''}`} onClick={handleClick}>
+                <span className="block rounded-full h-1.5 w-10 animate-pulse bg-black"></span>
+                <span className="block rounded-full h-1.5 w-10 animate-pulse bg-black"></span>
+                <span className="block rounded-full h-1.5 w-10 animate-pulse bg-black"></span>
               </button>
             </div>
 
