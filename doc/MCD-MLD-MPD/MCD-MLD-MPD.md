@@ -61,7 +61,6 @@ créer, 0N personne, 11 collection
 
 ## MLD
 
-
 - tag (<u>codeTag</u>, label, categorie)
 - caractériser (#codeTag, #codeOeuvre)
 - oeuvre (<u>codeOeuvre</u>, nom, url, date, description, mature, #codeCollection, #codeAuteur)
@@ -84,6 +83,7 @@ créer, 0N personne, 11 collection
 - favorite: #oeuvre_id(int), #person_id(int)
 - person: <u>id(int)</u>, firstname(text), lastname(text), nickname(text), email(text), hash(text), birthday(date), town(text), country(text), biography, avatar(text), situation(enum)
 
+
 ### types
 
 - name (tag) : aquarelle, photo, gravure, papier, …
@@ -99,14 +99,16 @@ créer, 0N personne, 11 collection
 |---|---|---|---|
 | id | int | generated always as identity primary key | identifiant du tag |
 | name | enum | not null | nom du tag : liste à définir |
-| category | enum | unique not null | catégorie du tag : type, support, style |
+| category | enum | not null | catégorie du tag : type, support, style |
+|||unique (name, category)||
 
 ### table d'association *mark* entre les table *tag* et *artwork*
 
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
-| tag_id | int | references tag(id) | identifiant du tag |
-| artwork_id | int | references artwork(id) | identifiant de l'artwork |
+| tag_id | int | references tag(id) on delete cascade not null | identifiant du tag |
+| artwork_id | int | references artwork(id) on delete cascade not null | identifiant de l'artwork |
+|||unique (name, category)||
 
 ### table *artwork*
 
@@ -118,8 +120,10 @@ créer, 0N personne, 11 collection
 | date | date | | date de création de l'œuvre |
 | description | text | not null | description accompagnant l'œuvre |
 | mature | boolean |  | l'œuvre vise-t-elle un public mature .
-| collection_id | int | references collection(id) | identifiant d'une collection |
-| person_id | int | references person(id) | identifiant de l'auteur de l'œuvre |
+| collection_id | int | references collection(id) on delete cascade not null | identifiant d'une collection |
+| person_id | int | references person(id) on delete cascade not null | identifiant de l'auteur de l'œuvre |
+| created_at | timestamptz | not null default now() | |
+| updated_at | timestamptz | | |
 
 ### table *art_comment*
 
@@ -127,7 +131,7 @@ créer, 0N personne, 11 collection
 |---|---|---|---|
 | id | int | generated always as identity primary key | identifiant du commentaire |
 | content | text | not null | contenu du commentaire |
-| artwork_id | int | references artwork(id) | identifiant de l'œuvre |
+| artwork_id | int | references artwork(id) on delete cascade not null | identifiant de l'œuvre |
 | person_id | int | references person(id) | identifiant de l'auteur du commentaire |
 | created_at | timestamptz | not null default now() | date d'écriture du commentaire |
 | updated_at | timestamptz | | date de modification du commentaire |
@@ -138,7 +142,9 @@ créer, 0N personne, 11 collection
 |---|---|---|---|
 | id | int | generated always as identity primary key | identifiant de la collection |
 | title | text | not null | titre de la collection |
-| person_id | int | references person(id) | identifiant du propriétaire de la collection |
+| person_id | int | references person(id) on delete cascade not null | identifiant du propriétaire de la collection |
+| created_at | timestamptz | not null default now() | |
+| updated_at | timestamptz | | |
 
 ### table *moderate*
 
@@ -147,24 +153,29 @@ créer, 0N personne, 11 collection
 | id | int | generated always as identity primary key | identifiant de la modération |
 | ticket | enum | not null | type de modération : alert, hide |
 | message | text | not null | message justifiant l'action |
-| person_id | int | references person(id) | identifiant de l'auteur de la modération |
-| artwork_id | int | references artwork(id) | identifiant de l'oeuvre concernée |
-| comment_id | int | references comment(id) | identifiant du commentaire concerné |
+| person_id | int | references person(id) not null | identifiant de l'auteur de la modération |
+| artwork_id | int | references artwork(id) on delete cascade | identifiant de l'oeuvre concernée |
+| comment_id | int | references comment(id) on delete cascade | identifiant du commentaire concerné |
+| created_at | timestamptz | not null default now() | |
+| updated_at | timestamptz | | |
 
 ### table d'association *appraise* entre les tables *artwork* et *person*
 
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
-| artwork_id | int | references artwork(id) | identifiant de l'œuvre |
-| person_id | int | references person(id) | identifiant de l'auteur du like |
+| artwork_id | int | references artwork(id) on delete cascade | identifiant de l'œuvre |
+| person_id | int | references person(id) on delete cascade | identifiant de l'auteur du like |
 
 ### table d'association *favorite* entre les tables *artwork* et *person*
 
 | Champ| Type| Spécifités| Description|
 |---|---|---|---|
-| artwork_id | int | references artwork(id) | identifiant de l'œuvre |
-| person_id | int | references person(id) | identifiant du propriétaire de la liste de favoris |
-
+| id | int | generated always as identity primary key | identifiant du favorit |
+| artwork_id | int | references artwork(id) on delete cascade | identifiant de l'œuvre |
+| person_id | int | references person(id) on delete cascade | identifiant du propriétaire de la liste de favoris |
+|||unique (name, category)||
+| created_at | timestamptz | not null default now() | |
+| updated_at | timestamptz | | |
 
 ### table *person*
 
@@ -182,6 +193,9 @@ créer, 0N personne, 11 collection
 | avatar | text |  | URL où récupérer une image d'avatar, en cas d'absence une version automatique sera créée |
 | biography | text |  | courte biographie |
 | situation | enum | not null | situation sur le site : user, creator, moderator |
+| created_at | timestamptz | not null default now() | |
+| updated_at | timestamptz | | |
+
 
 
 ```python
