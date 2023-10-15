@@ -1,7 +1,9 @@
-"use client";
+/* eslint-disable no-unused-vars */
 
-import axiosInstance from '@/src/utils/axios';
+'use client';
+
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
+import axiosInstance from '@/src/utils/axios';
 
 interface LikeButtonProps {
     userId: string;
@@ -10,46 +12,58 @@ interface LikeButtonProps {
     setIsLiked: (isLiked: boolean) => void;
 }
 
-function LikeButton({ userId, artworkId, isLiked, setIsLiked}: LikeButtonProps) {
-    const payload = {
-        artworkId: artworkId
-    }
+export default function LikeButton({
+  userId, artworkId, isLiked, setIsLiked,
+}: LikeButtonProps) {
+  const payload = {
+    artworkId,
+  };
 
-    function on() {
-      axiosInstance.post(`/users/${userId}/likes`, payload, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
+  function on() {
+    axiosInstance.post(`/users/${userId}/likes`, payload, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-    .then((res) => {
-        console.log("res.data likes", res.data);
-    }).catch((err) => {
+      .then(() => {
+      }).catch((err) => {
         console.log(err);
-        throw err;
-    })
+      });
 
-    setIsLiked(true); 
-    }
+    setIsLiked(true);
+  }
 
-    function off() {
-      axiosInstance.delete(`/users/${userId}/likes`, {
-        data: payload,
-        headers: {
-            'Content-Type': 'application/json'
-        }
+  function off() {
+    axiosInstance.delete(`/users/${userId}/likes`, {
+      data: payload,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     }).then((res) => {
-        console.log("res.data likes", res.data);
+      console.log('res.data likes', res.data);
     }).catch((err) => {
-        console.log(err);
-        throw err;
-    })
+      console.log(err);
+      throw err;
+    });
     setIsLiked(false);
-    }
+  }
 
-  return <button onClick={isLiked ? off : on}>
-    {isLiked ? <span><BsHeartFill className={`${isLiked && "animate-ping"} inline text-3xl`}/> Liké</span> : 
-                <span><BsHeart className="inline text-2xl"/> Liker</span>}
-    </button>;
+  return (
+    <button type="button" onClick={isLiked ? off : on}>
+      {isLiked ? (
+        <span>
+          <BsHeartFill className={`${isLiked && 'animate-ping'} inline text-3xl`} />
+          {' '}
+          Liké
+        </span>
+      )
+        : (
+          <span>
+            <BsHeart className="inline text-2xl" />
+            {' '}
+            Liker
+          </span>
+        )}
+    </button>
+  );
 }
-
-export default LikeButton;

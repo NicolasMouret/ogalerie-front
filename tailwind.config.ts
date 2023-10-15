@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -17,15 +17,15 @@ const config: Config = {
         ping: {
           '75%, 100%': {
             transform: 'scale(2)',
-            opacity:'0',
-          }
-        }
+            opacity: '0',
+          },
+        },
       },
       animation: {
-        'ping': 'ping 0.2s cubic-bezier(0, 0, 0.2, 1)'
-      }
+        ping: 'ping 0.2s cubic-bezier(0, 0, 0.2, 1)',
+      },
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;
