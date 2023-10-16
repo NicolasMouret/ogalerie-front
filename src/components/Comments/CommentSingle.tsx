@@ -6,14 +6,14 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 interface CommentProps {
-    handleDelete: (id: string) => void;
-    avatar: string;
-    nickname: string;
-    date: string;
-    content: string;
-    className?: string;
-    userId: string;
-    id: string;
+  handleDelete: (id: string) => void;
+  avatar: string;
+  nickname: string;
+  date: string;
+  content: string;
+  className?: string;
+  userId: string;
+  id: string;
 }
 
 export default function CommentSingle({
@@ -41,23 +41,22 @@ export default function CommentSingle({
 
   return (
     <div className={`flex items-center gap-4 group ${className}`}>
-      <Link className="h-[90%]" href={`/user/${userId}`}>
+      <Link href={`/user/${userId}`} className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden">
         <Image
-          className="rounded-full h-[90%]"
+          className="absolute top-0 left-0 object-cover object-center rounded-full w-full h-full"
           src={avatar}
           alt="Photo de profil de l'auteur"
-          width={40}
-          height={40}
+          layout="fill"
         />
       </Link>
-      <div className="flex flex-col max-w-[70%]">
+      <div className="flex flex-col max-w-[70%] text-sm sm:text-base">
         <p>
           <Link href={`/user/${userId}`}>{nickname}</Link>
           -
           {' '}
           {formattedDate}
         </p>
-        <p>{content}</p>
+        <p className="text-sm sm:text-base">{content}</p>
       </div>
       {isOwner && <button type="button" onClick={() => handleDelete(id)} className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block"><RiDeleteBin6Line /></button>}
     </div>

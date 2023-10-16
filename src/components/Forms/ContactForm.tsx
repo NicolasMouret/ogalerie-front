@@ -59,7 +59,7 @@ export default function ContactForm() {
             name="nom"
             value={formValues.nom}
             onChange={handleChange}
-            className="border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="text-sm md:text-base border-2 border-gray-400 rounded-lg w-80 h-10 ml-6 md:ml-0 md:w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
             placeholder="Nom"
             required
           />
@@ -70,7 +70,7 @@ export default function ContactForm() {
             name="prenom"
             value={formValues.prenom}
             onChange={handleChange}
-            className="border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="text-sm md:text-base border-2 border-gray-400 rounded-lg w-80 h-10 ml-6 md:ml-0 md:w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
             placeholder="Prénom"
             required
           />
@@ -81,7 +81,7 @@ export default function ContactForm() {
             name="email"
             value={formValues.email}
             onChange={handleChange}
-            className="border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="text-sm md:text-base border-2 border-gray-400 rounded-lg w-80 h-10 md:w-full ml-6 md:ml-0 py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
             placeholder="Email"
             required
           />
@@ -92,14 +92,14 @@ export default function ContactForm() {
             name="objet"
             value={formValues.objet}
             onChange={handleChange}
-            className="border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="text-sm md:text-base border-2 border-gray-400 rounded-lg w-80 h-10 md:w-full ml-6 md:ml-0 py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
             placeholder="Objet de votre message"
             required
           />
         </div>
         <div className="mb-4">
           <textarea
-            className="border-2 border-gray-400 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="text-sm md:text-base border-2 border-gray-400 rounded-lg w-80 ml-6 md:ml-0 md:w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
             rows={4}
             placeholder="Rédigez votre message"
             name="message"

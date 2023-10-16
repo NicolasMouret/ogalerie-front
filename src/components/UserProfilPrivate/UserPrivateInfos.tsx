@@ -145,15 +145,15 @@ export default function UserPrivateInfos({
           </>
         )}
 
-        <div className="flex justify-between items-center mt-12">
+        <div className="flex-row md:flex justify-between items-center mt-12">
           <button
             type="button"
-            className="underline-offset-1 underline hover:font-bold"
+            className="ml-2 md-ml-0 text-sm md:text-base underline-offset-1 underline hover:font-bold"
             onClick={() => setIsModalOpen(true)}
           >
             Supprimer mon compte
           </button>
-          <p className="text-gray-400">Informations privées</p>
+          <p className="ml-2 md-ml-0 text-sm justify-self-end md:text-base pr-2 mt-4 text-gray-400">Informations privées</p>
         </div>
 
         <DeleteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

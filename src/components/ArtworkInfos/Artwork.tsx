@@ -90,9 +90,9 @@ export default function ArtworkInfos({
   };
 
   return (
-    <div className="flex flex-col justify-center gap-2 overflow-hidden pb-6 h-fit w-[95vw] md:w-[800px]">
+    <div className="flex flex-col justify-center gap-2 overflow-hidden pb-2 h-fit w-[95vw] md:w-[800px]">
       <div className="flex flex-col md:flex-row items-center">
-        <h1 className="text-3xl sm:text-4xl md:text-4xl mb-4 md:mb-0 md:mr-6">
+        <h1 className="text-2xl sm:text-4xl md:text-4xl mb-4 md:mb-0 md:mr-6">
           "
           {title}
           "
@@ -125,25 +125,25 @@ export default function ArtworkInfos({
         </span>
         )}
       </div>
-      <p className="pl-4">
+      <p className="text-center sm:text-left md:pl-4">
         Par
         {' '}
         <span className="underline font-bold"><Link href={`${ownerId === userId ? '/mon-profil-artiste' : `/artist/${ownerId}`}`}>{author}</Link></span>
       </p>
-      <div className="flex items-center gap-1 pl-4 mt-4">
+      <div className="flex flex-col sm:flex-row text-sm md:text-base gap-1 pl-4 mt-4">
         <p>
           {setDate(date)}
-          {' '}
-          -
-          {' '}
         </p>
-        <p>{typeTag}</p>
-        <p>{support}</p>
-        <p>{style}</p>
+        <p className="hidden md:inline-block"> - </p>
+        <div className="flex flex-row gap-1">
+          <p>{typeTag}</p>
+          <p>{support}</p>
+          <p>{style}</p>
+        </div>
       </div>
       {/* <p className="pl-4 underline">Voir la collection</p> */}
-      <p className="pl-4 mb-4 md:mb-0 mt-4">{description}</p>
-      <div className="flex items-center h-8 pl-4 mt-4 gap-12">
+      <p className="text-sm md:text-base pl-4 pr-4 mb-4 md:mb-0 mt-4">{description}</p>
+      <div className="flex items-center text-sm h-8 pl-4 pr-4 mt-1 md:mt-4 gap-6">
         {userId && (
         <LikeButton
           userId={userId}
@@ -170,12 +170,12 @@ export default function ArtworkInfos({
         />
         {userId === ownerId && (
         <>
-          <button type="button" onClick={showEdit} className="flex items-center">
+          <button type="button" onClick={showEdit} className="flex items-center pl-2">
             <ModifyButton />
             Modifier l'oeuvre
           </button>
           <button type="button" onClick={requestDeleteArtwork} className="flex items-center">
-            <RiDeleteBin6Line />
+            <RiDeleteBin6Line className="mr-1" size="20" />
             Supprimer l'oeuvre
           </button>
         </>

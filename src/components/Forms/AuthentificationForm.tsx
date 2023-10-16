@@ -138,7 +138,7 @@ export default function AuthentificationForm() {
       <div onClick={closeModal} onKeyDown={closeModal} className={`fixed inset-0 bg-black ${showModalSignUp ? 'opacity-40' : 'hidden'} z-40 transition-opacity duration-300`} />
       {/* Sign up form modal */}
       <div className={`fixed inset-0 flex items-center justify-center w-[95vw] md:w-[600px] mx-auto z-50 ${showModalSignUp ? '' : 'hidden'}`}>
-        <div className="relative bg-gray-200 px-2 sm:p-8 rounded-lg h-[98vh] md:h-[75vh] max-h-[725px] w-full md:w-[600px] mx-auto sm:w-3/4">
+        <div className="relative bg-gray-200 px-2 sm:p-6 rounded-lg h-[98vh] md:h-[90vh] max-h-[725px] w-full md:w-[600px] mx-auto sm:w-3/4">
           {/* Close button for modal */}
           <CloseButton
             className="absolute top-4 left-4 text-gray-700 hover:bg-gray-200 active:bg-gray-400 p-1 rounded-full w-10 h-10 flex items-center justify-center"
@@ -148,7 +148,7 @@ export default function AuthentificationForm() {
             }}
           />
           {/* Platform logo */}
-          <div className="flex justify-center md:mb-1">
+          <div className="flex justify-center pt-2 md:pt-0 md:mb-1">
             <Image
               alt="Logo of the O'Galerie platform"
               src="/images/logosmall.png"
@@ -158,10 +158,10 @@ export default function AuthentificationForm() {
           </div>
 
           {/* Display error messages */}
-          {error && <p className="text-sm text-red-500 text-center p-3 mt-4">{error}</p>}
+          {error && <p className="text-sm text-red-500 text-center md:p-2 mt-2 md:mt-0 ">{error}</p>}
 
           <form className="w-full text-sm" onSubmit={handleSubmit}>
-            <div className="pl-8">
+            <div className="pl-8 pt-5 md:pt-0">
               <div className="pb-2 md:py-3 mx-auto max-w-xl flex flex-col mb-2">
                 <div className="flex items-center mb-2">
                   <input

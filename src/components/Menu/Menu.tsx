@@ -59,9 +59,8 @@ export default function Menu() {
                 {user.logged
                   ? (
                     <>
-                      <li className=" my-4 uppercase">
+                      <li className=" my-4">
                         Bienvenue
-                        {' '}
                         <span className="mx-2">{user.nickname}</span>
                         !
                       </li>
@@ -72,15 +71,15 @@ export default function Menu() {
                   ) : (
                     <>
                       <li className="underline underline-offset-8 my-4 uppercase">
-                        <button type="button" onClick={handleSignIn} className="text-sm font-semibold">Se connecter</button>
+                        <button type="button" onClick={handleSignIn} className="uppercase underline text-sm font-semibold">Se connecter</button>
                       </li>
                       <li className="underline underline-offset-8 my-4 uppercase">
-                        <button type="button" onClick={handleSignup} className="text-sm font-semibold">S'inscrire</button>
+                        <button type="button" onClick={handleSignup} className="uppercase underline text-sm font-semibold">S'inscrire</button>
                       </li>
                     </>
                   )}
                 <li className="underline underline-offset-8 my-4 uppercase">
-                  <Link onClick={handleClick} className="text-md font-semibold" href="/">
+                  <Link onClick={handleClick} className="text-sm font-semibold" href="/">
                     Accueil
                   </Link>
                 </li>
@@ -105,13 +104,18 @@ export default function Menu() {
                   </Link>
                 </li>
                 <li className="underline underline-offset-8 my-4 uppercase">
+                  <Link onClick={handleClick} className="text-sm font-semibold" href="/equipe">
+                    L'équipe
+                  </Link>
+                </li>
+                <li className="underline underline-offset-8 my-4 uppercase">
                   <Link onClick={handleClick} className="text-sm font-semibold" href="/demos">
                     Demos
                   </Link>
                 </li>
                 {user.logged && (
                 <li className="underline underline-offset-8 my-4 uppercase">
-                  <Link onClick={handleDeconnect} className="text-xs font-semibold" href="/">Se déconnecter</Link>
+                  <Link onClick={handleDeconnect} className="text-sm font-semibold" href="/">Se déconnecter</Link>
                 </li>
                 )}
               </ul>

@@ -21,7 +21,7 @@ export default function ArtistPublicInfos({
 
   return (
     <div className="flex flex-col md:flex-row mr-8">
-      <div className="m-1 w-32 h-32 rounded-full overflow-hidden relative mb-4 md:mb-0">
+      <div className="ml-4 md:ml-0 m-1 w-32 h-32 rounded-full overflow-hidden relative mb-4 md:mb-0">
         <img
           src={avatar}
           alt="Profile"
@@ -29,8 +29,8 @@ export default function ArtistPublicInfos({
         />
       </div>
       <div className="w-full md:w-3/5 mx-auto flex flex-col justify-center ml-4">
-        <h2 className="text-3xl font-bold mb-3">{nickname}</h2>
-        <div className="text-2xl">
+        <h2 className="text-2xl md:text-3xl font-bold mb-3">{nickname}</h2>
+        <div className="text-xl md:text-2xl">
           <span>
             {town}
             ,

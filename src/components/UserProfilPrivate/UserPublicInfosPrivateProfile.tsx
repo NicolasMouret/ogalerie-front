@@ -137,27 +137,27 @@ export default function UserPublicInfosPrivateProfile({
               </span>
               <span>{country}</span>
             </div>
-            <div className="mt-2 mr-2 text-justify">
+            <div className="mt-2 mr-8 text-sm md:text-base text-justify">
               <p>{biography}</p>
             </div>
           </>
         )}
         <div className="flex items-center mt-4">
-          <AiFillHeart className="mr-2 text-red-500" />
+          <AiFillHeart className="text-sm md:text-base mr-2 text-red-500" />
           <span>
             {likesEmitted}
             {likesEmitted === 1 ? ' oeuvre likée' : ' oeuvres likées'}
           </span>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex-row md:flex justify-between items-center">
           <div className="flex items-center">
-            <AiFillHeart className="mr-2 text-red-500" />
+            <AiFillHeart className="text-sm md:text-base mr-2 text-red-500" />
             <span>
               {likesReceived}
               {likesReceived === 1 ? ' like reçu' : ' likes reçus'}
             </span>
           </div>
-          <p className="text-gray-400">Informations publiques</p>
+          <p className="text-sm justify-self-end md:text-base pr-2 mt-4 text-gray-400">Informations publiques</p>
         </div>
       </div>
     </div>
