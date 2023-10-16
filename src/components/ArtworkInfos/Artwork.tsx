@@ -17,8 +17,8 @@ import DeleteModal from '../UserProfilPrivate/DeleteModal';
 import { Artwork } from '@/src/@types';
 
 interface ArtworkInfosProps {
-  title: string;
   likes: number;
+  title: string;
   author: string;
   date: string;
   typeTag?: string;
@@ -37,8 +37,8 @@ interface ArtworkInfosProps {
 }
 
 export default function ArtworkInfos({
-  title,
   likes,
+  title,
   author,
   date,
   typeTag,
@@ -55,6 +55,7 @@ export default function ArtworkInfos({
   artwork,
   setArtwork,
 }: ArtworkInfosProps) {
+  const [likesTotal, setLikesTotal] = useState<number>(likes);
   const { setShowModalEditArtwork } = useContext(UiContext);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const router = useRouter();
@@ -97,29 +98,29 @@ export default function ArtworkInfos({
           {title}
           "
         </h1>
-        {likes === 0 && (
+        {likesTotal === 0 && (
         <span>
           <BsHeart className="inline text-2xl mr-1" />
           {' '}
-          {likes}
+          {likesTotal}
           {' '}
           like
         </span>
         )}
-        {likes === 1 && (
+        {likesTotal === 1 && (
         <span>
           <BsHeartFill className="inline text-2xl mr-1" />
           {' '}
-          {likes}
+          {likesTotal}
           {' '}
           like
         </span>
         )}
-        {likes > 1 && (
+        {likesTotal > 1 && (
         <span>
           <BsHeartFill className="inline text-2xl mr-1" />
           {' '}
-          {likes}
+          {likesTotal}
           {' '}
           likes
         </span>
@@ -150,6 +151,7 @@ export default function ArtworkInfos({
           artworkId={artworkId}
           isLiked={isLiked}
           setIsLiked={setIsLiked}
+          setLikesTotal={setLikesTotal}
         />
         )}
         {userId && localStorage.getItem('situation') !== 'creator' && (

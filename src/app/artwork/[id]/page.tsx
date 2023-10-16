@@ -23,8 +23,7 @@ export default function ArtworkPage({ params }: ArtworkPageProps) {
   const [artwork, setArtwork] = useState<Artwork>();
   const [isFaves, setIsFaves] = useState<boolean>();
   const [isLiked, setIsLiked] = useState<boolean>();
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   console.log('artwork', artwork);
 
   const getArtwork = (id: string) => {
@@ -56,17 +55,13 @@ export default function ArtworkPage({ params }: ArtworkPageProps) {
     notFound();
   }
 
-  useEffect(() => {
-    setIsMobile(window.innerWidth <= 768);
-  }, []);
-
   return (
     <>
       {artwork && (
         <div className="flex flex-col md:flex-row md:justify-center items-center gap-5 mx-auto mt-0 md:mt-10 w-[90vw] md:w-[1500px]">
           <div
             className="relative flex items-center w-full h-[300px] sm:w-[50%] sm:h-[400px] md:w-[40%] md:h-[450px] lg:w-[65%] lg:h-[600px] xl:w-[70%] xl:h-[700px] md:pb-0 custom-artwork-image]"
-            onClick={() => !isMobile && setModalOpen(true)}
+            onClick={() => setIsModalOpen(true)}
             role="button"
             tabIndex={0}
           >
@@ -76,13 +71,13 @@ export default function ArtworkPage({ params }: ArtworkPageProps) {
               alt="image"
               layout="fill"
             />
-            <div className="hidden md:flex absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+            <div className="md:flex absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
               <FaSearch size={48} color="white" />
             </div>
           </div>
 
           <div className="md:block">
-            <ModaleZoom isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+            <ModaleZoom isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
               <div className="relative">
                 <Image
                   src={artwork.uri}

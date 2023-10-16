@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 'use client';
 
 import { MdOutlineTune } from 'react-icons/md';
@@ -14,7 +16,3 @@ export default function FilterGalerieButton({ onClick }: FilterGalerieButtonProp
     </button>
   );
 }
-
-FilterGalerieButton.defaultProps = {
-  onClick: () => {},
-};

@@ -108,11 +108,6 @@ export default function Menu() {
                     L'équipe
                   </Link>
                 </li>
-                <li className="underline underline-offset-8 my-4 uppercase">
-                  <Link onClick={handleClick} className="text-sm font-semibold" href="/demos">
-                    Demos
-                  </Link>
-                </li>
                 {user.logged && (
                 <li className="underline underline-offset-8 my-4 uppercase">
                   <Link onClick={handleDeconnect} className="text-sm font-semibold" href="/">Se déconnecter</Link>
@@ -149,47 +144,42 @@ export default function Menu() {
               </button>
             </div>
 
-            <div className={`fixed flex flex-col justify-start h-[70vh] w-[20vw] top-[17vh] right-0 z-50 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform ease-linear duration-500 p-4 shadow-gray-400 shadow-xl rounded-lg bg-gray-200`}>
+            <div className={`fixed flex flex-col justify-around h-[62vh] w-[20vw] top-[17vh] right-0 z-50 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform ease-linear duration-500 p-4 shadow-gray-400 shadow-xl rounded-lg bg-gray-200`}>
 
-              <ul className="flex flex-col items-start justify-end min-h-[250px] pl-4">
+              <ul className="flex flex-col items-start  max-h-[60vh] pl-4">
                 <li className="hover:underline underline-offset-8 my-4 uppercase">
                   <Link onClick={handleClick} className="text-sm font-semibold" href="/">
                     Accueil
                   </Link>
                 </li>
                 {user.logged && (
-                <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <li className="hover:underline underline-offset-8 my-[2vh] uppercase">
                   <Link onClick={handleClick} className="text-sm font-semibold" href={`${user.situation === 'creator' ? '/mon-profil-artiste' : '/mon-profil'}`}>Mon profil</Link>
                 </li>
                 ) }
-                <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <li className="hover:underline underline-offset-8 my-[2vh] uppercase">
                   <Link onClick={handleClick} className="text-sm font-semibold" href="/annuaire-artistes">
                     Annuaire des artistes
                   </Link>
                 </li>
-                <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <li className="hover:underline underline-offset-8 my-[2vh] uppercase">
                   <Link onClick={handleClick} className="text-sm font-semibold" href="/a-propos">
                     à propos
                   </Link>
                 </li>
-                <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <li className="hover:underline underline-offset-8 my-[2vh] uppercase">
                   <Link onClick={handleClick} className="text-sm font-semibold" href="/contact">
                     Contact
                   </Link>
                 </li>
-                <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <li className="hover:underline underline-offset-8 my-[2vh] uppercase">
                   <Link onClick={handleClick} className="text-sm font-semibold" href="/cgu-page">
                     Règlement & mentions légales
                   </Link>
                 </li>
-                <li className="hover:underline underline-offset-8 my-4 uppercase">
+                <li className="hover:underline underline-offset-8 my-[2vh] uppercase">
                   <Link onClick={handleClick} className="text-sm font-semibold" href="/equipe">
                     L'équipe
-                  </Link>
-                </li>
-                <li className="hover:underline underline-offset-8 my-4 uppercase">
-                  <Link onClick={handleClick} className="text-sm font-semibold" href="/demos">
-                    Demos
                   </Link>
                 </li>
               </ul>

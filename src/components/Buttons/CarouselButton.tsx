@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 'use client';
 
 import { IoIosArrowDroprightCircle, IoIosArrowDropleftCircle } from 'react-icons/io';
@@ -23,8 +25,3 @@ export default function CarouselButton({ direction, className, onClick }: Carous
     );
   }
 }
-
-CarouselButton.defaultProps = {
-  className: '',
-  onClick: () => {},
-};

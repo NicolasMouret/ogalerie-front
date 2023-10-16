@@ -1,8 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import {
+  useEffect, useRef, useState, useContext,
+} from 'react';
 import { useWindowSize } from '@uidotdev/usehooks';
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
+import { UserContext } from '@/src/contexts/UserContext';
 import axiosInstance from '@/src/utils/axios';
 import Carousel from '@/src/components/testCarousel/Carousel';
 import ArtistPublicInfos from '@/src/components/ArtistProfilPublic/ArtistPublicInfos';
@@ -17,15 +20,26 @@ interface ArtistPublicProps {
 }
 
 export default function ArtistPublic({ params }: ArtistPublicProps) {
+  const router = useRouter();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const screenWidth = useWindowSize().width;
+  const { user } = useContext(UserContext);
+  const [connectedId, setConnectedId] = useState<string>('');
   const [isNotFound, setIsNotFound] = useState<boolean>(false);
   const [userLocal, setUserLocal] = useState<any>();
   const [collections, setCollections] = useState<Collection[]>();
   const [collectionsFullScreen, setCollectionsFullScreen] = useState<Collection[]>();
 
+  useEffect(() => {
+    setConnectedId(localStorage.getItem('id')!);
+  }, [user]);
+
   useEffect(
     () => {
+      if (connectedId === params.id) {
+        router.push('/mon-profil-artiste');
+        console.log('connectedId', connectedId);
+      }
       const getUser = (id: string) => {
         axiosInstance.get(`/users/${id}`)
           .then((res) => {
@@ -40,7 +54,7 @@ export default function ArtistPublic({ params }: ArtistPublicProps) {
       };
       getUser(params.id);
     },
-    [params.id],
+    [params.id, router, connectedId],
   );
 
   useEffect(

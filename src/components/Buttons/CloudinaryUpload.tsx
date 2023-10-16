@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-unused-vars */
 
 'use client';
@@ -28,8 +29,3 @@ export default function CloudinaryUpload({ handleOnUpload, className, avatar }: 
     </CldUploadWidget>
   );
 }
-
-CloudinaryUpload.defaultProps = {
-  className: '',
-  avatar: false,
-};

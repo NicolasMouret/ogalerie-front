@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 'use client';
 
 import { AiOutlineCloseCircle } from 'react-icons/ai';
@@ -14,7 +16,3 @@ export default function CloseButton({ onClick, className }: CloseButtonProps) {
     </button>
   );
 }
-
-CloseButton.defaultProps = {
-  className: '',
-};

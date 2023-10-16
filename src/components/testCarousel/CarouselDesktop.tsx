@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -93,7 +95,3 @@ export default function CarouselDesktop({
 
   );
 }
-
-CarouselDesktop.defaultProps = {
-  addButton: false,
-};

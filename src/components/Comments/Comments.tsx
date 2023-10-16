@@ -77,11 +77,11 @@ export default function CommentsBlock({ comments, userId, artworkId }: CommentsB
   };
 
   return (
-    <div className="flex flex-col justify-between overflow-hidden pt-2 mx-auto md:mx-0 mb-4 h-fit max-h-[50vh] md:h-[35vh] md:max-h-[400px] w-[90vw] md:w-[700px] rounded-2xl border-gray-400 border-2">
+    <div className="flex flex-col justify-between pt-2 mx-auto md:mx-0 mb-4 h-fit max-h-[50vh] md:h-[35vh] md:max-h-[400px] w-[90vw] md:w-[700px] rounded-2xl border-gray-400 border-2">
       <div ref={commentsContainerRef} className="flex flex-col justify-start gap-4 overflow-auto h-[75%] pl-6 py-2">
         {commentsList}
       </div>
-      <div className="flex h-[15%] md:max-h-[20%] w-[95%] mx-auto border-gray-300 border-t-2 mt-3">
+      <div className="flex h-[15%] md:max-h-[20%] w-[95%] mx-auto border-gray-300 border-t-2 mt-3 z-50">
         <InputEmoji
           value={text}
           onChange={setText}

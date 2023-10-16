@@ -10,10 +10,11 @@ interface LikeButtonProps {
     artworkId: string;
     isLiked: boolean;
     setIsLiked: (isLiked: boolean) => void;
+    setLikesTotal: (likesTotal: number) => void;
 }
 
 export default function LikeButton({
-  userId, artworkId, isLiked, setIsLiked,
+  userId, artworkId, isLiked, setIsLiked, setLikesTotal,
 }: LikeButtonProps) {
   const payload = {
     artworkId,
@@ -25,7 +26,9 @@ export default function LikeButton({
         'Content-Type': 'application/json',
       },
     })
-      .then(() => {
+      .then((res) => {
+        console.log('like ok', res.data);
+        setLikesTotal(res.data);
       }).catch((err) => {
         console.log(err);
       });
@@ -41,6 +44,7 @@ export default function LikeButton({
       },
     }).then((res) => {
       console.log('res.data likes', res.data);
+      setLikesTotal(res.data);
     }).catch((err) => {
       console.log(err);
       throw err;
