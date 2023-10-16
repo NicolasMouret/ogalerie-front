@@ -33,9 +33,8 @@ export default function UserPrivate() {
     axiosInstance.get<Collection[]>(`/users/${id}/collections`)
       .then((res) => {
         console.log('res.data collections', res.data);
-        const reversedCollections = res.data.reverse();
-        setCollections(reversedCollections);
-        setCollectionsFullScreen(reversedCollections.slice(1));
+        setCollections(res.data);
+        setCollectionsFullScreen(res.data.slice(1));
       }).catch((err) => {
         console.log(err);
         throw err;

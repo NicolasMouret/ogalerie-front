@@ -39,7 +39,7 @@ export default function AddCollectionButton({ userId, reGetCollections }: AddCol
     <>
       {isInput
         ? (
-          <div className="flex items-center self-start gap-2 py-4 w-[90vw] sm:w-[85vw] mx-auto sm:mx-0 sm:py-0 text-lg font-bold">
+          <div className="flex items-center self-start gap-2 py-4 w-[90vw] sm:w-[85vw] mx-auto sm:py-0 text-lg font-bold">
             <BiSolidAddToQueue />
             <OutsideClickHandler onOutsideClick={() => setIsInput(false)}>
               <input

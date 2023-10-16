@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-unused-vars */
 
 'use client';
@@ -195,9 +196,3 @@ export default function ArtworkInfos({
     </div>
   );
 }
-
-ArtworkInfos.defaultProps = {
-  style: '',
-  support: '',
-  typeTag: '',
-};

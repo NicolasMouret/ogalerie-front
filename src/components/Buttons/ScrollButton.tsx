@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 'use client';
 
 import { IoIosArrowDropup, IoIosArrowDropdown } from 'react-icons/io';
@@ -29,7 +31,3 @@ export default function ScrollButton({ direction, onClick, className }: ScrollPr
     );
   }
 }
-
-ScrollButton.defaultProps = {
-  className: '',
-};

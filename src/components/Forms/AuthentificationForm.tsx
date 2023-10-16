@@ -70,11 +70,6 @@ export default function AuthentificationForm() {
     console.log('Données du formulaire saisies:', objData);
 
     // Validation checks
-    if (objData.password !== objData.confirmPassword) {
-      setError('Les mots de passe ne correspondent pas.');
-      return;
-    }
-    delete objData.confirmPassword;
 
     if (!objData.nickname
       || !objData.lastname
@@ -87,6 +82,18 @@ export default function AuthentificationForm() {
       setError('Merci de saisir tous les champs');
       return;
     }
+
+    if (objData.password.length < 8) {
+      setError('Le mot de passe doit contenir au moins 8 caractères.');
+      return;
+    }
+
+    if (objData.password !== objData.confirmPassword) {
+      setError('Les mots de passe ne correspondent pas.');
+      return;
+    }
+    delete objData.confirmPassword;
+
     if (!acceptedTOS) {
       setError("Merci d'accepter les conditions d'utilisation");
       return;
@@ -322,7 +329,7 @@ export default function AuthentificationForm() {
                 <input
                   type="checkbox"
                   name="accept_cgu"
-                  id="user"
+                  id="accept_cgu"
                   className="mx-2 md:mx-6"
                   checked={acceptedTOS}
                   onChange={(e) => setAcceptedTOS(e.target.checked)}

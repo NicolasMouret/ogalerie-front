@@ -94,7 +94,7 @@ Permettre aux utilisateurs de rentrer en contact avec les artistes via un formul
 
 ### Technologies Utilisées
 
-* Front-end : [React](https://react.dev), [Next.js](https://nextjs.org), [Tailwind CSS](https://tailwindcss.com), [TypeScript](https://typescriptlang.org), SASS.
+* Front-end : [React](https://react.dev), [Next.js](https://nextjs.org), [Tailwind CSS](https://tailwindcss.com), [TypeScript](https://typescriptlang.org).
 * Back-end : [Node.js](https://nodejs.org), [Express](https://expressjs.com), [PostgreSQL](https://www.postgresql.org/)
 * Stockage des images : [Cloudinary](cloudinary.com)
 * Communication Front-End <-> Back-end : API REST
@@ -105,7 +105,7 @@ Permettre aux utilisateurs de rentrer en contact avec les artistes via un formul
 
 ### Navigateurs Compatibles
 
-* Dektop: Chrome, Firefox, Safari et Edge.
+* Dektop: Chrome, Firefox, Safari.
 * Mobile: Chrome, Firefox, Safari.
 
 ### Arborescence de l'Application
@@ -172,17 +172,14 @@ En tant que | Je veux | Afin de |
 | Utilisateur | mettre une oeuvre en favoris | conserver une trace des oeuvres appréciées |
 | Utilisateur | retirer une oeuvre des favoris | actualiser sa liste d'oeuvres appréciées |
 | Utilisateur | commenter une oeuvre  | partager mon opinion sur une oeuvre et interagir |
-| Utilisateur | contacter un artiste via un formulaire | entrer en contact par mail avec des artistes |
-| Utilisateur | signaler un commentaire | signaler des commentaire choquant ou ne répondant pas à la réglementation de la plateforme |
-| Utilisateur | signaler une œuvre | signaler une image choquante ou ne répondant pas à la réglementation de la plateforme |
-| Visiteur anonyme | s'inscrire en tant que visiteur | avoir accès à plus de fonctionnalités et devenir un visiteur identifié |
+| Utilisateur | contacter la plateforme via un formulaire | entrer en contact par mail avec l'équipe d'O'Galerie |
+| Utilisateur | contacter la plateforme via un formulaire | entrer en contact avec les artistes |
+| Visiteur anonyme | s'inscrire en tant qu'utilisateur | avoir accès à plus de fonctionnalités et devenir un visiteur identifié |
 | Visiteur anonyme | s'inscrire en tant qu'artiste | avoir une page artiste et y partager ses oeuvres |
 | Visiteur anonyme | s'authentifier | accéder aux fonctionnalités réservées aux utilisteurs authentifiés |
 | Visiteur anonyme | consulter les pages artistes | découvrir des artistes et leurs oeuvres |
 | Visiteur anonyme | consulter la page d'une oeuvre |  avoir plus de détails sur une oeuvre |
-| Administrateur | se déconnecter | ne pas laisser sa session active  |
-| Administrateur | masquer une œuvre | satisfaire la réglementation de la plateforme  |
-| Administrateur | masquer un commentaire | modérer le contenu posté par les utilisateurs  |
+
 
 ## User Stories V2
 
@@ -191,6 +188,11 @@ En tant que | Je veux | Afin de |
 | Artiste | consulter sa messagerie | lire et répondre aux messages des visiteurs ou autres artistes |
 | Utilisateur | contacter un artiste via la messagerie | échanger directement avec des artistes sur la plateforme  |
 | Utilisateur | changer de profil | avoir un profil artiste et publier des oeuvres  |
+| Utilisateur | signaler un commentaire | signaler des commentaire choquant ou ne répondant pas à la réglementation de la plateforme |
+| Utilisateur | signaler une œuvre | signaler une image choquante ou ne répondant pas à la réglementation de la plateforme |
+| Administrateur | se déconnecter | ne pas laisser sa session active  |
+| Administrateur | masquer une œuvre | satisfaire la réglementation de la plateforme  |
+| Administrateur | masquer un commentaire | modérer le contenu posté par les utilisateurs  |
 | Administrateur | masquer un profil | satisfaire la réglementation de la plateforme  |
 
 ---

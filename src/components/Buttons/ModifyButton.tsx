@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 'use client';
 
 import { MdModeEdit } from 'react-icons/md';
@@ -13,7 +15,3 @@ export default function ModifyButton({ onClick }: ModifyButtonProps) {
     </button>
   );
 }
-
-ModifyButton.defaultProps = {
-  onClick: () => {},
-};

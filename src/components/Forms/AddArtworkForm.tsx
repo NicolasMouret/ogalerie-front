@@ -133,10 +133,9 @@ export default function AddArtworkForm({ collectionId, userId, getCollections }:
               className="block w-full p-2 mb-4 rounded pr-10 text-sm "
             />
             <input
-              type="text"
+              type="date"
               min="1900"
               max="2099"
-              placeholder="Année de création"
               value={date}
               name="date"
               onChange={(e) => setDate(e.target.value)}

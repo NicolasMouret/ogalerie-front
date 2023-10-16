@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 'use client';
 
 interface ModifyButtonProps{
@@ -11,7 +13,3 @@ export default function SaveButton({ onClick }: ModifyButtonProps) {
     </button>
   );
 }
-
-SaveButton.defaultProps = {
-  onClick: () => {},
-};

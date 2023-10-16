@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-unused-vars */
 
 'use client';
@@ -29,8 +30,3 @@ export default function EditAvatarButton({ handleOnUpload, className, avatar }: 
     </CldUploadWidget>
   );
 }
-
-EditAvatarButton.defaultProps = {
-  className: '',
-  avatar: false,
-};

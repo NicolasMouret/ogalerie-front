@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 'use client';
 
 import { useState } from 'react';
@@ -34,9 +36,3 @@ export default function SignalButton({ className, sizeIcon, size }: SignalButton
     </button>
   );
 }
-
-SignalButton.defaultProps = {
-  className: '',
-  size: '',
-  sizeIcon: '',
-};
