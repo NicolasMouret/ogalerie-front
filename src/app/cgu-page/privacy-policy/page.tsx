@@ -1,10 +1,10 @@
 export default function submissionPolicies() {
   return (
     <>
-      <div className="m-10">
-        <p className="mt-32">Cette Politique de confidentialité décrit comment O'Galerie collecte, utilise et protège les informations personnelles que vous nous fournissez lorsque vous utilisez notre site Web.</p>
+      <div className="p-10">
+        <p className="mt-5">Cette Politique de confidentialité décrit comment O'Galerie collecte, utilise et protège les informations personnelles que vous nous fournissez lorsque vous utilisez notre site Web.</p>
 
-        <h2 className="text 9xl m-16 font-extrabold uppercase">Collecte de données personnelles</h2>
+        <h2 className="text-sm md:text-lg pt-6 pb-4 font-extrabold uppercase">Collecte de données personnelles</h2>
 
         <p>Nous collectons les données personnelles suivantes lorsque vous utilisez notre site Web :</p>
 
@@ -16,7 +16,7 @@ export default function submissionPolicies() {
           <li>Informations de paiement (le cas échéant)</li>
         </ul>
 
-        <h2 className="text 9xl m-16 font-extrabold uppercase">Utilisation des données personnelles</h2>
+        <h2 className="text-sm md:text-lg pt-6 pb-4 font-extrabold uppercase">Utilisation des données personnelles</h2>
 
         <p>Nous utilisons vos données personnelles pour les finalités suivantes :</p>
 
@@ -26,7 +26,7 @@ export default function submissionPolicies() {
           <li>Améliorer notre site Web et nos services</li>
         </ul>
 
-        <h2 className="text 9xl m-16 font-extrabold uppercase">Protection des données personnelles</h2>
+        <h2 className="text-sm md:text-lg pt-6 pb-4 font-extrabold uppercase">Protection des données personnelles</h2>
 
         <p>Nous prenons des mesures pour protéger vos données personnelles et assurer leur sécurité. Vos informations ne seront pas partagées, vendues ou louées à des tiers sans votre consentement préalable.</p>
 
@@ -34,7 +34,7 @@ export default function submissionPolicies() {
 
         <p>Vous avez le droit d'accéder à vos données personnelles, de les rectifier, de les supprimer, de limiter leur traitement et de les transférer. Vous pouvez exercer ces droits en nous contactant à [adresse e-mail de contact].</p>
 
-        <h2 className="text 9xl m-16 font-extrabold uppercase">Cookies</h2>
+        <h2 className="text-sm md:text-lg pt-6 pb-4 font-extrabold uppercase">Cookies</h2>
 
         <p>
           Notre site Web utilise des cookies pour améliorer votre expérience. En continuant à utiliser notre site, vous consentez à notre utilisation de cookies. Pour en savoir plus, consultez notre
@@ -43,7 +43,7 @@ export default function submissionPolicies() {
           .
         </p>
 
-        <h2 className="text 9xl m-16 font-extrabold uppercase">Contact</h2>
+        <h2 className="text-sm md:text-lg pt-6 pb-4 font-extrabold uppercase">Contact</h2>
 
         <p>Pour toute question concernant notre Politique de confidentialité, veuillez nous contacter à [adresse e-mail de contact] ou à l'adresse postale suivante :</p>
 
