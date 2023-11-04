@@ -18,8 +18,8 @@ export default function CarouselMobile({ collection }: CarouselMobileProps) {
     <div className="relative w-screen">
       {/* Cette div permet de délimiter ce que l'on peut voir de la div qu'elle contient */}
       <div className="w-[90vw] mx-auto overflow-hidden ">
-        {/* Cette div contient toute les images 'à la suite' le translate permet
-          de se déplacer horizontalement entre celle si comme si l'on faisait défiler un bandeau d'images */}
+        {/* Cette div contient toute les images à la suite, touch-pan-x permet de la faire défiler
+         horizontalement en scrolalnt avec un doigt sur mobile */}
         <div
           className="flex ease-out duration-500 overflow-x-auto scrollbar-hide touch-pan-x snap-x snap-mandatory"
         >

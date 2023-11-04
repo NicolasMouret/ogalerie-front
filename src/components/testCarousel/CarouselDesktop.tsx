@@ -66,7 +66,7 @@ export default function CarouselDesktop({
     } else {
       setSlidesStart(false);
     }
-  }, [currentSlide]);
+  }, [currentSlide, page, slides.length]);
 
   // previousSlide et nextSlide permettent de changer l'index (valeur de currentSlide)
   const previousSlide = () => {
@@ -82,6 +82,8 @@ export default function CarouselDesktop({
   return (
     <div className="relative w-[84vw] mx-auto">
       <div className="mx-auto w-[84vw] overflow-hidden">
+        {/* Cette div contient toute les images 'à la suite' le translate permet
+          de se déplacer horizontalement entre celle si comme si l'on faisait défiler un bandeau d'images */}
         <div
           className="flex transition-transform ease-out duration-500 "
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -89,6 +91,7 @@ export default function CarouselDesktop({
           {slides}
         </div>
       </div>
+      {/* Les boutons de navigation sont positionnés par rapport à la div qui contient le carousel */}
       <CarouselButton direction="left" className={` text-4xl absolute -left-4 top-1/2 -translate-y-1/2 ${slidesStart ? 'hidden' : ''}`} onClick={previousSlide} />
       <CarouselButton direction="right" className={` text-4xl absolute -right-4 top-1/2 -translate-y-1/2 ${slidesEnd ? 'hidden' : ''}`} onClick={nextSlide} />
     </div>

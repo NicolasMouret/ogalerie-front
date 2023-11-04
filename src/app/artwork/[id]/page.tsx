@@ -24,7 +24,7 @@ export default function ArtworkPage({ params }: ArtworkPageProps) {
   const [isFaves, setIsFaves] = useState<boolean>();
   const [isLiked, setIsLiked] = useState<boolean>();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log('artwork', artwork);
+  console.log('artwork test', artwork);
 
   const getArtwork = (id: string) => {
     axiosInstance.get(`/artworks/${id}`)

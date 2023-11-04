@@ -1,25 +1,27 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
-import Image from 'next/image';
-import { RiDeleteBin6Line } from 'react-icons/ri';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { Comment } from '@/src/@types';
 
 interface CommentProps {
   handleDelete: (id: string) => void;
-  avatar: string;
-  nickname: string;
-  date: string;
-  content: string;
   className?: string;
-  userId: string;
-  id: string;
+  comment: Comment;
 }
 
 export default function CommentSingle({
-  avatar, nickname, date, content, className, userId, id, handleDelete,
+  comment, className, handleDelete,
 }: CommentProps) {
   const [isOwner, setIsOwner] = useState(false);
+  const avatar = comment.avatar ? comment.avatar : '/DefaultAvatar.svg';
+  const {
+    id, owner: nickname, created_at: date, content, owner_id: userId,
+  } = comment;
+
   const setDate = (date: string) => {
     const isoDate = new Date(date);
     const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -30,7 +32,7 @@ export default function CommentSingle({
 
   useEffect(
     () => {
-      if (localStorage.getItem('id') === userId) {
+      if (localStorage.getItem('id') === userId.toString()) {
         setIsOwner(true);
       } else {
         setIsOwner(false);
@@ -58,11 +60,7 @@ export default function CommentSingle({
         </p>
         <p className="text-sm sm:text-base">{content}</p>
       </div>
-      {isOwner && <button type="button" onClick={() => handleDelete(id)} className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block"><RiDeleteBin6Line /></button>}
+      {isOwner && <button type="button" onClick={() => handleDelete(id.toString())} className="ml-auto text-left w-2/12 max-h-8 hidden group-hover:block"><RiDeleteBin6Line /></button>}
     </div>
   );
 }
-
-CommentSingle.defaultProps = {
-  className: '',
-};

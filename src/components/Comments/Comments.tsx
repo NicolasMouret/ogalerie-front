@@ -5,8 +5,8 @@ import {
 } from 'react';
 import InputEmoji from 'react-input-emoji';
 import axiosInstance from '@/src/utils/axios';
-import { Comment } from '@/src/@types';
 import CommentSingle from './CommentSingle';
+import { Comment } from '@/src/@types';
 
 interface CommentsBlockProps {
   comments: Comment[];
@@ -38,12 +38,7 @@ export default function CommentsBlock({ comments, userId, artworkId }: CommentsB
       const createCommentsList = (comments: Comment[]) => (comments.map((comment) => (
         <CommentSingle
           key={comment.id}
-          avatar={comment.avatar ? comment.avatar : '/DefaultAvatar.svg'}
-          nickname={comment.owner}
-          date={comment.created_at}
-          content={comment.content}
-          userId={comment.owner_id.toString()}
-          id={comment.id.toString()}
+          comment={comment}
           handleDelete={handleDelete}
         />
       )));
@@ -53,7 +48,7 @@ export default function CommentsBlock({ comments, userId, artworkId }: CommentsB
     [commentsRaw, comments],
   );
 
-  const onEnter = (text: string) => {
+  const onEnter = () => {
     console.log('text before enter', text);
     const payload = {
       content: text,

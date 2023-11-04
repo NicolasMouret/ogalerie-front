@@ -28,7 +28,7 @@ export default function Carousel({
   collection, page, addButton, collectionId, handleAddClick,
 }: CarouselProps) {
   // useWindowSize().width renvoie la largeur de l'écran (en px)
-  const screenWidth = useWindowSize().width || 800;
+  const screenWidth = useWindowSize().width;
   const [isMobile, setIsMobile] = useState(false);
 
   const { setShowModalAddArtwork } = useContext(UiContext);
@@ -41,10 +41,10 @@ export default function Carousel({
   // useEffect pour mettre à jour le state isMobile
   // en fonction de la largeur de l'écran
   useEffect(() => {
-    if (screenWidth < 768) {
+    if (screenWidth! < 768) {
       setIsMobile(true);
     }
-    if (screenWidth >= 768) {
+    if (screenWidth! >= 768) {
       setIsMobile(false);
     }
   }, [screenWidth]);
