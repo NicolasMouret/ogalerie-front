@@ -1,9 +1,10 @@
 'use client';
 
 import {
-  useState, useRef, useEffect, JSX,
+  useState, useEffect, JSX, useContext,
 } from 'react';
 import InputEmoji from 'react-input-emoji';
+import { UserContext } from '@/src/contexts/UserContext';
 import axiosInstance from '@/src/utils/axios';
 import CommentSingle from './CommentSingle';
 import { Comment } from '@/src/@types';
@@ -15,8 +16,8 @@ interface CommentsBlockProps {
 }
 
 export default function CommentsBlock({ comments, userId, artworkId }: CommentsBlockProps) {
-  const commentsContainerRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState('');
+  const { user } = useContext(UserContext);
   const [commentsRaw, setCommentsRaw] = useState<Comment[]>(comments);
   const [commentsList, setCommentsList] = useState<JSX.Element[]>();
 
@@ -73,9 +74,10 @@ export default function CommentsBlock({ comments, userId, artworkId }: CommentsB
 
   return (
     <div className="flex flex-col justify-between pt-2 mx-auto md:mx-0 mb-4 h-fit max-h-[50vh] md:h-[35vh] md:max-h-[400px] w-[90vw] md:w-[700px] rounded-2xl border-gray-400 border-2">
-      <div ref={commentsContainerRef} className="flex flex-col justify-start gap-4 overflow-auto h-[75%] pl-6 py-2">
+      <div className="flex flex-col justify-start gap-4 overflow-auto h-[75%] pl-6 py-2">
         {commentsList}
       </div>
+      {user.logged && (
       <div className="flex h-[15%] md:max-h-[20%] w-[95%] mx-auto border-gray-300 border-t-2 mt-3">
         <InputEmoji
           value={text}
@@ -88,7 +90,7 @@ export default function CommentsBlock({ comments, userId, artworkId }: CommentsB
           onEnter={onEnter}
         />
       </div>
-      ￼
+      )}
     </div>
   );
 }

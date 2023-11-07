@@ -8,6 +8,7 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation';
 import axiosInstance from '@/src/utils/axios';
 import CloseButton from '@/src/components/Buttons/CloseButton';
+import { addTagToSearchParams } from '@/src/utils/searchMethods';
 import { Tag, Artwork, Collection } from '@/src/@types';
 
 interface FilterProps {
@@ -81,14 +82,7 @@ export default function Filter({ handleClose, setCollectionSearch }: FilterProps
   };
 
   const handleChange = (tag: Tag) => {
-    if (!searchParams.has(`${tag.category}`)) {
-      console.log(searchParams.has(`${tag.category}`));
-      router.push(`?${searchParams.toString() && `${searchParams.toString()}&`}${tag.category}=${tag.id}`);
-    }
-    if (searchParams.has(`${tag.category}`) && searchParams.get(`${tag.category}`) !== tag.id.toString()) {
-      console.log(searchParams.has(`${tag.category}`));
-      router.push(`?${searchParams.toString().replace(`${tag.category}=${searchParams.get(`${tag.category}`)}`, `${tag.category}=${tag.id}`)}`);
-    }
+    addTagToSearchParams(tag, searchParams, router);
   };
 
   return (

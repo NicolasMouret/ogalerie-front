@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { setDateComment } from '@/src/utils/dateMethods';
 import { Comment } from '@/src/@types';
 
 interface CommentProps {
@@ -18,17 +19,10 @@ export default function CommentSingle({
 }: CommentProps) {
   const [isOwner, setIsOwner] = useState(false);
   const avatar = comment.avatar ? comment.avatar : '/DefaultAvatar.svg';
+  const date = setDateComment(comment.created_at);
   const {
-    id, owner: nickname, created_at: date, content, owner_id: userId,
+    id, owner: nickname, content, owner_id: userId,
   } = comment;
-
-  const setDate = (date: string) => {
-    const isoDate = new Date(date);
-    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-    const formattedDate = isoDate.toLocaleDateString('fr-FR', options);
-    return formattedDate;
-  };
-  const formattedDate = setDate(date);
 
   useEffect(
     () => {
@@ -56,7 +50,7 @@ export default function CommentSingle({
           <Link href={`/user/${userId}`}>{nickname}</Link>
           -
           {' '}
-          {formattedDate}
+          {date}
         </p>
         <p className="text-sm sm:text-base">{content}</p>
       </div>
