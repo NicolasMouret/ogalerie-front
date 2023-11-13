@@ -1,6 +1,6 @@
 'use client';
 
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import axiosInstance from '@/src/utils/axios';
 import Carousel from '@/src/components/testCarousel/Carousel';
@@ -14,6 +14,7 @@ interface UserPublicProps {
 }
 
 export default function UserPublic({ params }: UserPublicProps) {
+  const router = useRouter();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [isNotFound, setIsNotFound] = useState<boolean>(false);
   const [userLocal, setUserLocal] = useState<any>();
@@ -34,7 +35,7 @@ export default function UserPublic({ params }: UserPublicProps) {
       };
       getUser(params.id);
     },
-    [params.id],
+    [params.id, router],
   );
 
   useEffect(
