@@ -15,16 +15,6 @@ export default function Home() {
   const [allArtworks, setAllArtworks] = useState<Artwork[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSearchChange = (query: string) => {
-    const filteredArtworks = allArtworks.filter((artwork) => artwork.title.toLowerCase().includes(query.toLowerCase())
-      || artwork.owner.toLowerCase().includes(query.toLowerCase()));
-    setCollectionSearch({
-      id: 2,
-      title: 'Search',
-      artworks: filteredArtworks,
-    });
-  };
-
   const getRandomArtworks = () => {
     axiosInstance.get<Artwork[]>('/artworks/random')
       .then((res) => {
@@ -38,6 +28,20 @@ export default function Home() {
         console.log(err);
         throw err;
       });
+  };
+
+  const handleSearchChange = (query: string) => {
+    if (query) {
+      const filteredArtworks = allArtworks.filter((artwork) => artwork.title.toLowerCase().includes(query.toLowerCase())
+      || artwork.owner.toLowerCase().includes(query.toLowerCase()));
+      setCollectionSearch({
+        id: 2,
+        title: 'Search',
+        artworks: filteredArtworks,
+      });
+    } else {
+      getRandomArtworks();
+    }
   };
 
   const getSearchResults = (searchParams: string) => {
