@@ -150,15 +150,18 @@ export default function UserPublicInfosPrivateProfile({
             {likesEmitted === 1 ? ' oeuvre likée' : ' oeuvres likées'}
           </span>
         </div>
-        <div className="flex-row md:flex justify-between items-center">
-          <div className="flex items-center">
-            <AiFillHeart className="text-sm md:text-base mr-2 text-red-500" />
-            <span>
-              {likesReceived}
-              {likesReceived === 1 ? ' like reçu' : ' likes reçus'}
-            </span>
-          </div>
-          <p className="text-sm justify-self-end md:text-base pr-2 mt-4 text-gray-400">Informations publiques</p>
+        <div className="flex justify-between items-center">
+          {user.situation === 'creator'
+            ? (
+              <div className="flex items-center">
+                <AiFillHeart className="text-sm md:text-base mr-2 text-red-500" />
+                <span>
+                  {likesReceived}
+                  {likesReceived === 1 ? ' like reçu' : ' likes reçus'}
+                </span>
+              </div>
+            ) : null}
+          <p className="text-sm justify-self-end md:text-base ml-auto pr-2 mt-4 text-gray-400">Informations publiques</p>
         </div>
       </div>
     </div>
