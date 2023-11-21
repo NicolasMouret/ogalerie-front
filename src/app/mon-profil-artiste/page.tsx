@@ -161,7 +161,7 @@ export default function UserPrivate() {
             )}
           </div>
           <Carousel handleAddClick={handleAddClick} collectionId={collections[0].id.toString()} collection={collections[0]} page="user" addButton />
-          <ScrollButton direction="down" onClick={scrollToNextViewport} />
+          <ScrollButton className="sm:snap-end" direction="down" onClick={scrollToNextViewport} />
         </div>
       </section>
 

@@ -130,13 +130,13 @@ export default function AuthentificationForm() {
         closeModal();
       })
       .catch((err) => {
-        console.log(objData);
-        throw err;
-      });
-    // Reset acceptedTOS
-    setAcceptedTOS(false);
-    // Modal closing.
-    closeModal();
+        if (err.response.data.error === 'Pseudo déjà utilisé') {
+          setError(err.response.data.error);
+        } else {
+          setAcceptedTOS(false);
+          closeModal();
+        }
+      });   
   };
 
   return (

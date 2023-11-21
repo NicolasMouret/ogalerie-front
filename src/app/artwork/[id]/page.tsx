@@ -58,15 +58,15 @@ export default function ArtworkPage({ params }: ArtworkPageProps) {
   return (
     <>
       {artwork && (
-        <div className="flex flex-col md:flex-row md:justify-center items-center gap-5 mx-auto mt-0 md:mt-10 w-[90vw] md:w-[1500px]">
+        <div className="flex flex-col md:flex-row sm:justify-center items-center gap-5 mx-auto mt-0 w-[90vw] md:w-[100vw]">
           <div
-            className="relative flex items-center w-full h-[300px] sm:w-[50%] sm:h-[400px] md:w-[40%] md:h-[450px] lg:w-[65%] lg:h-[600px] xl:w-[70%] xl:h-[700px] md:pb-0 custom-artwork-image]"
+            className="relative flex items-center w-full h-[300px] sm:w-[40%] sm:h-[400px] md:h-[450px] lg:h-[600px] xl:h-[700px] custom-artwork-image]"
             onClick={() => setIsModalOpen(true)}
             role="button"
             tabIndex={0}
           >
             <Image
-              className="top-0 left-0 w-full h-full object-contain md:max-w-[80%] md:mx-auto lg:max-w-[90%]"
+              className="w-full h-full object-contain sm:max-w-[90%] sm:max-h-[90%] sm:mx-auto sm:my-auto "
               src={artwork.uri}
               alt="image"
               layout="fill"

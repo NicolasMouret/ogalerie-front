@@ -78,7 +78,7 @@ export default function CommentsBlock({ comments, userId, artworkId }: CommentsB
         {commentsList}
       </div>
       {user.logged && (
-      <div className="flex h-[15%] md:max-h-[20%] w-[95%] mx-auto border-gray-300 border-t-2 mt-3">
+      <div className="flex h-[15%] md:h-[25%] w-[95%] mx-auto border-gray-300 border-t-2 mt-3">
         <InputEmoji
           value={text}
           onChange={setText}
