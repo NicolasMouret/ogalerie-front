@@ -7,54 +7,34 @@ import Carousel from '@/src/components/testCarousel/Carousel';
 import SearchBar from '@/src/components/SearchBar/SearchBar';
 import FilterGalerieButton from '../components/Buttons/FilterGalerieButton';
 import Filter from '../components/Filter/FilterSelect';
+import { getFilteredArtworks } from '../utils/filterMethods';
+import { getRandomArtworks } from '../utils/searchMethods';
 import { Collection, Artwork } from '@/src/@types';
 
 export default function Home() {
   const searchParams = useSearchParams();
-  const [collectionSearch, setCollectionSearch] = useState<Collection>();
+  const [currentCollection, setCurrentCollection] = useState<Collection>(
+    {
+      id: 1,
+      title: 'HomeCollection',
+      artworks: [],
+    },
+  );
   const [allArtworks, setAllArtworks] = useState<Artwork[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-
-  const getRandomArtworks = () => {
-    axiosInstance.get<Artwork[]>('/artworks/random')
-      .then((res) => {
-        console.log('res.random', res.data);
-        setCollectionSearch({
-          id: 1,
-          title: 'Random',
-          artworks: res.data,
-        });
-      }).catch((err) => {
-        console.log(err);
-        throw err;
-      });
-  };
 
   const handleSearchChange = (query: string) => {
     if (query) {
       const filteredArtworks = allArtworks.filter((artwork) => artwork.title.toLowerCase().includes(query.toLowerCase())
       || artwork.owner.toLowerCase().includes(query.toLowerCase()));
-      setCollectionSearch({
-        id: 2,
+      setCurrentCollection({
+        id: 1,
         title: 'Search',
         artworks: filteredArtworks,
       });
     } else {
       getRandomArtworks();
     }
-  };
-
-  const getSearchResults = (searchParams: string) => {
-    axiosInstance.get<Artwork[]>(`/artworks/filter/?${searchParams}`)
-      .then((res) => {
-        setCollectionSearch({
-          id: 2,
-          title: 'SearchResult',
-          artworks: res.data,
-        });
-      }).catch((err) => {
-        throw err;
-      });
   };
 
   useEffect(() => {
@@ -67,16 +47,24 @@ export default function Home() {
       });
   }, []);
 
-  useEffect(
-    () => {
+  useEffect(() => {
+    const getFilteredOrRandomArtworks = async () => {
       if (searchParams.toString()) {
-        getSearchResults(searchParams.toString());
+        const filteredArtworks = await getFilteredArtworks(searchParams);
+        setCurrentCollection((currentCollection) => ({
+          ...currentCollection,
+          artworks: filteredArtworks as Artwork[],
+        }));
       } else {
-        getRandomArtworks();
+        const randomArtworks = await getRandomArtworks();
+        setCurrentCollection((currentCollection) => ({
+          ...currentCollection,
+          artworks: randomArtworks as Artwork[],
+        }));
       }
-    },
-    [searchParams],
-  );
+    };
+    getFilteredOrRandomArtworks();
+  }, [searchParams]);
 
   return (
     <>
@@ -88,7 +76,7 @@ export default function Home() {
           <FilterGalerieButton setIsOpen={setIsOpen} isOpen={isOpen} />
         </div>
         {isOpen ? <Filter /> : null}
-        {collectionSearch && collectionSearch.artworks.length > 0 && <Carousel collectionId="1" collection={collectionSearch} page="home" />}
+        {currentCollection && currentCollection.artworks.length > 0 && <Carousel collectionId="1" collection={currentCollection} page="home" />}
       </section>
     </>
   );

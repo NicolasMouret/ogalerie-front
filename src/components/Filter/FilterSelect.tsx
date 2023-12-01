@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import axiosInstance from '@/src/utils/axios';
-import { addTagToSearchParams, removeParam, moveObjectToEnd } from '@/src/utils/searchMethods';
+import { addTagToSearchParams, removeParam, moveObjectToEnd } from '@/src/utils/filterMethods';
 import { Tag } from '@/src/@types';
 
 export default function Filter() {
