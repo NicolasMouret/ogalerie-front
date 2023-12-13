@@ -8,8 +8,8 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation';
 import axiosInstance from '@/src/utils/axios';
 import CloseButton from '@/src/components/Buttons/CloseButton';
-import { addTagToSearchParams } from '@/src/utils/searchMethods';
 import { Tag, Artwork, Collection } from '@/src/@types';
+import { addTagToSearchParams } from '@/src/utils/filterMethods';
 
 interface FilterProps {
   handleClose: () => void
